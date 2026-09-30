@@ -49,7 +49,7 @@ prefer forward slashes.
 |---|---|---|
 | `aa_classify` | `{dataset, spec_rows[]}` (row fields: `dataset?`, `variable`, `label`, `type`, `origin`, `derivation`, `source_dataset?`, `source_variable?`) | `{ir: [...], problems: string[]}` — rules-backend classification + `validate_ir()` gate |
 | `aa_validate_ir` | `{ir: [...]}` (variable IR: `dataset`, `variable`, `steps[{layer, args, on?}]`, `confidence`, `needs_human`, `rationale`, `spec_origin`) | `{valid: bool, problems: string[]}` — same parse/normalize path as LLM output (step-level `on` is absorbed into `args`) |
-| `aa_render_program` | `{ir: [...], backend_label?}` | `{code: string, hash: string(8), warnings: string[]}` — deterministic admiral program with `# CHECK:` comments and DISCLAIMER header |
+| `aa_render_program` | `{ir: [...], backend_label?}` | `{code: string, hash: string(8)}` — deterministic admiral program with `# CHECK:` comments and DISCLAIMER header |
 | `aa_dependency_report` | `{ir: [...], known_columns?: string[]}` | rows `[{variable, input, dataset, issue}]` — inputs no spec/step/known column provides |
 | `aa_evals` | `{}` | `{cases: n, rules_accuracy: number, failures: array}` — bundled spec-to-IR corpus vs the rules backend |
 

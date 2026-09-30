@@ -7,7 +7,7 @@ LLM 只输出封闭词汇表内的 Layer IR（JSON），代码由确定性模板
 
 ## 硬性规则
 
-1. `R/layers.R` 的 `aa_layers()` 是层的唯一事实源。新增/修改层 = 改注册表（args/required/render/checks/rank），并同步测试。
+1. 注册表是唯一事实源：变量派生层用 `R/layers.R` 的 `aa_layers()`；分析结果 IR（`aa_analysis_ir`，DESIGN.md §10）用 `R/analysis_ir.R` 的 `aa_operations()`。新增/修改层或操作 = 改对应注册表（args/required/render/checks/rank），并同步测试。
 2. 不引入 `ellmer`/`metacore`/`admiral` 为强依赖（放 Suggests）。核心（IR 校验、codegen、artifacts）必须只靠 base + glue/jsonlite/digest 可测试。
 3. 所有生成给用户的代码必须带 `# CHECK:` 验证注释与 DISCLAIMER 头。
 4. 任何 LLM 输出必须经过 `validate_ir()`；校验失败不猜测、不修复，返回错误或置 `needs_human`。

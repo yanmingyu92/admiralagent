@@ -1,9 +1,15 @@
 # classify_variables() -> classify_variables_llm() passthrough (audit finding A10).
-# helper.R sources R/*.R into a shared env, so we shim the binding in
-# environment(classify_variables) directly (local_mocked_bindings targets an
-# installed namespace and may not bite here) and restore it on exit.
+# In dev-source mode (ADMIRALAGENT_DEV_SOURCE=1) helper.R sources R/*.R into a
+# shared env, so we shim the binding in environment(classify_variables)
+# directly and restore it on exit. Under test_check() that environment is the
+# locked installed namespace, so we rebind through local_mocked_bindings
+# instead (same idiom as test-vocab-new.R).
 with_llm_shim <- function(mock, code) {
   env <- environment(classify_variables)
+  if (bindingIsLocked("classify_variables_llm", env)) {
+    local_mocked_bindings(classify_variables_llm = mock, .package = "admiralagent")
+    return(force(code))
+  }
   old <- get("classify_variables_llm", envir = env)
   assign("classify_variables_llm", mock, envir = env)
   on.exit(assign("classify_variables_llm", old, envir = env), add = TRUE)
