@@ -56,9 +56,9 @@
 
 ### Soft-launch（P1 完成时）
 
-- [ ] M1 GitHub 仓库公开：README 加 badges（R-CMD-check、coverage）、demo GIF、5 分钟 quickstart
-- [ ] M2 pkgdown 站点上线（GitHub Pages）
-- [ ] M3 提交至 r-universe（个人或 pharmaverse）
+- [x] M1 GitHub 仓库公开（提前至 P1 后：私有 Actions 计费阻塞所致）：README 加 badges（R-CMD-check、testthat）+ GitHub 安装说明；demo GIF 待补
+- [x] M2 pkgdown 站点上线：https://yanmingyu92.github.io/admiralagent/（gh-pages 自动部署，push 触发已启用）
+- [x] M3 个人 r-universe 准备：`yanmingyu92/universe` 仓库 + packages.json 已建；**待用户操作**：安装 R-universe GitHub App（https://github.com/apps/r-universe）到该仓库后 https://yanmingyu92.r-universe.dev 生效；pharmaverse 收录列入 M7
 
 ### Hard-launch（P2 完成时）
 

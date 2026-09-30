@@ -1,10 +1,7 @@
-# pkgdown site build.
-#
-# NOTE (soft-launch gate, ROADMAP M2): the repo is private until P1 completes,
-# and GitHub Pages on a private repo needs a paid plan. This workflow is
-# therefore manual-only for now; add `push: branches: [main]` back when the
-# repo goes public and Pages is enabled (Settings > Pages > source: gh-pages).
+# pkgdown site build + deploy to GitHub Pages (gh-pages branch).
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 name: pkgdown
