@@ -1,0 +1,23 @@
+# R session/history
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# Local environment (may contain secrets)
+.Renviron
+
+# Generated code artifacts and logs
+gen/
+gen_llm/
+demo/gen/
+demo/gen_llm/
+Output/
+admiralagent_log.jsonl
+
+# OS cruft
+.DS_Store
+
+# Caches
+cache/
