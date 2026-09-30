@@ -1,0 +1,48 @@
+aa_layers               Layer registry
+artifact_hash           Artifact hash
+build_context           Build LLM context
+build_system_prompt     Build system prompt
+check_admiral_compat    admiral compatibility check
+classify_variables      Classify spec variables
+classify_variables_llm
+                        Classify spec variables via an LLM chat backend
+codelist_from_data      Build a codelist data.frame from observed data
+                        values
+dataset_json_meta       Dataset-JSON header metadata
+evals_accuracy          Accuracy of an eval run
+execute_ir              Execute a Layer IR against source datasets
+ir_dependency_report    IR dependency report
+is_valid_ir             IR validity predicate
+layer_docs              Layer documentation cards
+layer_names             Layer names
+load_evals              Load the spec-to-IR classification eval corpus
+log_run                 Log a run
+mcp_handle_request      Handle one MCP / JSON-RPC 2.0 request
+mcp_serve               Run the admiralagent MCP stdio server
+mcp_tool_specs          Tool specifications for the admiralagent MCP
+                        server
+mock_metacore           Build a minimal executable metacore object from
+                        a spec data frame
+mock_spec_adsl          Mock ADSL spec
+mock_spec_adtte         Mock ADTTE spec
+mock_spec_advs          Mock ADVS spec
+new_step                New layer step
+new_variable_ir         New variable IR
+order_variables         Dependency-driven variable ordering
+parse_define            Parse define.xml
+read_artifact           Read artifact
+read_dataset_json       Read a Dataset-JSON file
+read_define             Read define.xml
+read_spec               Read spec workbook
+read_spec_df            Normalize spec data frame
+render_program          Render program
+render_step             Render a step
+render_variable         Render a variable
+run_evals               Run the spec-to-IR classification evals
+run_validation          Run validation
+spec_variables          Spec rows for a dataset
+validate_ir             IR validation gate
+validation_comments     Validation comments
+write_artifact          Write variable artifacts
+write_program_artifact
+                        Write program artifact

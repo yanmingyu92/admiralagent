@@ -1,0 +1,44 @@
+
+R version 4.6.0 (2026-04-24 ucrt) -- "Because it was There"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(testthat)
+> library(admiralagent)
+> 
+> test_check("admiralagent")
+All `VSTESTCD` are mapped.
+All `VSTESTCD` are mapped.
+All `VSTESTCD` are mapped.
+All `VSTESTCD` are mapped.
+All `VSTESTCD` are mapped.
+All `VSTESTCD` are mapped.
+[ FAIL 0 | WARN 6 | SKIP 10 | PASS 1939 ]
+
+══ Skipped tests (10) ══════════════════════════════════════════════════════════
+• metacore installed; NULL fallback branch not reachable (1):
+  'test-metacore-lite.R:29:5'
+• pilot1 adsl.xpt not cloned (1): 'test-integration.R:65:3'
+• pilot1 define.xml not cloned (5): 'test-define.R:10:3', 'test-define.R:30:3',
+  'test-define.R:67:3', 'test-define.R:92:3', 'test-integration.R:90:3'
+• pilot2 define.xml not cloned (1): 'test-define.R:43:3'
+• pilot5 adsl.json not cloned (1): 'test-dataset-json.R:203:3'
+• pilot5 dm.json not cloned (1): 'test-dataset-json.R:186:3'
+
+[ FAIL 0 | WARN 6 | SKIP 10 | PASS 1939 ]
+> 
+> proc.time()
+   user  system elapsed 
+  46.39   15.81   70.92 

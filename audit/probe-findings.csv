@@ -1,0 +1,167 @@
+id,log,line,evidence
+P001,oracle-accuracy-before.log,63,AGE             ERROR     100.0%        100.0%    306       100.0%
+P002,oracle-accuracy-before.log,65,AGEGR1            REVIEW       <NA>          <NA>     NA         <NA>
+P003,oracle-accuracy-before.log,66,RACEN             ERROR       <NA>          <NA>     NA         <NA>
+P004,oracle-accuracy-before.log,81,PASS=12 FAIL=1 MANUAL=2
+P005,oracle-define-before.log,86,BMIBLGR1    ERROR
+P006,oracle-define-before.log,87,SITEGR1   REVIEW
+P007,oracle-define-before.log,88,TRT01PN   REVIEW
+P008,oracle-define-before.log,89,TRT01AN   REVIEW
+P009,oracle-define-before.log,90,TRTSDT   REVIEW
+P010,oracle-define-before.log,91,TRTEDT   REVIEW
+P011,oracle-define-before.log,92,TRTDURD   REVIEW
+P012,oracle-define-before.log,93,AVGDD   REVIEW
+P013,oracle-define-before.log,94,CUMDOSE   REVIEW
+P014,oracle-define-before.log,95,AGEGR1   REVIEW
+P015,oracle-define-before.log,96,AGEGR1N   REVIEW
+P016,oracle-define-before.log,97,RACEN   REVIEW
+P017,oracle-define-before.log,98,SAFFL   REVIEW
+P018,oracle-define-before.log,99,ITTFL   REVIEW
+P019,oracle-define-before.log,100,EFFFL   REVIEW
+P020,oracle-define-before.log,101,COMP8FL   REVIEW
+P021,oracle-define-before.log,102,COMP16FL   REVIEW
+P022,oracle-define-before.log,103,COMP24FL   REVIEW
+P023,oracle-define-before.log,104,DISCONFL   REVIEW
+P024,oracle-define-before.log,105,DSRAEFL   REVIEW
+P025,oracle-define-before.log,106,BMIBL   REVIEW
+P026,oracle-define-before.log,107,HEIGHTBL   REVIEW
+P027,oracle-define-before.log,108,WEIGHTBL   REVIEW
+P028,oracle-define-before.log,109,EDUCLVL   REVIEW
+P029,oracle-define-before.log,110,DISONSDT   REVIEW
+P030,oracle-define-before.log,111,DURDIS   REVIEW
+P031,oracle-define-before.log,112,DURDSGR1   REVIEW
+P032,oracle-define-before.log,113,VISIT1DT   REVIEW
+P033,oracle-define-before.log,114,VISNUMEN   REVIEW
+P034,oracle-define-before.log,115,DCDECOD   REVIEW
+P035,oracle-define-before.log,116,EOSSTT   REVIEW
+P036,oracle-define-before.log,117,DCSREAS   REVIEW
+P037,oracle-define-before.log,118,MMSETOT   REVIEW
+P038,oracle-define-before.log,170,EXECUTED=16 ERROR=1 REVIEW=32
+P039,oracle-define-before.log,171,Validation gate on executed ADSL: PASS=18 FAIL=2 MANUAL=32
+P040,oracle-define-before.log,182,SITEGR1    text   REVIEW        FALSE               NA           NA         0
+P041,oracle-define-before.log,185,TRT01PN integer   REVIEW        FALSE               NA           NA         0
+P042,oracle-define-before.log,187,TRT01AN integer   REVIEW        FALSE               NA           NA         0
+P043,oracle-define-before.log,188,TRTSDT integer   REVIEW        FALSE               NA           NA         0
+P044,oracle-define-before.log,189,TRTEDT integer   REVIEW        FALSE               NA           NA         0
+P045,oracle-define-before.log,190,TRTDURD integer   REVIEW        FALSE               NA           NA         0
+P046,oracle-define-before.log,191,AVGDD   float   REVIEW        FALSE               NA           NA         0
+P047,oracle-define-before.log,192,CUMDOSE   float   REVIEW        FALSE               NA           NA         0
+P048,oracle-define-before.log,194,AGEGR1    text   REVIEW        FALSE               NA           NA         0
+P049,oracle-define-before.log,195,AGEGR1N integer   REVIEW        FALSE               NA           NA         0
+P050,oracle-define-before.log,198,RACEN integer   REVIEW        FALSE               NA           NA         0
+P051,oracle-define-before.log,201,SAFFL    text   REVIEW        FALSE               NA           NA         0
+P052,oracle-define-before.log,202,ITTFL    text   REVIEW        FALSE               NA           NA         0
+P053,oracle-define-before.log,203,EFFFL    text   REVIEW        FALSE               NA           NA         0
+P054,oracle-define-before.log,204,COMP8FL    text   REVIEW        FALSE               NA           NA         0
+P055,oracle-define-before.log,205,COMP16FL    text   REVIEW        FALSE               NA           NA         0
+P056,oracle-define-before.log,206,COMP24FL    text   REVIEW        FALSE               NA           NA         0
+P057,oracle-define-before.log,207,DISCONFL    text   REVIEW        FALSE               NA           NA         0
+P058,oracle-define-before.log,208,DSRAEFL    text   REVIEW        FALSE               NA           NA         0
+P059,oracle-define-before.log,210,BMIBL   float   REVIEW        FALSE               NA           NA         0
+P060,oracle-define-before.log,211,BMIBLGR1    text    ERROR        FALSE               NA           NA         0
+P061,oracle-define-before.log,212,HEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+P062,oracle-define-before.log,213,WEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+P063,oracle-define-before.log,214,EDUCLVL integer   REVIEW        FALSE               NA           NA         0
+P064,oracle-define-before.log,215,DISONSDT integer   REVIEW        FALSE               NA           NA         0
+P065,oracle-define-before.log,216,DURDIS   float   REVIEW        FALSE               NA           NA         0
+P066,oracle-define-before.log,217,DURDSGR1    text   REVIEW        FALSE               NA           NA         0
+P067,oracle-define-before.log,218,VISIT1DT integer   REVIEW        FALSE               NA           NA         0
+P068,oracle-define-before.log,221,VISNUMEN integer   REVIEW        FALSE               NA           NA         0
+P069,oracle-define-before.log,223,DCDECOD    text   REVIEW        FALSE               NA           NA         0
+P070,oracle-define-before.log,224,EOSSTT    text   REVIEW        FALSE               NA           NA         0
+P071,oracle-define-before.log,225,DCSREAS    text   REVIEW        FALSE               NA           NA         0
+P072,oracle-define-before.log,226,MMSETOT integer   REVIEW        FALSE               NA           NA         0
+P073,oracle-define-before.log,282,FINDING-ERROR BMIBLGR1: i In argument: `BMIBLGR1 = N`. Caused by error: ! object 'N' not found
+P074,oracle-accuracy-after.log,57,AGE             ERROR     100.0%        100.0%    306       100.0%
+P075,oracle-accuracy-after.log,59,AGEGR1            REVIEW       <NA>          <NA>     NA         <NA>
+P076,oracle-accuracy-after.log,60,RACEN             ERROR       <NA>          <NA>     NA         <NA>
+P077,oracle-accuracy-after.log,75,PASS=12 FAIL=1 MANUAL=2
+P078,oracle-define-after.log,78,BMIBLGR1    ERROR
+P079,oracle-define-after.log,81,SITEGR1   REVIEW
+P080,oracle-define-after.log,82,TRT01PN   REVIEW
+P081,oracle-define-after.log,83,TRT01AN   REVIEW
+P082,oracle-define-after.log,84,TRTSDT   REVIEW
+P083,oracle-define-after.log,85,TRTEDT   REVIEW
+P084,oracle-define-after.log,86,TRTDURD   REVIEW
+P085,oracle-define-after.log,87,AVGDD   REVIEW
+P086,oracle-define-after.log,88,CUMDOSE   REVIEW
+P087,oracle-define-after.log,89,AGEGR1   REVIEW
+P088,oracle-define-after.log,90,AGEGR1N   REVIEW
+P089,oracle-define-after.log,91,RACEN   REVIEW
+P090,oracle-define-after.log,92,SAFFL   REVIEW
+P091,oracle-define-after.log,93,ITTFL   REVIEW
+P092,oracle-define-after.log,94,EFFFL   REVIEW
+P093,oracle-define-after.log,95,COMP8FL   REVIEW
+P094,oracle-define-after.log,96,COMP16FL   REVIEW
+P095,oracle-define-after.log,97,COMP24FL   REVIEW
+P096,oracle-define-after.log,98,DISCONFL   REVIEW
+P097,oracle-define-after.log,99,DSRAEFL   REVIEW
+P098,oracle-define-after.log,100,BMIBL   REVIEW
+P099,oracle-define-after.log,101,HEIGHTBL   REVIEW
+P100,oracle-define-after.log,102,WEIGHTBL   REVIEW
+P101,oracle-define-after.log,103,EDUCLVL   REVIEW
+P102,oracle-define-after.log,104,DISONSDT   REVIEW
+P103,oracle-define-after.log,105,DURDIS   REVIEW
+P104,oracle-define-after.log,106,DURDSGR1   REVIEW
+P105,oracle-define-after.log,107,VISIT1DT   REVIEW
+P106,oracle-define-after.log,108,VISNUMEN   REVIEW
+P107,oracle-define-after.log,109,DCDECOD   REVIEW
+P108,oracle-define-after.log,110,EOSSTT   REVIEW
+P109,oracle-define-after.log,111,DCSREAS   REVIEW
+P110,oracle-define-after.log,112,MMSETOT   REVIEW
+P111,oracle-define-after.log,164,EXECUTED=16 ERROR=1 REVIEW=32
+P112,oracle-define-after.log,165,Validation gate on executed ADSL: PASS=17 FAIL=1 MANUAL=32
+P113,oracle-define-after.log,176,SITEGR1    text   REVIEW        FALSE               NA           NA         0
+P114,oracle-define-after.log,179,TRT01PN integer   REVIEW        FALSE               NA           NA         0
+P115,oracle-define-after.log,181,TRT01AN integer   REVIEW        FALSE               NA           NA         0
+P116,oracle-define-after.log,182,TRTSDT integer   REVIEW        FALSE               NA           NA         0
+P117,oracle-define-after.log,183,TRTEDT integer   REVIEW        FALSE               NA           NA         0
+P118,oracle-define-after.log,184,TRTDURD integer   REVIEW        FALSE               NA           NA         0
+P119,oracle-define-after.log,185,AVGDD   float   REVIEW        FALSE               NA           NA         0
+P120,oracle-define-after.log,186,CUMDOSE   float   REVIEW        FALSE               NA           NA         0
+P121,oracle-define-after.log,188,AGEGR1    text   REVIEW        FALSE               NA           NA         0
+P122,oracle-define-after.log,189,AGEGR1N integer   REVIEW        FALSE               NA           NA         0
+P123,oracle-define-after.log,192,RACEN integer   REVIEW        FALSE               NA           NA         0
+P124,oracle-define-after.log,195,SAFFL    text   REVIEW        FALSE               NA           NA         0
+P125,oracle-define-after.log,196,ITTFL    text   REVIEW        FALSE               NA           NA         0
+P126,oracle-define-after.log,197,EFFFL    text   REVIEW        FALSE               NA           NA         0
+P127,oracle-define-after.log,198,COMP8FL    text   REVIEW        FALSE               NA           NA         0
+P128,oracle-define-after.log,199,COMP16FL    text   REVIEW        FALSE               NA           NA         0
+P129,oracle-define-after.log,200,COMP24FL    text   REVIEW        FALSE               NA           NA         0
+P130,oracle-define-after.log,201,DISCONFL    text   REVIEW        FALSE               NA           NA         0
+P131,oracle-define-after.log,202,DSRAEFL    text   REVIEW        FALSE               NA           NA         0
+P132,oracle-define-after.log,204,BMIBL   float   REVIEW        FALSE               NA           NA         0
+P133,oracle-define-after.log,205,BMIBLGR1    text    ERROR        FALSE               NA           NA         0
+P134,oracle-define-after.log,206,HEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+P135,oracle-define-after.log,207,WEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+P136,oracle-define-after.log,208,EDUCLVL integer   REVIEW        FALSE               NA           NA         0
+P137,oracle-define-after.log,209,DISONSDT integer   REVIEW        FALSE               NA           NA         0
+P138,oracle-define-after.log,210,DURDIS   float   REVIEW        FALSE               NA           NA         0
+P139,oracle-define-after.log,211,DURDSGR1    text   REVIEW        FALSE               NA           NA         0
+P140,oracle-define-after.log,212,VISIT1DT integer   REVIEW        FALSE               NA           NA         0
+P141,oracle-define-after.log,215,VISNUMEN integer   REVIEW        FALSE               NA           NA         0
+P142,oracle-define-after.log,217,DCDECOD    text   REVIEW        FALSE               NA           NA         0
+P143,oracle-define-after.log,218,EOSSTT    text   REVIEW        FALSE               NA           NA         0
+P144,oracle-define-after.log,219,DCSREAS    text   REVIEW        FALSE               NA           NA         0
+P145,oracle-define-after.log,220,MMSETOT integer   REVIEW        FALSE               NA           NA         0
+P146,oracle-define-after.log,276,FINDING-ERROR BMIBLGR1: ℹ In argument: `BMIBLGR1 = N`. Caused by error: ! object 'N' not found
+P147,probe-real.log,56,ERROR: Required variables `BRTHDT` and `TRTSDT` are missing in `dataset`
+P148,probe-real.log,57,REVIEW
+P149,probe-real.log,58,ERROR: object 'mc' not found
+P150,probe-real.log,84,AGEGR1     needs_human MANUAL        routed to human review
+P151,probe-real.log,85,RACEN    values_in_ct MANUAL compare against spec codelist
+P152,probe-real.log,86,RACEN      not_all_na   FAIL          variable not present
+P153,probe-real.log,87,BMIBL      not_all_na   FAIL            all values missing
+P154,probe-real.log,90,Summary: PASS=11 FAIL=2 MANUAL=2
+P155,probe-llm.log,57,ERROR: Required variables `BRTHDT` and `TRTSDT` are missing in `dataset`
+P156,probe-llm.log,58,REVIEW
+P157,probe-llm.log,60,ERROR: object 'mc' not found
+P158,probe-llm.log,83,AGEGR1     needs_human MANUAL
+P159,probe-llm.log,84,BMIBL      not_all_na   FAIL
+P160,probe-llm.log,86,RACEN    values_in_ct MANUAL
+P161,probe-llm.log,87,RACEN      not_all_na   FAIL
+P162,probe-llm.log,91,TRTEDTM imputation_flag MANUAL
+P163,probe-llm.log,94,TRTSDTM imputation_flag MANUAL
+P164,probe-llm.log,117,Summary: PASS=11 FAIL=2 MANUAL=4
+P165,probe-llm.log,120,[FINDING] AGE:  Required variables `BRTHDT` and `TRTSDT` are missing in `dataset`
+P166,probe-llm.log,121,[FINDING] RACEN:  object 'mc' not found

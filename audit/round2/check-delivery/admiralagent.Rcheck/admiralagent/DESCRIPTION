@@ -1,0 +1,29 @@
+Package: admiralagent
+Type: Package
+Title: Spec-Driven ADaM Code Generation with LLM-Translated Layers
+Version: 0.1.0
+Authors@R: person("admiralagent", "contributors", role = c("aut", "cre"), email = "noreply@example.com")
+Description: Translates P21-style ADaM specifications into executable
+    admiral code with validation comments. An LLM (optional, via ellmer) maps
+    each spec variable's free-text derivation onto a closed vocabulary of
+    derivation layers (structured JSON IR); a deterministic compiler renders
+    the IR into admiral/metatools code with 'CHECK' validation comments and
+    writes provenance sidecars. Ships with a zero-dependency rule-based
+    classifier as baseline and fallback.
+License: MIT + file LICENSE
+Encoding: UTF-8
+URL: https://github.com/admiralagent/admiralagent
+BugReports: https://github.com/admiralagent/admiralagent/issues
+Depends: R (>= 4.1)
+Imports: glue, jsonlite, digest, stats, utils
+Suggests: xml2, ellmer, metacore, admiral, metatools, readxl, testthat
+        (>= 3.0.0), rlang, tibble, knitr, rmarkdown
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0
+Config/Depends:
+NeedsCompilation: no
+Packaged: 2026-09-18 00:38:11 UTC; JaimeYan
+Author: admiralagent contributors [aut, cre]
+Maintainer: admiralagent contributors <noreply@example.com>
+Built: R 4.6.0; ; 2026-09-18 00:38:22 UTC; windows

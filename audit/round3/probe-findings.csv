@@ -1,0 +1,88 @@
+id,file,line,evidence
+PROBE-001,probe-real.log,50,ERROR: Required variables `BRTHDT` and `TRTSDT` are missing in `dataset`
+PROBE-002,probe-real.log,51,REVIEW
+PROBE-003,probe-real.log,52,ERROR: object 'mc' not found
+PROBE-004,probe-real.log,78,AGEGR1     needs_human MANUAL        routed to human review
+PROBE-005,probe-real.log,79,RACEN    values_in_ct MANUAL compare against spec codelist
+PROBE-006,probe-real.log,80,RACEN      not_all_na   FAIL          variable not present
+PROBE-007,probe-real.log,81,BMIBL      not_all_na   FAIL            all values missing
+PROBE-008,probe-real.log,84,Summary: PASS=11 FAIL=2 MANUAL=2
+PROBE-009,probe-llm.log,28,Error: Invalid IR:
+PROBE-010,probe-real-after.log,50,ERROR: Required variables `BRTHDT` and `TRTSDT` are missing in `dataset`
+PROBE-011,probe-real-after.log,51,REVIEW
+PROBE-012,probe-real-after.log,52,ERROR: object 'mc' not found
+PROBE-013,probe-real-after.log,78,AGEGR1     needs_human MANUAL        routed to human review
+PROBE-014,probe-real-after.log,79,RACEN    values_in_ct MANUAL compare against spec codelist
+PROBE-015,probe-real-after.log,80,RACEN      not_all_na   FAIL          variable not present
+PROBE-016,probe-real-after.log,81,BMIBL      not_all_na   FAIL            all values missing
+PROBE-017,probe-real-after.log,84,Summary: PASS=11 FAIL=2 MANUAL=2
+PROBE-018,probe-llm-after.log,28,Error: Invalid IR:
+PROBE-019,oracle-define-after.log,66,BMIBLGR1    ERROR
+PROBE-020,oracle-define-after.log,81,SITEGR1   REVIEW
+PROBE-021,oracle-define-after.log,82,TRT01PN   REVIEW
+PROBE-022,oracle-define-after.log,83,TRT01AN   REVIEW
+PROBE-023,oracle-define-after.log,84,TRTSDT   REVIEW
+PROBE-024,oracle-define-after.log,85,TRTEDT   REVIEW
+PROBE-025,oracle-define-after.log,86,TRTDURD   REVIEW
+PROBE-026,oracle-define-after.log,87,AVGDD   REVIEW
+PROBE-027,oracle-define-after.log,88,CUMDOSE   REVIEW
+PROBE-028,oracle-define-after.log,89,AGEGR1   REVIEW
+PROBE-029,oracle-define-after.log,90,AGEGR1N   REVIEW
+PROBE-030,oracle-define-after.log,91,RACEN   REVIEW
+PROBE-031,oracle-define-after.log,92,SAFFL   REVIEW
+PROBE-032,oracle-define-after.log,93,ITTFL   REVIEW
+PROBE-033,oracle-define-after.log,94,EFFFL   REVIEW
+PROBE-034,oracle-define-after.log,95,COMP8FL   REVIEW
+PROBE-035,oracle-define-after.log,96,COMP16FL   REVIEW
+PROBE-036,oracle-define-after.log,97,COMP24FL   REVIEW
+PROBE-037,oracle-define-after.log,98,DISCONFL   REVIEW
+PROBE-038,oracle-define-after.log,99,DSRAEFL   REVIEW
+PROBE-039,oracle-define-after.log,100,BMIBL   REVIEW
+PROBE-040,oracle-define-after.log,101,HEIGHTBL   REVIEW
+PROBE-041,oracle-define-after.log,102,WEIGHTBL   REVIEW
+PROBE-042,oracle-define-after.log,103,EDUCLVL   REVIEW
+PROBE-043,oracle-define-after.log,104,DISONSDT   REVIEW
+PROBE-044,oracle-define-after.log,105,DURDIS   REVIEW
+PROBE-045,oracle-define-after.log,106,DURDSGR1   REVIEW
+PROBE-046,oracle-define-after.log,107,VISIT1DT   REVIEW
+PROBE-047,oracle-define-after.log,108,VISNUMEN   REVIEW
+PROBE-048,oracle-define-after.log,109,DCDECOD   REVIEW
+PROBE-049,oracle-define-after.log,110,EOSSTT   REVIEW
+PROBE-050,oracle-define-after.log,111,DCSREAS   REVIEW
+PROBE-051,oracle-define-after.log,112,MMSETOT   REVIEW
+PROBE-052,oracle-define-after.log,164,EXECUTED=16 ERROR=1 REVIEW=32
+PROBE-053,oracle-define-after.log,165,Validation gate on executed ADSL: PASS=18 FAIL=1 MANUAL=32
+PROBE-054,oracle-define-after.log,176,SITEGR1    text   REVIEW        FALSE               NA           NA         0
+PROBE-055,oracle-define-after.log,179,TRT01PN integer   REVIEW        FALSE               NA           NA         0
+PROBE-056,oracle-define-after.log,181,TRT01AN integer   REVIEW        FALSE               NA           NA         0
+PROBE-057,oracle-define-after.log,182,TRTSDT integer   REVIEW        FALSE               NA           NA         0
+PROBE-058,oracle-define-after.log,183,TRTEDT integer   REVIEW        FALSE               NA           NA         0
+PROBE-059,oracle-define-after.log,184,TRTDURD integer   REVIEW        FALSE               NA           NA         0
+PROBE-060,oracle-define-after.log,185,AVGDD   float   REVIEW        FALSE               NA           NA         0
+PROBE-061,oracle-define-after.log,186,CUMDOSE   float   REVIEW        FALSE               NA           NA         0
+PROBE-062,oracle-define-after.log,188,AGEGR1    text   REVIEW        FALSE               NA           NA         0
+PROBE-063,oracle-define-after.log,189,AGEGR1N integer   REVIEW        FALSE               NA           NA         0
+PROBE-064,oracle-define-after.log,192,RACEN integer   REVIEW        FALSE               NA           NA         0
+PROBE-065,oracle-define-after.log,195,SAFFL    text   REVIEW        FALSE               NA           NA         0
+PROBE-066,oracle-define-after.log,196,ITTFL    text   REVIEW        FALSE               NA           NA         0
+PROBE-067,oracle-define-after.log,197,EFFFL    text   REVIEW        FALSE               NA           NA         0
+PROBE-068,oracle-define-after.log,198,COMP8FL    text   REVIEW        FALSE               NA           NA         0
+PROBE-069,oracle-define-after.log,199,COMP16FL    text   REVIEW        FALSE               NA           NA         0
+PROBE-070,oracle-define-after.log,200,COMP24FL    text   REVIEW        FALSE               NA           NA         0
+PROBE-071,oracle-define-after.log,201,DISCONFL    text   REVIEW        FALSE               NA           NA         0
+PROBE-072,oracle-define-after.log,202,DSRAEFL    text   REVIEW        FALSE               NA           NA         0
+PROBE-073,oracle-define-after.log,204,BMIBL   float   REVIEW        FALSE               NA           NA         0
+PROBE-074,oracle-define-after.log,205,BMIBLGR1    text    ERROR        FALSE               NA           NA         0
+PROBE-075,oracle-define-after.log,206,HEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+PROBE-076,oracle-define-after.log,207,WEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+PROBE-077,oracle-define-after.log,208,EDUCLVL integer   REVIEW        FALSE               NA           NA         0
+PROBE-078,oracle-define-after.log,209,DISONSDT integer   REVIEW        FALSE               NA           NA         0
+PROBE-079,oracle-define-after.log,210,DURDIS   float   REVIEW        FALSE               NA           NA         0
+PROBE-080,oracle-define-after.log,211,DURDSGR1    text   REVIEW        FALSE               NA           NA         0
+PROBE-081,oracle-define-after.log,212,VISIT1DT integer   REVIEW        FALSE               NA           NA         0
+PROBE-082,oracle-define-after.log,215,VISNUMEN integer   REVIEW        FALSE               NA           NA         0
+PROBE-083,oracle-define-after.log,217,DCDECOD    text   REVIEW        FALSE               NA           NA         0
+PROBE-084,oracle-define-after.log,218,EOSSTT    text   REVIEW        FALSE               NA           NA         0
+PROBE-085,oracle-define-after.log,219,DCSREAS    text   REVIEW        FALSE               NA           NA         0
+PROBE-086,oracle-define-after.log,220,MMSETOT integer   REVIEW        FALSE               NA           NA         0
+PROBE-087,oracle-define-after.log,276,"FINDING-ERROR BMIBLGR1: The filtered input dataset contains duplicate records with respect to `STUDYID`, `USUBJID`, `PARAMCD`, and `PARAMCD` ℹ Please ensure that th"

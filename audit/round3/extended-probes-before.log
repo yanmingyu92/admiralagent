@@ -1,0 +1,6 @@
+matrix before gate:  
+[{"dataset":"ADSL","variable":"X","steps":[{"layer":"categorize","args":{"target":"X","from":"AGE","breaks":[0,18,100],"labels":["Y","A"],"right":[[true]]}}],"spec_origin":null,"confidence":1,"needs_human":false,"rationale":null}] 
+matrix before roundtrip: [variable 1] step 1 arg 'right' must be a logical scalar without NULL/NA or oversized strings 
+order_variables bad known_columns: ACCEPT 
+ir_dependency_report bad known_columns: ACCEPT 
+nested spec before: ACCEPT 

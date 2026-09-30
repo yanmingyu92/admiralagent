@@ -1,0 +1,84 @@
+id,log,line,evidence
+P001,oracle-accuracy-delivery.log,57,AGE             ERROR     100.0%        100.0%    306       100.0%
+P002,oracle-accuracy-delivery.log,59,AGEGR1            REVIEW       <NA>          <NA>     NA         <NA>
+P003,oracle-accuracy-delivery.log,60,RACEN             ERROR       <NA>          <NA>     NA         <NA>
+P004,oracle-accuracy-delivery.log,75,PASS=12 FAIL=1 MANUAL=2
+P005,oracle-define-delivery.log,72,BMIBLGR1    ERROR
+P006,oracle-define-delivery.log,87,SITEGR1   REVIEW
+P007,oracle-define-delivery.log,88,TRT01PN   REVIEW
+P008,oracle-define-delivery.log,89,TRT01AN   REVIEW
+P009,oracle-define-delivery.log,90,TRTSDT   REVIEW
+P010,oracle-define-delivery.log,91,TRTEDT   REVIEW
+P011,oracle-define-delivery.log,92,TRTDURD   REVIEW
+P012,oracle-define-delivery.log,93,AVGDD   REVIEW
+P013,oracle-define-delivery.log,94,CUMDOSE   REVIEW
+P014,oracle-define-delivery.log,95,AGEGR1   REVIEW
+P015,oracle-define-delivery.log,96,AGEGR1N   REVIEW
+P016,oracle-define-delivery.log,97,RACEN   REVIEW
+P017,oracle-define-delivery.log,98,SAFFL   REVIEW
+P018,oracle-define-delivery.log,99,ITTFL   REVIEW
+P019,oracle-define-delivery.log,100,EFFFL   REVIEW
+P020,oracle-define-delivery.log,101,COMP8FL   REVIEW
+P021,oracle-define-delivery.log,102,COMP16FL   REVIEW
+P022,oracle-define-delivery.log,103,COMP24FL   REVIEW
+P023,oracle-define-delivery.log,104,DISCONFL   REVIEW
+P024,oracle-define-delivery.log,105,DSRAEFL   REVIEW
+P025,oracle-define-delivery.log,106,BMIBL   REVIEW
+P026,oracle-define-delivery.log,107,HEIGHTBL   REVIEW
+P027,oracle-define-delivery.log,108,WEIGHTBL   REVIEW
+P028,oracle-define-delivery.log,109,EDUCLVL   REVIEW
+P029,oracle-define-delivery.log,110,DISONSDT   REVIEW
+P030,oracle-define-delivery.log,111,DURDIS   REVIEW
+P031,oracle-define-delivery.log,112,DURDSGR1   REVIEW
+P032,oracle-define-delivery.log,113,VISIT1DT   REVIEW
+P033,oracle-define-delivery.log,114,VISNUMEN   REVIEW
+P034,oracle-define-delivery.log,115,DCDECOD   REVIEW
+P035,oracle-define-delivery.log,116,EOSSTT   REVIEW
+P036,oracle-define-delivery.log,117,DCSREAS   REVIEW
+P037,oracle-define-delivery.log,118,MMSETOT   REVIEW
+P038,oracle-define-delivery.log,170,EXECUTED=16 ERROR=1 REVIEW=32
+P039,oracle-define-delivery.log,171,Validation gate on executed ADSL: PASS=18 FAIL=1 MANUAL=32
+P040,oracle-define-delivery.log,182,SITEGR1    text   REVIEW        FALSE               NA           NA         0
+P041,oracle-define-delivery.log,185,TRT01PN integer   REVIEW        FALSE               NA           NA         0
+P042,oracle-define-delivery.log,187,TRT01AN integer   REVIEW        FALSE               NA           NA         0
+P043,oracle-define-delivery.log,188,TRTSDT integer   REVIEW        FALSE               NA           NA         0
+P044,oracle-define-delivery.log,189,TRTEDT integer   REVIEW        FALSE               NA           NA         0
+P045,oracle-define-delivery.log,190,TRTDURD integer   REVIEW        FALSE               NA           NA         0
+P046,oracle-define-delivery.log,191,AVGDD   float   REVIEW        FALSE               NA           NA         0
+P047,oracle-define-delivery.log,192,CUMDOSE   float   REVIEW        FALSE               NA           NA         0
+P048,oracle-define-delivery.log,194,AGEGR1    text   REVIEW        FALSE               NA           NA         0
+P049,oracle-define-delivery.log,195,AGEGR1N integer   REVIEW        FALSE               NA           NA         0
+P050,oracle-define-delivery.log,198,RACEN integer   REVIEW        FALSE               NA           NA         0
+P051,oracle-define-delivery.log,201,SAFFL    text   REVIEW        FALSE               NA           NA         0
+P052,oracle-define-delivery.log,202,ITTFL    text   REVIEW        FALSE               NA           NA         0
+P053,oracle-define-delivery.log,203,EFFFL    text   REVIEW        FALSE               NA           NA         0
+P054,oracle-define-delivery.log,204,COMP8FL    text   REVIEW        FALSE               NA           NA         0
+P055,oracle-define-delivery.log,205,COMP16FL    text   REVIEW        FALSE               NA           NA         0
+P056,oracle-define-delivery.log,206,COMP24FL    text   REVIEW        FALSE               NA           NA         0
+P057,oracle-define-delivery.log,207,DISCONFL    text   REVIEW        FALSE               NA           NA         0
+P058,oracle-define-delivery.log,208,DSRAEFL    text   REVIEW        FALSE               NA           NA         0
+P059,oracle-define-delivery.log,210,BMIBL   float   REVIEW        FALSE               NA           NA         0
+P060,oracle-define-delivery.log,211,BMIBLGR1    text    ERROR        FALSE               NA           NA         0
+P061,oracle-define-delivery.log,212,HEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+P062,oracle-define-delivery.log,213,WEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+P063,oracle-define-delivery.log,214,EDUCLVL integer   REVIEW        FALSE               NA           NA         0
+P064,oracle-define-delivery.log,215,DISONSDT integer   REVIEW        FALSE               NA           NA         0
+P065,oracle-define-delivery.log,216,DURDIS   float   REVIEW        FALSE               NA           NA         0
+P066,oracle-define-delivery.log,217,DURDSGR1    text   REVIEW        FALSE               NA           NA         0
+P067,oracle-define-delivery.log,218,VISIT1DT integer   REVIEW        FALSE               NA           NA         0
+P068,oracle-define-delivery.log,221,VISNUMEN integer   REVIEW        FALSE               NA           NA         0
+P069,oracle-define-delivery.log,223,DCDECOD    text   REVIEW        FALSE               NA           NA         0
+P070,oracle-define-delivery.log,224,EOSSTT    text   REVIEW        FALSE               NA           NA         0
+P071,oracle-define-delivery.log,225,DCSREAS    text   REVIEW        FALSE               NA           NA         0
+P072,oracle-define-delivery.log,226,MMSETOT integer   REVIEW        FALSE               NA           NA         0
+P073,oracle-define-delivery.log,282,"FINDING-ERROR BMIBLGR1: The filtered input dataset contains duplicate records with respect to `STUDYID`, `USUBJID`, `PARAMCD`, and `PARAMCD` ℹ Please ensure that th"
+P074,probe-real.log,56,ERROR: Required variables `BRTHDT` and `TRTSDT` are missing in `dataset`
+P075,probe-real.log,57,REVIEW
+P076,probe-real.log,58,ERROR: object 'mc' not found
+P077,probe-real.log,84,AGEGR1     needs_human MANUAL        routed to human review
+P078,probe-real.log,85,RACEN    values_in_ct MANUAL compare against spec codelist
+P079,probe-real.log,86,RACEN      not_all_na   FAIL          variable not present
+P080,probe-real.log,87,BMIBL      not_all_na   FAIL            all values missing
+P081,probe-real.log,90,Summary: PASS=11 FAIL=2 MANUAL=2
+P082,probe-llm.log,34,Error: Invalid IR:
+P083,probe-llm.log,37,Execution halted

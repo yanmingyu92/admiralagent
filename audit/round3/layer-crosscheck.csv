@@ -1,0 +1,15 @@
+"layer","declared","render_refs","outside_render","parse","prompt"
+"assign","target,from,literal,on","literal,from,target","on",TRUE,TRUE
+"merge_var","target,source,dataset_add,by_vars,order,mode,filter,on","dataset_add,by_vars,order,mode,target,source,filter","on",TRUE,TRUE
+"lookup_join","target,source,dataset_lookup,by_vars,on","dataset_lookup,by_vars,target,source","on",TRUE,TRUE
+"impute_dtc","target,dtc,output_class,highest_imputation,date_imputation,time_imputation,on","target,dtc,highest_imputation,date_imputation,output_class,time_imputation","on",TRUE,TRUE
+"dtm_to_dt","target,source,on","source","target,on",TRUE,TRUE
+"duration","target,start,end,out_unit,add_one,trunc_out,on","add_one,trunc_out,out_unit,target,start,end","on",TRUE,TRUE
+"date_shift","target,source,days,on","days,target,source","on",TRUE,TRUE
+"compute_param","paramcd,param,avalu,parameters,formula,by_vars,filter,constant_parameters,on","by_vars,parameters,formula,paramcd,param,avalu,filter,constant_parameters","on",TRUE,TRUE
+"summary_record","paramcd,param,by_vars,analysis_var,summary_fun,on","analysis_var,by_vars,paramcd,param,summary_fun","on",TRUE,TRUE
+"extreme_flag","target,by_vars,order,mode,true_value,restrict_filter,on","true_value,target,by_vars,order,mode,restrict_filter","on",TRUE,TRUE
+"codelist_var","target,from,decode_to_code,on","decode_to_code,from,target","on",TRUE,TRUE
+"obs_number","target,by_vars,order,on","target,by_vars,order","on",TRUE,TRUE
+"categorize","target,from,breaks,labels,right,include_lowest,on","right,include_lowest,breaks,labels,target,from","on",TRUE,TRUE
+"compute_var","target,formula,on","target,formula","on",TRUE,TRUE

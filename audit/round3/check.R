@@ -1,0 +1,5 @@
+x <- rcmdcheck::rcmdcheck('admiralagent', args=c('--no-manual'), error_on='error', check_dir='admiralagent/audit/round3/check-delivery')
+saveRDS(x,'admiralagent/audit/round3/check-delivery-result.rds')
+counts <- vapply(x[c('errors','warnings','notes')],length,integer(1))
+print(counts)
+stopifnot(all(counts==0L))

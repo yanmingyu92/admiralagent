@@ -1,0 +1,15 @@
+"layer","fn","args","prompt"
+"assign","dplyr::mutate","target,from,literal,on",TRUE
+"merge_var","admiral::derive_vars_merged","target,source,dataset_add,by_vars,order,mode,filter,on",TRUE
+"lookup_join","admiral::derive_vars_merged_lookup","target,source,dataset_lookup,by_vars,on",TRUE
+"impute_dtc","admiral::derive_vars_dtm","target,dtc,output_class,highest_imputation,date_imputation,time_imputation,on",TRUE
+"dtm_to_dt","admiral::derive_vars_dtm_to_dt","target,source,on",TRUE
+"duration","admiral::derive_vars_duration","target,start,end,out_unit,add_one,trunc_out,on",TRUE
+"date_shift","dplyr::mutate","target,source,days,on",TRUE
+"compute_param","admiral::derive_param_computed","paramcd,param,avalu,parameters,formula,by_vars,filter,constant_parameters,on",TRUE
+"summary_record","admiral::derive_summary_records","paramcd,param,by_vars,analysis_var,summary_fun,on",TRUE
+"extreme_flag","admiral::derive_var_extreme_flag","target,by_vars,order,mode,true_value,restrict_filter,on",TRUE
+"codelist_var","metatools::create_var_from_codelist","target,from,decode_to_code,on",TRUE
+"obs_number","admiral::derive_var_obs_number","target,by_vars,order,on",TRUE
+"categorize","dplyr::mutate","target,from,breaks,labels,right,include_lowest,on",TRUE
+"compute_var","dplyr::mutate","target,formula,on",TRUE

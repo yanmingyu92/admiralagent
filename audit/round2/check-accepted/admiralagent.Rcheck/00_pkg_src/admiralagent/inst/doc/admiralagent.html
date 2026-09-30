@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>admiralagent: Spec-to-ADaM with LLM-Translated Layers</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">admiralagent: Spec-to-ADaM with
+LLM-Translated Layers</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(admiralagent)</span></code></pre></div>
+<div id="the-idea" class="section level2">
+<h2>The idea</h2>
+<p><strong>The LLM never writes R code.</strong> It only
+<em>translates</em>: each spec variable’s free-text derivation is mapped
+onto a closed vocabulary of derivation layers (a structured JSON IR). A
+deterministic compiler turns the IR into
+<code>admiral</code>/<code>metatools</code> code with <code>CHECK</code>
+validation comments and provenance sidecars.</p>
+<pre><code>P21 spec  -&gt;  deterministic parse  -&gt;  LLM per-variable   -&gt;  deterministic
+(xlsx)        (metacore)              translation to IR       compile
+                                         |  JSON (closed       |  script +
+                                         |  vocabulary)        |  CHECK comments
+                                         v                     v
+                                    validate_ir()         run_validation()
+                                    (schema + semantic)   (deterministic gate)
+                                         \___________ __________/
+                                                     v
+                                       write_artifact() -&gt; script + sidecar</code></pre>
+<p>Why this split: the only non-deterministic step (understanding free
+text) is the LLM’s; everything with a provable right answer (code
+syntax, argument schemas, validation) is deterministic. Identical IR
+always yields identical code, and the LLM never sees patient data —
+<code>build_context()</code> emits schema fields only.</p>
+</div>
+<div id="walkthrough-on-the-mock-adsl-spec" class="section level2">
+<h2>Walkthrough on the mock ADSL spec</h2>
+<p>Start from the bundled mock spec and classify every variable with the
+zero-dependency rules backend:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">mock_spec_adsl</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>ir <span class="ot">&lt;-</span> <span class="fu">classify_variables</span>(spec, <span class="at">dataset =</span> <span class="st">&quot;ADSL&quot;</span>, <span class="at">backend =</span> <span class="st">&quot;rules&quot;</span>)</span></code></pre></div>
+<p>Every IR — whether produced by the rules engine or an LLM — must pass
+the same validation gate before any code is rendered:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>problems <span class="ot">&lt;-</span> <span class="fu">validate_ir</span>(ir)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">length</span>(problems) <span class="sc">==</span> <span class="dv">0</span><span class="dt">L</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>The rules backend abstains (<code>needs_human = TRUE</code>) when a
+derivation requires a human-only decision, e.g. AGEGR1’s categorisation
+breakpoints:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">vapply</span>(ir, <span class="cf">function</span>(v) <span class="fu">isTRUE</span>(v<span class="sc">$</span>needs_human), <span class="fu">logical</span>(<span class="dv">1</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span></code></pre></div>
+<p>Rendering is fully deterministic. Below is the head of the generated
+program (truncated):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>prog <span class="ot">&lt;-</span> <span class="fu">render_program</span>(ir, <span class="at">backend_label =</span> <span class="st">&quot;rules&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">strsplit</span>(prog, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)[[<span class="dv">1</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>], <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; # ============================================================</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; # ADSL analysis dataset program</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # Generated by admiralagent v0.1.0 (backend: rules)</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; # DISCLAIMER: DRAFT CODE - starting point only. A qualified human</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; # must review every derivation against the spec before any use in a</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; # regulated workflow. See # CHECK comments and the artifact sidecar.</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; # ============================================================</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; library(admiral)</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; library(dplyr)</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; library(rlang)</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; # ---- Source datasets (placeholders: replace with study data) ----</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; # vs &lt;- ...  # SDTM VS dataset</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; ADSL &lt;- dm  # base subject-level dataset (placeholder)</span></span></code></pre></div>
+<p>Each step block carries its spec origin, the classifier’s rationale,
+a confidence, and <code># CHECK:</code> comments tied to the layer’s
+registered checks. To <em>execute</em> the program in-process,
+<code>execute_ir(ir, sources = list(base = dm, ex = ex, vs = vs_bds))</code>
+evaluates each rendered block in a fresh environment and reports
+<code>EXECUTED</code> / <code>ERROR</code> / <code>REVIEW</code> per
+variable — see <code>?execute_ir</code>. Artifacts are written with
+<code>write_program_artifact(ir, dir = &quot;gen&quot;)</code>, producing
+<code>&lt;dataset&gt;__program__&lt;hash8&gt;.R</code> plus a JSON
+sidecar and an append-only audit log.</p>
+</div>
+<div id="accuracy-story-rules-vs-the-pilot1-oracle" class="section level2">
+<h2>Accuracy story: rules vs the pilot1 oracle</h2>
+<p>The real question is not “does it run” but “does it match a
+reviewer-approved ADaM dataset”. We executed rules-backend programs
+against the CDISC pilot 1 SDTM data and compared each derived variable
+with <code>pharmaverseadam::adsl</code> (the published reference
+ADSL):</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Rule used</th>
+<th>Result vs pilot1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TRT01P</td>
+<td>assign from DM.ARM</td>
+<td>100% match</td>
+</tr>
+<tr class="even">
+<td>TRTSDTM</td>
+<td>impute DM.RFSTDTC (first, “M”)</td>
+<td>100% non-NA agreement, 100% NA-pattern agreement</td>
+</tr>
+<tr class="odd">
+<td>TRTEDTM</td>
+<td>impute DM.RFENDTC (last, “M”)</td>
+<td>~48% match — RFENDTC dominates the spec text but the pilot derives
+from EX</td>
+</tr>
+<tr class="even">
+<td>BMIBL</td>
+<td>compute_param WEIGHT/HEIGHT then merge</td>
+<td>85.8% within 0.5 kg/m2</td>
+</tr>
+</tbody>
+</table>
+<p>The two imperfect rows are the improvement loop working as designed:
+<code>TRTEDTM</code> exposes a genuine spec-text ambiguity (RFENDTC vs
+last EX dose), and <code>BMIBL</code>’s residual mismatch tracks
+baseline-visit scoping. Both are flagged with <code># CHECK:</code>
+comments in the generated code; neither is silently wrong. The LLM
+backend targets exactly these rows — it reads the full derivation
+context instead of keyword dominance.</p>
+<p>For offline regression, the bundled corpus
+(<code>inst/evals/spec-to-ir.jsonl</code>) pins expected layer chains
+per spec row:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">run_evals</span>(<span class="at">backend =</span> <span class="st">&quot;rules&quot;</span>, <span class="at">dataset =</span> <span class="st">&quot;ADSL&quot;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">evals_accuracy</span>(res)  <span class="co"># must stay 1.0</span></span></code></pre></div>
+<p>The <code>rules</code> backend scoring below 1.0 on the corpus fails
+the package’s own regression gate.</p>
+</div>
+<div id="mcp-server-the-same-gates-from-any-agent" class="section level2">
+<h2>MCP server: the same gates from any agent</h2>
+<p>The deterministic core is also exposed as a stdio MCP server
+(protocol <code>2024-11-05</code>, newline-delimited JSON-RPC 2.0) with
+five tools:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>aa_classify</code></td>
+<td>spec rows -&gt; layer IR (rules backend) + validation problems</td>
+</tr>
+<tr class="even">
+<td><code>aa_validate_ir</code></td>
+<td>parse/normalize any IR array, run <code>validate_ir()</code></td>
+</tr>
+<tr class="odd">
+<td><code>aa_render_program</code></td>
+<td>IR -&gt; admiral program with CHECK comments + hash</td>
+</tr>
+<tr class="even">
+<td><code>aa_dependency_report</code></td>
+<td>undefined step inputs
+(<code>variable, input, dataset, issue</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>aa_evals</code></td>
+<td>run the bundled corpus, report rules accuracy</td>
+</tr>
+</tbody>
+</table>
+<p>No network, no LLM, no API keys — every tool is base R + jsonlite +
+digest. Register it (e.g. for Claude Code) via:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="dt">&quot;mcpServers&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    <span class="dt">&quot;admiralagent&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;Rscript&quot;</span><span class="fu">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;/path/to/admiralagent/tools/mcp_server.R&quot;</span><span class="ot">]</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>The tool layer is in-process testable via
+<code>mcp_tool_specs()</code> and <code>mcp_handle_request()</code>; the
+blocking loop itself is <code>mcp_serve()</code>.</p>
+</div>
+<div id="improvement-loop-philosophy" class="section level2">
+<h2>Improvement-loop philosophy</h2>
+<p>Every iteration follows probe -&gt; finding -&gt; fix -&gt;
+regression:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Probe</strong>: execute generated programs against real SDTM
+(pilot1); every ERROR/FAIL/MANUAL becomes a numbered finding.</li>
+<li><strong>Fix in three layers at once</strong>: semantic validation
+(<code>validate_ir()</code>, <code>ir_dependency_report()</code>),
+prompt rules (<code>build_system_prompt()</code>), and a regression
+test.</li>
+<li><strong>Never repeat history</strong>: past LLM failure modes
+(step-level <code>on</code>, JSON array simplification, cross-dataset
+<code>assign</code>, admiral argument renames) are all locked behind
+tests and normalizations.</li>
+</ol>
+<p>When the classifier is unsure it abstains — <code>needs_human</code>
+variables get a review header instead of guessed code. The package’s
+promise is not “no humans”; it is “no silent errors”.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

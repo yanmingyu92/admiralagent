@@ -1,0 +1,6 @@
+{
+  "accuracy": "all original comparable metrics nondecreasing",
+  "define": "all original comparable metrics nondecreasing",
+  "define_comparable": 16,
+  "define_at_100": 14
+}

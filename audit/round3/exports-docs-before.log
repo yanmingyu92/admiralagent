@@ -1,0 +1,5 @@
+ variable      check status              details
+        X not_all_na   FAIL variable not present
+ variable      check status              details
+        X not_all_na   FAIL variable not present
+elapsed 2.88 layers 14 exports 43 

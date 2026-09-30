@@ -1,0 +1,433 @@
+[
+  {
+    "file": "R\\artifacts.R",
+    "sha256": "d7f17617d389b04a787dc8db3e1d5984fc8534a692105500d6908df214162d82",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\checks.R",
+    "sha256": "4fd243a722bfe9859a00ba257bcf8f8737081b2f3ce7218d99066fdfc9cadd3b",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\classify_llm.R",
+    "sha256": "2ac03fb14e916c68264191488ca1168fcc7e59fc3926d03377995339fcdfb31d",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\classify_rules.R",
+    "sha256": "76e9731bfc31ed2c244aef34123788314d23f741fe36bf8127dfec2ca11bffa3",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\codegen.R",
+    "sha256": "96226c568abe17e87df91855abf5a138b80fa3d5bca3f63176f5a3acf26ae4e2",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\dataset_json.R",
+    "sha256": "a53b6a1a23a3f63b46c753111a2d46990befae0d17452d43720dcfe57ff5d4a3",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\define.R",
+    "sha256": "ca1ed2245ef5aaf4211ea9cad606a70cd56f0c88f4bc2483cc9eb7787a26a4d5",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\dependency.R",
+    "sha256": "5b2067720c3e7de8460e932954a4be3a5f272e0fead753e4efdf612e9240b006",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\evals.R",
+    "sha256": "64a02ef9ef0d279ae7cbaf229b01c275eca392751cf7a5eaad1aa5c291f55633",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\execute.R",
+    "sha256": "8421c7dde9c4a36a2fa960f6b1bccd3db4f5a35e072a44d664ca6bc013418b4d",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\ir.R",
+    "sha256": "908c807c33045ff256b3bc04e3d78b904cc04b260e30a6d0bc08a8f6f21ad187",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\layers.R",
+    "sha256": "177f3de1f2084e00fe5056b170780c5effdd1f36f52857f039f7115130f6ac4f",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\mcp.R",
+    "sha256": "93b928296dbe5312dc732c4e47e1b50a167b8475f1e5f6a1f43da54ec3fb5476",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\metacore_lite.R",
+    "sha256": "11843066b72ba32068078179084370e898709f6b64fdc5460e5ea14042395470",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\safety.R",
+    "sha256": "0ce518cd2741dcc93b10ba0f352c09589041ad7237c48ae4eb4a414ae066da69",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\spec.R",
+    "sha256": "e40ec2c2aa86b1cdc600f5daaf747b143668c23275b4e27ee0d7a5f308971049",
+    "matches_checked_source": true
+  },
+  {
+    "file": "R\\utils.R",
+    "sha256": "703c46556516f58bf6edcea28c6fedc41178dae0bfea9216e8afb019391f8660",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\helper.R",
+    "sha256": "2b391e8996e2366f3cad884a14b29c771dfe0fc29f7366d39aacab3855c715a0",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-artifacts.R",
+    "sha256": "ab4fa008f75ab5e8371b04b24396bb8e181776d8d66d2bc5d9f3e8027ab9e48d",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-audit-security.R",
+    "sha256": "6e74363d6bd912f3243e0526967b0a56a84ab041aa83e62afdf855ae1920a2f6",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-bds.R",
+    "sha256": "fc5c9445486256423aa05959a68e1bb302d7df5c2a7f27cd85624710233ed7ce",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-checks-behavior.R",
+    "sha256": "5208b52142a821de62c3ee93459727df41de4dd620e5016dd724306a2c726245",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-classify-llm-mock.R",
+    "sha256": "ae3a70a3b06ded8ff6e60bc0cd1a470f1ac7f133bbdcc2a66e521ef69a335d75",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-classify.R",
+    "sha256": "c2468737d9f97d01d7f71c28053030fed5ef288b9fa1616126b8d4b637a45f1c",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-codegen.R",
+    "sha256": "83422bffd382535725aff2d8851aab3fb337398a266e1f0d521a20d2442b6b3d",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-dataset-json.R",
+    "sha256": "2b8d5b902287cc8a621148311b62050b61a07d3d05feb47da7c62cbf37f33bff",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-define.R",
+    "sha256": "dc218077dbb5fbbb563778f2b645db152993a33f476cd851e0d9dd3b952b9e47",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-dependency.R",
+    "sha256": "64fd9d513164a9e8ee319afa5ff2d513db64e4090dde36e44fa47401c746788e",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-evals.R",
+    "sha256": "b9273138264d5bfcad03747eeef5e22bca92d9d8d6aa00bd1d16cd37917ed444",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-execute.R",
+    "sha256": "973211581f6ef0369870b2f910ae604c1218b52627cd9b06353de37a5a18be65",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-integration.R",
+    "sha256": "6bfaabee62521fa726f6b139c1d5c9d264611752dc241271406f285a68e23177",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-ir.R",
+    "sha256": "a39be7b8685b5623097b7de07730f51e6b59529f4623c8425a2c6d442b278737",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-layers-golden.R",
+    "sha256": "79a64ab0cc486639857e5a83d67c928224bad6d10383b7f0686acd65f06e4d9d",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-layers.R",
+    "sha256": "df8b5dc2a0ca2870d53047a1e314e006fb786b005747fcf9a262e431bb899531",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-mcp.R",
+    "sha256": "9a57033a60fcc633e4c28aa45c5f9337bef4ec1a23705cd25b874199b04cab73",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-metacore-lite.R",
+    "sha256": "1cbed15cc00a0ce25c4359a6de02ab7dc61e85cd3ee70d16691a8cbbd95e069f",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-ordering.R",
+    "sha256": "1c2d2e7d0450d606cd78403c4383693e1fba54e0b6ac5d27173581279df9d281",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-semantic.R",
+    "sha256": "6b47a41be6d427ab76efa2234f8d49cbabbde309f4f4454e1bed688ef3e67323",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tests\\testthat\\test-vocab-new.R",
+    "sha256": "feadfc5b7c7bcc3bd1e8e1dcf067cd38ff799b6b8a907893f50f20278acc86b1",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\aa_layers.Rd",
+    "sha256": "76cdde0b32f8fa0f7e367f0834670bc2409435f5fadb7e0ae8c675d984e7ae03",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\admiralagent-package.Rd",
+    "sha256": "04a3b8fdcdc7b26526398d36d436ae55c8f29acabe315b39c488900f57304cf7",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\artifact_hash.Rd",
+    "sha256": "6a603a52f4c4798e462271e7589359685435dc895432c9134fea8b7329342ab6",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\build_context.Rd",
+    "sha256": "fce4d6e9eda670569bf22d9d2f75eb8f3be4cc7cc1af83b377190885be2c709f",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\build_system_prompt.Rd",
+    "sha256": "2ff155def95239d8b6fd9df17ffd8ac70e228a1fda8fbab2930054a7d61dbbb2",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\check_admiral_compat.Rd",
+    "sha256": "516fa128e4d869f9e937898ff83367eb9797ac81e475f416979274d9bf869b18",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\classify_variables.Rd",
+    "sha256": "44ce4c510615d640dec799406011c0c03133073c0e98581b6ff69a1a0fae34ce",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\classify_variables_llm.Rd",
+    "sha256": "2dcf6c0bb0bc5319fa3af2ab6c5b084430dbbdbad15244afc8be4e7cf792f93e",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\codelist_from_data.Rd",
+    "sha256": "13b62ec630c3dbdb72e0a820c68aeaf8f82c5e6070f4fbc6dbd38d31ef51ce63",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\dataset_json_meta.Rd",
+    "sha256": "fa1b5990dc83611e67ecb91d75ba8dc144c3e9120b439964e312584b5dc53e63",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\evals_accuracy.Rd",
+    "sha256": "3596a4923a878b00a1156951d74650b1d5ae86f993d855f9b36f9a0a8f20b438",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\execute_ir.Rd",
+    "sha256": "441c610bccb197feedd26c2587db2805cfd1f7954111ae00af587045f0719688",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\ir_dependency_report.Rd",
+    "sha256": "336624e9a74f36245a68f83130c7769886b09b8b685749b3284508c996c3cf99",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\is_valid_ir.Rd",
+    "sha256": "32c1f169101389e11fe338afa43abd656b983e6c455b7ef27b92df1d8c9f5e4a",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\layer_docs.Rd",
+    "sha256": "f770d384120bded473f93ab04643f6180a7beaccff424d9573a8e9302c79db99",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\layer_names.Rd",
+    "sha256": "94f8f2d80ec1437ea9ea8dbff4ff644ad1aa14217a805a75b2bbac1f5900fcd1",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\load_evals.Rd",
+    "sha256": "1e13faf1b163a6ef07a9516b2c6e550680c1a668568ff01a7dc4f2a57d4e565f",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\log_run.Rd",
+    "sha256": "fd0c3b68afcbb00dd57d051e415b7800cf9c376e7fe1e29e12adab45e85a5800",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\mcp_handle_request.Rd",
+    "sha256": "18a9d98fcf3f1e152401b5544122eeb800faacd7a93e1f38228eca003ae7a0c7",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\mcp_serve.Rd",
+    "sha256": "bbddca6079ccd22d23d32ba704a1035fe813cad37a541f6d12a967304e4b8e07",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\mcp_tool_specs.Rd",
+    "sha256": "044e00f017d0e9d76097e9fe948f0bd89295002a79cef2e44c411b3293046c38",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\mock_metacore.Rd",
+    "sha256": "24a5ad67e2a5408521af1d2d8e45227494cf1c426e4a29ee5c6d314c3b56b94c",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\mock_spec_adsl.Rd",
+    "sha256": "b0f1a762fd8dbf2df4b2ea0e4a03676792c88750d9b59f3f94e2daf7796634e3",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\mock_spec_adtte.Rd",
+    "sha256": "9c6fe27113649ab909f47e5b049e3820d749370ba68d7f3e2b22d0a02393fc85",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\mock_spec_advs.Rd",
+    "sha256": "c2cc0d0a22a1f12f48a7a48aaf84bc94a96ca86947a105082c279de96fec586c",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\new_step.Rd",
+    "sha256": "7bacae66cf0aa8b5e3e80177350fa2120fb949378a8601b1503da2912856279f",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\new_variable_ir.Rd",
+    "sha256": "75d36e6a0453ddff3aed6346f67642b39190f8eebf0649acbc43652e481c54a1",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\order_variables.Rd",
+    "sha256": "2c8cdc1f870a84d8a8f885fb0f84364c78031f93572bb585e3db498bd3945d6e",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\parse_define.Rd",
+    "sha256": "16084bd5bb367fab169756cc5a6343adf703e5debabb4385692c68ac13f8783f",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\read_artifact.Rd",
+    "sha256": "2152fc2aa4bf95a0b0bbd84799dadb2eb5053cf0ab17cdf22d0c5ccb16e7d478",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\read_dataset_json.Rd",
+    "sha256": "1e9aa14280c42a3b9fb774a57e4838492ec36ecafbbaef3472d14157f98d799b",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\read_define.Rd",
+    "sha256": "c4c58be2662bce4d2a375c5e3c470898726161304dea9ded2a2432fed505e35c",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\read_spec.Rd",
+    "sha256": "85ecc13546fcad4f758aae43389d63ebed14005abe3d2fce7a864254744a66b8",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\read_spec_df.Rd",
+    "sha256": "a0dbd027fb6ef453918f6670b1898e8c6e3fcef0294b7d61105aee22d245fea9",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\render_program.Rd",
+    "sha256": "33c80e92f8fe39f742b3ee94c345a91ae1ddd169ae3d23edc5e5f85c6f5b5100",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\render_step.Rd",
+    "sha256": "1f605b6a0c3453fc51d9c6e52440a67715f6c4218b5a0240bb23ec85a4b2ac32",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\render_variable.Rd",
+    "sha256": "5308b6e0d9006f8577e617a5fa35f995f0a3fb007638b1c4aa4dd9b9310a04a1",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\run_evals.Rd",
+    "sha256": "105be73647899fd5740375cf3c777c5551524d2cfc3104e22ee5ae3e56672285",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\run_validation.Rd",
+    "sha256": "69d752a7edf63eccc9ec017d5695b4bdb858e6a07d9a34774a66a3a8a6629697",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\spec_variables.Rd",
+    "sha256": "9909549d9c131d5d08acfff5c72be14f150d80eb4cff7a87b72cb65e6f157500",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\validate_ir.Rd",
+    "sha256": "3ed536be4a8c27d3e3140a3b3d62499f72688844b8c32ae4a1a174709fc3a1ee",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\validation_comments.Rd",
+    "sha256": "fb22e83090c4202a8d86acb6b849041fbf7ccf164e54f8a11bffb1c9546e33fa",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\write_artifact.Rd",
+    "sha256": "b1889931f50e0c6b0df1a03ee9a1d0909c7c34ad602f0624a792abc6575db7d0",
+    "matches_checked_source": true
+  },
+  {
+    "file": "man\\write_program_artifact.Rd",
+    "sha256": "168bb95e7834921ab7dc53a0c986f777816d549a3c34ac36388e68a568125e7d",
+    "matches_checked_source": true
+  },
+  {
+    "file": "DESCRIPTION",
+    "sha256": "81248b8a6b1d0cf8d9e63ab77e9b621a96ec0d31f842415c409dd60f55515d69",
+    "matches_checked_source": false,
+    "note": "R CMD build normalizes DESCRIPTION and adds build metadata; see check-release.log. All R/test/man source files byte-identical to checked source."
+  },
+  {
+    "file": "NAMESPACE",
+    "sha256": "9996ac27bf8a4aaa007a9affdc32c021a5a257abaa2e9b7c593320691e87ae48",
+    "matches_checked_source": true
+  },
+  {
+    "file": "tools/mcp_server.R",
+    "sha256": "b8d1e8429662d8fc5a97280ee1dce7a480aa17660968cea738a9c250b1452e0c",
+    "matches_checked_source": true
+  }
+]

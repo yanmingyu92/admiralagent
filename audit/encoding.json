@@ -1,0 +1,506 @@
+[
+  {
+    "file": "R\\artifacts.R",
+    "utf8_bom": false,
+    "crlf": 178,
+    "lf": 178
+  },
+  {
+    "file": "R\\checks.R",
+    "utf8_bom": false,
+    "crlf": 140,
+    "lf": 140
+  },
+  {
+    "file": "R\\classify_llm.R",
+    "utf8_bom": false,
+    "crlf": 375,
+    "lf": 375
+  },
+  {
+    "file": "R\\classify_rules.R",
+    "utf8_bom": false,
+    "crlf": 270,
+    "lf": 270
+  },
+  {
+    "file": "R\\codegen.R",
+    "utf8_bom": false,
+    "crlf": 163,
+    "lf": 163
+  },
+  {
+    "file": "R\\dataset_json.R",
+    "utf8_bom": false,
+    "crlf": 267,
+    "lf": 267
+  },
+  {
+    "file": "R\\define.R",
+    "utf8_bom": false,
+    "crlf": 145,
+    "lf": 145
+  },
+  {
+    "file": "R\\dependency.R",
+    "utf8_bom": false,
+    "crlf": 181,
+    "lf": 181
+  },
+  {
+    "file": "R\\evals.R",
+    "utf8_bom": false,
+    "crlf": 162,
+    "lf": 162
+  },
+  {
+    "file": "R\\execute.R",
+    "utf8_bom": false,
+    "crlf": 180,
+    "lf": 180
+  },
+  {
+    "file": "R\\ir.R",
+    "utf8_bom": false,
+    "crlf": 264,
+    "lf": 264
+  },
+  {
+    "file": "R\\layers.R",
+    "utf8_bom": false,
+    "crlf": 513,
+    "lf": 513
+  },
+  {
+    "file": "R\\mcp.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 355
+  },
+  {
+    "file": "R\\metacore_lite.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 178
+  },
+  {
+    "file": "R\\safety.R",
+    "utf8_bom": false,
+    "crlf": 118,
+    "lf": 118
+  },
+  {
+    "file": "R\\spec.R",
+    "utf8_bom": false,
+    "crlf": 269,
+    "lf": 269
+  },
+  {
+    "file": "R\\utils.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 14
+  },
+  {
+    "file": "man\\aa_layers.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 22
+  },
+  {
+    "file": "man\\admiralagent-package.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 28
+  },
+  {
+    "file": "man\\artifact_hash.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 22
+  },
+  {
+    "file": "man\\build_context.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 22
+  },
+  {
+    "file": "man\\build_system_prompt.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 21
+  },
+  {
+    "file": "man\\check_admiral_compat.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 26
+  },
+  {
+    "file": "man\\classify_variables.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 31
+  },
+  {
+    "file": "man\\classify_variables_llm.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 42
+  },
+  {
+    "file": "man\\codelist_from_data.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 25
+  },
+  {
+    "file": "man\\dataset_json_meta.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 36
+  },
+  {
+    "file": "man\\evals_accuracy.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 20
+  },
+  {
+    "file": "man\\execute_ir.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 72
+  },
+  {
+    "file": "man\\ir_dependency_report.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 27
+  },
+  {
+    "file": "man\\is_valid_ir.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 20
+  },
+  {
+    "file": "man\\layer_docs.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 19
+  },
+  {
+    "file": "man\\layer_names.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 18
+  },
+  {
+    "file": "man\\load_evals.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 23
+  },
+  {
+    "file": "man\\log_run.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 25
+  },
+  {
+    "file": "man\\mcp_handle_request.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 26
+  },
+  {
+    "file": "man\\mcp_serve.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 19
+  },
+  {
+    "file": "man\\mcp_tool_specs.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 19
+  },
+  {
+    "file": "man\\mock_metacore.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 42
+  },
+  {
+    "file": "man\\mock_spec_adsl.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 19
+  },
+  {
+    "file": "man\\mock_spec_adtte.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 18
+  },
+  {
+    "file": "man\\mock_spec_advs.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 20
+  },
+  {
+    "file": "man\\new_step.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 24
+  },
+  {
+    "file": "man\\new_variable_ir.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 43
+  },
+  {
+    "file": "man\\order_variables.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 47
+  },
+  {
+    "file": "man\\parse_define.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 42
+  },
+  {
+    "file": "man\\read_artifact.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 24
+  },
+  {
+    "file": "man\\read_dataset_json.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 61
+  },
+  {
+    "file": "man\\read_define.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 29
+  },
+  {
+    "file": "man\\read_spec.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 33
+  },
+  {
+    "file": "man\\read_spec_df.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 25
+  },
+  {
+    "file": "man\\render_program.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 29
+  },
+  {
+    "file": "man\\render_step.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 26
+  },
+  {
+    "file": "man\\render_variable.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 21
+  },
+  {
+    "file": "man\\run_evals.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 30
+  },
+  {
+    "file": "man\\run_validation.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 28
+  },
+  {
+    "file": "man\\spec_variables.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 22
+  },
+  {
+    "file": "man\\validate_ir.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 28
+  },
+  {
+    "file": "man\\validation_comments.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 21
+  },
+  {
+    "file": "man\\write_artifact.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 37
+  },
+  {
+    "file": "man\\write_program_artifact.Rd",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 28
+  },
+  {
+    "file": "tools\\mcp_server.R",
+    "utf8_bom": false,
+    "crlf": 35,
+    "lf": 35
+  },
+  {
+    "file": "tests\\testthat\\helper.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 3
+  },
+  {
+    "file": "tests\\testthat\\test-artifacts.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 73
+  },
+  {
+    "file": "tests\\testthat\\test-audit-security.R",
+    "utf8_bom": false,
+    "crlf": 152,
+    "lf": 152
+  },
+  {
+    "file": "tests\\testthat\\test-bds.R",
+    "utf8_bom": false,
+    "crlf": 226,
+    "lf": 226
+  },
+  {
+    "file": "tests\\testthat\\test-checks-behavior.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 64
+  },
+  {
+    "file": "tests\\testthat\\test-classify-llm-mock.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 231
+  },
+  {
+    "file": "tests\\testthat\\test-classify.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 102
+  },
+  {
+    "file": "tests\\testthat\\test-codegen.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 68
+  },
+  {
+    "file": "tests\\testthat\\test-dataset-json.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 216
+  },
+  {
+    "file": "tests\\testthat\\test-define.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 124
+  },
+  {
+    "file": "tests\\testthat\\test-dependency.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 109
+  },
+  {
+    "file": "tests\\testthat\\test-evals.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 65
+  },
+  {
+    "file": "tests\\testthat\\test-execute.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 141
+  },
+  {
+    "file": "tests\\testthat\\test-integration.R",
+    "utf8_bom": false,
+    "crlf": 96,
+    "lf": 96
+  },
+  {
+    "file": "tests\\testthat\\test-ir.R",
+    "utf8_bom": false,
+    "crlf": 72,
+    "lf": 72
+  },
+  {
+    "file": "tests\\testthat\\test-layers-golden.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 85
+  },
+  {
+    "file": "tests\\testthat\\test-layers.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 23
+  },
+  {
+    "file": "tests\\testthat\\test-mcp.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 290
+  },
+  {
+    "file": "tests\\testthat\\test-metacore-lite.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 100
+  },
+  {
+    "file": "tests\\testthat\\test-ordering.R",
+    "utf8_bom": false,
+    "crlf": 138,
+    "lf": 138
+  },
+  {
+    "file": "tests\\testthat\\test-semantic.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 80
+  },
+  {
+    "file": "tests\\testthat\\test-vocab-new.R",
+    "utf8_bom": false,
+    "crlf": 0,
+    "lf": 150
+  }
+]

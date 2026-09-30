@@ -1,0 +1,772 @@
+[
+  {
+    "file": "admiralagent\\R\\artifacts.R",
+    "line": 155,
+    "code": "if (!is.list(sc) || is.null(sc$ir)) stop(\"artifact must contain an ir array\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\checks.R",
+    "line": 6,
+    "code": "if (!var %in% names(data)) return(\"FAIL: variable not present\")"
+  },
+  {
+    "file": "admiralagent\\R\\checks.R",
+    "line": 15,
+    "code": "if (length(keys) == 0) return(\"MANUAL: keys not found in data\")"
+  },
+  {
+    "file": "admiralagent\\R\\checks.R",
+    "line": 38,
+    "code": "if (!var %in% names(data)) return(\"FAIL: variable not present\")"
+  },
+  {
+    "file": "admiralagent\\R\\checks.R",
+    "line": 50,
+    "code": "if (!var %in% names(data)) return(\"FAIL: variable not present\")"
+  },
+  {
+    "file": "admiralagent\\R\\checks.R",
+    "line": 94,
+    "code": "if (!is.data.frame(data)) stop(\"data must be an analysis data.frame\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 126,
+    "code": "stop(\"backend = 'llm' requires the 'ellmer' package.\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 131,
+    "code": "value != floor(value) || value > .Machine$integer.max) stop(nm, \" must be a finite positive integer\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 136,
+    "code": "stop(\"`samples` must be a single positive integer.\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 153,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 280,
+    "code": "problems <- character()"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 292,
+    "code": "problems <- validate_ir(ir)"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 295,
+    "code": "if (is.character(aligned)) problems <- aligned else ir <- aligned"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 304,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 316,
+    "code": "stop(\"ellmer chat failed: \", conditionMessage(e), call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "line": 364,
+    "code": "!setequal(keys, expected)) stop(\"LLM reply must contain exactly one matching dataset/variable for every requested row\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\classify_rules.R",
+    "line": 21,
+    "code": "stop(\"backend = 'llm' requires an ellmer chat object, e.g. chat <- ellmer::chat_anthropic()\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\codegen.R",
+    "line": 24,
+    "code": "i != floor(i) || i > length(v$steps)) stop(\"i must be a valid step index within v$steps\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\codegen.R",
+    "line": 25,
+    "code": "if (!identical(step, v$steps[[i]])) stop(\"step must be identical to v$steps[[i]]; validate the complete parent IR\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\codegen.R",
+    "line": 32,
+    "code": "stop(\"unknown layer '\", step$layer, \"' in step \", i, \" of \", v$variable, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\codegen.R",
+    "line": 112,
+    "code": "if (!scalar_text(backend_label) || !nzchar(backend_label)) stop(\"backend_label must be one non-empty string\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\codegen.R",
+    "line": 115,
+    "code": "if (length(msg) > 0) stop(msg, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 69,
+    "code": "bad <- col_names[is.na(col_types) | !nzchar(col_types)][1]"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 181,
+    "code": "stop(\"Dataset-JSON file not found: \", path, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 190,
+    "code": "stop(\"failed to parse '\", path, \"' as JSON: \", conditionMessage(e), call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 216,
+    "code": "stop(\"'\", path, \"' does not conform to the Dataset-JSON schema: \", ..., call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 232,
+    "code": "bad <- which(!vapply(values, function(v) is.null(v) || (is.atomic(v) && length(v) == 1L), logical(1)))"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 233,
+    "code": "if (length(bad)) stop(\"row \", bad[1], \" must contain one scalar value or null\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 234,
+    "code": "if (!dt %in% c(\"integer\", \"float\", \"double\", \"decimal\", \"boolean\", \"string\", \"character\", \"uri\", \"date\", \"datetime\", \"time\")) stop(\"unsupported dataType: \", dt, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 237,
+    "code": "if (identical(dt, \"integer\") && any(out != trunc(out), na.rm = TRUE)) stop(\"integer column contains fractional values\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 250,
+    "code": "if (length(out) != 1L || !is.finite(out)) stop(\"invalid numeric cell; use a number or null\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "line": 256,
+    "code": "if (!is.logical(v) || length(v) != 1L || is.na(v)) stop(\"invalid boolean cell; use true, false or null\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\define.R",
+    "line": 32,
+    "code": "stop(\"parse_define() needs package 'xml2'.\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\define.R",
+    "line": 35,
+    "code": "stop(\"define file not found: \", path, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\define.R",
+    "line": 39,
+    "code": "error = function(e) stop("
+  },
+  {
+    "file": "admiralagent\\R\\define.R",
+    "line": 66,
+    "code": "stop(\"no ItemDef elements found; not an ODM define.xml? \", path, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\define.R",
+    "line": 85,
+    "code": "stop(\"no ItemGroupDef elements found; not an ODM define.xml? \", path, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\define.R",
+    "line": 126,
+    "code": "stop(\"define.xml contained no variable rows: \", path, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 14,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 40,
+    "code": "stop(\"evals corpus is empty: \", path, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 45,
+    "code": "error = function(e) stop("
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 53,
+    "code": "stop(\"evals corpus contains cases without an id: \", path, call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 56,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 70,
+    "code": "if (isTRUE(ir$needs_human)) return(\"needs_human\")"
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 94,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 103,
+    "code": "stop(\"no eval cases found for dataset '\", dataset, \"'\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "line": 160,
+    "code": "if (!is.data.frame(res) || !\"ok\" %in% names(res) || !is.logical(res$ok) || anyNA(res$ok) || !nrow(res)) stop(\"res must be a non-empty data.frame with a logical ok column without NA\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 68,
+    "code": "!valid_name(names(sources), TRUE)) stop(\"sources must be a uniquely named list of dataset objects including base\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 71,
+    "code": "any(!variables %in% vapply(ir, function(v) v$variable, character(1))))) stop(\"variables must name variables present in ir\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 72,
+    "code": "if (length(unique(vapply(ir, function(v) v$dataset, character(1)))) != 1L) stop(\"execute_ir requires one target dataset\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 76,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 83,
+    "code": "if (!is.data.frame(base)) stop(\"sources base must be a data.frame\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 84,
+    "code": "if (any(names(sources) %in% c(target, \"exprs\", \"params\"))) stop(\"sources names must not shadow the target or execution helpers\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 85,
+    "code": "if (any(!vapply(sources[setdiff(names(sources), \"mc\")], is.data.frame, logical(1)))) stop(\"sources datasets must be data.frames\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 111,
+    "code": "if (length(intersect(variable_input_keys(v), failed_outputs))) stop(\"upstream derivation failed; stale inputs are not used\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 197,
+    "code": "if (!exists(ds, env, inherits = FALSE) || !is.data.frame(get(ds, env, inherits = FALSE))) stop(\"source dataset '\", ds, \"' must be supplied as a data.frame\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "line": 198,
+    "code": "if (refs$kind[i] == \"column\" && !refs$input[i] %in% names(get(ds, env, inherits = FALSE))) stop(\"column '\", refs$input[i], \"' is missing from source dataset '\", ds, \"'\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 96,
+    "code": "problems <- character()"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 101,
+    "code": "return(\"ir must be a non-empty list of `aa_variable_ir` objects built by new_variable_ir()\")"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 108,
+    "code": "problems <- c(problems, sprintf(\"[%s] missing `dataset`\", vname))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 111,
+    "code": "problems <- c(problems, sprintf(\"[%s] missing `variable`\", vname))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 115,
+    "code": "problems <- c(problems, sprintf(\"[%s] has no steps and needs_human is FALSE\", vname))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 124,
+    "code": "problems <- c(problems, sprintf("
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 136,
+    "code": "problems <- c(problems, sprintf(\"%s missing required arg '%s'\", id, req))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 144,
+    "code": "problems <- c(problems, sprintf("
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 152,
+    "code": "problems <- c(problems, validate_step_semantics(s$layer, args, id))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 155,
+    "code": "problems <- c(problems, sprintf("
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 165,
+    "code": "problems <- c(problems, sprintf(\"%s arg '%s' must be a character vector\", id, va))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 176,
+    "code": "problems <- c(problems, sprintf("
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 183,
+    "code": "problems <- validate_ir_tokens(ir)"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 186,
+    "code": "if (anyDuplicated(keys)) problems <- c(problems, \"duplicate dataset/variable records are not allowed\")"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 188,
+    "code": "if (length(graph$blocked)) problems <- c(problems, \"cyclic dependencies: revise derivation inputs before execution\")"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 189,
+    "code": "if (length(graph$duplicate)) problems <- c(problems, paste(\"multiple variables produce the same output:\", paste(graph$duplicate, collapse = \", \")))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 190,
+    "code": "for (v in ir) if (v$confidence < 0.7 && !v$needs_human) problems <- c(problems, paste(v$variable, \"confidence below 0.7 requires needs_human=true\"))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 196,
+    "code": "problems <- character()"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 206,
+    "code": "problems <- c(problems, one_of(\"mode\", c(\"first\", \"last\")))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 210,
+    "code": "problems <- c(problems, paste(id, \"time_imputation is only valid for output_class='dtm'; omit it for dates\"))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 212,
+    "code": "problems <- c(problems, one_of(\"output_class\", c(\"dtm\", \"dt\")))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 213,
+    "code": "problems <- c(problems, one_of(\"highest_imputation\", c(\"Y\", \"M\", \"D\")))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 214,
+    "code": "problems <- c(problems, one_of(\"date_imputation\", c(\"first\", \"last\")))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 216,
+    "code": "problems <- c(problems, one_of(\"time_imputation\", c(\"first\", \"last\")))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 220,
+    "code": "problems <- c(problems, one_of(\"out_unit\", c(\"years\", \"months\", \"days\")))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 224,
+    "code": "problems <- c(problems, sprintf(\"%s arg 'days' must be numeric (whole days)\", id))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 231,
+    "code": "problems <- c(problems, sprintf(\"%s arg 'breaks' must be a numeric vector\", id))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 234,
+    "code": "problems <- c(problems, sprintf("
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 241,
+    "code": "problems <- c(problems, one_of(\"summary_fun\", c(\"mean\", \"median\", \"min\", \"max\", \"sum\")))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 250,
+    "code": "bad <- setdiff(tokens, c(allowed, as.character(params), \"0\":\"9\"))"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 251,
+    "code": "bad <- bad[!grepl(\"^[0-9.]+$\", bad)]"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 253,
+    "code": "problems <- c(problems, sprintf("
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "line": 267,
+    "code": "problems <- c(problems, sprintf("
+  },
+  {
+    "file": "admiralagent\\R\\layers.R",
+    "line": 47,
+    "code": "stop(\"layer 'assign': exactly one of `from` or `literal` is required\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\layers.R",
+    "line": 503,
+    "code": "stop(\"installed must be one version string, package_version, NA or NULL\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\layers.R",
+    "line": 505,
+    "code": "if (inherits(installed, \"numeric_version\") && length(installed) != 1L) stop(\"installed must be one version\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\layers.R",
+    "line": 515,
+    "code": "inst <- if (is.character(installed)) tryCatch(package_version(installed), error = function(e) stop(\"installed must be a valid version string\", call. = FALSE)) else installed"
+  },
+  {
+    "file": "admiralagent\\R\\mcp.R",
+    "line": 149,
+    "code": "if (is.na(dataset)) stop(\"`dataset` (string) is required\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\mcp.R",
+    "line": 152,
+    "code": "stop(\"`spec_rows` must be a non-empty array of spec row objects\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\mcp.R",
+    "line": 177,
+    "code": "stop(\"`ir` must be an array of variable IR objects\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\mcp.R",
+    "line": 185,
+    "code": "problems <- validate_ir(ir)"
+  },
+  {
+    "file": "admiralagent\\R\\mcp.R",
+    "line": 211,
+    "code": "bad <- res[!res$ok, , drop = FALSE]"
+  },
+  {
+    "file": "admiralagent\\R\\mcp.R",
+    "line": 226,
+    "code": "stop(\"unknown tool '\", name, \"'\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\mcp.R",
+    "line": 334,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\metacore_lite.R",
+    "line": 20,
+    "code": "stop(\"var must be a single non-empty character string\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\metacore_lite.R",
+    "line": 23,
+    "code": "stop(\"data must be a data.frame containing column '\", var, \"'\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\metacore_lite.R",
+    "line": 72,
+    "code": "stop(\"codelists must be a named list of data.frames with columns code/decode\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\metacore_lite.R",
+    "line": 77,
+    "code": "stop(\"codelists$\", nm, \" must be a data.frame with columns code/decode\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 15,
+    "code": "bad <- character()"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 16,
+    "code": "if (!is.list(ir) || !length(ir)) return(\"ir must be a non-empty list of aa_variable_ir objects\")"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 22,
+    "code": "bad <- c(bad, paste(id, \"must be an aa_variable_ir object\")); next"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 25,
+    "code": "bad <- c(bad, paste(id, \"fields must be uniquely named, exact IR fields\")); next"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 28,
+    "code": "if (!scalar_text(v[[nm]]) || !valid_name(v[[nm]])) bad <- c(bad, paste(id, nm, \"must be one uppercase identifier\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 31,
+    "code": "if (!scalar_text(v[[nm]], TRUE)) bad <- c(bad, paste(id, nm, \"must be one string (maximum 16384 bytes), or NA\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 33,
+    "code": "if (!scalar_flag(v$needs_human)) bad <- c(bad, paste(id, \"needs_human must be TRUE or FALSE\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 34,
+    "code": "if (!real_numeric(v$confidence) || length(v$confidence) != 1L || anyNA(v$confidence) || any(!is.finite(v$confidence)) || any(v$confidence < 0 | v$confidence > 1)) bad <- c(bad, paste(id, \"confidence must be a finite number in [0, 1]\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 35,
+    "code": "if (!is.list(v$steps)) { bad <- c(bad, paste(id, \"steps must be a list\")); next }"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 39,
+    "code": "bad <- c(bad, paste(sid, \"unknown layer; use layer_names()\")); next"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 42,
+    "code": "bad <- c(bad, paste(sid, \"fields must be exactly layer and args\")); next"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 46,
+    "code": "bad <- c(bad, paste(sid, \"args must be a uniquely named list\")); next"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 51,
+    "code": "if (is.null(desc)) { bad <- c(bad, paste(sid, \"unknown arg\", nm)); next }"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 56,
+    "code": "if (!good) bad <- c(bad, paste(sid, \"arg\", paste0(\"'\", nm, \"'\"), if (startsWith(desc, \"numeric\") && !vector) \"must be\" else \"must be a\", if (vector) sub(\",.*\", \"\", desc) else paste(sub(\",.*\", \"\", desc), \"scalar\"), \"without NULL/NA or oversized strings\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 85,
+    "code": "bad <- character()"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 89,
+    "code": "for (nm in intersect(names(a), columns)) if (!valid_name(a[[nm]])) bad <- c(bad, paste(id, nm, \"must contain uppercase variable identifiers only\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 90,
+    "code": "for (nm in intersect(names(a), c(\"on\", \"dataset_add\", \"dataset_lookup\"))) if (!valid_name(a[[nm]], TRUE)) bad <- c(bad, paste(id, nm, \"must be a dataset object identifier\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 91,
+    "code": "for (nm in intersect(names(a), c(\"filter\", \"restrict_filter\", \"formula\"))) if (!safe_expression(a[[nm]], nm == \"formula\")) bad <- c(bad, paste(id, nm, \"fails token whitelist: use uppercase variables, numbers, quoted filter values, operators and parentheses; no calls or assignments\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 92,
+    "code": "if (s$layer %in% c(\"compute_param\", \"summary_record\") && identical(a$on %||% v$dataset, \"ADSL\")) bad <- c(bad, paste(id, \"BDS parameter records cannot be computed directly on ADSL; use a source dataset and merge_var\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 95,
+    "code": "if (length(setdiff(refs, paste0(\"AVAL.\", a$parameters)))) bad <- c(bad, paste(id, \"formula must reference only AVAL.<PARAMCD> from parameters\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 97,
+    "code": "if (s$layer == \"compute_param\" && a$paramcd %in% c(a$parameters, a$constant_parameters)) bad <- c(bad, paste(id, \"computed paramcd must differ from input parameters\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 98,
+    "code": "if (s$layer == \"impute_dtc\" && a$dtc %in% step_output_columns(s)) bad <- c(bad, paste(id, \"dtc must differ from all imputation output and flag columns\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 99,
+    "code": "if (s$layer == \"extreme_flag\" && !a$mode %in% c(\"first\", \"last\")) bad <- c(bad, paste(id, \"mode must be first or last\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 100,
+    "code": "if (s$layer == \"date_shift\" && (!is.finite(a$days) || a$days != floor(a$days))) bad <- c(bad, paste(id, \"days must be finite whole days\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 101,
+    "code": "if (s$layer == \"categorize\" && (length(a$breaks) < 2L || is.unsorted(a$breaks, strictly = TRUE))) bad <- c(bad, paste(id, \"breaks must be strictly increasing\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 102,
+    "code": "if (s$layer == \"dtm_to_dt\" && (!grepl(\"DTM$\", a$source) || !identical(a$target, sub(\"DTM$\", \"DT\", a$source)))) bad <- c(bad, paste(id, \"target must equal source with DTM replaced by DT\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 103,
+    "code": "if (s$layer == \"impute_dtc\" && (!grepl(if (identical(a$output_class, \"dtm\")) \"DTM$\" else \"DT$\", a$target) || identical(a$target, a$dtc))) bad <- c(bad, paste(id, \"target must end in DT/DTM matching output_class and differ from dtc\"))"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 108,
+    "code": "problems <- validate_ir(ir)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 109,
+    "code": "if (length(problems)) stop(paste(c(\"Invalid IR:\", problems), collapse = \"\\n- \"), call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 117,
+    "code": "if (length(msg)) stop(paste(msg, collapse = \"; \"), call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 121,
+    "code": "if (!scalar_text(path) || !nzchar(path)) stop(\"path must be one non-empty file path string\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 137,
+    "code": "if (!is.list(records) || !length(records) || !is.null(names(records))) stop(\"ir must be a non-empty array\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 141,
+    "code": "if (!exact_fields(rec, fields, c(\"dataset\", \"variable\", \"steps\", \"confidence\", \"needs_human\"))) stop(\"IR record has missing, duplicate or unknown fields\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 142,
+    "code": "if (!is.list(rec$steps) || (length(rec$steps) && !is.null(names(rec$steps)))) stop(\"steps must be an array\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 145,
+    "code": "!scalar_text(st$layer) || !st$layer %in% names(layers)) stop(\"unknown layer or invalid step; provide layer and args\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 147,
+    "code": "if (!is.list(a) || (length(a) && !exact_fields(a, c(names(layers[[st$layer]]$args), \"on\"), character()))) stop(\"args have missing names, duplicates or unknown fields\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 149,
+    "code": "if (\"on\" %in% names(a) && !identical(a$on, st$on)) stop(\"conflicting step.on and args.on\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 177,
+    "code": "if (!scalar_flag(x)) stop(name, \" must be TRUE or FALSE (one logical scalar)\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "line": 182,
+    "code": "stop(\"known_columns must be a character vector of non-empty column names without NA\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 16,
+    "code": "if (!is.data.frame(df)) stop(\"spec must be a data.frame with required columns\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 17,
+    "code": "if (anyNA(names(df)) || any(!nzchar(names(df))) || anyDuplicated(names(df))) stop(\"spec column names must be non-empty and unique\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 20,
+    "code": "stop(\"spec data frame is missing required columns: \", paste(missing, collapse = \", \"), call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 27,
+    "code": "if (!is.atomic(df[[col]]) || !is.null(dim(df[[col]]))) stop(\"spec column '\", col, \"' must contain scalar cells, not lists or matrices\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 43,
+    "code": "if (!scalar_text(dataset) || !nzchar(dataset)) stop(\"dataset must be one non-empty string\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 46,
+    "code": "stop(\"no spec rows found for dataset '\", dataset, \"'\", call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 66,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 74,
+    "code": "error = function(e) stop(\"metacore::spec_to_metacore() failed: \", conditionMessage(e), call. = FALSE)"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 109,
+    "code": "stop("
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "line": 119,
+    "code": "error = function(e2) stop(\"define_to_metacore() failed: \", conditionMessage(e2), call. = FALSE)"
+  }
+]

@@ -1,0 +1,30 @@
+Warning message:
+package 'admiral' was built under R version 4.6.1 
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: 'rlang'
+
+The following object is masked _by_ '.GlobalEnv':
+
+    %||%
+
+Warning message:
+package 'rlang' was built under R version 4.6.1 
+Warning message:
+package 'pharmaversesdtm' was built under R version 4.6.1 
+=== Probe: execute LLM-generated program against real pilot data ===
+Artifact: adsl__program__a9155ead.R.json 
+
+Error: Invalid IR:
+- multiple variables produce the same output: ex::column::EXSTDTM, ex::column::EXSTDTF, ex::column::EXSTTMF
+Execution halted

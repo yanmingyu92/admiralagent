@@ -1,0 +1,289 @@
+Warning message:
+package 'admiral' was built under R version 4.6.1 
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: 'rlang'
+
+The following object is masked _by_ '.GlobalEnv':
+
+    %||%
+
+Warning message:
+package 'rlang' was built under R version 4.6.1 
+Warning message:
+package 'pharmaversesdtm' was built under R version 4.6.1 
+################ PART 1: read_define(pilot1 define.xml) ################
+datasets in define: 12 | total variables: 509
+ADSL: 49 variables | 49 with derivation text | 25 with codelist_oid
+
+=== ADSL derivation coverage by origin ===
+  origin n_vars n_with_derivation
+ Derived     49                49
+
+Sample derivations (first 8):
+  STUDYID   DM.STUDYID
+  USUBJID   DM.USUBJID
+  SUBJID    DM.SUBJID
+  SITEID    DM.SITEID
+  SITEGR1   refer to SAP, Section 7.1 - if not pooled then SITEGR1=SITEID. If pooled, SITEGR1 will be 
+  ARM       DM.ARM
+  TRT01P    DM.ARM
+  TRT01PN   Numeric code for TRT01P which corresponds to the randomized dose
+
+################ PART 2: classify (rules) + gate + dependency ################
+IR gate problems: 0 (PASS)
+classified: 17 | needs_human: 32
+dependency report rows (unresolved inputs): 4
+ variable   input dataset
+ BMIBLGR1  WEIGHT      vs
+ BMIBLGR1  HEIGHT      vs
+ BMIBLGR1 PARAMCD      vs
+ BMIBLGR1    AVAL      vs
+                                                                                                       issue
+ not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation
+ not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation
+ not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation
+ not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation
+
+################ PART 3: execute against pilot SDTM ################
+[demo] vs adapted to BDS shape (AVAL/PARAMCD); dm is the ADSL base
+[demo] codelists from define: RACE, RACEN
+
+=== Execution status (all 49 ADSL spec variables) ===
+ variable   status
+  STUDYID EXECUTED
+  USUBJID EXECUTED
+ BMIBLGR1    ERROR
+   SUBJID EXECUTED
+   SITEID EXECUTED
+      ARM EXECUTED
+   TRT01P EXECUTED
+   TRT01A EXECUTED
+      AGE EXECUTED
+     AGEU EXECUTED
+     RACE EXECUTED
+      SEX EXECUTED
+   ETHNIC EXECUTED
+    DTHFL EXECUTED
+  RFSTDTC EXECUTED
+  RFENDTC EXECUTED
+   RFENDT EXECUTED
+  SITEGR1   REVIEW
+  TRT01PN   REVIEW
+  TRT01AN   REVIEW
+   TRTSDT   REVIEW
+   TRTEDT   REVIEW
+  TRTDURD   REVIEW
+    AVGDD   REVIEW
+  CUMDOSE   REVIEW
+   AGEGR1   REVIEW
+  AGEGR1N   REVIEW
+    RACEN   REVIEW
+    SAFFL   REVIEW
+    ITTFL   REVIEW
+    EFFFL   REVIEW
+  COMP8FL   REVIEW
+ COMP16FL   REVIEW
+ COMP24FL   REVIEW
+ DISCONFL   REVIEW
+  DSRAEFL   REVIEW
+    BMIBL   REVIEW
+ HEIGHTBL   REVIEW
+ WEIGHTBL   REVIEW
+  EDUCLVL   REVIEW
+ DISONSDT   REVIEW
+   DURDIS   REVIEW
+ DURDSGR1   REVIEW
+ VISIT1DT   REVIEW
+ VISNUMEN   REVIEW
+  DCDECOD   REVIEW
+   EOSSTT   REVIEW
+  DCSREAS   REVIEW
+  MMSETOT   REVIEW
+                                                                              note
+                                                                                  
+                                                                                  
+ The filtered input dataset contains duplicate records with respect to\n`STUDYID`,
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                                                  
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+                                                              needs human decision
+
+EXECUTED=16 ERROR=1 REVIEW=32
+Validation gate on executed ADSL: PASS=18 FAIL=1 MANUAL=32
+
+################ PART 4: oracle accuracy vs pilot1 submitted adsl.xpt ####
+oracle: 254 subjects x 49 variables
+
+=== Accuracy matrix: generated ADSL vs pilot1 adsl.xpt (USUBJID join) ===
+ variable    type     exec in_generated oracle_match_pct na_agree_pct n_compare
+  STUDYID    text EXECUTED         TRUE            100.0        100.0       254
+  USUBJID    text EXECUTED         TRUE             83.0        100.0       306
+   SUBJID    text EXECUTED         TRUE            100.0        100.0       254
+   SITEID    text EXECUTED         TRUE            100.0        100.0       254
+  SITEGR1    text   REVIEW        FALSE               NA           NA         0
+      ARM    text EXECUTED         TRUE            100.0        100.0       254
+   TRT01P    text EXECUTED         TRUE            100.0        100.0       254
+  TRT01PN integer   REVIEW        FALSE               NA           NA         0
+   TRT01A    text EXECUTED         TRUE            100.0        100.0       254
+  TRT01AN integer   REVIEW        FALSE               NA           NA         0
+   TRTSDT integer   REVIEW        FALSE               NA           NA         0
+   TRTEDT integer   REVIEW        FALSE               NA           NA         0
+  TRTDURD integer   REVIEW        FALSE               NA           NA         0
+    AVGDD   float   REVIEW        FALSE               NA           NA         0
+  CUMDOSE   float   REVIEW        FALSE               NA           NA         0
+      AGE integer EXECUTED         TRUE            100.0        100.0       254
+   AGEGR1    text   REVIEW        FALSE               NA           NA         0
+  AGEGR1N integer   REVIEW        FALSE               NA           NA         0
+     AGEU    text EXECUTED         TRUE            100.0        100.0       254
+     RACE    text EXECUTED         TRUE            100.0        100.0       254
+    RACEN integer   REVIEW        FALSE               NA           NA         0
+      SEX    text EXECUTED         TRUE            100.0        100.0       254
+   ETHNIC    text EXECUTED         TRUE            100.0        100.0       254
+    SAFFL    text   REVIEW        FALSE               NA           NA         0
+    ITTFL    text   REVIEW        FALSE               NA           NA         0
+    EFFFL    text   REVIEW        FALSE               NA           NA         0
+  COMP8FL    text   REVIEW        FALSE               NA           NA         0
+ COMP16FL    text   REVIEW        FALSE               NA           NA         0
+ COMP24FL    text   REVIEW        FALSE               NA           NA         0
+ DISCONFL    text   REVIEW        FALSE               NA           NA         0
+  DSRAEFL    text   REVIEW        FALSE               NA           NA         0
+    DTHFL    text EXECUTED         TRUE              1.2          1.2       254
+    BMIBL   float   REVIEW        FALSE               NA           NA         0
+ BMIBLGR1    text    ERROR        FALSE               NA           NA         0
+ HEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+ WEIGHTBL   float   REVIEW        FALSE               NA           NA         0
+  EDUCLVL integer   REVIEW        FALSE               NA           NA         0
+ DISONSDT integer   REVIEW        FALSE               NA           NA         0
+   DURDIS   float   REVIEW        FALSE               NA           NA         0
+ DURDSGR1    text   REVIEW        FALSE               NA           NA         0
+ VISIT1DT integer   REVIEW        FALSE               NA           NA         0
+  RFSTDTC    text EXECUTED         TRUE            100.0        100.0       254
+  RFENDTC    text EXECUTED         TRUE            100.0        100.0       254
+ VISNUMEN integer   REVIEW        FALSE               NA           NA         0
+   RFENDT integer EXECUTED         TRUE            100.0        100.0       254
+  DCDECOD    text   REVIEW        FALSE               NA           NA         0
+   EOSSTT    text   REVIEW        FALSE               NA           NA         0
+  DCSREAS    text   REVIEW        FALSE               NA           NA         0
+  MMSETOT integer   REVIEW        FALSE               NA           NA         0
+                           note
+                     char exact
+         set overlap (join key)
+                     char exact
+                     char exact
+          not in generated ADSL
+                     char exact
+                     char exact
+          not in generated ADSL
+                     char exact
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+ num tol 0.5 | mean|diff|=0.000
+          not in generated ADSL
+          not in generated ADSL
+                     char exact
+                     char exact
+          not in generated ADSL
+                     char exact
+                     char exact
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+                     char exact
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+                     char exact
+                     char exact
+          not in generated ADSL
+ num tol 0.5 | mean|diff|=0.000
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+          not in generated ADSL
+
+Matrix summary: 16/49 variables comparable | 14 at 100% | 2 below 90%
+Written: admiralagent/demo/gen/define_real_matrix.csv 
+
+################ PART 5: FINDINGS (vocabulary roadmap feed) #############
+FINDING-ERROR BMIBLGR1: The filtered input dataset contains duplicate records with respect to `STUDYID`, `USUBJID`, `PARAMCD`, and `PARAMCD` ℹ Please ensure that th
+
+FINDINGS: 32 of 49 ADSL derivation texts the rules engine cannot express.
+Top 10 (verbatim spec text) -> vocabulary roadmap:
+   1. SITEGR1   "refer to SAP, Section 7.1 - if not pooled then SITEGR1=SITEID. If pooled, SITEGR1 will be 900"
+   2. TRT01PN   "Numeric code for TRT01P which corresponds to the randomized dose"
+   3. TRT01AN   "Numeric code for TRT01A which corresponds to the randomized dose"
+   4. TRTSDT    "SV.SVSTDTC when SV.VISITNUM=3, converted to SAS date"
+   5. TRTEDT    "The date of final dose (from the CRF) is EX.EXENDTC on the subject's last EX record. If the date of final dose"
+   6. TRTDURD   "TRTEDT-TRTSDT+1"
+   7. AVGDD     "CUMDOSE/TRTDUR"
+   8. CUMDOSE   "For ARMN=0 or 1: CUMDOSE=TRT01PN*TRTDUR. --- For ARMN=2: CUMDOSE will be based on 54mg per day for the # of da"
+   9. AGEGR1    "Character variable derived from ADSL.AGEGR1N"
+  10. AGEGR1N   "AGEGR1 = 1 if AGE <65. AGEGR1 = 2 if AGE 65-80. AGEGR1 = 3 if AGE >80."

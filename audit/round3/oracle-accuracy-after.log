@@ -1,0 +1,69 @@
+Warning message:
+package 'admiral' was built under R version 4.6.1 
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: 'rlang'
+
+The following object is masked _by_ '.GlobalEnv':
+
+    %||%
+
+Warning message:
+package 'rlang' was built under R version 4.6.1 
+Warning message:
+package 'pharmaversesdtm' was built under R version 4.6.1 
+Warning message:
+package 'pharmaverseadam' was built under R version 4.6.1 
+################ PART 1: spec source matrix ################
+
+=== Spec source coverage (rules backend) ===
+        source datasets variables classified needs_human         note
+      p21_mock     <NA>        NA         NA          NA parse failed
+     mock_spec     <NA>        NA         NA          NA parse failed
+    sdtm_pilot     <NA>        NA         NA          NA parse failed
+ pilot1_define     ADSL        49         17          32 IR gate PASS
+
+################ PART 2: execution + accuracy matrix ################
+Warning message:
+The input dataset does not contain any observations fulfilling the filter
+condition (`VISIT == "BASELINE"`) for the parameter codes (`PARAMCD`): HEIGHT.
+ℹ No new observations were added. 
+
+=== Accuracy matrix: generated ADSL vs published oracles ===
+oracle 1: pharmaverseadam::adsl (306 subj) | oracle 2: pilot1 submitted adsl.xpt (254 subj)
+
+ variable              exec adam_match adam_na_agree adam_n pilot1_match
+  STUDYID          EXECUTED     100.0%        100.0%    306       100.0%
+  USUBJID          EXECUTED     100.0%        100.0%    306        83.0%
+   TRT01P          EXECUTED     100.0%        100.0%    306       100.0%
+  TRTSDTM          EXECUTED      83.0%        100.0%    306         <NA>
+  TRTEDTM          EXECUTED      39.5%         99.3%    306         <NA>
+      AGE             ERROR     100.0%        100.0%    306       100.0%
+    BMIBL EXECUTED(revised)       <NA>          <NA>      0        85.8%
+   AGEGR1            REVIEW       <NA>          <NA>     NA         <NA>
+    RACEN             ERROR       <NA>          <NA>     NA         <NA>
+ pilot1_n                                                           note
+      254                                                               
+      306                                        set overlap set overlap
+      254                                                               
+        0                                                  not in oracle
+        0                                                  not in oracle
+      254 derivation blocked (BRTHDT/TRTSDT gap); compared dm-native AGE
+      254                       not in oracle tol 0.5 | mean|diff|=0.304
+       NA                                      needs human (breakpoints)
+       NA                                       needs real metacore spec
+
+Written: admiralagent/demo/gen/accuracy_matrix.csv 
+
+=== Validation gate summary ===
+PASS=12 FAIL=1 MANUAL=2

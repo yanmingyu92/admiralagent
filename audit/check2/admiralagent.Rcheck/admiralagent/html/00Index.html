@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head><title>R: Spec-Driven ADaM Code Generation with LLM-Translated Layers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container">
+<h1> Spec-Driven ADaM Code Generation with LLM-Translated Layers
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]">
+</h1>
+<hr>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]"></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]"></a>
+</div><h2>Documentation for package &lsquo;admiralagent&rsquo; version 0.1.0</h2>
+
+<ul><li><a href="../DESCRIPTION" type="text/plain; charset=utf-8">DESCRIPTION file</a></li>
+<li><a href="../doc/index.html">User guides, package vignettes and other documentation</a></li>
+<li><a href="../README.md">Package README</a></li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table style="width: 100%;">
+<tr><td style="width: 25%;"><a href="aa_layers.html">aa_layers</a></td>
+<td>Layer registry</td></tr>
+<tr><td style="width: 25%;"><a href="artifact_hash.html">artifact_hash</a></td>
+<td>Artifact hash</td></tr>
+<tr><td style="width: 25%;"><a href="build_context.html">build_context</a></td>
+<td>Build LLM context</td></tr>
+<tr><td style="width: 25%;"><a href="build_system_prompt.html">build_system_prompt</a></td>
+<td>Build system prompt</td></tr>
+<tr><td style="width: 25%;"><a href="check_admiral_compat.html">check_admiral_compat</a></td>
+<td>admiral compatibility check</td></tr>
+<tr><td style="width: 25%;"><a href="classify_variables.html">classify_variables</a></td>
+<td>Classify spec variables</td></tr>
+<tr><td style="width: 25%;"><a href="classify_variables_llm.html">classify_variables_llm</a></td>
+<td>Classify spec variables via an LLM chat backend</td></tr>
+<tr><td style="width: 25%;"><a href="codelist_from_data.html">codelist_from_data</a></td>
+<td>Build a codelist data.frame from observed data values</td></tr>
+<tr><td style="width: 25%;"><a href="dataset_json_meta.html">dataset_json_meta</a></td>
+<td>Dataset-JSON header metadata</td></tr>
+<tr><td style="width: 25%;"><a href="evals_accuracy.html">evals_accuracy</a></td>
+<td>Accuracy of an eval run</td></tr>
+<tr><td style="width: 25%;"><a href="execute_ir.html">execute_ir</a></td>
+<td>Execute a Layer IR against source datasets</td></tr>
+<tr><td style="width: 25%;"><a href="ir_dependency_report.html">ir_dependency_report</a></td>
+<td>IR dependency report</td></tr>
+<tr><td style="width: 25%;"><a href="is_valid_ir.html">is_valid_ir</a></td>
+<td>IR validity predicate</td></tr>
+<tr><td style="width: 25%;"><a href="layer_docs.html">layer_docs</a></td>
+<td>Layer documentation cards</td></tr>
+<tr><td style="width: 25%;"><a href="layer_names.html">layer_names</a></td>
+<td>Layer names</td></tr>
+<tr><td style="width: 25%;"><a href="load_evals.html">load_evals</a></td>
+<td>Load the spec-to-IR classification eval corpus</td></tr>
+<tr><td style="width: 25%;"><a href="log_run.html">log_run</a></td>
+<td>Log a run</td></tr>
+<tr><td style="width: 25%;"><a href="mcp_handle_request.html">mcp_handle_request</a></td>
+<td>Handle one MCP / JSON-RPC 2.0 request</td></tr>
+<tr><td style="width: 25%;"><a href="mcp_serve.html">mcp_serve</a></td>
+<td>Run the admiralagent MCP stdio server</td></tr>
+<tr><td style="width: 25%;"><a href="mcp_tool_specs.html">mcp_tool_specs</a></td>
+<td>Tool specifications for the admiralagent MCP server</td></tr>
+<tr><td style="width: 25%;"><a href="mock_metacore.html">mock_metacore</a></td>
+<td>Build a minimal executable metacore object from a spec data frame</td></tr>
+<tr><td style="width: 25%;"><a href="mock_spec_adsl.html">mock_spec_adsl</a></td>
+<td>Mock ADSL spec</td></tr>
+<tr><td style="width: 25%;"><a href="mock_spec_adtte.html">mock_spec_adtte</a></td>
+<td>Mock ADTTE spec</td></tr>
+<tr><td style="width: 25%;"><a href="mock_spec_advs.html">mock_spec_advs</a></td>
+<td>Mock ADVS spec</td></tr>
+<tr><td style="width: 25%;"><a href="new_step.html">new_step</a></td>
+<td>New layer step</td></tr>
+<tr><td style="width: 25%;"><a href="new_variable_ir.html">new_variable_ir</a></td>
+<td>New variable IR</td></tr>
+<tr><td style="width: 25%;"><a href="order_variables.html">order_variables</a></td>
+<td>Dependency-driven variable ordering</td></tr>
+<tr><td style="width: 25%;"><a href="parse_define.html">parse_define</a></td>
+<td>Parse define.xml</td></tr>
+<tr><td style="width: 25%;"><a href="read_artifact.html">read_artifact</a></td>
+<td>Read artifact</td></tr>
+<tr><td style="width: 25%;"><a href="read_dataset_json.html">read_dataset_json</a></td>
+<td>Read a Dataset-JSON file</td></tr>
+<tr><td style="width: 25%;"><a href="read_define.html">read_define</a></td>
+<td>Read define.xml</td></tr>
+<tr><td style="width: 25%;"><a href="read_spec.html">read_spec</a></td>
+<td>Read spec workbook</td></tr>
+<tr><td style="width: 25%;"><a href="read_spec_df.html">read_spec_df</a></td>
+<td>Normalize spec data frame</td></tr>
+<tr><td style="width: 25%;"><a href="render_program.html">render_program</a></td>
+<td>Render program</td></tr>
+<tr><td style="width: 25%;"><a href="render_step.html">render_step</a></td>
+<td>Render a step</td></tr>
+<tr><td style="width: 25%;"><a href="render_variable.html">render_variable</a></td>
+<td>Render a variable</td></tr>
+<tr><td style="width: 25%;"><a href="run_evals.html">run_evals</a></td>
+<td>Run the spec-to-IR classification evals</td></tr>
+<tr><td style="width: 25%;"><a href="run_validation.html">run_validation</a></td>
+<td>Run validation</td></tr>
+<tr><td style="width: 25%;"><a href="spec_variables.html">spec_variables</a></td>
+<td>Spec rows for a dataset</td></tr>
+<tr><td style="width: 25%;"><a href="validate_ir.html">validate_ir</a></td>
+<td>IR validation gate</td></tr>
+<tr><td style="width: 25%;"><a href="validation_comments.html">validation_comments</a></td>
+<td>Validation comments</td></tr>
+<tr><td style="width: 25%;"><a href="write_artifact.html">write_artifact</a></td>
+<td>Write variable artifacts</td></tr>
+<tr><td style="width: 25%;"><a href="write_program_artifact.html">write_program_artifact</a></td>
+<td>Write program artifact</td></tr>
+</table>
+</div></body></html>

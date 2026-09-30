@@ -1,0 +1,117 @@
+Warning message:
+package 'admiral' was built under R version 4.6.1 
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: 'rlang'
+
+The following object is masked _by_ '.GlobalEnv':
+
+    %||%
+
+Warning message:
+package 'rlang' was built under R version 4.6.1 
+Warning message:
+package 'pharmaversesdtm' was built under R version 4.6.1 
+[demo glue] vs adapted to BDS shape (AVAL/PARAMCD); the spec assumes BDS-style VS input
+
+=== Execute generated blocks against pharmaversesdtm pilot data ===
+Warning message:
+The input dataset does not contain any observations fulfilling the filter
+condition (`VISIT == "BASELINE"`) for the parameter codes (`PARAMCD`): HEIGHT.
+ℹ No new observations were added. 
+ variable
+  STUDYID
+  USUBJID
+   SUBJID
+   TRT01P
+  TRTSDTM
+  TRTEDTM
+      AGE
+   AGEGR1
+    RACEN
+    BMIBL
+                                                                   status
+                                                                 EXECUTED
+                                                                 EXECUTED
+                                                                 EXECUTED
+                                                                 EXECUTED
+                                                                 EXECUTED
+                                                                 EXECUTED
+ ERROR: Required variables `BRTHDT` and `TRTSDT` are missing in `dataset`
+                                                                   REVIEW
+                                             ERROR: object 'mc' not found
+                                                                 EXECUTED
+                                                               note
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+                                                                   
+  Required variables `BRTHDT` and `TRTSDT` are missing in `dataset`
+                                               needs human decision
+                                              object 'mc' not found
+                                                                   
+
+=== Deterministic validation gate on executed ADSL ===
+ variable           check status                       details
+  STUDYID      not_all_na   PASS                              
+  USUBJID      not_all_na   PASS                              
+   SUBJID      not_all_na   PASS                              
+   TRT01P      not_all_na   PASS                              
+  TRTSDTM imputation_flag   PASS                              
+  TRTSDTM      not_all_na   PASS                              
+  TRTEDTM imputation_flag   PASS                              
+  TRTEDTM      not_all_na   PASS                              
+      AGE      not_all_na   PASS                              
+      AGE    non_negative   PASS                              
+   AGEGR1     needs_human MANUAL        routed to human review
+    RACEN    values_in_ct MANUAL compare against spec codelist
+    RACEN      not_all_na   FAIL          variable not present
+    BMIBL      not_all_na   FAIL            all values missing
+    BMIBL  key_uniqueness   PASS                              
+
+Summary: PASS=11 FAIL=2 MANUAL=2
+
+=== Derived values (first 6 subjects) ===
+# A tibble: 6 × 5
+  USUBJID     TRT01P               TRTSDTM             TRTEDTM             BMIBL
+  <chr>       <chr>                <dttm>              <dttm>              <dbl>
+1 01-701-1015 Placebo              2014-01-02 00:00:00 2014-07-02 00:00:00    NA
+2 01-701-1023 Placebo              2012-08-05 00:00:00 2012-09-02 00:00:00    NA
+3 01-701-1028 Xanomeline High Dose 2013-07-19 00:00:00 2014-01-14 00:00:00    NA
+4 01-701-1033 Xanomeline Low Dose  2014-03-18 00:00:00 2014-04-14 00:00:00    NA
+5 01-701-1034 Xanomeline High Dose 2014-07-01 00:00:00 2014-12-30 00:00:00    NA
+6 01-701-1047 Placebo              2013-02-12 00:00:00 2013-03-29 00:00:00    NA
+
+=== Reviewer loop: BMIBL failed the gate (HEIGHT not collected at BASELINE) ===
+Statistician edits the IR (never the generated code):
+  HEIGHT/WEIGHT both measured at SCREENING 1 -> restrict filter to SCREENING 1
+
+Re-execution with revised IR: EXECUTED 
+
+=== BMIBL validation after IR revision ===
+ variable          check status details
+    BMIBL     not_all_na   PASS        
+    BMIBL key_uniqueness   PASS        
+
+Final BMIBL values:
+# A tibble: 6 × 2
+  USUBJID     BMIBL
+  <chr>       <dbl>
+1 01-701-1015  24.9
+2 01-701-1023  29.7
+3 01-701-1028  31.3
+4 01-701-1033  28.8
+5 01-701-1034  26.5
+6 01-701-1047  30.0

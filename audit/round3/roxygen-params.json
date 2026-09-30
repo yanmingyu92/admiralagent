@@ -1,0 +1,324 @@
+[
+  {
+    "fn": "artifact_hash",
+    "file": "admiralagent\\R\\artifacts.R",
+    "params": [
+      "ir"
+    ]
+  },
+  {
+    "fn": "write_artifact",
+    "file": "admiralagent\\R\\artifacts.R",
+    "params": [
+      "ir",
+      "dir",
+      "backend_label",
+      "model",
+      "validation"
+    ]
+  },
+  {
+    "fn": "write_program_artifact",
+    "file": "admiralagent\\R\\artifacts.R",
+    "params": [
+      "ir",
+      "dir",
+      "backend_label",
+      "model"
+    ]
+  },
+  {
+    "fn": "log_run",
+    "file": "admiralagent\\R\\artifacts.R",
+    "params": [
+      "event",
+      "details",
+      "file"
+    ]
+  },
+  {
+    "fn": "read_artifact",
+    "file": "admiralagent\\R\\artifacts.R",
+    "params": [
+      "path"
+    ]
+  },
+  {
+    "fn": "validation_comments",
+    "file": "admiralagent\\R\\checks.R",
+    "params": [
+      "v"
+    ]
+  },
+  {
+    "fn": "run_validation",
+    "file": "admiralagent\\R\\checks.R",
+    "params": [
+      "data",
+      "ir",
+      "quiet"
+    ]
+  },
+  {
+    "fn": "build_context",
+    "file": "admiralagent\\R\\classify_llm.R",
+    "params": [
+      "vars"
+    ]
+  },
+  {
+    "fn": "build_system_prompt",
+    "file": "admiralagent\\R\\classify_llm.R",
+    "params": []
+  },
+  {
+    "fn": "classify_variables_llm",
+    "file": "admiralagent\\R\\classify_llm.R",
+    "params": [
+      "vars",
+      "chat",
+      "max_attempts",
+      "batch_size",
+      "samples",
+      "consensus"
+    ]
+  },
+  {
+    "fn": "classify_variables",
+    "file": "admiralagent\\R\\classify_rules.R",
+    "params": [
+      "spec",
+      "dataset",
+      "backend",
+      "chat"
+    ]
+  },
+  {
+    "fn": "render_step",
+    "file": "admiralagent\\R\\codegen.R",
+    "params": [
+      "step",
+      "v",
+      "i"
+    ]
+  },
+  {
+    "fn": "render_variable",
+    "file": "admiralagent\\R\\codegen.R",
+    "params": [
+      "v"
+    ]
+  },
+  {
+    "fn": "render_program",
+    "file": "admiralagent\\R\\codegen.R",
+    "params": [
+      "ir",
+      "backend_label",
+      "finalize"
+    ]
+  },
+  {
+    "fn": "read_dataset_json",
+    "file": "admiralagent\\R\\dataset_json.R",
+    "params": [
+      "path"
+    ]
+  },
+  {
+    "fn": "dataset_json_meta",
+    "file": "admiralagent\\R\\dataset_json.R",
+    "params": [
+      "path"
+    ]
+  },
+  {
+    "fn": "parse_define",
+    "file": "admiralagent\\R\\define.R",
+    "params": [
+      "path"
+    ]
+  },
+  {
+    "fn": "order_variables",
+    "file": "admiralagent\\R\\dependency.R",
+    "params": [
+      "ir",
+      "known_columns"
+    ]
+  },
+  {
+    "fn": "ir_dependency_report",
+    "file": "admiralagent\\R\\dependency.R",
+    "params": [
+      "ir",
+      "known_columns"
+    ]
+  },
+  {
+    "fn": "load_evals",
+    "file": "admiralagent\\R\\evals.R",
+    "params": [
+      "path"
+    ]
+  },
+  {
+    "fn": "run_evals",
+    "file": "admiralagent\\R\\evals.R",
+    "params": [
+      "backend",
+      "chat",
+      "dataset"
+    ]
+  },
+  {
+    "fn": "evals_accuracy",
+    "file": "admiralagent\\R\\evals.R",
+    "params": [
+      "res"
+    ]
+  },
+  {
+    "fn": "execute_ir",
+    "file": "admiralagent\\R\\execute.R",
+    "params": [
+      "ir",
+      "sources",
+      "variables",
+      "quiet"
+    ]
+  },
+  {
+    "fn": "new_step",
+    "file": "admiralagent\\R\\ir.R",
+    "params": [
+      "layer",
+      "args"
+    ]
+  },
+  {
+    "fn": "new_variable_ir",
+    "file": "admiralagent\\R\\ir.R",
+    "params": [
+      "dataset",
+      "variable",
+      "steps",
+      "spec_origin",
+      "confidence",
+      "needs_human",
+      "rationale"
+    ]
+  },
+  {
+    "fn": "is_valid_ir",
+    "file": "admiralagent\\R\\ir.R",
+    "params": [
+      "ir"
+    ]
+  },
+  {
+    "fn": "validate_ir",
+    "file": "admiralagent\\R\\ir.R",
+    "params": [
+      "ir"
+    ]
+  },
+  {
+    "fn": "aa_layers",
+    "file": "admiralagent\\R\\layers.R",
+    "params": []
+  },
+  {
+    "fn": "layer_names",
+    "file": "admiralagent\\R\\layers.R",
+    "params": []
+  },
+  {
+    "fn": "check_admiral_compat",
+    "file": "admiralagent\\R\\layers.R",
+    "params": [
+      "ir",
+      "installed"
+    ]
+  },
+  {
+    "fn": "mcp_tool_specs",
+    "file": "admiralagent\\R\\mcp.R",
+    "params": []
+  },
+  {
+    "fn": "mcp_handle_request",
+    "file": "admiralagent\\R\\mcp.R",
+    "params": [
+      "req"
+    ]
+  },
+  {
+    "fn": "mcp_serve",
+    "file": "admiralagent\\R\\mcp.R",
+    "params": []
+  },
+  {
+    "fn": "codelist_from_data",
+    "file": "admiralagent\\R\\metacore_lite.R",
+    "params": [
+      "var",
+      "data"
+    ]
+  },
+  {
+    "fn": "mock_metacore",
+    "file": "admiralagent\\R\\metacore_lite.R",
+    "params": [
+      "spec_df",
+      "codelists"
+    ]
+  },
+  {
+    "fn": "read_spec_df",
+    "file": "admiralagent\\R\\spec.R",
+    "params": [
+      "df"
+    ]
+  },
+  {
+    "fn": "spec_variables",
+    "file": "admiralagent\\R\\spec.R",
+    "params": [
+      "spec",
+      "dataset"
+    ]
+  },
+  {
+    "fn": "read_spec",
+    "file": "admiralagent\\R\\spec.R",
+    "params": [
+      "path",
+      "dataset",
+      "where_sep_sheet",
+      "verbose"
+    ]
+  },
+  {
+    "fn": "read_define",
+    "file": "admiralagent\\R\\spec.R",
+    "params": [
+      "path"
+    ]
+  },
+  {
+    "fn": "mock_spec_adsl",
+    "file": "admiralagent\\R\\spec.R",
+    "params": []
+  },
+  {
+    "fn": "mock_spec_advs",
+    "file": "admiralagent\\R\\spec.R",
+    "params": []
+  },
+  {
+    "fn": "mock_spec_adtte",
+    "file": "admiralagent\\R\\spec.R",
+    "params": []
+  }
+]

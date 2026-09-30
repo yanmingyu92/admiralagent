@@ -1,0 +1,25 @@
+
+for(f in list.files("admiralagent/R", "[.]R$", full.names=TRUE)) source(f,encoding="UTF-8")
+v <- new_variable_ir("ADSL","X",list(new_step("assign",list(target="X",literal="ok"))))
+s <- new_step("compute_var",list(on="ex",target="X",formula="system('echo SHOULD_NOT_RUN')"))
+cat("R2-01 substituted foreign step renders malicious call:",grepl("system",render_step(s,v,1),fixed=TRUE),"\n")
+x <- list(v); x[[1]]$steps[[1]]$args <- list(target="X",literal="ok",onevil="ex")
+cat("R2-02 unknown args",paste(validate_ir(x),collapse=";"),"\n")
+v$spec_origin <- "ok"; v$rationale <- "ok"
+rec <- jsonlite::fromJSON(jsonlite::toJSON(list(v),auto_unbox=TRUE),simplifyVector=FALSE)
+rec[[1]]$needs_human <- "true"; rec[[1]]$confidence <- "1"
+tf <- tempfile(fileext=".json"); jsonlite::write_json(list(ir=rec),tf,auto_unbox=TRUE)
+cat("R2-03 sidecar wrongly typed needs_human becomes",read_artifact(tf)$ir[[1]]$needs_human,"\n")
+batch <- mock_spec_adsl()[1:2,]
+chat <- list(chat=function(prompt) jsonlite::toJSON(list(v),auto_unbox=TRUE))
+cat("R2-04 two-row batch returns",length(classify_batch(batch,chat,1)),"unrequested variable\n")
+x <- new_variable_ir("ADSL","X",list(new_step("compute_var",list(target="X",formula="Y + 1"))))
+y <- new_variable_ir("ADSL","Y",list(new_step("compute_var",list(target="Y",formula="AGE + 1"))))
+res <- execute_ir(list(x,y),list(base=data.frame(AGE=1,Y=100)))
+cat("R2-05 stale producer value yields X=",res$adsl$X,"instead of 3; status",paste(res$status$status,collapse=","),"\n")
+z <- new_variable_ir("ADSL","Z",list(new_step("assign",list(target="TEMP",literal="z")),new_step("compute_var",list(target="Z",formula="MISSING+1"))))
+res <- execute_ir(list(z),list(base=data.frame(AGE=1)))
+cat("R2-06 ERROR variable leaves partial TEMP column:","TEMP" %in% names(res$adsl),"\n")
+a <- new_variable_ir("ADSL","A",list(new_step("assign",list(target="A",literal="A"))))
+b <- new_variable_ir("ADSL","B",list(new_step("assign",list(target="B",literal="B"))))
+cat("R2-07 distinct program orders same artifact hash:",identical(artifact_hash(list(a,b)),artifact_hash(list(b,a))),"\n")

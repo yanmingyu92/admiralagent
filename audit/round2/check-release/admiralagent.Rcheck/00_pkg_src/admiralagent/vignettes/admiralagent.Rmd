@@ -1,0 +1,166 @@
+---
+title: "admiralagent: Spec-to-ADaM with LLM-Translated Layers"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{admiralagent: Spec-to-ADaM with LLM-Translated Layers}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>", error = FALSE
+)
+```
+
+```{r setup}
+library(admiralagent)
+```
+
+## The idea
+
+**The LLM never writes R code.** It only *translates*: each spec variable's
+free-text derivation is mapped onto a closed vocabulary of derivation layers
+(a structured JSON IR). A deterministic compiler turns the IR into
+`admiral`/`metatools` code with `CHECK` validation comments and provenance
+sidecars.
+
+```
+P21 spec  ->  deterministic parse  ->  LLM per-variable   ->  deterministic
+(xlsx)        (metacore)              translation to IR       compile
+                                         |  JSON (closed       |  script +
+                                         |  vocabulary)        |  CHECK comments
+                                         v                     v
+                                    validate_ir()         run_validation()
+                                    (schema + semantic)   (deterministic gate)
+                                         \___________ __________/
+                                                     v
+                                       write_artifact() -> script + sidecar
+```
+
+Why this split: the only non-deterministic step (understanding free text) is
+the LLM's; everything with a provable right answer (code syntax, argument
+schemas, validation) is deterministic. Identical IR always yields identical
+code, and the LLM never sees patient data — `build_context()` emits schema
+fields only.
+
+## Walkthrough on the mock ADSL spec
+
+Start from the bundled mock spec and classify every variable with the
+zero-dependency rules backend:
+
+```{r classify}
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, dataset = "ADSL", backend = "rules")
+```
+
+Every IR — whether produced by the rules engine or an LLM — must pass the same
+validation gate before any code is rendered:
+
+```{r validate}
+problems <- validate_ir(ir)
+length(problems) == 0L
+```
+
+The rules backend abstains (`needs_human = TRUE`) when a derivation requires a
+human-only decision, e.g. AGEGR1's categorisation breakpoints:
+
+```{r abstain}
+vapply(ir, function(v) isTRUE(v$needs_human), logical(1))
+```
+
+Rendering is fully deterministic. Below is the head of the generated program
+(truncated):
+
+```{r render}
+prog <- render_program(ir, backend_label = "rules")
+cat(strsplit(prog, "\n")[[1]][1:16], sep = "\n")
+```
+
+Each step block carries its spec origin, the classifier's rationale, a
+confidence, and `# CHECK:` comments tied to the layer's registered checks.
+To *execute* the program in-process, `execute_ir(ir, sources = list(base = dm,
+ex = ex, vs = vs_bds))` evaluates each rendered block in a fresh environment
+and reports `EXECUTED` / `ERROR` / `REVIEW` per variable — see
+`?execute_ir`. Artifacts are written with `write_program_artifact(ir, dir =
+"gen")`, producing `<dataset>__program__<hash8>.R` plus a JSON sidecar and an
+append-only audit log.
+
+## Accuracy story: rules vs the pilot1 oracle
+
+The real question is not "does it run" but "does it match a reviewer-approved
+ADaM dataset". We executed rules-backend programs against the CDISC pilot 1
+SDTM data and compared each derived variable with `pharmaverseadam::adsl`
+(the published reference ADSL):
+
+| Variable | Rule used | Result vs pilot1 |
+|---|---|---|
+| TRT01P | assign from DM.ARM | 100% match |
+| TRTSDTM | impute DM.RFSTDTC (first, "M") | 100% non-NA agreement, 100% NA-pattern agreement |
+| TRTEDTM | impute DM.RFENDTC (last, "M") | ~48% match — RFENDTC dominates the spec text but the pilot derives from EX |
+| BMIBL | compute_param WEIGHT/HEIGHT then merge | 85.8% within 0.5 kg/m2 |
+
+The two imperfect rows are the improvement loop working as designed:
+`TRTEDTM` exposes a genuine spec-text ambiguity (RFENDTC vs last EX dose),
+and `BMIBL`'s residual mismatch tracks baseline-visit scoping. Both are
+flagged with `# CHECK:` comments in the generated code; neither is silently
+wrong. The LLM backend targets exactly these rows — it reads the full
+derivation context instead of keyword dominance.
+
+For offline regression, the bundled corpus
+(`inst/evals/spec-to-ir.jsonl`) pins expected layer chains per spec row:
+
+```{r evals, eval = FALSE}
+res <- run_evals(backend = "rules", dataset = "ADSL")
+evals_accuracy(res)  # must stay 1.0
+```
+
+The `rules` backend scoring below 1.0 on the corpus fails the package's own
+regression gate.
+
+## MCP server: the same gates from any agent
+
+The deterministic core is also exposed as a stdio MCP server (protocol
+`2024-11-05`, newline-delimited JSON-RPC 2.0) with five tools:
+
+| Tool | Purpose |
+|---|---|
+| `aa_classify` | spec rows -> layer IR (rules backend) + validation problems |
+| `aa_validate_ir` | parse/normalize any IR array, run `validate_ir()` |
+| `aa_render_program` | IR -> admiral program with CHECK comments + hash |
+| `aa_dependency_report` | undefined step inputs (`variable, input, dataset, issue`) |
+| `aa_evals` | run the bundled corpus, report rules accuracy |
+
+No network, no LLM, no API keys — every tool is base R + jsonlite + digest.
+Register it (e.g. for Claude Code) via:
+
+```json
+{
+  "mcpServers": {
+    "admiralagent": {
+      "command": "Rscript",
+      "args": ["/path/to/admiralagent/tools/mcp_server.R"]
+    }
+  }
+}
+```
+
+The tool layer is in-process testable via `mcp_tool_specs()` and
+`mcp_handle_request()`; the blocking loop itself is `mcp_serve()`.
+
+## Improvement-loop philosophy
+
+Every iteration follows probe -> finding -> fix -> regression:
+
+1. **Probe**: execute generated programs against real SDTM (pilot1);
+   every ERROR/FAIL/MANUAL becomes a numbered finding.
+2. **Fix in three layers at once**: semantic validation (`validate_ir()`,
+   `ir_dependency_report()`), prompt rules (`build_system_prompt()`), and a
+   regression test.
+3. **Never repeat history**: past LLM failure modes (step-level `on`,
+   JSON array simplification, cross-dataset `assign`, admiral argument
+   renames) are all locked behind tests and normalizations.
+
+When the classifier is unsure it abstains — `needs_human` variables get a
+review header instead of guessed code. The package's promise is not
+"no humans"; it is "no silent errors".

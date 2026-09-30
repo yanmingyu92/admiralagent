@@ -1,0 +1,289 @@
+[
+  {
+    "file": "admiralagent\\R\\artifacts.R",
+    "utf8": true,
+    "crlf": 166,
+    "lf": 166,
+    "sha256": "a5a0b7d0d2d54802fbbb6f23a057e02b6ca7f9184b628ac619efeb0e2f7c766a"
+  },
+  {
+    "file": "admiralagent\\R\\checks.R",
+    "utf8": true,
+    "crlf": 141,
+    "lf": 141,
+    "sha256": "df027b505f16db88f77746f87e902b0414cc0c830bce081664d327768e1b4dfb"
+  },
+  {
+    "file": "admiralagent\\R\\classify_llm.R",
+    "utf8": true,
+    "crlf": 366,
+    "lf": 366,
+    "sha256": "89a98de7c262b89fd97dba228fbe545d1cfa973e8639b39490ba02de343a633c"
+  },
+  {
+    "file": "admiralagent\\R\\classify_rules.R",
+    "utf8": true,
+    "crlf": 272,
+    "lf": 272,
+    "sha256": "d13082961c0941ad054c7a9778a848b5997e148b7a8e335598f194541b85bf72"
+  },
+  {
+    "file": "admiralagent\\R\\codegen.R",
+    "utf8": true,
+    "crlf": 168,
+    "lf": 168,
+    "sha256": "484f7404142ef42dc7da9cb070e13b845a5fb2b2b1c5488ff28723b09dd1e95b"
+  },
+  {
+    "file": "admiralagent\\R\\dataset_json.R",
+    "utf8": true,
+    "crlf": 301,
+    "lf": 301,
+    "sha256": "4e954aaab67b39933a17346597500b3df5046d5f14cec9cc85de1dc3dbcf0475"
+  },
+  {
+    "file": "admiralagent\\R\\define.R",
+    "utf8": true,
+    "crlf": 145,
+    "lf": 145,
+    "sha256": "ca1ed2245ef5aaf4211ea9cad606a70cd56f0c88f4bc2483cc9eb7787a26a4d5"
+  },
+  {
+    "file": "admiralagent\\R\\dependency.R",
+    "utf8": true,
+    "crlf": 175,
+    "lf": 175,
+    "sha256": "a620703369101aa4df9282fb2f3e368f3e7155686691186227ef51d4f24d2493"
+  },
+  {
+    "file": "admiralagent\\R\\evals.R",
+    "utf8": true,
+    "crlf": 162,
+    "lf": 162,
+    "sha256": "64a02ef9ef0d279ae7cbaf229b01c275eca392751cf7a5eaad1aa5c291f55633"
+  },
+  {
+    "file": "admiralagent\\R\\execute.R",
+    "utf8": true,
+    "crlf": 200,
+    "lf": 200,
+    "sha256": "0298495d4d777572d7e956d0f2b29c1ee5e3f22976aa2d81fd24244a98a2bae2"
+  },
+  {
+    "file": "admiralagent\\R\\ir.R",
+    "utf8": true,
+    "crlf": 275,
+    "lf": 275,
+    "sha256": "89088fd3b110c2dce292a80a4c4e8e71028c9b97b40c95f54bb7e225e909a8f2"
+  },
+  {
+    "file": "admiralagent\\R\\layers.R",
+    "utf8": true,
+    "crlf": 527,
+    "lf": 527,
+    "sha256": "2da0bcc772184137871502f0154c546f16b0fe44505683d9776297f2463d581b"
+  },
+  {
+    "file": "admiralagent\\R\\mcp.R",
+    "utf8": true,
+    "crlf": 352,
+    "lf": 352,
+    "sha256": "8ca65951213acced653fe83da9a21d0bae81529d1cad843b56e26c81003ade25"
+  },
+  {
+    "file": "admiralagent\\R\\metacore_lite.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 178,
+    "sha256": "11843066b72ba32068078179084370e898709f6b64fdc5460e5ea14042395470"
+  },
+  {
+    "file": "admiralagent\\R\\safety.R",
+    "utf8": true,
+    "crlf": 185,
+    "lf": 185,
+    "sha256": "df683c6feae5fe79fe874674bff9f07abc0db56883ef7153a23fd13127b24bfb"
+  },
+  {
+    "file": "admiralagent\\R\\spec.R",
+    "utf8": true,
+    "crlf": 273,
+    "lf": 273,
+    "sha256": "78fc85b70c34fc07c5b8afe217d099378cd65ac9436b0690262acfa9e79e7075"
+  },
+  {
+    "file": "admiralagent\\R\\utils.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 14,
+    "sha256": "703c46556516f58bf6edcea28c6fedc41178dae0bfea9216e8afb019391f8660"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\helper.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 3,
+    "sha256": "2b391e8996e2366f3cad884a14b29c771dfe0fc29f7366d39aacab3855c715a0"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-artifacts.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 73,
+    "sha256": "ab4fa008f75ab5e8371b04b24396bb8e181776d8d66d2bc5d9f3e8027ab9e48d"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-audit-round2.R",
+    "utf8": true,
+    "crlf": 263,
+    "lf": 263,
+    "sha256": "1d903ff99493b96e18bafc2f50b444450025b370f606ac7652d7b6bcb3845aa7"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-audit-round3.R",
+    "utf8": true,
+    "crlf": 82,
+    "lf": 82,
+    "sha256": "26b98dbcccf3298dd873435f8bdc4e8c43c25d4d6981efb14b9c90a44a0ab133"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-audit-security.R",
+    "utf8": true,
+    "crlf": 152,
+    "lf": 152,
+    "sha256": "6e74363d6bd912f3243e0526967b0a56a84ab041aa83e62afdf855ae1920a2f6"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-bds.R",
+    "utf8": true,
+    "crlf": 226,
+    "lf": 226,
+    "sha256": "fc5c9445486256423aa05959a68e1bb302d7df5c2a7f27cd85624710233ed7ce"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-checks-behavior.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 64,
+    "sha256": "5208b52142a821de62c3ee93459727df41de4dd620e5016dd724306a2c726245"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-classify-llm-mock.R",
+    "utf8": true,
+    "crlf": 231,
+    "lf": 231,
+    "sha256": "97b60481a9450c51745820e3c28a17eedc5aa2dd89d425ef0f3be6e1a4d0b84e"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-classify.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 102,
+    "sha256": "c2468737d9f97d01d7f71c28053030fed5ef288b9fa1616126b8d4b637a45f1c"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-codegen.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 68,
+    "sha256": "83422bffd382535725aff2d8851aab3fb337398a266e1f0d521a20d2442b6b3d"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-dataset-json.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 216,
+    "sha256": "2b8d5b902287cc8a621148311b62050b61a07d3d05feb47da7c62cbf37f33bff"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-define.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 124,
+    "sha256": "dc218077dbb5fbbb563778f2b645db152993a33f476cd851e0d9dd3b952b9e47"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-dependency.R",
+    "utf8": true,
+    "crlf": 110,
+    "lf": 110,
+    "sha256": "96ee7185ebdba3f8ccadb2115d5f729590e81390da690ccd9263f71bd4b16537"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-evals.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 65,
+    "sha256": "b9273138264d5bfcad03747eeef5e22bca92d9d8d6aa00bd1d16cd37917ed444"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-execute.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 141,
+    "sha256": "973211581f6ef0369870b2f910ae604c1218b52627cd9b06353de37a5a18be65"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-integration.R",
+    "utf8": true,
+    "crlf": 96,
+    "lf": 96,
+    "sha256": "6bfaabee62521fa726f6b139c1d5c9d264611752dc241271406f285a68e23177"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-ir.R",
+    "utf8": true,
+    "crlf": 72,
+    "lf": 72,
+    "sha256": "a39be7b8685b5623097b7de07730f51e6b59529f4623c8425a2c6d442b278737"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-layers-golden.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 85,
+    "sha256": "79a64ab0cc486639857e5a83d67c928224bad6d10383b7f0686acd65f06e4d9d"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-layers.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 23,
+    "sha256": "df8b5dc2a0ca2870d53047a1e314e006fb786b005747fcf9a262e431bb899531"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-mcp.R",
+    "utf8": true,
+    "crlf": 290,
+    "lf": 290,
+    "sha256": "2973bc064d5848b95e4d0b1de08d5ba743ab5387a65740592f1c136c8a812d85"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-metacore-lite.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 100,
+    "sha256": "1cbed15cc00a0ce25c4359a6de02ab7dc61e85cd3ee70d16691a8cbbd95e069f"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-ordering.R",
+    "utf8": true,
+    "crlf": 138,
+    "lf": 138,
+    "sha256": "6a9d0a17603a96cf75ce84d2f4ef0a7c38275f9cc00cc2aa42e0f5c64ad26042"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-semantic.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 80,
+    "sha256": "6b47a41be6d427ab76efa2234f8d49cbabbde309f4f4454e1bed688ef3e67323"
+  },
+  {
+    "file": "admiralagent\\tests\\testthat\\test-vocab-new.R",
+    "utf8": true,
+    "crlf": 0,
+    "lf": 150,
+    "sha256": "feadfc5b7c7bcc3bd1e8e1dcf067cd38ff799b6b8a907893f50f20278acc86b1"
+  }
+]
