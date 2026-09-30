@@ -22,7 +22,7 @@
 - [x] E4 `tests/testthat/helper.R` 修复：`test_check()` 路径下不再全量 source `R/*.R` 遮蔽已安装命名空间；dev 模式由 `ADMIRALAGENT_DEV_SOURCE=1` 显式开启（testthat.yaml 已同步）
 - [x] E5 drift 三处即修：`build_system_prompt()` 双 "5." 编号；`demo/mcp_setup.md` 已删除的 `warnings` 字段；`R-CMD-check.yaml` 头部过时注释
 - [x] E6 `AGENTS.md` 规则 1 同步：已涵盖第二种 IR（`aa_analysis_ir` / `aa_operations()`）
-- [ ] E7 用 Rscript 全量跑测试，确认修复后仍全绿（进行中）
+- [x] E7 用 Rscript 全量跑测试，确认修复后仍全绿（FAIL 0 | WARN 7 | SKIP 2 | PASS 4766，与基线一致）
 
 ## P1 — Drift 根治 + 门禁收紧（第 2 周）
 
