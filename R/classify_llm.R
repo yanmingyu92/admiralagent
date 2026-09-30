@@ -81,13 +81,13 @@ build_system_prompt <- function() {
     "PARAMCD/AVAL records (e.g. `vs`). Run them on the BDS SOURCE dataset via ",
     "`on` inside args, then merge the result into the target dataset with merge_var. ",
     "Never run compute_param directly on a subject-level dataset like ADSL.\n",
-    "5. Omit optional args entirely instead of sending empty arrays ([]).\n",
-    "6. duration/compute endpoints must exist in the spec, the base dataset, or be ",
+    "6. Omit optional args entirely instead of sending empty arrays ([]).\n",
+    "7. duration/compute endpoints must exist in the spec, the base dataset, or be ",
     "created by earlier steps; if an endpoint is missing, set needs_human=true.\n",
-    "7. If the derivation needs human-only decisions (categorisation breakpoints, ",
+    "8. If the derivation needs human-only decisions (categorisation breakpoints, ",
     "external lookups, ambiguous text), return needs_human=true with EMPTY steps.\n",
-    "8. confidence below 0.7 requires needs_human=true.\n",
-    "9. Output ONLY the JSON array. No prose, no markdown fences, no extra fields.\n"
+    "9. confidence below 0.7 requires needs_human=true.\n",
+    "10. Output ONLY the JSON array. No prose, no markdown fences, no extra fields.\n"
   )
 }
 

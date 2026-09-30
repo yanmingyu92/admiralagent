@@ -15,5 +15,7 @@
 ^admiralagent_log\.jsonl$
 ^AGENTS\.md$
 ^DESIGN\.md$
+^\.agents$
+^ROADMAP\.md$
 
 ^audit$

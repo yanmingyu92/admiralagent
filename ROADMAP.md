@@ -16,13 +16,13 @@
 
 目标：版本控制 + 可独立复核的测试 + 元数据卫生。
 
-- [ ] E1 `git init` + 初始提交；`.gitignore`（Output/、.Rhistory、.Renviron 等）
-- [ ] E2 DESCRIPTION 卫生：删除空值 `Config/Depends:` 尾字段；`Config/roxygen2/version` 改标准 `RoxygenNote: 7.3.x`
-- [ ] E3 `.Rbuildignore` 增加 `^\.agents$`（避免审计快照打进 tarball）
-- [ ] E4 `tests/testthat/helper.R` 修复：`test_check()` 路径下不得全量 source `R/*.R` 遮蔽已安装命名空间；保留 `test_dir` 开发模式开关（如环境变量 `ADMIRALAGENT_DEV_SOURCE=1`）
-- [ ] E5 drift 三处即修：`build_system_prompt()` 双 "5." 编号（R/classify_llm.R:80,84）；`demo/mcp_setup.md` 已删除的 `warnings` 字段；`.github/workflows/R-CMD-check.yaml` 头部过时注释
-- [ ] E6 `AGENTS.md` 规则 1 同步：A14 后已有第二种 IR（`aa_analysis_ir` / `aa_operations()`），「唯一事实源」表述需更新
-- [ ] E7 用 Rscript（HANDOFF 记录的绝对路径）全量跑测试，确认修复后仍全绿
+- [x] E1 `git init` + 初始提交；`.gitignore`（Output/、.Rhistory、.Renviron 等）
+- [x] E2 DESCRIPTION 卫生：删除空值 `Config/Depends:` 尾字段；改标准 `RoxygenNote:` 字段
+- [x] E3 `.Rbuildignore` 增加 `^\.agents$`（避免审计快照打进 tarball）
+- [x] E4 `tests/testthat/helper.R` 修复：`test_check()` 路径下不再全量 source `R/*.R` 遮蔽已安装命名空间；dev 模式由 `ADMIRALAGENT_DEV_SOURCE=1` 显式开启（testthat.yaml 已同步）
+- [x] E5 drift 三处即修：`build_system_prompt()` 双 "5." 编号；`demo/mcp_setup.md` 已删除的 `warnings` 字段；`R-CMD-check.yaml` 头部过时注释
+- [x] E6 `AGENTS.md` 规则 1 同步：已涵盖第二种 IR（`aa_analysis_ir` / `aa_operations()`）
+- [ ] E7 用 Rscript 全量跑测试，确认修复后仍全绿（进行中）
 
 ## P1 — Drift 根治 + 门禁收紧（第 2 周）
 
