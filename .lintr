@@ -1,0 +1,22 @@
+# lintr configuration — incremental adoption (see .github/workflows/lint.yaml).
+#
+# CI lints only files CHANGED in a push/PR, so the ~2700 legacy lints in the
+# existing tree do not block development, while every new or edited R file must
+# be lint-clean. Do not widen the NULL list to silence new code; fix the code.
+linters: lintr::modify_defaults(
+    default = lintr::linters_with_defaults(),
+    # Long string literals in prompts/templates and roxygen prose are
+    # deliberate; a hard width cap would mangle them.
+    line_length_linter = NULL,
+    # NSE-heavy render templates and tests produce too many false positives.
+    object_usage_linter = NULL,
+    # Design comments reference code by example on purpose (see AGENTS.md:
+    # CHECK comments are a product feature, not clutter).
+    commented_code_linter = NULL
+  )
+exclusions: list(
+    "tests/testthat/_snaps",
+    "demo/gen",
+    "demo/gen_llm"
+  )
+encoding: "UTF-8"

@@ -1,0 +1,9 @@
+url: https://yanmingyu92.github.io/admiralagent/
+
+template:
+  bootstrap: 5
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]

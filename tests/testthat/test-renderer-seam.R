@@ -344,7 +344,7 @@ test_that("deliverable_order is a valid permutation of the deliverable nodes", {
 test_that("REGRESSION: pinned artifact hash and variable order are unchanged", {
   ir <- classify_variables(mock_spec_adsl(), "ADSL", backend = "rules")
 
-  expect_equal(artifact_hash(ir), "84a18650")
+  expect_equal(artifact_hash(ir), "6aea851a")
   expect_equal(
     vapply(order_variables(ir), function(v) v$variable, character(1)),
     c("TRTSDTM", "TRTEDTM", "AGE", "RACEN", "STUDYID", "USUBJID", "BMIBL", "SUBJID", "TRT01P", "AGEGR1")

@@ -14,8 +14,10 @@ An 8-character hash string.
 }
 \description{
 Hashes the canonical JSON of the IR (preserving variable
-  and step order) plus the package version; used in deterministic artifact file
-  names so identical IRs always overwrite the same files.
+  and step order); used in deterministic artifact file names so identical IRs
+  always overwrite the same files. The package version is deliberately NOT
+  part of the hash: it is recorded as provenance in sidecars/manifests
+  instead, so a version bump never silently moves artifact identities.
 }
 \details{
 Deterministic hash of a variable IR

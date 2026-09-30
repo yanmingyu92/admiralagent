@@ -153,6 +153,10 @@ batch_prompt <- function(batch) {
 #' @param consensus `majority` = per-variable majority vote across samples;
 #'   ties or all-failed samples mark the variable `needs_human`.
 #'   `first` = skip voting and take the earliest successful sample.
+#' @param prompt_variant system-prompt variant: `full` (default) carries the
+#'   complete convention block; `neutral` and `minimal` strip it down for
+#'   agreement measurement, so consensus reflects independent translations
+#'   rather than prompt compliance.
 #' @return List of `aa_variable_ir` objects. For `samples > 1` the list carries
 #'   a `consensus` attribute: a data.frame with columns `variable`,
 #'   `signature_votes` (e.g. `"impute_dtc->merge_var:2"`), `chosen`,

@@ -252,7 +252,7 @@ test_that("a gate cannot be signed where it could not be recorded", {
 test_that("REGRESSION GUARD: the pinned rules-backend artifact hash is unchanged", {
   expect_identical(
     artifact_hash(classify_variables(mock_spec_adsl(), "ADSL", backend = "rules")),
-    "84a18650"
+    "6aea851a"
   )
   # an ungated program renders byte-identically to how it rendered before gates
   ir <- classify_variables(mock_spec_adsl(), "ADSL", backend = "rules")

@@ -15,7 +15,7 @@
 
 test_that("pinned golden: artifact_hash of the rules-classified ADSL spec is unchanged", {
   ir <- classify_variables(mock_spec_adsl(), "ADSL", backend = "rules")
-  expect_identical(artifact_hash(ir), "84a18650")
+  expect_identical(artifact_hash(ir), "6aea851a")
 })
 
 test_that("pinned golden: order_variables name order is unchanged", {

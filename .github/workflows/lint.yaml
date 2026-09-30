@@ -1,0 +1,56 @@
+# Static lint via lintr, incremental adoption:
+# only R files CHANGED by this push/PR are linted (see .lintr for the linter
+# set and rationale). Existing-tree violations are grandfathered; new or edited
+# code must be clean. A clean full-tree lint is a P2 hygiene goal (ROADMAP A3).
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+name: lint
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      LINTR_ERROR_ON_LINT: true
+      BEFORE: ${{ github.event.before }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::lintr
+
+      - name: Lint changed R files
+        shell: Rscript {0}
+        run: |
+          base <- Sys.getenv("GITHUB_BASE_REF")
+          before <- Sys.getenv("BEFORE")
+          if (nzchar(base)) {
+            system2("git", c("fetch", "origin", base, "--depth=1"))
+            ref <- paste0("origin/", base)
+          } else if (nzchar(before) && before != "0000000000000000000000000000000000000000") {
+            ref <- before
+          } else {
+            ref <- "HEAD~1"
+          }
+          changed <- system2("git", c("diff", "--name-only", ref, "HEAD"), stdout = TRUE)
+          files <- grep("[.]R$", changed, value = TRUE)
+          files <- files[file.exists(files)]
+          if (!length(files)) {
+            cat("No changed R files; nothing to lint.\n")
+          } else {
+            cat("Linting changed files:\n")
+            cat(paste0(" - ", files, "\n"), sep = "")
+            print(lintr::lint(files))
+          }

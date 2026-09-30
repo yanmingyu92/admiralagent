@@ -21,3 +21,6 @@ admiralagent_log.jsonl
 
 # Caches
 cache/
+.lint-lib/
+admiralagent.Rcheck/
+*.tar.gz

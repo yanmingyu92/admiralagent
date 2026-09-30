@@ -212,11 +212,13 @@ MCP server（stdio，5 工具）与进程内 API 共享全部确定性门，但�
 2. **evals 语料是回归语料，不是 oracle**：`inst/evals/spec-to-ir.jsonl` 全部
    24 个案例的 `expected_args` 由当时的 `rules` 后端输出生成，钉住的是"当前
    行为即契约"。引用它作为 validation 证据，等于系统在给自己打分。
-3. **golden hash 与版本号耦合**：`pkg_ver()` 的 fallback `"0.1.0"`
-   （`R/utils.R`）当前恰好等于 DESCRIPTION 的 Version，而测试中的 golden
-   `artifact_hash` `84a18650` 是在包未安装（helper.R source R/*.R，走 fallback）
-   时算出的。下一次版本号提升会移动 golden——即使没人碰哈希逻辑。run manifest
-   记录 `package_version_source`，使历史运行自我标识"版本已知/版本猜测"。
+3. **golden hash 与版本号解耦（已解决，存档说明）**：`artifact_hash` 曾经把
+   `pkg_ver()` 混入哈希输入，使 golden `84a18650` 与 DESCRIPTION 的 Version
+   隐式耦合——版本号提升会移动 golden，即使没人碰哈希逻辑。现在哈希只覆盖
+   `canonical_ir(ir)`（golden 已迁移为 `6aea851a`），版本号仅作为溯源信息
+   记录在 sidecar / run manifest（`package_version_source` 标识"版本已知/
+   版本猜测"）。**仍需注意**：golden 钉住的是"当前 IR 序列化即契约"，词汇表
+   或 canonical 规则变更时 golden 必须在同一 commit 内显式迁移并注明。
 4. **审批 gate 默认开启**：`AA_GATE_REQUIRED_DEFAULT <- TRUE`
    （R/artifacts.R）。开箱即强制拦截：无 gate 的 `write_program_artifact()`
    被拒绝，且拒绝本身写入审计日志。写未 gate 的产物需要显式退出——单次调用
