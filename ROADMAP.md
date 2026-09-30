@@ -41,7 +41,7 @@
 - [ ] A1 MCP 层评估迁移到 mcptools + 可复用加固 wrapper（入站限制、错误目录、`mcp_redact_ir()` 抽为独立组件）；若保留私有 server，须写明理由
 - [ ] A2 API 面收敛：43 个导出审查，内部函数收回；IR 对象评估 S7 化（工具签名自描述）
 - [ ] A3 `R/artifacts.R`（1230 行）拆分为 sidecar / audit-log / gate / manifest 四个模块
-- [ ] A4 删除 `.agents/snapshot-*`（有 git 后冗余，HANDOFF 自述可删）；开源前处理 `.agents/HANDOFF.md`（自述 "Delete this file before open-sourcing"）
+- [x] A4 `.agents/`（HANDOFF + 快照）从 git 全历史移除（filter-branch，开源前置条件）；本地保留、`.gitignore` 防再入库。注：因私有仓库 Actions 计费阻塞，仓库于 P1 后提前公开（ROADMAP 节奏调整，经用户确认）
 
 ## P3 — 差异化资产（第 2 个月）
 

@@ -1,5 +1,8 @@
 # admiralagent
 
+[![R-CMD-check](https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml)
+[![testthat](https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml/badge.svg)](https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml)
+
 Spec-driven ADaM code generation with LLM-translated layers.
 
 **Idea**: the LLM never writes R code. It only translates each spec variable's
@@ -8,7 +11,7 @@ deterministic compiler then emits executable `{admiral}` code with `# CHECK:`
 validation comments, plus a provenance sidecar.
 
 ```r
-# install.packages(c("admiralagent"))          # not yet; dev use: source R/
+# install.packages("pak"); pak::pak("yanmingyu92/admiralagent")   # GitHub
 spec <- mock_spec_adsl()
 
 ir <- classify_variables(spec, "ADSL", backend = "rules")   # zero-dependency baseline
