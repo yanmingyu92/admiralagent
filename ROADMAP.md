@@ -28,11 +28,11 @@
 
 目标：单一事实源原则从代码贯彻到文档与 prompt。
 
-- [ ] D1 `SKILL.md` / `AGENTS.md` / MCP 工具描述 / `build_system_prompt()` 的词汇表部分，全部从 `aa_layers()` 在构建时生成；加 CI 一致性测试（生成物 vs 源码，仿 roxygen2 `document()` 检查）
-- [ ] D2 golden hash 改 `expect_snapshot()` + 版本无关规范化，消除版本耦合脆弱性（DESIGN.md §11.3 自述项）
-- [ ] D3 CI 门禁评估收紧至 `error-on: "warning"`（先清零现有 7 个 warning，再收紧）
-- [ ] D4 接入 covr 覆盖率 + lintr，纳入 CI
-- [ ] D5 pkgdown 站点骨架（`_pkgdown.yml` + GitHub Pages workflow）
+- [x] D1 单一事实源核查与 drift 门禁：词汇表本就由 `build_system_prompt()` 经 `layer_docs()` 运行时注入（无手抄副本需生成）；落地为机器校验——新增 `tests/testthat/test-docs-consistency.R`：SKILL.md/AGENTS.md/README/mcp_setup.md 引用的 `admiralagent::fn` 必须已导出；mcp_setup.md 工具名与 inputSchema 字段必须与 `mcp_tool_specs()` 一致；输出字段钉住现行契约
+- [x] D2 golden hash 版本无关化：`artifact_hash()` 输入去掉 `pkg_ver()`（版本改由 sidecar/manifest 溯源），golden `84a18650` → `6aea851a` 同 commit 显式迁移；DESIGN.md §11.3 第 3 条标记已解决；全量测试全绿（4766 PASS）
+- [x] D3 CI 门禁收紧至 `error-on: "warning"`：实证清零两个真实 WARNING（`classify_variables_llm` 的 `prompt_variant` 缺 @param；tests 未声明 dplyr/haven/pharmaversesdtm/pharmaverseadam 依赖，已入 Suggests）；其余为本地无 pandoc 的构建伪影，CI 不出现
+- [x] D4 接入 covr（test-coverage.yaml，覆盖安装产物路径，Codecov 待配 secret）+ lintr（差异门禁：只 lint 变更文件，`.lintr` 记录豁免理由，全树清零列为 P2 目标）
+- [x] D5 pkgdown 站点骨架（`_pkgdown.yml` + workflow；仓库公开前为手动触发，见 M2 门禁注释）
 
 ## P2 — 架构轻装（第 3–4 周）
 

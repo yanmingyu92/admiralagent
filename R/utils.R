@@ -10,27 +10,23 @@
 `%||%` <- function(a, b) if (is.null(a)) b else a
 
 # ---------------------------------------------------------------------------
-# Package version, and why its VALUE is pinned
+# Package version: provenance, not identity
 #
-# `pkg_ver()` is an input to `artifact_hash()`
-# (`digest(canonical_ir + "|admiralagent|" + pkg_ver())`), so changing WHAT it
-# returns renames every artifact on disk and moves every pinned golden hash in
-# the suite. The value therefore stays exactly as it was.
+# `pkg_ver()` is recorded as METADATA (sidecars, run manifests, generated-code
+# headers, MCP serverInfo) but is NOT an input to `artifact_hash()`: the hash
+# covers `canonical_ir(ir)` only, so a Version bump in DESCRIPTION never
+# silently renames artifacts or moves pinned golden hashes (DESIGN.md §11.3
+# item 3, resolved in v0.1.0+).
 #
-# What was actually wrong was not the value but the SILENCE. When admiralagent
-# is not installed - a sourced source tree, a `devtools::load_all()` session,
-# the test suite itself - the version was GUESSED as the fallback and nothing
-# recorded that it was a guess. Two different source trees then hash to the
-# same value: a silent collision, and exactly the kind of thing a replay is
-# supposed to be able to tell apart.
-#
-# The fix keeps the value and removes the silence, in two places:
+# What remains important is not the value but its PROVENANCE. When
+# admiralagent is not installed - a sourced source tree, a
+# `devtools::load_all()` session - the version is GUESSED from the fallback.
+# Two mechanisms keep that honest:
 #   1. `pkg_ver_info()` reports where the version came from, and the run
 #      manifest records it as `package_version_source`, so a historical run is
 #      self-identifying as "version known" or "version guessed";
 #   2. `options(admiralagent.strict_package_version = TRUE)` turns the guess
-#      into a hard error, for a regulated run that must not hash against one.
-#      It is opt-in precisely because the default must not move the hash.
+#      into a hard error, for a regulated run that must not record one.
 # ---------------------------------------------------------------------------
 
 PKG_VER_FALLBACK <- "0.1.0"

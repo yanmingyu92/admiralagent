@@ -17,5 +17,10 @@
 ^DESIGN\.md$
 ^\.agents$
 ^ROADMAP\.md$
+^\.lint-lib$
+^admiralagent\.Rcheck$
+^.*\.tar\.gz$
+^_pkgdown\.yml$
+^\.lintr$
 
 ^audit$

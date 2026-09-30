@@ -121,7 +121,7 @@ test_that("deliverable_graph validates IR shape and accepts an empty IR", {
 test_that("REGRESSION: mock ADSL artifact hash and ordering are unchanged", {
   ir <- classify_variables(mock_spec_adsl(), "ADSL", backend = "rules")
 
-  expect_equal(artifact_hash(ir), "84a18650")
+  expect_equal(artifact_hash(ir), "6aea851a")
   expect_equal(
     vapply(order_variables(ir), function(v) v$variable, character(1)),
     c("TRTSDTM", "TRTEDTM", "AGE", "RACEN", "STUDYID", "USUBJID", "BMIBL", "SUBJID", "TRT01P", "AGEGR1")
@@ -129,7 +129,7 @@ test_that("REGRESSION: mock ADSL artifact hash and ordering are unchanged", {
 
   # Projecting the graph must not disturb the variable-level graph.
   invisible(deliverable_graph(ir))
-  expect_equal(artifact_hash(ir), "84a18650")
+  expect_equal(artifact_hash(ir), "6aea851a")
   expect_equal(
     vapply(order_variables(ir), function(v) v$variable, character(1)),
     c("TRTSDTM", "TRTEDTM", "AGE", "RACEN", "STUDYID", "USUBJID", "BMIBL", "SUBJID", "TRT01P", "AGEGR1")

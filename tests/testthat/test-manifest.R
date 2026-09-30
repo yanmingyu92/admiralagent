@@ -279,6 +279,6 @@ test_that("REGRESSION GUARD: the pinned rules-backend artifact hash is unchanged
   # the same string, and the manifest travels in the log record's details.
   expect_identical(
     artifact_hash(classify_variables(mock_spec_adsl(), "ADSL", backend = "rules")),
-    "84a18650"
+    "6aea851a"
   )
 })

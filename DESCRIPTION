@@ -18,7 +18,8 @@ Depends: R (>= 4.1)
 Imports: glue, jsonlite, digest, stats, utils
 Suggests: xml2,
     ellmer, metacore, admiral, metatools, readxl, testthat (>= 3.0.0),
-    rlang, tibble, knitr, rmarkdown
+    rlang, tibble, knitr, rmarkdown,
+    dplyr, haven, pharmaversesdtm, pharmaverseadam
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-RoxygenNote: 8.1.0
+Config/roxygen2/version: 8.1.0

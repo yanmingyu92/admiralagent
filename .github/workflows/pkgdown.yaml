@@ -1,0 +1,58 @@
+# pkgdown site build.
+#
+# NOTE (soft-launch gate, ROADMAP M2): the repo is private until P1 completes,
+# and GitHub Pages on a private repo needs a paid plan. This workflow is
+# therefore manual-only for now; add `push: branches: [main]` back when the
+# repo goes public and Pages is enabled (Settings > Pages > source: gh-pages).
+on:
+  workflow_dispatch:
+
+name: pkgdown
+
+permissions: read-all
+
+jobs:
+  pkgdown:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pkgdown-${{ github.run_id }}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+
+      # Same r-universe rationale as testthat.yaml: pharmaverse first so the
+      # admiral 1.5.x line the layer templates target wins over CRAN.
+      - name: Add pharmaverse r-universe repository
+        run: |
+          cat(
+            "options(repos = c(pharmaverse = 'https://pharmaverse.r-universe.dev', getOption('repos')))\n",
+            file = file.path(path.expand("~"), ".Rprofile"),
+            append = TRUE
+          )
+        shell: Rscript {0}
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::pkgdown, local::.
+          needs: website
+
+      - name: Build site
+        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        shell: Rscript {0}
+
+      - name: Deploy to GitHub pages
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        with:
+          clean: false
+          branch: gh-pages
+          folder: docs

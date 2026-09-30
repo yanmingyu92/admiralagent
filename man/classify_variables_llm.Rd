@@ -29,6 +29,11 @@ classic single-run behavior; `> 1` enables consensus mode.}
 \item{consensus}{`majority` = per-variable majority vote across samples;
 ties or all-failed samples mark the variable `needs_human`.
 `first` = skip voting and take the earliest successful sample.}
+
+\item{prompt_variant}{system-prompt variant: `full` (default) carries the
+complete convention block; `neutral` and `minimal` strip it down for
+agreement measurement, so consensus reflects independent translations
+rather than prompt compliance.}
 }
 \value{
 List of `aa_variable_ir` objects. For `samples > 1` the list carries

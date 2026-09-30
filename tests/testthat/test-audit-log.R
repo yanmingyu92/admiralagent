@@ -271,6 +271,6 @@ test_that("redaction does not swallow admiralagent's own execution errors", {
 test_that("REGRESSION GUARD: the pinned rules-backend artifact hash is unchanged", {
   expect_identical(
     artifact_hash(classify_variables(mock_spec_adsl(), "ADSL", backend = "rules")),
-    "84a18650"
+    "6aea851a"
   )
 })

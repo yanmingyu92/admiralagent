@@ -277,6 +277,6 @@ test_that("the first ungated write of a session is announced exactly once", {
 test_that("REGRESSION GUARD: release grading changed no input to artifact_hash()", {
   expect_identical(
     artifact_hash(classify_variables(mock_spec_adsl(), "ADSL", backend = "rules")),
-    "84a18650"
+    "6aea851a"
   )
 })

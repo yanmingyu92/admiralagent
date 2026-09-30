@@ -291,5 +291,5 @@ test_that("REGRESSION GUARD: automatic emission changes neither the per-variable
   expect_length(auto_records(lf, "run_manifest"), 1L)
 
   # nothing here feeds canonical_ir()'s seven whitelisted fields
-  expect_identical(artifact_hash(ir), "84a18650")
+  expect_identical(artifact_hash(ir), "6aea851a")
 })
