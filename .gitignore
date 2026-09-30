@@ -24,3 +24,7 @@ cache/
 .lint-lib/
 admiralagent.Rcheck/
 *.tar.gz
+
+# Internal multi-session handoff notes and pre-change snapshots: kept local,
+# never committed (removed from git history before open-sourcing; ROADMAP A4)
+.agents/
