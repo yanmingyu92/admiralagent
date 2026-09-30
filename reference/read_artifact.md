@@ -1,0 +1,40 @@
+# Read artifact
+
+Parses a sidecar JSON, renormalizes its IR through
+\[new_step()\]/\[new_variable_ir()\] (including step-level \`on\`
+absorption), and returns the IR with its provenance fields. Stale or
+malformed sidecars surface as errors rather than silently loading.
+
+Reloading also re-checks integrity, in this order: the sidecar still
+names the artifact it was read as; the IR it carries still hashes to the
+value the artifact was sealed and named under; the rendered \`.R\`
+beside it still digests to the value the sidecar sealed; and any
+attached approval gate is well formed and unedited. Each check is a hard
+error. Together they detect drift between sidecar, code and file name -
+they are not signatures, and the identity anchor for an approval remains
+the gate record in the hash-chained audit log.
+
+## Usage
+
+``` r
+read_artifact(path)
+```
+
+## Arguments
+
+- path:
+
+  Path to the sidecar \`.json\` file.
+
+## Value
+
+A list with elements \`ir\`, \`artifact\`, \`backend\`, \`model\`,
+\`created_at\`, \`validation\`, \`gate\` (\`NULL\` when ungated),
+\`release_grade\` (\`"gated"\` or \`"ungated-draft"\`),
+\`release_ready\` and \`gate_enforced\` (the policy in force when the
+artifact was written, \`NA\` for artifacts written before that was
+recorded).
+
+## Details
+
+Read an artifact sidecar back into an IR

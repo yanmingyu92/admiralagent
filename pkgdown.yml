@@ -1,0 +1,9 @@
+pandoc: 3.8.3
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  admiralagent: admiralagent.html
+last_built: 2026-09-30T16:01Z
+urls:
+  reference: https://yanmingyu92.github.io/admiralagent/reference
+  article: https://yanmingyu92.github.io/admiralagent/articles

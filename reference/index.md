@@ -1,0 +1,90 @@
+# Package index
+
+## All functions
+
+- [`aa_layers()`](https://yanmingyu92.github.io/admiralagent/reference/aa_layers.md)
+  : Layer registry
+- [`artifact_hash()`](https://yanmingyu92.github.io/admiralagent/reference/artifact_hash.md)
+  : Artifact hash
+- [`build_context()`](https://yanmingyu92.github.io/admiralagent/reference/build_context.md)
+  : Build LLM context
+- [`build_system_prompt()`](https://yanmingyu92.github.io/admiralagent/reference/build_system_prompt.md)
+  : Build system prompt
+- [`check_admiral_compat()`](https://yanmingyu92.github.io/admiralagent/reference/check_admiral_compat.md)
+  : admiral compatibility check
+- [`classify_variables()`](https://yanmingyu92.github.io/admiralagent/reference/classify_variables.md)
+  : Classify spec variables
+- [`classify_variables_llm()`](https://yanmingyu92.github.io/admiralagent/reference/classify_variables_llm.md)
+  : Classify spec variables via an LLM chat backend
+- [`codelist_from_data()`](https://yanmingyu92.github.io/admiralagent/reference/codelist_from_data.md)
+  : Build a codelist data.frame from observed data values
+- [`dataset_json_meta()`](https://yanmingyu92.github.io/admiralagent/reference/dataset_json_meta.md)
+  : Dataset-JSON header metadata
+- [`evals_accuracy()`](https://yanmingyu92.github.io/admiralagent/reference/evals_accuracy.md)
+  : Accuracy of an eval run
+- [`execute_ir()`](https://yanmingyu92.github.io/admiralagent/reference/execute_ir.md)
+  : Execute a Layer IR against source datasets
+- [`ir_dependency_report()`](https://yanmingyu92.github.io/admiralagent/reference/ir_dependency_report.md)
+  : IR dependency report
+- [`is_valid_ir()`](https://yanmingyu92.github.io/admiralagent/reference/is_valid_ir.md)
+  : IR validity predicate
+- [`layer_docs()`](https://yanmingyu92.github.io/admiralagent/reference/layer_docs.md)
+  : Layer documentation cards
+- [`layer_names()`](https://yanmingyu92.github.io/admiralagent/reference/layer_names.md)
+  : Layer names
+- [`load_evals()`](https://yanmingyu92.github.io/admiralagent/reference/load_evals.md)
+  : Load the spec-to-IR classification eval corpus
+- [`log_run()`](https://yanmingyu92.github.io/admiralagent/reference/log_run.md)
+  : Log a run
+- [`mcp_handle_request()`](https://yanmingyu92.github.io/admiralagent/reference/mcp_handle_request.md)
+  : Handle one MCP / JSON-RPC 2.0 request
+- [`mcp_serve()`](https://yanmingyu92.github.io/admiralagent/reference/mcp_serve.md)
+  : Run the admiralagent MCP stdio server
+- [`mcp_tool_specs()`](https://yanmingyu92.github.io/admiralagent/reference/mcp_tool_specs.md)
+  : Tool specifications for the admiralagent MCP server
+- [`mock_metacore()`](https://yanmingyu92.github.io/admiralagent/reference/mock_metacore.md)
+  : Build a minimal executable metacore object from a spec data frame
+- [`mock_spec_adsl()`](https://yanmingyu92.github.io/admiralagent/reference/mock_spec_adsl.md)
+  : Mock ADSL spec
+- [`mock_spec_adtte()`](https://yanmingyu92.github.io/admiralagent/reference/mock_spec_adtte.md)
+  : Mock ADTTE spec
+- [`mock_spec_advs()`](https://yanmingyu92.github.io/admiralagent/reference/mock_spec_advs.md)
+  : Mock ADVS spec
+- [`new_step()`](https://yanmingyu92.github.io/admiralagent/reference/new_step.md)
+  : New layer step
+- [`new_variable_ir()`](https://yanmingyu92.github.io/admiralagent/reference/new_variable_ir.md)
+  : New variable IR
+- [`order_variables()`](https://yanmingyu92.github.io/admiralagent/reference/order_variables.md)
+  : Dependency-driven variable ordering
+- [`parse_define()`](https://yanmingyu92.github.io/admiralagent/reference/parse_define.md)
+  : Parse define.xml
+- [`read_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/read_artifact.md)
+  : Read artifact
+- [`read_dataset_json()`](https://yanmingyu92.github.io/admiralagent/reference/read_dataset_json.md)
+  : Read a Dataset-JSON file
+- [`read_define()`](https://yanmingyu92.github.io/admiralagent/reference/read_define.md)
+  : Read define.xml
+- [`read_spec()`](https://yanmingyu92.github.io/admiralagent/reference/read_spec.md)
+  : Read spec workbook
+- [`read_spec_df()`](https://yanmingyu92.github.io/admiralagent/reference/read_spec_df.md)
+  : Normalize spec data frame
+- [`render_program()`](https://yanmingyu92.github.io/admiralagent/reference/render_program.md)
+  : Render program
+- [`render_step()`](https://yanmingyu92.github.io/admiralagent/reference/render_step.md)
+  : Render a step
+- [`render_variable()`](https://yanmingyu92.github.io/admiralagent/reference/render_variable.md)
+  : Render a variable
+- [`run_evals()`](https://yanmingyu92.github.io/admiralagent/reference/run_evals.md)
+  : Run the spec-to-IR classification evals
+- [`run_validation()`](https://yanmingyu92.github.io/admiralagent/reference/run_validation.md)
+  : Run validation
+- [`spec_variables()`](https://yanmingyu92.github.io/admiralagent/reference/spec_variables.md)
+  : Spec rows for a dataset
+- [`validate_ir()`](https://yanmingyu92.github.io/admiralagent/reference/validate_ir.md)
+  : IR validation gate
+- [`validation_comments()`](https://yanmingyu92.github.io/admiralagent/reference/validation_comments.md)
+  : Validation comments
+- [`write_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/write_artifact.md)
+  : Write variable artifacts
+- [`write_program_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/write_program_artifact.md)
+  : Write program artifact
