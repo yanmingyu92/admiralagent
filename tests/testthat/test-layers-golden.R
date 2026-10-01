@@ -21,7 +21,9 @@ GOLDEN_ARGS <- list(
   obs_number = list(target = "ASEQ", by_vars = "USUBJID", order = "ADT"),
   categorize = list(target = "AGEGR1", from = "AGE", breaks = c(0, 18, 65, 200),
                     labels = c("<18", "18-64", ">=65")),
-  compute_var = list(target = "CHG", formula = "AVAL - BASE")
+  compute_var = list(target = "CHG", formula = "AVAL - BASE"),
+  assign_conditional = list(target = "ITTFL", condition = "ARMCD != ''",
+                            true_value = "Y", else_value = "N")
 )
 
 GOLDEN_SIG <- c(
@@ -38,7 +40,8 @@ GOLDEN_SIG <- c(
   codelist_var = "metacore = mc",
   obs_number = "admiral::derive_var_obs_number",
   categorize = "breaks = c(0, 18, 65, 200)",
-  compute_var = "CHG = AVAL - BASE"
+  compute_var = "CHG = AVAL - BASE",
+  assign_conditional = "ITTFL = dplyr::case_when("
 )
 
 test_that("every layer renders valid code for canonical args (golden)", {

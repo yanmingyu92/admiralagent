@@ -3,7 +3,7 @@ test_that("layer registry is the single source of truth", {
     layer_names(),
     c("assign", "merge_var", "lookup_join", "impute_dtc", "dtm_to_dt", "duration",
       "date_shift", "compute_param", "summary_record", "extreme_flag", "codelist_var",
-      "obs_number", "categorize", "compute_var")
+      "obs_number", "categorize", "compute_var", "assign_conditional")
   )
   for (nm in layer_names()) {
     l <- aa_layers()[[nm]]

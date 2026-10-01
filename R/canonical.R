@@ -11,7 +11,7 @@ SET_SEMANTIC_ARGS <- c("by_vars", "parameters", "constant_parameters")
 # Args naming columns in some dataset; subject to intermediate alpha-renaming.
 COLUMN_ARGS <- c("target", "from", "source", "dtc", "start", "end", "analysis_var", "by_vars", "order")
 # Args holding an expression; normalized through the R parser, then renamed.
-EXPR_ARGS <- c("filter", "restrict_filter", "formula")
+EXPR_ARGS <- c("filter", "restrict_filter", "formula", "condition")
 # Args naming a dataset object; case-insensitive by `valid_name(object = TRUE)`.
 DATASET_ARGS <- c("on", "dataset_add", "dataset_lookup")
 

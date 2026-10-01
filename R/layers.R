@@ -470,6 +470,36 @@ aa_layers <- function() {
           args$target, " = ", args$formula, ")"
         )
       }
+    ),
+    assign_conditional = list(
+      fn = "dplyr::mutate",
+      label = "Conditional assignment: set a constant where a row-level condition holds, e.g. ITTFL = Y where ARMCD is non-blank; condition uses the filter sublanguage (no function calls, so missingness checks like is.na() are inexpressible - route those to human review)",
+      args = list(
+        target = "character, new variable name",
+        condition = "character, row-level predicate in the filter sublanguage over existing columns, e.g. \"ARMCD != ''\"",
+        true_value = "character, literal constant assigned where condition is TRUE (quoted)",
+        else_value = "character, literal constant assigned where condition is FALSE (optional; NA when omitted - NA and '' are different data, confirm against the spec)"
+      ),
+      required = c("target", "condition", "true_value"),
+      rank = 9.6,
+      checks = c("flag_rate", "values_in_ct"),
+      predicates = "condition",
+      defaults = list(else_value = NA_character_),
+      render = function(args, dataset) {
+        else_txt <- if (is.null(args$else_value) || is.na(args$else_value)) {
+          "NA_character_"
+        } else {
+          quote_literal(args$else_value, "r")
+        }
+        paste0(
+          dataset, " <- ", dataset, " |>\n",
+          "  dplyr::mutate(", args$target, " = dplyr::case_when(\n",
+          "    ", args$condition, " ~ ", quote_literal(args$true_value, "r"), ",\n",
+          "    TRUE ~ ", else_txt, "\n",
+          "  ))\n",
+          "# CHECK: human must confirm the condition semantics and the else branch (NA vs \"\") before use"
+        )
+      }
     )
   )
   # Dependency schema lives beside argument and render definitions.
@@ -478,7 +508,8 @@ aa_layers <- function() {
     duration = c("start", "end"), date_shift = "source",
     compute_param = c("by_vars", "parameters", "constant_parameters", "filter"),
     summary_record = c("by_vars", "analysis_var"), extreme_flag = c("by_vars", "order", "restrict_filter"),
-    codelist_var = "from", obs_number = c("by_vars", "order"), categorize = "from", compute_var = "formula")
+    codelist_var = "from", obs_number = c("by_vars", "order"), categorize = "from", compute_var = "formula",
+    assign_conditional = "condition")
   for (nm in names(registry)) registry[[nm]]$inputs <- input_args[[nm]]
   out <- lapply(names(registry), function(nm) {
     layer <- registry[[nm]]
