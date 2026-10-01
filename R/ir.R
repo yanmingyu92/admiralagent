@@ -16,9 +16,9 @@ new_step <- function(layer, args = list()) {
   structure(list(layer = layer, args = args), class = c("aa_step", "list"))
 }
 
-BDS_ARTIFACTS <- c("AVAL", "AVALC", "PARAM", "PARAMCD", "AVALU", "AVISIT", "ADY", "ADT", "DTYPE")
+bds_artifacts <- c("AVAL", "AVALC", "PARAM", "PARAMCD", "AVALU", "AVISIT", "ADY", "ADT", "DTYPE")
 
-VECTOR_ARGS <- list(
+vector_args <- list(
   merge_var = c("by_vars", "order"),
   lookup_join = "by_vars",
   compute_param = c("parameters", "constant_parameters", "by_vars"),
@@ -81,7 +81,10 @@ is_valid_ir <- function(ir) {
 #'   rendering: class/shape, layer known, required args present, exclusive-arg
 #'   groups, per-layer semantic rules (enum values, formula token whitelists,
 #'   label/break length agreement), BDS-artifact assign guards, vector-arg
-#'   typing, and foreign-only dataset detection. Dependency cycles are gated at
+#'   typing, foreign-only dataset detection, and column-rename tracking: a step
+#'   that references a column on a dataset where an earlier merge brought that
+#'   column in under a different name is reported (the old name only exists in
+#'   the merge's source dataset). Dependency cycles are gated at
 #'   two levels: variable-level cycles report `cyclic dependencies: ...`, and
 #'   cycles between deliverable datasets report a distinct
 #'   `cyclic deliverable dependencies: ...` problem naming the datasets that
@@ -155,13 +158,13 @@ validate_ir <- function(ir) {
 
       problems <- c(problems, validate_step_semantics(s$layer, args, id))
 
-      if (s$layer == "assign" && !is.null(args$from) && args$from %in% BDS_ARTIFACTS) {
+      if (s$layer == "assign" && !is.null(args$from) && args$from %in% bds_artifacts) {
         problems <- c(problems, sprintf(
           "%s assign.from '%s' is a source-dataset BDS artifact; use merge_var to pull values across datasets",
           id, args$from
         ))
       }
-      vec_args <- VECTOR_ARGS[[s$layer]]
+      vec_args <- vector_args[[s$layer]]
       if (!is.null(vec_args)) {
         for (va in vec_args) {
           val <- args[[va]]
@@ -185,6 +188,8 @@ validate_ir <- function(ir) {
   }
   if (length(problems)) return(problems)
   problems <- validate_ir_tokens(ir)
+  if (length(problems)) return(problems)
+  problems <- c(problems, renamed_column_problems(ir))
   if (length(problems)) return(problems)
   keys <- vapply(ir, function(v) paste(v$dataset, v$variable, sep = "::"), character(1))
   if (anyDuplicated(keys)) problems <- c(problems, "duplicate dataset/variable records are not allowed")
@@ -287,6 +292,66 @@ validate_step_semantics <- function(layer, args, id) {
           "%s compute_var formula tokens must be syntactic column names or numeric literals: %s",
           id, paste(bad_tokens, collapse = ", ")
         ))
+      }
+    }
+  }
+  problems
+}
+
+# A cross-dataset merge that renames a column (source != target) leaves the
+# source name existing only in the SOURCE dataset; on the target dataset the
+# values now live under the target name. A later step that still references the
+# old name on the target dataset fails at execution (finding F-01: merge_var
+# source=SVSTDTC -> target=TRTSDT, then impute_dtc dtc=SVSTDTC on ADSL). The
+# gate catches that here by walking the IR in execution order and tracking, per
+# dataset, both produced columns and rename evidence. A reference is only
+# flagged when the IR itself contains the rename evidence AND nothing produced
+# the old name on that dataset earlier - plain references to base columns
+# (which validate_ir cannot see) and references to the new name stay legal.
+renamed_column_problems <- function(ir) {
+  problems <- character()
+  produced <- list() # per dataset: columns earlier executable steps produced
+  renamed <- list()  # per dataset: named char vector, old name -> new name
+  for (v in order_variables(ir)) {
+    if (isTRUE(v$needs_human)) next
+    for (i in seq_along(v$steps)) {
+      s <- v$steps[[i]]
+      refs <- step_refs(v, s)
+      for (j in seq_len(nrow(refs))) {
+        if (refs$kind[j] != "column") next
+        ds <- toupper(refs$dataset[j])
+        col <- refs$input[j]
+        if (col %in% produced[[ds]]) next
+        rn <- renamed[[ds]]
+        if (!is.null(rn)) {
+          new_name <- unname(rn[col])
+          if (!is.na(new_name)) {
+            problems <- c(problems, sprintf(
+              "[%s step %d] references column '%s' on dataset %s, but an earlier merge brought that column in as '%s'; reference the new name",
+              v$variable, i, col, ds, new_name
+            ))
+          }
+        }
+      }
+      prod <- step_products(v, s)
+      for (ds in toupper(unique(prod$dataset))) {
+        produced[[ds]] <- union(produced[[ds]], prod$input[toupper(prod$dataset) == ds & prod$kind == "column"])
+      }
+      a <- s$args
+      if (!is.null(s$layer) && s$layer %in% c("merge_var", "lookup_join") &&
+            !is.null(a$source) && !is.null(a$target) &&
+            is.character(a$source) && is.character(a$target) &&
+            length(a$source) == 1L && length(a$target) == 1L &&
+            !is.na(a$source) && !is.na(a$target) && !identical(a$source, a$target)) {
+        ds <- toupper(a$on %||% v$dataset)
+        from_ds <- if (s$layer == "merge_var") a$dataset_add else a$dataset_lookup
+        # A self-merge keeps the source column under its old name; only a merge
+        # from a different dataset renames it away.
+        if (is.null(from_ds) || !identical(toupper(from_ds), ds)) {
+          rn <- renamed[[ds]] %||% stats::setNames(character(), character())
+          rn[a$source] <- a$target
+          renamed[[ds]] <- rn
+        }
       }
     }
   }

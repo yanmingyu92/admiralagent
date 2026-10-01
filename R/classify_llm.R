@@ -76,7 +76,9 @@ build_system_prompt <- function() {
     "later merge joins on STUDYID.\n",
     "4. To bring a value from another dataset into the target dataset, ALWAYS use ",
     "merge_var. `assign` may only reference variables already present in the target ",
-    "dataset base (never AVAL/PARAMCD/PARAM or other BDS artifacts).\n",
+    "dataset base (never AVAL/PARAMCD/PARAM or other BDS artifacts). When merge_var ",
+    "or lookup_join brings a column in under a NEW name (source != target), later ",
+    "steps MUST reference the new name; the old name only exists in the source dataset.\n",
     "5. compute_param and summary_record operate on BDS-shaped datasets that have ",
     "PARAMCD/AVAL records (e.g. `vs`). Run them on the BDS SOURCE dataset via ",
     "`on` inside args, then merge the result into the target dataset with merge_var. ",
@@ -104,17 +106,17 @@ build_system_prompt <- function() {
 #   full    - unchanged production prompt.
 #   neutral - conventions replaced by a single "use your own judgement" line.
 #   minimal - conventions removed entirely.
-PROMPT_VARIANTS <- c("full", "neutral", "minimal")
+prompt_variants <- c("full", "neutral", "minimal")
 
-CONVENTION_BLOCK_START <- "## Hard rules\n\n"
-CONVENTION_BLOCK_END <- "1. `layer` values MUST be exactly one of: "
+convention_block_start <- "## Hard rules\n\n"
+convention_block_end <- "1. `layer` values MUST be exactly one of: "
 
 build_system_prompt_variant <- function(variant = c("full", "neutral", "minimal")) {
   variant <- match.arg(variant)
   base <- build_system_prompt()
   if (identical(variant, "full")) return(base)
-  start <- regexpr(CONVENTION_BLOCK_START, base, fixed = TRUE)
-  stop_at <- regexpr(CONVENTION_BLOCK_END, base, fixed = TRUE)
+  start <- regexpr(convention_block_start, base, fixed = TRUE)
+  stop_at <- regexpr(convention_block_end, base, fixed = TRUE)
   if (start < 0L || stop_at < 0L || stop_at <= start) return(base)
   head_txt <- substr(base, 1L, start + attr(start, "match.length") - 1L)
   tail_txt <- substr(base, stop_at, nchar(base))
@@ -173,11 +175,11 @@ classify_variables_llm <- function(vars, chat, max_attempts = 2, batch_size = 4,
   for (nm in c("max_attempts", "batch_size", "samples")) {
     value <- get(nm)
     if (!real_numeric(value) || length(value) != 1L || !is.finite(value) || value < 1 ||
-        value != floor(value) || value > .Machine$integer.max) stop(nm, " must be a finite positive integer", call. = FALSE)
+          value != floor(value) || value > .Machine$integer.max) stop(nm, " must be a finite positive integer", call. = FALSE)
   }
   consensus <- match.arg(consensus)
   if (!is.numeric(samples) || length(samples) != 1L || is.na(samples) ||
-    samples < 1 || samples != floor(samples)) {
+        samples < 1 || samples != floor(samples)) {
     stop("`samples` must be a single positive integer.", call. = FALSE)
   }
   samples <- as.integer(samples)
@@ -418,6 +420,6 @@ align_batch <- function(ir, batch) {
   keys <- vapply(ir, function(v) paste(v$dataset, v$variable, sep = "::"), character(1))
   expected <- paste(batch$dataset, batch$variable, sep = "::")
   if (length(keys) != length(expected) || anyDuplicated(keys) || anyDuplicated(expected) ||
-      !setequal(keys, expected)) stop("LLM reply must contain exactly one matching dataset/variable for every requested row", call. = FALSE)
+        !setequal(keys, expected)) stop("LLM reply must contain exactly one matching dataset/variable for every requested row", call. = FALSE)
   ir[match(expected, keys)]
 }
