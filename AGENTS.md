@@ -37,7 +37,7 @@ Rscript -e "testthat::test_dir('tests/testthat', reporter='summary')"
 4. 历史经验（勿重蹈）：
    - LLM 会把 `on` 放在 step 层而不是 args 内 → `normalize_ir_records()`（R/safety.R）
      已把 step 级 `on` 吸收进 args，并在与 args$on 冲突时报错
-   - fromJSON simplifyVector=FALSE 把数组变 list → new_step 已归一化 + VECTOR_ARGS 类型校验
+   - fromJSON simplifyVector=FALSE 把数组变 list → new_step 已归一化 + vector_args 类型校验
    - LLM 会用 assign 拉跨数据集值、把 compute_param 直接放 ADSL → BDS 黑名单 + foreign-only 校验 + prompt 规则
    - admiral 大版本会重命名参数（1.5: new_vars_prefix、set_values_to 内公式）→ 只改 layers.R 模板，IR 不动
    - 旧产物重读必须过 read_artifact 归一化，坏产物会被 gate 拦截（预期行为）
