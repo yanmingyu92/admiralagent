@@ -63,7 +63,7 @@ validate_gate <- function(gate) {
     bad <- c(bad, paste0("decision must be one of ", paste(AA_GATE_DECISIONS, collapse = ", ")))
   }
   if (!is.character(gate$scope) || !length(gate$scope) || anyNA(gate$scope) ||
-      !all(nzchar(gate$scope))) {
+        !all(nzchar(gate$scope))) {
     bad <- c(bad, "scope must be a non-empty character vector of non-empty strings")
   }
   if (length(bad)) return(bad)
@@ -403,4 +403,3 @@ read_gates <- function(file = aa_log_file()) {
   }
   out
 }
-

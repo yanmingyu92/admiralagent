@@ -15,8 +15,8 @@
 source(file.path(dirname(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1])), "_common.R"))
 stage_banner("04", "oracle compare")
 
-spec <- readRDS(file.path(OUT_DIR, "spec_adsl.rds"))
-oracle <- as.data.frame(haven::read_xpt(file.path(ORACLE_DIR, "adsl.xpt")))
+spec <- readRDS(file.path(out_dir, "spec_adsl.rds"))
+oracle <- as.data.frame(haven::read_xpt(file.path(oracle_dir, "adsl.xpt")))
 
 as_compare_date <- function(x) {
   if (inherits(x, "POSIXt")) return(as.Date(x))
@@ -41,10 +41,12 @@ compare_var <- function(ours, oracle, var, type) {
   is_date <- grepl("(DT|DTM)$", var)
   rounded_agree <- NA_real_
   if (is_date) {
-    a <- as_compare_date(a); b <- as_compare_date(b)
+    a <- as_compare_date(a)
+    b <- as_compare_date(b)
     eq <- !is.na(a) & !is.na(b) & a == b
   } else if (type %in% c("integer", "float")) {
-    a <- suppressWarnings(as.numeric(a)); b <- suppressWarnings(as.numeric(b))
+    a <- suppressWarnings(as.numeric(a))
+    b <- suppressWarnings(as.numeric(b))
     tol <- if (var %in% c("BMIBL", "AVGDD")) 0.5 else 1e-6
     eq <- !is.na(a) & !is.na(b) & abs(a - b) <= tol
     # HEIGHTBL/WEIGHTBL: the oracle stores values rounded to 1 decimal while
@@ -66,13 +68,13 @@ compare_var <- function(ours, oracle, var, type) {
 backends <- c("rules", "llm", "consensus")
 summary_all <- list(stage = "04_oracle_compare",
                     generated_at = format(Sys.time(), tz = "UTC", usetz = TRUE),
-                    oracle = list(file = file.path(ORACLE_DIR, "adsl.xpt"),
+                    oracle = list(file = file.path(oracle_dir, "adsl.xpt"),
                                   rows = nrow(oracle), cols = ncol(oracle)),
                     note = "produced ADSL is built from DM (no population subset); oracle has 254 subjects",
                     backends = list())
 
 for (nm in backends) {
-  rds <- file.path(OUT_DIR, paste0("adsl_", nm, ".rds"))
+  rds <- file.path(out_dir, paste0("adsl_", nm, ".rds"))
   if (!file.exists(rds)) next
   ours <- as.data.frame(readRDS(rds))
   rows <- lapply(seq_len(nrow(spec)), function(i) {
@@ -84,7 +86,7 @@ for (nm in backends) {
                n_joined = r$n, note = r$note, stringsAsFactors = FALSE)
   })
   acc <- do.call(rbind, rows)
-  utils::write.csv(acc, file.path(OUT_DIR, paste0("accuracy_", nm, ".csv")), row.names = FALSE)
+  utils::write.csv(acc, file.path(out_dir, paste0("accuracy_", nm, ".csv")), row.names = FALSE)
 
   cmp <- acc[acc$status == "compared" & acc$variable != "USUBJID", ]
   fully <- sum(!is.na(cmp$value_agree) & cmp$value_agree == 100)
@@ -101,4 +103,4 @@ for (nm in backends) {
               summary_all$backends[[nm]]$mean_value_agree))
 }
 
-write_json(summary_all, file.path(OUT_DIR, "accuracy_summary.json"))
+write_json(summary_all, file.path(out_dir, "accuracy_summary.json"))

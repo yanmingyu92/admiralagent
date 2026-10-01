@@ -11,13 +11,13 @@
 source(file.path(dirname(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1])), "_common.R"))
 stage_banner("00", "ingest")
 
-stopifnot(file.exists(SPEC_XLSX))
-built <- build_spec_from_define_xlsx(SPEC_XLSX, dataset = "ADSL")
+stopifnot(file.exists(spec_xlsx))
+built <- build_spec_from_define_xlsx(spec_xlsx, dataset = "ADSL")
 spec <- built$spec
-saveRDS(spec, file.path(OUT_DIR, "spec_adsl.rds"))
-utils::write.csv(spec, file.path(OUT_DIR, "spec_adsl.csv"), row.names = FALSE)
+saveRDS(spec, file.path(out_dir, "spec_adsl.rds"))
+utils::write.csv(spec, file.path(out_dir, "spec_adsl.csv"), row.names = FALSE)
 
-sdtm_files <- file.path(SDTM_DIR, paste0(c("dm", "ex", "vs", "ae", "sv", "ds", "sc", "mh", "qs"), ".xpt"))
+sdtm_files <- file.path(sdtm_dir, paste0(c("dm", "ex", "vs", "ae", "sv", "ds", "sc", "mh", "qs"), ".xpt"))
 sdtm_present <- file.exists(sdtm_files)
 sdtm_meta <- lapply(sdtm_files[sdtm_present], function(p) {
   x <- haven::read_xpt(p)
@@ -25,14 +25,14 @@ sdtm_meta <- lapply(sdtm_files[sdtm_present], function(p) {
 })
 names(sdtm_meta) <- basename(sdtm_files[sdtm_present])
 
-oracle_adsl <- file.path(ORACLE_DIR, "adsl.xpt")
+oracle_adsl <- file.path(oracle_dir, "adsl.xpt")
 
 manifest <- list(
   stage = "00_ingest",
   generated_at = format(Sys.time(), tz = "UTC", usetz = TRUE),
   spec_source = list(
-    file = SPEC_XLSX,
-    sha256 = file_sha256(SPEC_XLSX),
+    file = spec_xlsx,
+    sha256 = file_sha256(spec_xlsx),
     note = paste(
       "P21-style define workbook from the pilot5 submission.",
       "Not metacore-compatible (read_spec() fails on it); spec rows were",
@@ -49,7 +49,7 @@ manifest <- list(
   sdtm_missing = basename(sdtm_files[!sdtm_present]),
   oracle_adsl = list(file = oracle_adsl, sha256 = file_sha256(oracle_adsl))
 )
-write_json(manifest, file.path(OUT_DIR, "ingest_manifest.json"))
+write_json(manifest, file.path(out_dir, "ingest_manifest.json"))
 
 cat("spec variables:", nrow(spec), "\n")
 cat("derivation sources:", paste(names(table(built$derivation_source)), as.integer(table(built$derivation_source)), sep = "=", collapse = ", "), "\n")

@@ -16,10 +16,10 @@ source(file.path(dirname(sub("^--file=", "", grep("^--file=", commandArgs(FALSE)
 stage_banner("02", "gate + render")
 
 backends <- list(
-  rules = list(rds = file.path(OUT_DIR, "ir_rules.rds"), label = "rules", model = NULL),
-  llm = list(rds = file.path(OUT_DIR, "ir_llm.rds"), label = "llm-deepseek", model = "deepseek-chat")
+  rules = list(rds = file.path(out_dir, "ir_rules.rds"), label = "rules", model = NULL),
+  llm = list(rds = file.path(out_dir, "ir_llm.rds"), label = "llm-deepseek", model = "deepseek-chat")
 )
-consensus_rds <- file.path(OUT_DIR, "ir_llm_consensus.rds")
+consensus_rds <- file.path(out_dir, "ir_llm_consensus.rds")
 if (file.exists(consensus_rds)) {
   backends$consensus <- list(rds = consensus_rds, label = "llm-deepseek-consensus3", model = "deepseek-chat")
 }
@@ -41,7 +41,7 @@ for (nm in names(backends)) {
   if (!file.exists(b$rds)) next
   ir <- readRDS(b$rds)
   problems <- validate_ir(ir)
-  dir <- file.path(OUT_DIR, "artifacts", nm)
+  dir <- file.path(out_dir, "artifacts", nm)
   entry <- list(
     backend = b$label, variables = length(ir),
     needs_human = sum(vapply(ir, function(v) isTRUE(v$needs_human), logical(1))),
@@ -65,4 +65,4 @@ for (nm in names(backends)) {
               if (!is.null(entry$release_grade)) paste0(" grade=", entry$release_grade) else ""))
 }
 
-write_json(report, file.path(OUT_DIR, "gate_report.json"))
+write_json(report, file.path(out_dir, "gate_report.json"))

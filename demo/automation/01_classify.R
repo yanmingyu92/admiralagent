@@ -15,14 +15,14 @@
 source(file.path(dirname(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1])), "_common.R"))
 stage_banner("01", "classify (rules + DeepSeek)")
 
-spec <- readRDS(file.path(OUT_DIR, "spec_adsl.rds"))
+spec <- readRDS(file.path(out_dir, "spec_adsl.rds"))
 force_llm <- nzchar(Sys.getenv("AA_FORCE_LLM"))
 
 # --- rules backend: full spec, always recomputed ------------------------------
 t0 <- Sys.time()
 ir_rules <- classify_variables(spec, "ADSL", backend = "rules")
 rules_secs <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
-saveRDS(ir_rules, file.path(OUT_DIR, "ir_rules.rds"))
+saveRDS(ir_rules, file.path(out_dir, "ir_rules.rds"))
 cat(sprintf("rules backend: %d variables in %.2fs (needs_human=%d)\n",
             length(ir_rules), rules_secs,
             sum(vapply(ir_rules, function(v) isTRUE(v$needs_human), logical(1)))))
@@ -47,7 +47,15 @@ chat_tokens <- function(chat) {
 # DeepSeek deepseek-chat list prices (USD per 1M tokens, cache-miss input),
 # https://api-docs.deepseek.com/quick_start/pricing - recorded so the cost
 # column in the report is an explicit assumption, not a hidden one.
-DEEPSEEK_RATE <- list(input_per_m = 0.27, output_per_m = 1.10, as_of = "2025 price sheet")
+deepseek_rate <- list(input_per_m = 0.27, output_per_m = 1.10, as_of = "2025 price sheet")
+
+# Estimated USD cost of one run at the recorded rate; NULL when the backend
+# exposed no token counts.
+est_cost <- function(tokens) {
+  if (is.null(tokens)) return(NULL)
+  round(tokens$input / 1e6 * deepseek_rate$input_per_m +
+          tokens$output / 1e6 * deepseek_rate$output_per_m, 4)
+}
 
 # Demo-level resilience (documented, package untouched): the package's
 # samples=1 path aborts the whole call when one batch fails validation after
@@ -115,11 +123,11 @@ telemetry <- list(
   stage = "01_classify",
   generated_at = format(Sys.time(), tz = "UTC", usetz = TRUE),
   model = "deepseek-chat",
-  rate_assumption = DEEPSEEK_RATE,
+  rate_assumption = deepseek_rate,
   runs = list()
 )
 
-llm_rds <- file.path(OUT_DIR, "ir_llm.rds")
+llm_rds <- file.path(out_dir, "ir_llm.rds")
 if (file.exists(llm_rds) && !force_llm) {
   cat("LLM full-spec IR cached (out/ir_llm.rds); set AA_FORCE_LLM=1 to re-run DeepSeek.\n")
   telemetry$runs$full <- list(cached = TRUE)
@@ -130,8 +138,7 @@ if (file.exists(llm_rds) && !force_llm) {
     cached = FALSE, variables = length(res$ir), samples = 1L,
     latency_secs = round(res$secs, 1), tokens = res$tokens,
     failed_batches = res$failed_batches,
-    cost_usd = if (!is.null(res$tokens)) round(res$tokens$input / 1e6 * DEEPSEEK_RATE$input_per_m +
-      res$tokens$output / 1e6 * DEEPSEEK_RATE$output_per_m, 4) else NULL
+    cost_usd = est_cost(res$tokens)
   )
   cat(sprintf("LLM full spec: %d variables in %.1fs (needs_human=%d)\n",
               length(res$ir), res$secs,
@@ -142,8 +149,8 @@ if (file.exists(llm_rds) && !force_llm) {
 # Subset rule (documented, deterministic): spec-order-first 12 variables whose
 # origin is "derived" - i.e. variables where translation actually decides
 # something. Capped at 12 to bound cost: 3 samples x 12 vars / batch_size 4.
-consensus_rds <- file.path(OUT_DIR, "ir_llm_consensus.rds")
-consensus_csv <- file.path(OUT_DIR, "consensus.csv")
+consensus_rds <- file.path(out_dir, "ir_llm_consensus.rds")
+consensus_csv <- file.path(out_dir, "consensus.csv")
 derived_vars <- spec$variable[spec$origin == "derived"]
 subset_vars <- head(derived_vars, 12)
 cat("consensus subset (", length(subset_vars), " vars):", paste(subset_vars, collapse = ", "), "\n")
@@ -161,15 +168,14 @@ if (file.exists(consensus_rds) && !force_llm) {
     cached = FALSE, subset = subset_vars, samples = 3L, consensus = "majority",
     latency_secs = round(res$secs, 1), tokens = res$tokens,
     unanimous_rate = if (!is.null(cons)) round(mean(cons$unanimous), 3) else NULL,
-    cost_usd = if (!is.null(res$tokens)) round(res$tokens$input / 1e6 * DEEPSEEK_RATE$input_per_m +
-      res$tokens$output / 1e6 * DEEPSEEK_RATE$output_per_m, 4) else NULL
+    cost_usd = est_cost(res$tokens)
   )
   cat(sprintf("consensus run: %.1fs, unanimous rate %s\n",
               res$secs, if (!is.null(cons)) sprintf("%.0f%%", 100 * mean(cons$unanimous)) else "n/a"))
 }
 
 telemetry$rules_latency_secs <- round(rules_secs, 3)
-write_json(telemetry, file.path(OUT_DIR, "llm_telemetry.json"))
+write_json(telemetry, file.path(out_dir, "llm_telemetry.json"))
 
 # --- rules vs LLM layer-chain agreement (IR level, not data level) ------------
 ir_llm <- readRDS(llm_rds)
@@ -180,6 +186,6 @@ cmp <- data.frame(
   stringsAsFactors = FALSE
 )
 cmp$agree <- cmp$rules == cmp$llm
-utils::write.csv(cmp, file.path(OUT_DIR, "rules_vs_llm_layers.csv"), row.names = FALSE)
+utils::write.csv(cmp, file.path(out_dir, "rules_vs_llm_layers.csv"), row.names = FALSE)
 cat(sprintf("rules-vs-LLM layer-chain agreement: %d/%d (%.0f%%)\n",
             sum(cmp$agree), nrow(cmp), 100 * mean(cmp$agree)))

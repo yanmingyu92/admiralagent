@@ -9,7 +9,7 @@ Rscript demo/automation/run_all.R            # cached LLM results reused
 AA_FORCE_LLM=1 Rscript demo/automation/run_all.R   # re-spend on DeepSeek
 ```
 
-Every number below is read from a machine-readable file under `demo/automation/out/` (cited per section). Generated: 2026-10-01 16:45:40 UTC.
+Every number below is read from a machine-readable file under `demo/automation/out/` (cited per section). Generated: 2026-10-01 17:22:45 UTC.
 
 ## 1. Inputs (`out/ingest_manifest.json`)
 
