@@ -44,7 +44,7 @@
       "id": "F-05",
       "severity": "oracle",
       "title": "HEIGHTBL/WEIGHTBL disagreement is the oracle's undocumented 1-decimal rounding",
-      "detail": "Raw agreement is 19.7%/8.7%, but both values trace to the same VS records the spec names (HEIGHT VISITNUM=1, WEIGHT VISITNUM=3 - both exist and match). The oracle stores 1-decimal rounded values; at oracle precision agreement is 98.8%/94.9%. The residual (~1-5%) is round-half edge cases. The derivation is semantically correct; the spec text never mentions rounding.",
+      "detail": "Raw agreement is 19.7%/8.7%, but both values trace to the same VS records the spec names (HEIGHT VISITNUM=1, WEIGHT VISITNUM=3 - both exist and match). The oracle stores 1-decimal rounded values; at oracle precision agreement is 98.8%/94.5%. The residual (~1-5%) is round-half edge cases. The derivation is semantically correct; the spec text never mentions rounding.",
       "evidence": "out/accuracy_llm.csv (value_agree vs value_agree_oracle_prec columns), demo/_probe_rounding.R output"
     },
     {
