@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__mmsetot__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "MMSETOT",
+      "steps": [],
+      "spec_origin": "sum of QS.QSORRES values for the subject when QSCAT = MINI-MENTAL STATE",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "6fcf43b6",
+  "code_digest": "87a9649c5526dde8d13462feddc684cdf52eda68cbd7dafc868f56dac06275ba",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

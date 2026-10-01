@@ -141,6 +141,50 @@ test_that("voter prompt variants differ in the convention-asserting clauses", {
   }
 })
 
+test_that("agreement_overstatement is zero for identical deterministic voters", {
+  res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+  over <- agreement_overstatement(res)
+  expect_equal(over$layer_chain, 1)
+  expect_equal(over$full, 1)
+  expect_equal(over$overstatement, 0)
+  expect_length(over$cases, 0)
+})
+
+test_that("agreement_overstatement flags cases agreeing only at layer_chain", {
+  ids <- c("c1", "c2")
+  lc_agree <- c(TRUE, TRUE)
+  fl_agree <- c(TRUE, FALSE)
+  res <- structure(
+    list(
+      dataset = "ADSL", voters = c("a", "b"),
+      per_case = rbind(
+        data.frame(id = ids, level = "layer_chain", agree = lc_agree,
+                   stringsAsFactors = FALSE),
+        data.frame(id = ids, level = "full", agree = fl_agree,
+                   stringsAsFactors = FALSE)
+      ),
+      rates = c(abstention = 1, layer_chain = mean(lc_agree),
+                full = mean(fl_agree)),
+      crosstab = list()
+    ),
+    class = c("aa_agreement", "list")
+  )
+  over <- agreement_overstatement(res)
+  expect_equal(over$overstatement, 0.5)
+  expect_identical(over$cases, "c2")
+})
+
+test_that("print.aa_agreement shows dataset, voters, rates and the honesty caveat", {
+  res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+  out <- capture.output(printed <- print(res))
+  expect_identical(printed, res)
+  expect_true(any(grepl("dataset: ADSL", out, fixed = TRUE)))
+  expect_true(any(grepl("voters:  a, b", out, fixed = TRUE)))
+  expect_true(any(grepl("layer_chain", out, fixed = TRUE)))
+  expect_true(any(grepl("self-scoring regression corpus", out, fixed = TRUE)))
+  expect_true(any(grepl("not correctness or double programming", out, fixed = TRUE)))
+})
+
 test_that("run_agreement refuses to invent a number when credentials are absent", {
   skip_if(agreement_credentials_available(), "credentials present; the no-credential path is not reachable")
   err <- tryCatch(

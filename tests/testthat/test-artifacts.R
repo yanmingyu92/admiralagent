@@ -76,7 +76,7 @@ test_that("read_artifact round-trips IR with metadata and normalization", {
 # ---------------------------------------------------------------------------
 # Gate enforcement posture.
 #
-# See the DECISION block in R/artifacts.R: enforcement is ON by default, so an
+# See the DECISION block in R/gate.R: enforcement is ON by default, so an
 # ungated write requires an explicit opt-out - the `require_gate = FALSE`
 # argument on the call, or `options(admiralagent.require_gate = FALSE)` for
 # the session. These tests pin BOTH halves - that the shipped default really

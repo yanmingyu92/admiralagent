@@ -1,0 +1,159 @@
+---
+title: "CDISC Pilot 5 Automation Showcase"
+description: >
+  Feeding the real pilot 5 submission spec and SDTM through admiralagent +
+  DeepSeek: what automated cleanly, what needed humans, what failed, and the
+  honest limits.
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{CDISC Pilot 5 Automation Showcase}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = FALSE)
+```
+
+> **Question:** given the real CDISC pilot 5 data and the real submission ADaM
+> spec, how far does admiralagent (+ DeepSeek as the translation backend) get
+> on its own — and where exactly is the boundary?
+
+This article is the narrative version of `demo/automation/REPORT.md` in the
+[package repository](https://github.com/yanmingyu92/admiralagent), generated
+by a one-command, re-runnable pipeline:
+
+```sh
+Rscript demo/automation/run_all.R                  # cached LLM results reused
+AA_FORCE_LLM=1 Rscript demo/automation/run_all.R   # re-spend on DeepSeek
+```
+
+Every number below is read from a machine-readable file under
+`demo/automation/out/` (cited per section in the report). Nothing is typed in
+by hand, and the LLM never writes R code anywhere in the pipeline: DeepSeek
+only translates spec free text into the closed-vocabulary Layer IR
+(`build_context()` sends schema-level spec text only — never patient data); a
+deterministic compiler renders the `{admiral}` code.
+
+## The pipeline
+
+Six staged, idempotent scripts under `demo/automation/`:
+
+| stage | script | what it does |
+|---|---|---|
+| 00 | `00_ingest.R` | Builds the ADSL spec from the pilot5 submission's P21-style define workbook (`adam-pilot-5.xlsx`, 49 ADSL variables: 47 derivations verbatim from the Methods sheet, 2 mechanical `Copied directly from <DS.VAR>` predecessor copies). Loads the original SDTM `.xpt` files; records sha256 digests of every input. |
+| 01 | `01_classify.R` | Classifies the same spec twice: `backend = "rules"` (zero-cost keyword baseline) and `backend = "llm"` (DeepSeek `deepseek-chat`). A deterministic 12-variable subset additionally runs `samples = 3, consensus = "majority"`. Latency and token usage are recorded. |
+| 02 | `02_gate_render.R` | `validate_ir()` gate, then program + per-variable artifacts. Written with `require_gate = FALSE` — an explicit, recorded opt-out (no human approver in an unattended run); every program carries the UNGATED DRAFT banner and `release_grade = "ungated-draft"`. |
+| 03 | `03_execute.R` | `execute_ir()` against the real pilot5 SDTM, `run_validation()`, hash-chained audit logs. |
+| 04 | `04_oracle_compare.R` | Variable-by-variable comparison against the submitted oracle `original-adamdata/adsl.xpt`. |
+| 05 | `05_report.R` | Assembles `REPORT.md` from the `out/` files only. |
+
+## What automated cleanly
+
+From the run behind this article (`out/gate_report.json`,
+`out/exec_status_<backend>.csv`, `out/accuracy_summary.json`):
+
+| backend | spec vars | needs_human | executed | exec errors | oracle: compared | oracle: full match |
+|---|---|---|---|---|---|---|
+| rules | 49 | 32 | 16 | 1 | 15 | **15 (100%)** |
+| LLM (DeepSeek) | 49 | 27 | 20 | 2 | 19 | **16 (mean agreement 90.9%)** |
+
+The picture that emerges is a coverage/automation trade-off, not a winner:
+
+- The **rules baseline** abstains on two-thirds of a real spec (32/49) — but
+  every variable it did derive matched the oracle exactly.
+- **DeepSeek automates meaningfully more** (20 executed vs 16), and the extra
+  variables it took on are exactly where the residual disagreement lives —
+  see below.
+- Rules-vs-LLM layer chains agreed on **40/49 variables (82%)** — IR-level
+  agreement between two translators reading the same text, **not** double
+  programming (see Limitations).
+- The 3-sample consensus run on the 12-variable subset was **unanimous on
+  12/12** variables.
+- Cost is a rounding error: the full 49-variable run used 5,505 input / 7,083
+  output tokens in 84s — **≈ $0.009** at list prices (rate assumption recorded
+  in `out/llm_telemetry.json`).
+
+## What needed humans — and why that is the point
+
+The LLM abstained on 27/49 variables with a stated rationale each
+(`REPORT.md` §8). Grouped, the inventory is not random — it is the vocabulary
+boundary, stated out loud:
+
+- **No conditional layer**: SAFFL, ITTFL, DISCONFL, DSRAEFL, EOSSTT, and the
+  COMP8/16/24FL visit-window flags are all `Y if <condition>` derivations.
+  The vocabulary has no conditional/ifelse layer, so the model abstains
+  instead of inventing one.
+- **External references**: SITEGR1 (defers to SAP §7.1), DCSREAS (an unstated
+  grouping scheme), TRT01PN/TRT01AN (treatment codelist not in the spec).
+- **Cross-dataset existence**: EFFFL (QS records for two instruments),
+  VISNUMEN (DS-conditioned), MMSETOT (subject-level sum over QS).
+- **Multi-branch clinical logic**: CUMDOSE's arm-conditional dosing-interval
+  arithmetic.
+
+A system that hallucinated these would be worse than one that abstains.
+Fail-closed is the feature.
+
+## What failed, and the findings it produced
+
+Per the improvement-loop convention, every error class became a numbered
+finding with evidence (`out/findings.json`, `REPORT.md` §9):
+
+- **F-01 (package)** — an LLM chain `merge_var(SVSTDTC → TRTSDT)` followed by
+  `impute_dtc(dtc = SVSTDTC)` passes `validate_ir()` but fails at execution,
+  because the merge renamed the column away. The fail-closed execution layer
+  caught it; the semantic gate could catch it earlier. Registered as a
+  package defect.
+- **F-02 (demo config)** — `codelist_var` needs a metacore object
+  (`sources$mc`) the showcase didn't build; RACEN-class derivations error at
+  execution. Pipeline configuration gap, not an IR error.
+- **F-03 (package)** — the rules backend mapped BMIBLGR1's categorisation
+  text to `compute_param` on BMI keywords. Keyword fragility, documented as
+  such.
+- **F-04 (spec ambiguity)** — AGEGR1N: in an earlier run all 11/254
+  mismatches were subjects aged exactly 80; the spec says both "65–80" and
+  ">80". A human programmer would have to query the same boundary.
+- **F-05 (oracle convention)** — HEIGHTBL/WEIGHTBL raw agreement is
+  19.7%/8.7%, but **98.8%/94.5% at the oracle's own storage precision**: the
+  oracle rounds to 1 decimal and the spec never says so. BMIBL's 99.6%
+  inherits the same rounding. The derivations are semantically correct.
+
+Also observed across development runs: DeepSeek's full-spec needs_human count
+moved 24 → 22 → 27 and rules/LLM agreement 78% → 71% → 82% between runs.
+Translation variance is real, visible, and exactly what the consensus mode
+exists to measure.
+
+## Limitations (verbatim from the report — read before quoting any number)
+
+1. **Population subsetting is not automated.** Produced ADSL starts from DM
+   (all screened subjects); the oracle has 254 randomized subjects. Agreement
+   is computed on the join only.
+2. **Vocabulary gaps are hard boundaries.** No conditional/windowing layers;
+   COMP*FL, EFFFL, CUMDOSE, ADTTE-style CNSR can only abstain or be
+   approximated. More voters cannot fix a vocabulary hole.
+3. **The rules backend is keyword-fragile.** It is a zero-cost baseline, not
+   a claim of understanding.
+4. **The evals corpus is self-scoring.** `inst/evals/spec-to-ir.jsonl`
+   expected values were generated by the rules backend; it pins current
+   behavior as contract, it is not an oracle.
+5. **IR agreement ≠ double programming.** All voters read the same spec text.
+6. **Oracle differences may be spec ambiguity, not package error.**
+   Disagreement rates here are not error rates.
+7. **Programs are UNGATED DRAFTs.** No human approval gate covers them; they
+   are demonstration output, not release-grade deliverables.
+8. **Single model, single dataset, and stochastic.** Numbers are DeepSeek
+   `deepseek-chat` on pilot5 ADSL only, and LLM output varies run to run.
+
+## Reproduce
+
+```sh
+git clone https://github.com/yanmingyu92/admiralagent
+cd admiralagent
+Rscript demo/automation/run_all.R
+```
+
+The pipeline reads the public CDISC pilot 5 data from a sibling `cdisc_data/`
+directory (see `demo/automation/_common.R` for paths), and needs a
+`DEEPSEEK_API_KEY` only for the LLM stage — the rules-baseline stages run
+fully offline. Full evidence trail: `demo/automation/REPORT.md` +
+`demo/automation/out/` in the repository.

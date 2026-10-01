@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__trt01an__f2f6fe52.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01AN",
+      "steps": [],
+      "spec_origin": "Numeric code for TRT01A which corresponds to the randomized dose",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Numeric code for TRT01A requires an external codelist mapping to numeric dose codes; the mapping is not specified and is a human-only decision."
+    }
+  ],
+  "ir_hash": "4a52bdb1",
+  "code_digest": "680ab92a36336bb92eb6fac8639622614017a93f85cd64d28ad69b1246c78685",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:33-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

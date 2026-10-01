@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__dcdecod__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DCDECOD",
+      "steps": [],
+      "spec_origin": "DS.DSDECOD where DSCAT='DISPOSITION EVENT'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "6ad8d6a8",
+  "code_digest": "6208db3b483132e1f99d0b173f233c5a0ce692f122da8c528511a04675438ca2",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

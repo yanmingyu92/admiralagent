@@ -220,7 +220,7 @@ MCP server（stdio，5 工具）与进程内 API 共享全部确定性门，但�
    版本猜测"）。**仍需注意**：golden 钉住的是"当前 IR 序列化即契约"，词汇表
    或 canonical 规则变更时 golden 必须在同一 commit 内显式迁移并注明。
 4. **审批 gate 默认开启**：`AA_GATE_REQUIRED_DEFAULT <- TRUE`
-   （R/artifacts.R）。开箱即强制拦截：无 gate 的 `write_program_artifact()`
+   （R/gate.R）。开箱即强制拦截：无 gate 的 `write_program_artifact()`
    被拒绝，且拒绝本身写入审计日志。写未 gate 的产物需要显式退出——单次调用
    传 `require_gate = FALSE` 参数，或会话级
    `options(admiralagent.require_gate = FALSE)`。未 gate 的产物仍永久自我

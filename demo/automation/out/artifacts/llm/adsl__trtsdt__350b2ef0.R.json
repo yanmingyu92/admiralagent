@@ -1,0 +1,41 @@
+{
+  "artifact": "adsl__trtsdt__350b2ef0.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "sv",
+            "filter": "VISITNUM == 3",
+            "mode": "first",
+            "order": "SVSTDTC",
+            "source": "SVSTDTC",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "SV.SVSTDTC when SV.VISITNUM=3, converted to SAS date",
+      "confidence": 0.75,
+      "needs_human": true,
+      "rationale": "TRTSDT is a date target pulled from SV.SVSTDTC at VISITNUM=3; the spec does not supply an explicit DTC imputation rule, and character-to-date conversion requires human review of the partial-date/imputation policy."
+    }
+  ],
+  "ir_hash": "70e9c69f",
+  "code_digest": "8c89936b2f2f63239b2e252d598eac10adb72455d115e90b8b77d1f8ec7d9df4",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:32-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

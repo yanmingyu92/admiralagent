@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__subjid__f2f6fe52.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SUBJID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Direct copy of DM.SUBJID, which is already present in the subject-level base dataset."
+    }
+  ],
+  "ir_hash": "3c381ac8",
+  "code_digest": "578d9c03f0a677723ba7a560dda999dc23b6aa633ae20b752ae9a9e653453707",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:33-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

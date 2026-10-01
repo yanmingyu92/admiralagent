@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__disonsdt__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DISONSDT",
+      "steps": [],
+      "spec_origin": "MH.MHSTDTC where MHCAT='PRIMARY DIAGNOSIS' converted to SAS date",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "42bbc7fe",
+  "code_digest": "18346d7a5bd81013bde390de34d5033f14fbfa36d155995f4ae3828584797a85",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,621 @@
+{
+  "artifact": "adsl__program__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from DM.STUDYID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "USUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "USUBJID",
+            "target": "USUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from DM.USUBJID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SUBJID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.SUBJID"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SITEID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SITEID",
+            "target": "SITEID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SITEID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.SITEID"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SITEGR1",
+      "steps": [],
+      "spec_origin": "refer to SAP, Section 7.1 - if not pooled then SITEGR1=SITEID. If pooled, SITEGR1 will be 900",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "ARM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "ARM"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.ARM"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01P",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "TRT01P"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.ARM"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01PN",
+      "steps": [],
+      "spec_origin": "Numeric code for TRT01P which corresponds to the randomized dose",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01A",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01P",
+            "target": "TRT01A"
+          }
+        }
+      ],
+      "spec_origin": "TRT01A=TRT01P, i.e., no difference between actual and randomized treatment in this study.",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: self-referential assignment TRT01A=TRT01P"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01AN",
+      "steps": [],
+      "spec_origin": "Numeric code for TRT01A which corresponds to the randomized dose",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTSDT",
+      "steps": [],
+      "spec_origin": "SV.SVSTDTC when SV.VISITNUM=3, converted to SAS date",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTEDT",
+      "steps": [],
+      "spec_origin": "The date of final dose (from the CRF) is EX.EXENDTC on the subject's last EX record. If the date of final dose is missing for the subject and the subject discontinued after visit 3, use the date of discontinuation as the date of last dose. Convert the date to a SAS date.",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTDURD",
+      "steps": [],
+      "spec_origin": "TRTEDT-TRTSDT+1",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "AVGDD",
+      "steps": [],
+      "spec_origin": "CUMDOSE/TRTDURD",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "CUMDOSE",
+      "steps": [],
+      "spec_origin": "For ARMN=0 or 1: CUMDOSE=TRT01PN*TRTDUR. --- For ARMN=2: CUMDOSE will be based on 54mg per day for the # of days subj was in 1st dosing interval (i.e., visit4date-TRTSTDT+1 if 1st interval completed, TRTEDT-TRTSTDT+1 if subj discontinued <=visit 4 and > visit 3), 81mg per day for the # of days subj was in 2nd dosing interval (i.e., visit12date-visit4date if 2nd interval completed, TRTEDT-visit4date if subj discontinued <= visit 12 and > visit 4), and 54mg per day for the # of days subj was in 3rd dosing interval (i.e., TRTEDT - visit12date if subj continued after visit 12).",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "DM.AGE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.AGE"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "AGEGR1",
+      "steps": [],
+      "spec_origin": "Character variable derived from ADSL.AGEGR1N",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "AGEGR1N",
+      "steps": [],
+      "spec_origin": "AGEGR1 = 1 if AGE <65. AGEGR1 = 2 if AGE 65-80. AGEGR1 = 3 if AGE >80.",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "AGEU",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEU",
+            "target": "AGEU"
+          }
+        }
+      ],
+      "spec_origin": "DM.AGEU",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.AGEU"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "DM.RACE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.RACE"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "RACEN",
+      "steps": [],
+      "spec_origin": "Numeric code for RACE",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "DM.SEX",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.SEX"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "ETHNIC",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ETHNIC",
+            "target": "ETHNIC"
+          }
+        }
+      ],
+      "spec_origin": "DM.ETHNIC",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.ETHNIC"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SAFFL",
+      "steps": [],
+      "spec_origin": "Y if ITTFL='Y' and TRTSDT ne missing. N otherwise",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "ITTFL",
+      "steps": [],
+      "spec_origin": "Y if ARMCD ne ' '. N otherwise",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "EFFFL",
+      "steps": [],
+      "spec_origin": "Y if SAFFL='Y AND subject has at least one record in QS for ADAS-Cog with VISITNUM>3 AND at least one record in QS for CIBIC+ with VISITNUM>3, N otherwise",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "COMP8FL",
+      "steps": [],
+      "spec_origin": "Y if subject has a SV.VISITNUM=8 and ENDDT >= date of visit 8, N otherwise",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "COMP16FL",
+      "steps": [],
+      "spec_origin": "Y if subject has a SV.VISITNUM=10 and ENDDT>=date of visit 10, N otherwise",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "COMP24FL",
+      "steps": [],
+      "spec_origin": "Y if subject has a SV.VISITNUM=12 and ENDDT>= date of visit 12 , N otherwise",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "DISCONFL",
+      "steps": [],
+      "spec_origin": "Y if DCREASCD ^= 'Completed'. Null otherwise",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "DSRAEFL",
+      "steps": [],
+      "spec_origin": "Y if DCREASCD='Adverse Event'. Null otherwise",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "DTHFL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "DTHFL",
+            "target": "DTHFL"
+          }
+        }
+      ],
+      "spec_origin": "DM.DTHFL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.DTHFL"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "BMIBL",
+      "steps": [],
+      "spec_origin": "WEIGHTBL / ((HEIGHTBL/100)**2)",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "BMIBLGR1",
+      "steps": [
+        {
+          "layer": "compute_param",
+          "args": {
+            "avalu": "kg/m2",
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "formula": "AVAL.WEIGHT / (AVAL.HEIGHT / 100)^2",
+            "on": "vs",
+            "param": "Body Mass Index (kg/m2)",
+            "paramcd": "BMI",
+            "parameters": [
+              "WEIGHT",
+              "HEIGHT"
+            ]
+          }
+        },
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "vs",
+            "filter": "PARAMCD == 'BMI'",
+            "mode": "first",
+            "source": "AVAL",
+            "target": "BMIBLGR1"
+          }
+        }
+      ],
+      "spec_origin": "BMIBLGR1=\"<25\" if . < BMIBL <25. BMIBLGR1=\"25-<30\" if 25 <=BMIBL <30. BMIBLGR1=\">=30\"if BMIBL >=30.",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: BMI formula from WEIGHT/HEIGHT parameters, then merged to ADSL"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "HEIGHTBL",
+      "steps": [],
+      "spec_origin": "VSSTRESN when VS.VSTESTCD='HEIGHT' and VS.VISITNUM=1",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "WEIGHTBL",
+      "steps": [],
+      "spec_origin": "VSSTRESN when VS.VSTESTCD='WEIGHT' and VS.VISITNUM=3",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "EDUCLVL",
+      "steps": [],
+      "spec_origin": "SC.SCSTRESN where SC.SCTESTCD=EDLEVEL",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "DISONSDT",
+      "steps": [],
+      "spec_origin": "MH.MHSTDTC where MHCAT='PRIMARY DIAGNOSIS' converted to SAS date",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "DURDIS",
+      "steps": [],
+      "spec_origin": "number of months between VISIT1DT and DISONSET",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "DURDSGR1",
+      "steps": [],
+      "spec_origin": "grouping DURDIS values as <12 and >=12",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "VISIT1DT",
+      "steps": [],
+      "spec_origin": "SV.SVSTDTC when SV.VISITNUM=1, converted to SAS date",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "RFSTDTC",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RFSTDTC",
+            "target": "RFSTDTC"
+          }
+        }
+      ],
+      "spec_origin": "DM.RFSTDTC",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.RFSTDTC"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "RFENDTC",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RFENDTC",
+            "target": "RFENDTC"
+          }
+        }
+      ],
+      "spec_origin": "DM.RFENDTC",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.RFENDTC"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "VISNUMEN",
+      "steps": [],
+      "spec_origin": "if DS.VISITNUM=13 where DSTERM='PROTCOL COMPLETED' then VISNUMEN=12, otherwise VISNUMEN=DS.VISITNUM where DSTERM='PROTCOL COMPLETED'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "RFENDT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "last",
+            "dtc": "RFENDTC",
+            "highest_imputation": "M",
+            "output_class": "dt",
+            "target": "RFENDT"
+          }
+        }
+      ],
+      "spec_origin": "RFENDTC converted to SAS date",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: impute DM RFENDTC directly (pilot ADSL convention)"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "DCDECOD",
+      "steps": [],
+      "spec_origin": "DS.DSDECOD where DSCAT='DISPOSITION EVENT'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "EOSSTT",
+      "steps": [],
+      "spec_origin": "COMPLETED if ADSL.DCDECOD='COMPLETED'. DISCONTINUED if ADSL.DCDECOD not equal to COMPLETED.",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "DCSREAS",
+      "steps": [],
+      "spec_origin": "Grouping of DCDECOD values to support summarizing study completion status and reason for discontinuation",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "MMSETOT",
+      "steps": [],
+      "spec_origin": "sum of QS.QSORRES values for the subject when QSCAT = MINI-MENTAL STATE",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "58d2eddc",
+  "code_digest": "50402a3c6cf84124bb02ea8a2337b490d6dbff99a57d7f0111a43e6ad24aa1ba",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:29-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

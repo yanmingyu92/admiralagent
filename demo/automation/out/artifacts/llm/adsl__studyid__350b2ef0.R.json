@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__studyid__350b2ef0.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from DM.STUDYID",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "Direct copy of STUDYID from DM base dataset."
+    }
+  ],
+  "ir_hash": "b73c93d8",
+  "code_digest": "49142cfd34b2b491feea1e381110ffdeb3f90e264b8f3de99b910b2551e94eb2",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:32-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

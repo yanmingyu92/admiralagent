@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__ageu__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "AGEU",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEU",
+            "target": "AGEU"
+          }
+        }
+      ],
+      "spec_origin": "DM.AGEU",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.AGEU"
+    }
+  ],
+  "ir_hash": "194d4abf",
+  "code_digest": "9488658d2bc8a5ac3ab508ff096e1833de0767f9e01d31acbe9b2f8788232866",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

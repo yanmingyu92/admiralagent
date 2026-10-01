@@ -1,0 +1,231 @@
+{
+  "artifact": "adsl__program__f2f6fe52.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SUBJID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Direct copy of DM.SUBJID, which is already present in the subject-level base dataset."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SITEID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SITEID",
+            "target": "SITEID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SITEID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Direct copy of DM.SITEID, which is already present in the subject-level base dataset."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SITEGR1",
+      "steps": [],
+      "spec_origin": "refer to SAP, Section 7.1 - if not pooled then SITEGR1=SITEID. If pooled, SITEGR1 will be 900",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Derivation depends on SAP Section 7.1 pooling decision; if not pooled SITEGR1=SITEID, if pooled SITEGR1=900. Ambiguous human-only decision requiring external lookup."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "ARM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "ARM"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Direct copy of DM.ARM, which is already present in the subject-level base dataset."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01P",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "TRT01P"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRT01P is a direct copy of DM.ARM, which is present in the subject-level base dataset."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01PN",
+      "steps": [],
+      "spec_origin": "Numeric code for TRT01P which corresponds to the randomized dose",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Numeric code for TRT01P requires an external codelist mapping ARM/TRT01P values to numeric dose codes; the mapping is not specified and is a human-only decision."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01A",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01P",
+            "target": "TRT01A"
+          }
+        }
+      ],
+      "spec_origin": "TRT01A=TRT01P, i.e., no difference between actual and randomized treatment in this study.",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Explicit statement that actual and randomized treatment have no difference, so TRT01A is a direct copy of TRT01P."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01AN",
+      "steps": [],
+      "spec_origin": "Numeric code for TRT01A which corresponds to the randomized dose",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Numeric code for TRT01A requires an external codelist mapping to numeric dose codes; the mapping is not specified and is a human-only decision."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "sv",
+            "filter": "VISITNUM == 3",
+            "mode": "first",
+            "order": "SVSTDTC",
+            "source": "SVSTDTC",
+            "target": "SVSTDTC"
+          }
+        },
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "SVSTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "SV.SVSTDTC when SV.VISITNUM=3, converted to SAS date",
+      "confidence": 0.7,
+      "needs_human": false,
+      "rationale": "Pull SVSTDTC from SV at VISITNUM=3 into the target dataset, then impute the character date into numeric SAS date TRTSDT (target differs from dtc SVSTDTC)."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ex",
+            "mode": "last",
+            "order": "EXENDTC",
+            "source": "EXENDTC",
+            "target": "EXENDTC"
+          }
+        },
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "EXENDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "The date of final dose (from the CRF) is EX.EXENDTC on the subject's last EX record. If the date of final dose is missing for the subject and the subject discontinued after visit 3, use the date of discontinuation as the date of last dose. Convert the date to a SAS date.",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "TRTEDT is the final dose date (EX.EXENDTC on the last EX record), with a conditional fallback to the discontinuation date when the final dose date is missing and the subject discontinued after visit 3. The fallback branch requires a human decision on the discontinuation date source and condition."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTDURD",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "TRTEDT - TRTSDT + 1",
+            "target": "TRTDURD"
+          }
+        }
+      ],
+      "spec_origin": "TRTEDT-TRTSDT+1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Column-wise arithmetic over existing TRTEDT and TRTSDT columns."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "AVGDD",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "CUMDOSE / TRTDURD",
+            "target": "AVGDD"
+          }
+        }
+      ],
+      "spec_origin": "CUMDOSE/TRTDURD",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "AVGDD = CUMDOSE / TRTDURD, but CUMDOSE is not defined in the spec or base dataset, so its endpoint is missing and human review is required."
+    }
+  ],
+  "ir_hash": "f2f6fe52",
+  "code_digest": "465bd6ba67b2ac95b39818715ea5a2e279ca94f6bc991ac349e92fd9f7f3800d",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:33-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

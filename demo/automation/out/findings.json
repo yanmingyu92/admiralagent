@@ -1,0 +1,45 @@
+{
+  "stage": "findings",
+  "note": "Registered per AGENTS.md improvement-loop convention: every ERROR/FAIL/MANUAL class observed in the showcase run gets a numbered finding with evidence. Severity: package = code defect to fix; demo = pipeline configuration; spec = source-spec ambiguity; oracle = oracle convention the spec text does not mention.",
+  "generated_at": "2026-10-01",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "package",
+      "title": "impute_dtc dtc referencing a renamed-away column passes validate_ir() but fails at execution",
+      "detail": "LLM/consensus chains for TRTSDT: merge_var(source=SVSTDTC -> target=TRTSDT) then impute_dtc(target=TRTSDT, dtc=SVSTDTC). After the merge, SVSTDTC no longer exists on ADSL (it landed as TRTSDT), so execution fails with 'column SVSTDTC is missing from source dataset ADSL'. validate_ir() does not track column provenance across steps, so this is only caught at execution - the fail-closed execution layer caught it, but the semantic gate could catch it earlier.",
+      "evidence": "out/exec_status_llm.csv (TRTSDT), out/exec_status_consensus.csv (TRTSDT)",
+      "suggested_fix": "Extend the semantic checks (ir_dependency_report / validate_ir) to flag step args that reference columns neither in the base nor produced by earlier steps under their referenced name."
+    },
+    {
+      "id": "F-02",
+      "severity": "demo",
+      "title": "codelist_var executions fail without sources$mc (metacore object)",
+      "detail": "LLM chose codelist_var for RACEN/TRT01PN/TRT01AN; the layer renders metatools::create_var_from_codelist() which needs a metacore object named mc in the execution sources. The showcase did not build one from the define workbook, so these variables error at execution. This is a pipeline configuration gap, not an IR error - the IR is valid; the execution context was incomplete.",
+      "evidence": "out/exec_status_llm.csv (RACEN), out/exec_status_consensus.csv (TRT01PN, TRT01AN)",
+      "suggested_fix": "Build a metacore object from adam-pilot-5.xlsx codelists sheet in 00_ingest and pass it as sources$mc; or document codelist_var as out-of-scope for this showcase."
+    },
+    {
+      "id": "F-03",
+      "severity": "package",
+      "title": "rules backend maps BMIBLGR1 categorisation text to compute_param->merge_var",
+      "detail": "The rules classifier matched BMI keywords in 'BMIBLGR1=\"<25\" if . < BMIBL <25...' and emitted compute_param+merge_var instead of categorize; execution then failed inside derive_param_computed (duplicate_records). Concrete instance of the documented keyword-fragility limitation: the rules backend is a zero-cost baseline, not a semantic parser.",
+      "evidence": "out/exec_status_rules.csv (BMIBLGR1), out/rules_vs_llm_layers.csv (BMIBLGR1 row)",
+      "suggested_fix": "Optional: add a categorisation keyword rule with higher priority than the BMI compute_param pattern; low value vs LLM backend, recorded for transparency."
+    },
+    {
+      "id": "F-04",
+      "severity": "spec",
+      "title": "AGEGR1N boundary: all 11 mismatches are subjects aged exactly 80",
+      "detail": "Spec text: 'AGEGR1 = 2 if AGE 65-80. AGEGR1 = 3 if AGE >80.' The LLM encoded breaks [0,65,80,Inf) right=FALSE, mapping AGE==80 to group 3; the oracle maps 80 to group 2 (reading '65-80' as inclusive). The spec text is self-contradictory at the boundary ('65-80' vs '>80'); 11/254 subjects sit exactly on it. This is spec ambiguity a human programmer would also have to query, not a clear package error.",
+      "evidence": "out/accuracy_llm.csv (AGEGR1N 95.7%), demo/_probe_mismatch.R output (all 11 mismatches at AGE==80)"
+    },
+    {
+      "id": "F-05",
+      "severity": "oracle",
+      "title": "HEIGHTBL/WEIGHTBL disagreement is the oracle's undocumented 1-decimal rounding",
+      "detail": "Raw agreement is 19.7%/8.7%, but both values trace to the same VS records the spec names (HEIGHT VISITNUM=1, WEIGHT VISITNUM=3 - both exist and match). The oracle stores 1-decimal rounded values; at oracle precision agreement is 98.8%/94.9%. The residual (~1-5%) is round-half edge cases. The derivation is semantically correct; the spec text never mentions rounding.",
+      "evidence": "out/accuracy_llm.csv (value_agree vs value_agree_oracle_prec columns), demo/_probe_rounding.R output"
+    }
+  ]
+}

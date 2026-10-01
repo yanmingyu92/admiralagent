@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__sitegr1__f2f6fe52.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "SITEGR1",
+      "steps": [],
+      "spec_origin": "refer to SAP, Section 7.1 - if not pooled then SITEGR1=SITEID. If pooled, SITEGR1 will be 900",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Derivation depends on SAP Section 7.1 pooling decision; if not pooled SITEGR1=SITEID, if pooled SITEGR1=900. Ambiguous human-only decision requiring external lookup."
+    }
+  ],
+  "ir_hash": "04ef931c",
+  "code_digest": "e5b2a7c30fa216966675ab828d38cbd3a1f5c937cd9147811abfb08a8dc11536",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:33-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

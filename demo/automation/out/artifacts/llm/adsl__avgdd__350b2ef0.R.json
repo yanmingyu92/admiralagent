@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__avgdd__350b2ef0.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "AVGDD",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "CUMDOSE / TRTDURD",
+            "target": "AVGDD"
+          }
+        }
+      ],
+      "spec_origin": "CUMDOSE/TRTDURD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Arithmetic over existing columns CUMDOSE and TRTDURD."
+    }
+  ],
+  "ir_hash": "3744c316",
+  "code_digest": "edc8d1e0aa8a8c619ea16c45f3637515114376497a229b27ffec738e25ab8357",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:32-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

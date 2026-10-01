@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__dsraefl__350b2ef0.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DSRAEFL",
+      "steps": [],
+      "spec_origin": "Y if DCREASCD='Adverse Event'. Null otherwise",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Conditional flag (Y if DCREASCD='Adverse Event', Null otherwise); conditional logic not expressible with allowed operations."
+    }
+  ],
+  "ir_hash": "8b78de4a",
+  "code_digest": "04f681029b620aba4ea0af87c0f0779a43ce82cc118acbf949605c42d563de9d",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:32-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}
