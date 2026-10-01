@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      LINTR_ERROR_ON_LINT: true
       BEFORE: ${{ github.event.before }}
     steps:
       - uses: actions/checkout@v4
@@ -52,5 +51,15 @@ jobs:
           } else {
             cat("Linting changed files:\n")
             cat(paste0(" - ", files, "\n"), sep = "")
-            print(lintr::lint(files))
+            # lint() must be called per file: with a multi-element vector its
+            # inline-code check (`missing(filename) || re_matches(...)`)
+            # errors with "'length = N' in coercion to 'logical(1)'" and the
+            # step fails without linting anything.
+            all_lints <- list()
+            for (f in files) {
+              l <- lintr::lint(f)
+              if (length(l)) all_lints[[f]] <- l
+            }
+            if (length(all_lints)) print(all_lints)
+            if (length(all_lints)) quit(status = 1L) else cat("Changed files are lint-clean.\n")
           }
