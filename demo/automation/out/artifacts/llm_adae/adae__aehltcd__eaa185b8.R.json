@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aehltcd__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLTCD",
+            "target": "AEHLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLTCD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEHLTCD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    }
+  ],
+  "ir_hash": "95c40185",
+  "code_digest": "779cc6123798083a6101532bfc1acc69b014df7abe44e753ee9649428831d36f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

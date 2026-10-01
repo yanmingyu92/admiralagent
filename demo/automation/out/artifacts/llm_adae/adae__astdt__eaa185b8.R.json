@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__astdt__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "AESTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ASTDT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESTDTC, converted to a numeric SAS date. Some events with partial dates are imputed in a conservative manner. If the day component is missing, a value of '01' is used. If both the month and day are missing no imputation is performed as these dates clearly indicate a start prior to the beginning of treatment. There are no events with completely missing start dates.",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "ASTDT is derived from AE.AESTDTC; AESTDTC is already present in the ADAE base (ae), so impute_dtc on the base imputes the day component with 'first' (day '01'); output is date-only ASTDT with accompanying ASTDTF flag."
+    }
+  ],
+  "ir_hash": "5948aef3",
+  "code_digest": "a91157b83f7c7b16d40e77241d6f67426eeeeae2fbfc6eebc926336db0e59439",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

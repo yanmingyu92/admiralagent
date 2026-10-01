@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aesoccd__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESOCCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOCCD",
+            "target": "AESOCCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOCCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESOCCD exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "d06ba930",
+  "code_digest": "9cfbff06e53f5b4b3b7bd2ee6cd2504eefc2d358ed087c99160205dc078b38cc",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

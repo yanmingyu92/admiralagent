@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aebodsys__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEBODSYS",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEBODSYS",
+            "target": "AEBODSYS"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEBODSYS",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEBODSYS is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "92255f79",
+  "code_digest": "b4309b45738910845fab6d157814d0ad964687427fd19b8c7bf3158350ffd9d4",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

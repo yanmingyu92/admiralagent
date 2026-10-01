@@ -1,8 +1,11 @@
 #' Build schema-only LLM context
 #'
 #' @description Converts spec rows into a per-variable list of schema fields
-#'   (variable, label, type, origin, derivation, source pointers). No patient
-#'   data ever enters the context.
+#'   (dataset, variable, label, type, origin, derivation, source pointers). No
+#'   patient data ever enters the context. The dataset field lets the model
+#'   emit the correct target-dataset token for non-ADSL specs; without it the
+#'   model can only guess (and copies the system prompt's ADSL example), so
+#'   [align_batch()] rejected those batches (finding F-06).
 #' @title Build LLM context
 #' @param vars Spec data frame subset from [spec_variables()].
 #' @return A named list (by variable name) of schema-only field lists.
@@ -12,6 +15,7 @@ build_context <- function(vars) {
   rows <- lapply(seq_len(nrow(vars)), function(i) {
     row <- vars[i, ]
     list(
+      dataset = row$dataset,
       variable = row$variable,
       label = row$label,
       type = row$type,
@@ -79,17 +83,24 @@ build_system_prompt <- function() {
     "dataset base (never AVAL/PARAMCD/PARAM or other BDS artifacts). When merge_var ",
     "or lookup_join brings a column in under a NEW name (source != target), later ",
     "steps MUST reference the new name; the old name only exists in the source dataset.\n",
-    "5. compute_param and summary_record operate on BDS-shaped datasets that have ",
+    "5. When the spec's source_dataset is the very domain that seeds the target ",
+    "dataset (ADSL<-dm, ADAE<-ae, ADLBC<-lb), the source column is already present ",
+    "in the target base: copy it with `assign`. NEVER merge a dataset into a target ",
+    "built from that same domain - same-domain merge keys are duplicated on ",
+    "occurrence-level data and are rejected (duplicate_records). `merge_var`/",
+    "`lookup_join` are reserved for values coming from OTHER datasets, and their ",
+    "by_vars (plus order) must uniquely identify records within dataset_add.\n",
+    "6. compute_param and summary_record operate on BDS-shaped datasets that have ",
     "PARAMCD/AVAL records (e.g. `vs`). Run them on the BDS SOURCE dataset via ",
     "`on` inside args, then merge the result into the target dataset with merge_var. ",
     "Never run compute_param directly on a subject-level dataset like ADSL.\n",
-    "6. Omit optional args entirely instead of sending empty arrays ([]).\n",
-    "7. duration/compute endpoints must exist in the spec, the base dataset, or be ",
+    "7. Omit optional args entirely instead of sending empty arrays ([]).\n",
+    "8. duration/compute endpoints must exist in the spec, the base dataset, or be ",
     "created by earlier steps; if an endpoint is missing, set needs_human=true.\n",
-    "8. If the derivation needs human-only decisions (categorisation breakpoints, ",
+    "9. If the derivation needs human-only decisions (categorisation breakpoints, ",
     "external lookups, ambiguous text), return needs_human=true with EMPTY steps.\n",
-    "9. confidence below 0.7 requires needs_human=true.\n",
-    "10. Output ONLY the JSON array. No prose, no markdown fences, no extra fields.\n"
+    "10. confidence below 0.7 requires needs_human=true.\n",
+    "11. Output ONLY the JSON array. No prose, no markdown fences, no extra fields.\n"
   )
 }
 

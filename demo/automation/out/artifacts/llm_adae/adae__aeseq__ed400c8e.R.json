@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aeseq__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESEQ",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESEQ",
+            "target": "AESEQ"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESEQ",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESEQ is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "164f7553",
+  "code_digest": "32ab74e2768abe56c5c7113d89fb8dda83a7922cc69692b38f22c7933912a49f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

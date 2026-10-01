@@ -1,36 +1,93 @@
 {
   "stage": "04_oracle_compare",
-  "generated_at": "2026-10-01 17:22:44 UTC",
-  "oracle": {
-    "file": "C:/Users/JaimeYan/OneDrive - Kardigan/Desktop/job/cdisc_data/pilot5data/original-adamdata/adsl.xpt",
-    "rows": 254,
-    "cols": 49
-  },
-  "note": "produced ADSL is built from DM (no population subset); oracle has 254 subjects",
-  "backends": {
-    "rules": {
-      "produced_rows": 306,
-      "spec_variables": 49,
-      "compared": 15,
-      "fully_matching": 15,
-      "partial": 0,
-      "mean_value_agree": 100
+  "generated_at": "2026-10-01 21:47:35 UTC",
+  "note": "produced datasets are built from the full SDTM base domain (no population/parameter subsetting); oracles are subsetted",
+  "datasets": {
+    "ADSL": {
+      "oracle": {
+        "file": "C:/Users/JaimeYan/OneDrive - Kardigan/Desktop/job/cdisc_data/pilot5data/original-adamdata/adsl.xpt",
+        "rows": 254,
+        "cols": 49
+      },
+      "join_keys": "USUBJID",
+      "backends": {
+        "rules": {
+          "produced_rows": 306,
+          "spec_variables": 49,
+          "compared": 15,
+          "fully_matching": 15,
+          "partial": 0,
+          "mean_value_agree": 100
+        },
+        "llm": {
+          "produced_rows": 306,
+          "spec_variables": 49,
+          "compared": 19,
+          "fully_matching": 16,
+          "partial": 3,
+          "mean_value_agree": 90.9
+        },
+        "consensus": {
+          "produced_rows": 306,
+          "spec_variables": 49,
+          "compared": 15,
+          "fully_matching": 15,
+          "partial": 0,
+          "mean_value_agree": 100
+        }
+      }
     },
-    "llm": {
-      "produced_rows": 306,
-      "spec_variables": 49,
-      "compared": 19,
-      "fully_matching": 16,
-      "partial": 3,
-      "mean_value_agree": 90.9
+    "ADAE": {
+      "oracle": {
+        "file": "C:/Users/JaimeYan/OneDrive - Kardigan/Desktop/job/cdisc_data/pilot5data/original-adamdata/adae.xpt",
+        "rows": 1191,
+        "cols": 55
+      },
+      "join_keys": ["USUBJID", "AESEQ"],
+      "backends": {
+        "rules": {
+          "produced_rows": 1191,
+          "spec_variables": 55,
+          "compared": 20,
+          "fully_matching": 20,
+          "partial": 0,
+          "mean_value_agree": 100
+        },
+        "llm": {
+          "produced_rows": 1191,
+          "spec_variables": 55,
+          "compared": 27,
+          "fully_matching": 25,
+          "partial": 2,
+          "mean_value_agree": 96.3
+        }
+      }
     },
-    "consensus": {
-      "produced_rows": 306,
-      "spec_variables": 49,
-      "compared": 15,
-      "fully_matching": 15,
-      "partial": 0,
-      "mean_value_agree": 100
+    "ADLBC": {
+      "oracle": {
+        "file": "C:/Users/JaimeYan/OneDrive - Kardigan/Desktop/job/cdisc_data/pilot5data/original-adamdata/adlbc.xpt",
+        "rows": 37132,
+        "cols": 46
+      },
+      "join_keys": ["USUBJID", "LBSEQ"],
+      "backends": {
+        "rules": {
+          "produced_rows": 59580,
+          "spec_variables": 46,
+          "compared": 14,
+          "fully_matching": 12,
+          "partial": 2,
+          "mean_value_agree": 85.8
+        },
+        "llm": {
+          "produced_rows": 59580,
+          "spec_variables": 46,
+          "compared": 21,
+          "fully_matching": 19,
+          "partial": 2,
+          "mean_value_agree": 90.5
+        }
+      }
     }
   }
 }

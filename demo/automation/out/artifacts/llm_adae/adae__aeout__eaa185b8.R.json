@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aeout__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEOUT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEOUT",
+            "target": "AEOUT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEOUT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEOUT comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    }
+  ],
+  "ir_hash": "8b24ca4d",
+  "code_digest": "6f61c6ff16e89fcaa9ddb027a01b08cbef70dfddb9b4ea21ec496a1bb8d24532",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

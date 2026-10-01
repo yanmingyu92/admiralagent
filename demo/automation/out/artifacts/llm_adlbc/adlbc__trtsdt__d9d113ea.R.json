@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__trtsdt__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTSDT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTSDT is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    }
+  ],
+  "ir_hash": "5e95bd2e",
+  "code_digest": "512356b713e6db6411f08e0261c61be7ea17d00dffda88c39f42cf24909d3218",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

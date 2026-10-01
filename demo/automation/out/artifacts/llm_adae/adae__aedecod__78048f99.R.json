@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aedecod__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEDECOD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEDECOD",
+            "target": "AEDECOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEDECOD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEDECOD exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "712467dc",
+  "code_digest": "caed07eb785255b2761af761a08edbef1c0ad640941b2dd40ed00750dfcd5387",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

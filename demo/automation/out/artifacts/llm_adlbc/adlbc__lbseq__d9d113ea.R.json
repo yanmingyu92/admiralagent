@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__lbseq__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSEQ",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSEQ",
+            "target": "LBSEQ"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSEQ",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "LBSEQ is copied from LB.LBSEQ (a source-dataset BDS artifact), so it must be pulled with merge_var from lb. Wait, LBSEQ is the record-level sequence and STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys require human review."
+    }
+  ],
+  "ir_hash": "c3be4c91",
+  "code_digest": "c94ff2a58e832b4afc7dd6057188ef4fd33768e49db1cfed44ac87781079fbd8",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

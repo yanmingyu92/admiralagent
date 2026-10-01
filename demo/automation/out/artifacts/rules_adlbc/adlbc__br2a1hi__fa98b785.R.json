@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__br2a1hi__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1HI",
+      "steps": [],
+      "spec_origin": "AVAL / A1HI at baseline",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "331f44b6",
+  "code_digest": "60e5b69bc2afce3d53ffba5ce485df12b6c2a1a1feb3edb8b41872871e36eeed",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:18-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

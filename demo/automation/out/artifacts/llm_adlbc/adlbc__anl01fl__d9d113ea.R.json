@@ -1,0 +1,40 @@
+{
+  "artifact": "adlbc__anl01fl__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ANL01FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID",
+              "PARAMCD"
+            ],
+            "mode": "last",
+            "order": "ALBTRVAL",
+            "target": "ANL01FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "If ALBTRVAL = max(ALBTRVAL) then ANL01FL is 'Y'",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "ANL01FL flags the record where ALBTRVAL equals its maximum within subject/analyte; extreme_flag with order on ALBTRVAL and mode 'last' approximates max. However the exact grouping (which PARAMCD/visit scope) and the precise ALBTRVAL producer dependency are ambiguous, warranting human review."
+    }
+  ],
+  "ir_hash": "8d03e8c3",
+  "code_digest": "3c23398ffc6e8ba64e7d2a2260792add7d2fc06ae28923a98adb13399300db9f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

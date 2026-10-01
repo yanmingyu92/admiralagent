@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aesdisab__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESDISAB",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESDISAB",
+            "target": "AESDISAB"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDISAB",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESDISAB exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "267658ce",
+  "code_digest": "4e395b1b911f59109813c29f36bdc8cfa66322c2f6741c13c0535b2ea79d9845",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

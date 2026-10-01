@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__adurn__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ADURN",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AENDT - ASTDT + 1",
+            "target": "ADURN"
+          }
+        }
+      ],
+      "spec_origin": "ADURN=AENDT-ASTDT+1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "ADURN is simple arithmetic over AENDT and ASTDT, both produced by earlier steps."
+    }
+  ],
+  "ir_hash": "3d2e598c",
+  "code_digest": "f54156af66d39b137a9ee154be809f93ac75f566bae863bbe2cd5cc0d34acacf",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__astdy__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDY",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "ASTDT - TRTSDT + 1",
+            "target": "ASTDY"
+          }
+        }
+      ],
+      "spec_origin": "IF ASTDT>=TRTSDT>MISSING then ASTDY=ASTDT-TRTSDT+1 Else if TRTSDT>ASTDT>MISSING then ASTDY=ASTDT-TRTSDT",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "Derivation is conditional (sign depends on relative order of ASTDT and TRTSDT); cannot be fully represented by a single arithmetic formula, requires human review."
+    }
+  ],
+  "ir_hash": "7cfb0706",
+  "code_digest": "a1ee889943e3434b0114f8f691a02263521f4df86872f0b68f3afaf6580ae878",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

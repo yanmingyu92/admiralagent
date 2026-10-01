@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__comp24fl__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "COMP24FL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "COM01P24FL",
+            "target": "COMP24FL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.COM01P24FL",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "COMP24FL is copied from ADSL.COM01P24FL under a new name; since the source variable name differs from the target and is not in the base dataset, merge_var pulls it from adsl keyed on STUDYID and USUBJID."
+    }
+  ],
+  "ir_hash": "4c386310",
+  "code_digest": "1b5d7090f41b49bf28c8f28a541a5587e12d77a9e187dbbc0b9a355d77056a11",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

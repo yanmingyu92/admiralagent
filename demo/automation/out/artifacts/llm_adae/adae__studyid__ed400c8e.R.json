@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__studyid__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "STUDYID is copied directly from ADSL; value brought into ADAE via merge_var keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "4d0fa58a",
+  "code_digest": "f8e470d0d22db738ca21185a67952b2a0aceb0210bf86662c5f5fd6ab7fdf56c",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

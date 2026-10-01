@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aehlgt__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLGT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLGT",
+            "target": "AEHLGT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLGT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEHLGT"
+    }
+  ],
+  "ir_hash": "458a668c",
+  "code_digest": "85f116f366a401b843cb4a9660a50ec99714fdb4685fbe3f62d7ed4adae0cc9b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:12-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

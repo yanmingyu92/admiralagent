@@ -9,7 +9,10 @@
       "title": "impute_dtc dtc referencing a renamed-away column passes validate_ir() but fails at execution",
       "detail": "LLM/consensus chains for TRTSDT: merge_var(source=SVSTDTC -> target=TRTSDT) then impute_dtc(target=TRTSDT, dtc=SVSTDTC). After the merge, SVSTDTC no longer exists on ADSL (it landed as TRTSDT), so execution fails with 'column SVSTDTC is missing from source dataset ADSL'. validate_ir() does not track column provenance across steps, so this is only caught at execution - the fail-closed execution layer caught it, but the semantic gate could catch it earlier.",
       "evidence": "out/exec_status_llm.csv (TRTSDT), out/exec_status_consensus.csv (TRTSDT)",
-      "suggested_fix": "Extend the semantic checks (ir_dependency_report / validate_ir) to flag step args that reference columns neither in the base nor produced by earlier steps under their referenced name."
+      "suggested_fix": "Extend the semantic checks (ir_dependency_report / validate_ir) to flag step args that reference columns neither in the base nor produced by earlier steps under their referenced name.",
+      "status": "resolved",
+      "resolved_by": "ee0f748",
+      "resolution": "validate_ir() now runs renamed_column_problems(): merge_var/lookup_join renames (source != target) are tracked across steps, and later steps referencing the renamed-away column are rejected at the gate with the new column name in the message. Regression coverage: tests/testthat/test-renamed-columns.R. Same-class IRs are now caught inside the gate instead of at execution."
     },
     {
       "id": "F-02",
@@ -17,7 +20,10 @@
       "title": "codelist_var executions fail without sources$mc (metacore object)",
       "detail": "LLM chose codelist_var for RACEN/TRT01PN/TRT01AN; the layer renders metatools::create_var_from_codelist() which needs a metacore object named mc in the execution sources. The showcase did not build one from the define workbook, so these variables error at execution. This is a pipeline configuration gap, not an IR error - the IR is valid; the execution context was incomplete.",
       "evidence": "out/exec_status_llm.csv (RACEN), out/exec_status_consensus.csv (TRT01PN, TRT01AN)",
-      "suggested_fix": "Build a metacore object from adam-pilot-5.xlsx codelists sheet in 00_ingest and pass it as sources$mc; or document codelist_var as out-of-scope for this showcase."
+      "suggested_fix": "Build a metacore object from adam-pilot-5.xlsx codelists sheet in 00_ingest and pass it as sources$mc; or document codelist_var as out-of-scope for this showcase.",
+      "status": "resolved",
+      "resolved_by": "this commit (pending hash)",
+      "resolution": "00_ingest now converts the workbook's Codelists sheet (long table ID/Term/Decoded Value) into mock_metacore() codelists and saves one executable metacore per dataset (out/mc_<ds>.rds, recorded in ingest_manifest.json); 03_execute passes it as sources$mc. Verified end to end: hand-built codelist_var IRs for RACEN/TRT01PN/TRT01AN execute against DM and match the oracle adsl.xpt on 100% of the 254 joined subjects. Note: the current cached ADSL LLM/consensus IRs abstain (needs_human) on these variables - LLM run-to-run variance (limitation 8) - so the fix is exercised by a direct probe and stands ready for any IR that selects codelist_var."
     },
     {
       "id": "F-03",
@@ -40,6 +46,54 @@
       "title": "HEIGHTBL/WEIGHTBL disagreement is the oracle's undocumented 1-decimal rounding",
       "detail": "Raw agreement is 19.7%/8.7%, but both values trace to the same VS records the spec names (HEIGHT VISITNUM=1, WEIGHT VISITNUM=3 - both exist and match). The oracle stores 1-decimal rounded values; at oracle precision agreement is 98.8%/94.9%. The residual (~1-5%) is round-half edge cases. The derivation is semantically correct; the spec text never mentions rounding.",
       "evidence": "out/accuracy_llm.csv (value_agree vs value_agree_oracle_prec columns), demo/_probe_rounding.R output"
+    },
+    {
+      "id": "F-06",
+      "severity": "package",
+      "title": "build_context() never states the target dataset, so LLM batches for non-ADSL datasets echo the wrong dataset token and fail alignment",
+      "detail": "build_context() sends variable/label/type/origin/derivation/source pointers but NOT the spec's dataset column, and the system prompt's only example object says \"dataset\":\"ADSL\". For ADAE/ADLBC variables whose derivation text reads 'ADSL.TRT01A' etc., the model copies 'ADSL' into the dataset field; align_batch() then rejects the whole batch ('must contain exactly one matching dataset/variable for every requested row') and the demo's resilient fallback records those variables needs_human. The model literally cannot know the expected dataset token for batches of ADSL-sourced variables. On the ADAE full-spec run this degraded 14 variables in 4 batches (all the ADSL-sourced ones); AE-sourced variables were correctly tagged ADAE by the model and classified fine. Not fixed here because the fix is in R/classify_llm.R (package code, out of demo scope).",
+      "evidence": "out/llm_telemetry.json (ADAE runs.full.failed_batches: 4 batches, 14 variables, align/validation errors); demo/automation pilot run output (ADAE and ADLBC 8-variable probes both failed alignment with dataset=ADSL in the reply)",
+      "suggested_fix": "Include the target dataset in build_context()'s per-variable payload (or once in batch_prompt), so the model can emit the correct dataset token for non-ADSL datasets.",
+      "status": "resolved",
+      "resolved_by": "this commit (pending hash)",
+      "resolution": "build_context() now includes the spec's dataset column in every variable's payload (one-line change; batch_prompt() needed no change since it serializes build_context()). Regression tests: build_context carries the target dataset per variable, and align_batch accepts a non-ADSL batch when dataset tokens match while still rejecting mismatches (tests/testthat/test-classify.R); full suite FAIL=0 PASS=4815. Measured benefit on the ADAE full-spec rerun: needs_human 21 -> 8, LLM failed batches 4 -> 0 (the 14 ADSL-sourced variables that previously fell back are now classified); ADLBC: needs_human 46 -> 25, failed batches 16 -> 0. Execution of the newly classified variables surfaces a separate translation-semantics boundary - see F-10 (ADAE llm EXECUTED 26 -> 7 is not a regression of this fix).",
+      "evidence_after": "out/llm_telemetry.json (ADAE/ADLBC runs.full: failed_batches 0, chat_resets 0, costs $0.0170/$0.0135), out/gate_report.json (ADAE llm needs_human=8), out/exec_status_llm_adae.csv"
+    },
+    {
+      "id": "F-07",
+      "severity": "demo",
+      "title": "DeepSeek chat-completions endpoint instability during the ADLBC expansion window; ADLBC LLM IR is a transport-failure fallback, not a classification",
+      "detail": "The first ADLBC full-spec LLM run hit 'HTTP 400 Invalid assistant message' on every request from the first batch (a poisoned chat history cannot be retried usefully), so all 46 variables fell back to needs_human via the demo's resilient path. Minutes later the endpoint stopped responding to chat completions at all (repeated 300s timeouts with ~336 bytes received, while GET /models stayed 200). The cached out/ir_llm_adlbc.rds is therefore an API-outage artifact: needs_human=46 measures the outage, not translatability. Token accounting recorded 0 tokens / $0.0000 for the run. Mitigations now in place: 01_classify resets the chat (fresh history) on transport-level 'ellmer chat failed' errors before splitting chunks (chat_resets reported in telemetry), so transient chat-level failures self-heal on rerun. To redo the ADLBC LLM run once the endpoint is stable: delete out/ir_llm_adlbc.rds and rerun stage 01 with AA_DATASETS=ADLBC (cache-miss reruns only ADLBC).",
+      "evidence": "out/llm_telemetry.json (ADLBC runs.full: failed_batches=16 all 'ellmer chat failed: HTTP 400', tokens 0/0, cost_usd 0); out/ir_llm_adlbc.rds (all 46 rationale 'LLM batch failed IR validation after max_attempts'); connectivity probes during the run window (2x 300s timeout on chat completions, HTTP 200 on /models)",
+      "status": "resolved",
+      "resolved_by": "this commit (pending hash)",
+      "resolution": "Chat completions stayed down through 6 classification probes between 2026-10-01 15:47 and 17:13 UTC (all 300s timeouts, ~336 bytes received, while GET /models returned 200), then recovered at 17:26 UTC. The caches were then deleted and the pipeline rerun: ADLBC full-spec LLM completed with 0 failed batches and 0 chat resets in 91.3s ($0.0135), needs_human 46 -> 25, EXECUTED 0 -> 4, oracle 9/9 compared variables at 100%. The current out/ir_llm_adlbc.rds is a real classification; the remaining needs_human count reflects genuine BDS/value-level abstentions (baseline flags, ratio-to-range derivations, PARAM semantics), not the outage."
+    },
+    {
+      "id": "F-08",
+      "severity": "demo",
+      "title": "oracle compare reported 0% agreement for variables unpopulated on both sides",
+      "detail": "ADAE MedDRA code variables (AELLTCD/AEPTCD/AEHLTCD/AEHLGTCD/AESOCCD) are entirely unpopulated in the pilot5 SDTM ae.xpt, so both the produced ADAE and the oracle carry all-NA columns. mean(equal) over zero non-NA pairs is 0, which rendered as '0.0% agreement' - visually a total disagreement when there were in fact no value pairs to compare (na_agree was 1.0). 04_oracle_compare now reports these as status 'all_missing' with no agreement figure.",
+      "evidence": "out/accuracy_llm_adae.csv (*CD rows before the fix: compared, 0.0%, note na_agree=1.00); NA-rate probe: 0/1191 non-NA in sdtm ae.xpt, produced ADAE and oracle adae.xpt alike"
+    },
+    {
+      "id": "F-09",
+      "severity": "spec",
+      "title": "ADLBC BASE derivation text in the workbook is literally 'LB.LBSTNRHI'",
+      "detail": "The Methods sheet text for ADLBC.BASE says 'LB.LBSTNRHI' (normal range high), and CHG is 'AVAL - BASE'. Executed literally, BASE receives the record's own upper normal limit (e.g. ALB 49.0) while the oracle's BASE is the baseline AVAL (38.0) - agreement 0.4%. The derivation text is verbatim from the submission workbook; the literal reading is almost certainly not the intended semantics, but the pipeline executes what the spec says and reports the disagreement. A human programmer would raise a query here.",
+      "evidence": "out/spec_adlbc.csv (BASE row, derivation 'LB.LBSTNRHI'), out/accuracy_rules_adlbc.csv (BASE 0.4%, CHG 0.4%); value probe: ours BASE=LBSTNRHI vs oracle BASE=baseline AVAL on the same records"
+    },
+    {
+      "id": "F-10",
+      "severity": "package",
+      "title": "post-F-06 LLM translates same-domain copies as merge_var(dataset_add=<base domain>), which fails closed on occurrence-level targets",
+      "detail": "With the dataset token fixed, the model follows the system rule 'to bring a value from another dataset ALWAYS use merge_var' literally: ADAE variables copied from AE (AETERM, AELLT, AESEQ, 25 variables) became merge_var(dataset_add=\"ae\", by_vars=STUDYID+USUBJID, mode=first) instead of assign. But ADAE's base IS ae, the by-keys are duplicated on occurrence-level data, and no order arg was given, so admiral::derive_vars_merged() fails closed with duplicate_records (25 execution errors). A second class (7 errors) merges columns from sources$adsl that the ADSL llm backend itself abstained on (TRTSDT, TRT01AN, RACEN, SAFFL, AGEGR1, AGEGR1N, TRTEDT) - cross-dataset variables can only be as complete as the producing backend's ADSL. Net effect on ADAE llm: needs_human 21 -> 8 but EXECUTED 26 -> 7 (validation FAIL 13 -> 58). Contrast: the rules backend's naive assign is semantically right for same-domain copies (ADAE rules EXECUTED=27, 20/20 compared variables at 100%). The model cannot see which domain seeds the target, so it cannot know assign was correct here. Recorded, not worked around: 03_execute now also supplies the base domain under its own name so these IRs execute as far as admiral's own duplicate-key guard allows.",
+      "evidence": "out/exec_status_llm_adae.csv (25x duplicate_records merge_var dataset_add=ae, 7x 'column ... missing from source dataset adsl'), out/ir_llm_adae.rds (AETERM/AESEQ merge_var steps), out/exec_status_llm_adlbc.csv, comparison with out/exec_status_rules_adae.csv (assign, EXECUTED=27)",
+      "suggested_fix": "Tell the model which domain seeds the target dataset (e.g. a base_domain field in build_context()/batch_prompt), so same-domain copies map to assign and merge_var is reserved for genuinely foreign datasets; optionally add an order arg requirement hint for occurrence-level merges.",
+      "status": "resolved",
+      "resolved_by": "this commit (pending hash)",
+      "resolution": "Fixed at the prompt-rule layer (vocabulary and golden hashes untouched): new numbered hard rule 5 in build_system_prompt() states that when source_dataset is the domain seeding the target (ADSL<-dm, ADAE<-ae, ADLBC<-lb) the column is already in the base and MUST be copied with assign, that merging a dataset into a target built from that same domain is forbidden (duplicate by-keys on occurrence data, duplicate_records), and that merge_var/lookup_join are reserved for OTHER datasets with by_vars(+order) uniquely identifying records in dataset_add. Placed in the numbered region (structural contract), not the convention block, so the neutral/minimal voter variants keep it - regression test asserts its key sentences in all three variants; full suite FAIL=0 PASS=4820. Measured on the ADAE/ADLBC reruns (0 failed batches, $0.0105/$0.0084): ADAE llm EXECUTED 7 -> 32, ERROR 40 -> 15, validation FAIL 58 -> 33, oracle 27 compared / 25 full-match / 96.3% mean; ADLBC llm needs_human 25 -> 13, EXECUTED 4 -> 22, oracle 21 compared / 19 full-match / 90.5% mean. duplicate_records errors: 25 -> 0. Remaining ADAE errors are honest dependency cascades (7x ADSL-llm-abstained columns, AOCC*/ADURN upstreams abstained); remaining ADLBC errors include 3 hallucinated source column names (SAF01FL/DSR01AEFL/COM01P24FL) that the fail-closed execution layer caught.",
+      "evidence_after": "out/exec_status_llm_adae.csv (0 duplicate_records; residual missing-from-adsl and upstream classes), out/exec_status_llm_adlbc.csv, out/gate_report.json (ADAE llm needs_human=8, ADLBC llm needs_human=13), out/llm_telemetry.json (fresh non-cached runs)"
     }
   ]
 }

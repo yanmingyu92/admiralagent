@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aehlt__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLT",
+            "target": "AEHLT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEHLT exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "00e4791d",
+  "code_digest": "6ea77dfdd29e7ee428fac7e1ad7638cc21b35da2ac8a1451979010fdb2ebdb5a",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,44 @@
+{
+  "artifact": "adae__aoccpfl__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCPFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS",
+              "AEDECOD"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCPFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCPFL=?Y?) within each Subject, SOC, and PT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "Flags the first record within each subject, SOC and PT, restricted to TRTEMFL='Y', ordered by ASTDT and AESEQ, matching extreme_flag with mode='first'."
+    }
+  ],
+  "ir_hash": "7cf3f630",
+  "code_digest": "dc0165a6149cc7fa50c741c033a0a321ee62c1d66646ea173f3b9740ae33e901",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

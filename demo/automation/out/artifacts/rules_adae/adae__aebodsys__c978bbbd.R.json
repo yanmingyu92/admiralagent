@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aebodsys__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEBODSYS",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEBODSYS",
+            "target": "AEBODSYS"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEBODSYS",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEBODSYS"
+    }
+  ],
+  "ir_hash": "dbdfb2a2",
+  "code_digest": "a1592710aa37761850c4a177505fefc23c8af52723fd7df535afc66839f15258",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:12-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

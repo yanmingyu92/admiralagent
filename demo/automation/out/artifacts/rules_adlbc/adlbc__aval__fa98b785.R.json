@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__aval__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AVAL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTRESN",
+            "target": "AVAL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    }
+  ],
+  "ir_hash": "151d2d96",
+  "code_digest": "be67f6db558844e885bcce8a9336bb003ac648e61fafdc9a41a183171ca2d8dd",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:18-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

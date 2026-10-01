@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aeser__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESER",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESER",
+            "target": "AESER"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESER",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESER"
+    }
+  ],
+  "ir_hash": "6d5c6381",
+  "code_digest": "8d36ee8e5688dbad490dc6da96f445603c2817c519a24a351b06fb3559616a93",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:12-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

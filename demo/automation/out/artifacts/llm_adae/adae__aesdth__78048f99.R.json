@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aesdth__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESDTH",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESDTH",
+            "target": "AESDTH"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDTH",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESDTH exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "d5a148b7",
+  "code_digest": "b82fd5a9d62deab146d71f685fa4e96d0829e69cf19e585c257ef201cc07cc1c",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

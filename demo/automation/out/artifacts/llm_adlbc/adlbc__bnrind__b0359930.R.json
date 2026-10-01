@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__bnrind__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BNRIND",
+      "steps": [],
+      "spec_origin": "if BASE < [0.5*LBSTNRLO) then ANRIND = 'Y' else if BASE > [0.5*LBSTRNHI),'H','N'",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "BNRIND is a conditional (if/else) derivation mapping to 'L'/'H'/'N' categories over BASE; conditionals are not supported by the layer vocabulary, requiring human review."
+    }
+  ],
+  "ir_hash": "9d2276c8",
+  "code_digest": "c8fb23d199fad87175ab42096843ce6eac2bf1b3fd9096acf58b37a6d8678849",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

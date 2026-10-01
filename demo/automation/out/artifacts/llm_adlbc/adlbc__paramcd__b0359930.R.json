@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__paramcd__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TESTCD",
+            "target": "PARAMCD"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.TESTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is seeded from LB, so LB.TESTCD is already present in the target base; direct copy renamed to PARAMCD via assign."
+    }
+  ],
+  "ir_hash": "9d963a31",
+  "code_digest": "f77bc61821f66b62a163bc5b94bb7220647fe3b74f7bc1218f1ec06a0cf875d4",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

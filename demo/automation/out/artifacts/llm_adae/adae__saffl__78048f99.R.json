@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__saffl__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "SAFFL",
+      "steps": [],
+      "spec_origin": "ADSL.SAFFL",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "LLM batch failed IR validation after max_attempts; recorded as needs_human by the demo fallback (see telemetry)."
+    }
+  ],
+  "ir_hash": "56e5344b",
+  "code_digest": "baaf8f243214acd4ab79caef219e929482f98e4c0241328ea85837eaa4e7e935",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

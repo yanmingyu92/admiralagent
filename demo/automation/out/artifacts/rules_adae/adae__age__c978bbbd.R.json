@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__age__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.AGE"
+    }
+  ],
+  "ir_hash": "f864e5db",
+  "code_digest": "73c1cf350e825c66d317d5648f8121c3769ad4a131ee7a5b8b6d6be975e3eccc",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:11-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

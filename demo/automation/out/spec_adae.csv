@@ -1,0 +1,56 @@
+"dataset","variable","label","type","origin","derivation","source_dataset","source_variable","order","codelist","length"
+"ADAE","STUDYID","Study Identifier","text","predecessor","Copied directly from ADSL.STUDYID","adsl","STUDYID","1",NA,NA
+"ADAE","SITEID","Study Site Identifier","text","derived","ADSL.SITEID",NA,NA,"2",NA,NA
+"ADAE","USUBJID","Unique Subject Identifier","text","predecessor","Copied directly from ADSL.USUBJID","adsl","USUBJID","3",NA,NA
+"ADAE","TRTA","Actual Treatment","text","derived","ADSL.TRT01A",NA,NA,"4","ARM",NA
+"ADAE","TRTAN","Actual Treatment (N)","integer","derived","ADSL.TRT01AN",NA,NA,"5","ARMN",NA
+"ADAE","AGE","Age","integer","derived","ADSL.AGE",NA,NA,"6",NA,NA
+"ADAE","AGEGR1","Pooled Age Group 1","text","derived","ADSL.AGEGR1",NA,NA,"7","AGEGR1",NA
+"ADAE","AGEGR1N","Pooled Age Group 1 (N)","integer","derived","ADSL.AGEGR1N",NA,NA,"8","AGEGR1N",NA
+"ADAE","RACE","Race","text","derived","ADSL.RACE",NA,NA,"9","RACE",NA
+"ADAE","RACEN","Race (N)","integer","derived","ADSL.RACEN",NA,NA,"10","RACEN",NA
+"ADAE","SEX","Sex","text","derived","ADSL.SEX",NA,NA,"11","SEX",NA
+"ADAE","SAFFL","Safety Population Flag","text","derived","ADSL.SAFFL",NA,NA,"12","YN",NA
+"ADAE","TRTSDT","Date of First Exposure to Treatment","integer","derived","ADSL.TRTSDT",NA,NA,"13",NA,NA
+"ADAE","TRTEDT","Date of Last Exposure to Treatment","integer","derived","ADSL.TRTEDT",NA,NA,"14",NA,NA
+"ADAE","ASTDT","Analysis Start Date","integer","derived","AE.AESTDTC, converted to a numeric SAS date. Some events with partial dates are imputed in a conservative manner. If the day component is missing, a value of '01' is used. If both the month and day are missing no imputation is performed as these dates clearly indicate a start prior to the beginning of treatment. There are no events with completely missing start dates.",NA,NA,"15",NA,NA
+"ADAE","ASTDTF","Analysis Start Date Imputation Flag","text","derived","ASTDTF='D' if the day value within the character date is imputed. Note that only day values needed to be imputed for this study.",NA,NA,"16",NA,NA
+"ADAE","ASTDY","Analysis Start Relative Day","integer","derived","IF ASTDT>=TRTSDT>MISSING then ASTDY=ASTDT-TRTSDT+1 Else if TRTSDT>ASTDT>MISSING then ASTDY=ASTDT-TRTSDT",NA,NA,"17",NA,NA
+"ADAE","AENDT","Analysis End Date","integer","derived","AE.AEENDTC, converted to a numeric SAS date",NA,NA,"18",NA,NA
+"ADAE","AENDY","Analysis End Relative Day","integer","derived","IF AENDT>=TRTSDT>MISSING then AENDY=AENDT-TRTSDT+1 Else if TRTSDT>AENDT>MISSING then AENDY=AENDT-TRTSDT",NA,NA,"19",NA,NA
+"ADAE","ADURN","Analysis Duration (N)","integer","derived","ADURN=AENDT-ASTDT+1",NA,NA,"20",NA,NA
+"ADAE","ADURU","Analysis Duration Units","text","derived","If ADURN is not missing then ADURU='DAYS'",NA,NA,"21","ADURU",NA
+"ADAE","AETERM","Reported Term for the Adverse Event","text","derived","AE.AETERM",NA,NA,"22",NA,NA
+"ADAE","AELLT","Lowest Level Term","text","derived","AE.AELLT",NA,NA,"23","AEDICT",NA
+"ADAE","AELLTCD","Lowest Level Term Code","integer","derived","AE.AELLTCD",NA,NA,"24",NA,NA
+"ADAE","AEDECOD","Dictionary-Derived Term","text","derived","AE.AEDECOD",NA,NA,"25","AEDICT",NA
+"ADAE","AEPTCD","Preferred Term Code","integer","derived","AE.AEPTCD",NA,NA,"26",NA,NA
+"ADAE","AEHLT","High Level Term","text","derived","AE.AEHLT",NA,NA,"27","AEDICT",NA
+"ADAE","AEHLTCD","High Level Term Code","integer","derived","AE.AEHLTCD",NA,NA,"28",NA,NA
+"ADAE","AEHLGT","High Level Group Term","text","derived","AE.AEHLGT",NA,NA,"29","AEDICT",NA
+"ADAE","AEHLGTCD","High Level Group Term Code","integer","derived","AE.AEHLGTCD",NA,NA,"30",NA,NA
+"ADAE","AEBODSYS","Body System or Organ Class","text","derived","AE.AEBODSYS",NA,NA,"31","AEDICT",NA
+"ADAE","AESOC","Primary System Organ Class","text","derived","AE.AESOC",NA,NA,"32","AEDICT",NA
+"ADAE","AESOCCD","Primary System Organ Class Code","integer","derived","AE.AESOCCD",NA,NA,"33",NA,NA
+"ADAE","AESEV","Severity/Intensity","text","derived","AE.AESEV",NA,NA,"34",NA,NA
+"ADAE","AESER","Serious Event","text","derived","AE.AESER",NA,NA,"35","YN",NA
+"ADAE","AESCAN","Involves Cancer","text","derived","AE.AESCAN",NA,NA,"36","YN",NA
+"ADAE","AESCONG","Congenital Anomaly or Birth Defect","text","derived","AE.AESCONG",NA,NA,"37","YN",NA
+"ADAE","AESDISAB","Persist or Signif Disability/Incapacity","text","derived","AE.AESDISAB",NA,NA,"38","YN",NA
+"ADAE","AESDTH","Results in Death","text","derived","AE.AESDTH",NA,NA,"39","YN",NA
+"ADAE","AESHOSP","Requires or Prolongs Hospitalization","text","derived","AE.AESHOSP",NA,NA,"40","YN",NA
+"ADAE","AESLIFE","Is Life Threatening","text","derived","AE.AESLIFE",NA,NA,"41","YN",NA
+"ADAE","AESOD","Occurred with Overdose","text","derived","AE.AESOD",NA,NA,"42","YN",NA
+"ADAE","AEREL","Causality","text","derived","AE.AEREL",NA,NA,"43","AECAUS",NA
+"ADAE","AEACN","Action Taken with Study Treatment","text","derived","AE.AEACN",NA,NA,"44",NA,NA
+"ADAE","AEOUT","Outcome of Adverse Event","text","derived","AE.AEOUT",NA,NA,"45","OUT",NA
+"ADAE","AESEQ","Sequence Number","integer","derived","AE.AESEQ",NA,NA,"46",NA,NA
+"ADAE","TRTEMFL","Treatment Emergent Analysis Flag","text","derived","If ASTDT >= TRTSDT > . then TRTEMFL='Y'. Otherwise TRTEMFL='N'",NA,NA,"47",NA,NA
+"ADAE","AOCCFL","1st Occurrence within Subject Flag","text","derived","Subset to TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCFL=?Y?) within each Subject",NA,NA,"48",NA,NA
+"ADAE","AOCCSFL","1st Occurrence of SOC Flag","text","derived","Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCSFL=?Y?) within each Subject and SOC",NA,NA,"49",NA,NA
+"ADAE","AOCCPFL","1st Occurrence of Preferred Term Flag","text","derived","Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCPFL=?Y?) within each Subject, SOC, and PT",NA,NA,"50",NA,NA
+"ADAE","AOCC02FL","1st Occurrence 02 Flag for Serious","text","derived","Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC02FL=?Y?) within each Subject",NA,NA,"51",NA,NA
+"ADAE","AOCC03FL","1st Occurrence 03 Flag for Serious SOC","text","derived","Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC03FL=?Y?) within each Subject and SOC",NA,NA,"52",NA,NA
+"ADAE","AOCC04FL","1st Occurrence 04 Flag for Serious PT","text","derived","Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC04FL=?Y?) within each Subject, SOC, and PT",NA,NA,"53",NA,NA
+"ADAE","CQ01NAM","Customized Query 01 Name","text","derived","If AEDECOD contains any of the character strings of ('APPLICATION', 'DERMATITIS', 'ERYTHEMA', 'BLISTER') OR if AEBODSYS='SKIN AND SUBC UTANEOUS TISSUE DISORDERS' but AEDECOD is not in ('COLD SWEAT', 'HYPERHIDROSIS', 'ALOPECIA') then CQ01NAM='DERMATOLOGIC EVENTS' Otherwise CQ01NAM=NULL",NA,NA,"54",NA,NA
+"ADAE","AOCC01FL","1st Occurrence 01 Flag for CQ01","text","derived","Subset to CQ01NAM='DERMATOLOGIC EVENTS' and TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC01FL=?Y?) within each Subject (Flag First Treatment Emergent Dermatological Event for Time to Event Analysis)",NA,NA,"55",NA,NA

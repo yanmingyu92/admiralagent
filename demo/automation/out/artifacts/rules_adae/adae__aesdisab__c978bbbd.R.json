@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aesdisab__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESDISAB",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESDISAB",
+            "target": "AESDISAB"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDISAB",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESDISAB"
+    }
+  ],
+  "ir_hash": "e969dd79",
+  "code_digest": "3ba9b7a505a0a3c2c2f29e5a0f1fcd334b2162cf992edf8be6437e3273d31e19",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:12-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

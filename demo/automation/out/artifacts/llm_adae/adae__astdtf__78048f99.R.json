@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__astdtf__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDTF",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ASTDTF",
+            "target": "ASTDTF"
+          }
+        }
+      ],
+      "spec_origin": "ASTDTF='D' if the day value within the character date is imputed. Note that only day values needed to be imputed for this study.",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "ASTDTF is produced by the impute_dtc step as a flag column; it cannot be derived by a plain assignment. A dedicated flag-derivation layer is not available in the vocabulary, so this requires human review."
+    }
+  ],
+  "ir_hash": "04ca262a",
+  "code_digest": "fae82409f7442b0d5482af55da07b6a1a6e8c9adcf375493d5ed70c813f5f6e6",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

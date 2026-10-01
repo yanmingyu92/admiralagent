@@ -1,0 +1,36 @@
+{
+  "artifact": "adlbc__agegr1n__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGEGR1N",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGEGR1N copied from ADSL; cross-domain pull by USUBJID."
+    }
+  ],
+  "ir_hash": "e572dd44",
+  "code_digest": "1d94f5de4a8b032ec775179e22e15cd103cf1e2bb4af613cb8001242ba607470",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:20-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

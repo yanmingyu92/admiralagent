@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__usubjid__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "USUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "USUBJID",
+            "target": "USUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "USUBJID is the join key already present in the ADLBC base (seeded from lb), copied directly."
+    }
+  ],
+  "ir_hash": "2e8bceb9",
+  "code_digest": "7c1c8f7692bddd1d622be658ef0ca714451af5d878ab7b811300564fcf0fa7fd",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:20-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

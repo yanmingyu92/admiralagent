@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__lbseq__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSEQ",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSEQ",
+            "target": "LBSEQ"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSEQ",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "ADLBC is seeded from LB, so LB.LBSEQ is already present in the target base; direct copy via assign."
+    }
+  ],
+  "ir_hash": "7ee135d7",
+  "code_digest": "f41ac3a5be19d493939e515d7f273793f4e1e6abb88d91fc12eb4bef45ea4771",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

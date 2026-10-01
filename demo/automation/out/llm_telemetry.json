@@ -1,38 +1,105 @@
 {
   "stage": "01_classify",
-  "generated_at": "2026-10-01 16:42:39 UTC",
+  "generated_at": "2026-10-01 21:45:07 UTC",
   "model": "deepseek-chat",
   "rate_assumption": {
     "input_per_m": 0.27,
     "output_per_m": 1.1,
     "as_of": "2025 price sheet"
   },
-  "runs": {
-    "full": {
-      "cached": false,
-      "variables": 49,
-      "samples": 1,
-      "latency_secs": 84.2,
-      "tokens": {
-        "input": 5505,
-        "output": 7083
+  "datasets": {
+    "ADSL": {
+      "runs": {
+        "full": {
+          "cached": true,
+          "last_uncached": {
+            "cached": false,
+            "variables": 49,
+            "samples": 1,
+            "latency_secs": 84.2,
+            "tokens": {
+              "input": 5505,
+              "output": 7083
+            },
+            "failed_batches": [],
+            "chat_resets": 0,
+            "cost_usd": 0.0093
+          }
+        },
+        "consensus": {
+          "cached": true,
+          "subset": ["SUBJID", "SITEID", "SITEGR1", "ARM", "TRT01P", "TRT01PN", "TRT01A", "TRT01AN", "TRTSDT", "TRTEDT", "TRTDURD", "AVGDD"],
+          "last_uncached": {
+            "cached": false,
+            "subset": [
+              "SUBJID",
+              "SITEID",
+              "SITEGR1",
+              "ARM",
+              "TRT01P",
+              "TRT01PN",
+              "TRT01A",
+              "TRT01AN",
+              "TRTSDT",
+              "TRTEDT",
+              "TRTDURD",
+              "AVGDD"
+            ],
+            "samples": 3,
+            "consensus": "majority",
+            "latency_secs": 84.9,
+            "tokens": {
+              "input": 4951,
+              "output": 7827
+            },
+            "unanimous_rate": 1,
+            "cost_usd": 0.0099
+          }
+        }
       },
-      "failed_batches": [],
-      "cost_usd": 0.0093
+      "rules_latency_secs": 0.101
     },
-    "consensus": {
-      "cached": false,
-      "subset": ["SUBJID", "SITEID", "SITEGR1", "ARM", "TRT01P", "TRT01PN", "TRT01A", "TRT01AN", "TRTSDT", "TRTEDT", "TRTDURD", "AVGDD"],
-      "samples": 3,
-      "consensus": "majority",
-      "latency_secs": 84.9,
-      "tokens": {
-        "input": 4951,
-        "output": 7827
+    "ADAE": {
+      "runs": {
+        "full": {
+          "cached": false,
+          "variables": 55,
+          "samples": 1,
+          "latency_secs": 67,
+          "tokens": {
+            "input": 7179,
+            "output": 7799
+          },
+          "failed_batches": [],
+          "chat_resets": 0,
+          "cost_usd": 0.0105
+        },
+        "consensus": {
+          "skipped": "cost cap: 3x sampling reserved for ADSL; AA_CONSENSUS_ALL=1 opts in"
+        }
       },
-      "unanimous_rate": 1,
-      "cost_usd": 0.0099
+      "rules_latency_secs": 0.029
+    },
+    "ADLBC": {
+      "runs": {
+        "full": {
+          "cached": false,
+          "variables": 46,
+          "samples": 1,
+          "latency_secs": 50.2,
+          "tokens": {
+            "input": 5483,
+            "output": 6326
+          },
+          "failed_batches": [],
+          "chat_resets": 0,
+          "cost_usd": 0.0084
+        },
+        "consensus": {
+          "skipped": "cost cap: 3x sampling reserved for ADSL; AA_CONSENSUS_ALL=1 opts in"
+        }
+      },
+      "rules_latency_secs": 0.009
     }
-  },
-  "rules_latency_secs": 0.262
+  }
 }

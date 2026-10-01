@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__trtan__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTAN is defined as ADSL.TRT01AN, a value from a different dataset than the ADAE base; merge_var brings TRT01AN into TRTAN keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "704b2454",
+  "code_digest": "0da68a3e18b81579a4be08ca7efec15810dce86b9c6f289e493358e4d1e11431",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

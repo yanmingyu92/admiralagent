@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__base__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BASE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSTNRHI",
+            "target": "BASE"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 0.5,
+      "needs_human": true,
+      "rationale": "BASE is derived from LB.LBSTNRHI, a source-dataset BDS artifact, pulled with merge_var from lb. LBSTNRHI is not obviously a baseline value (it is the upper limit of the reference range), and per-record linkage cannot be captured by STUDYID/USUBJID alone; the intended semantics and keys require human review."
+    }
+  ],
+  "ir_hash": "b6dd7894",
+  "code_digest": "a2b5c620d1996b5baa6519958fd2142c5449282380ce83d0c796f9a3c8857120",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aeterm__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AETERM",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AETERM",
+            "target": "AETERM"
+          }
+        }
+      ],
+      "spec_origin": "AE.AETERM",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AETERM is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "6e5fad24",
+  "code_digest": "9140b765e219088246c041eabc53742f7c7a4e170c0a9c98703bfdf29023f74a",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

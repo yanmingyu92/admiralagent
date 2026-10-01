@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__avisit__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AVISIT",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Derivation describes a complex last-observation/last-assessment analyte-specific flag rule that requires human interpretation; no unambiguous layer mapping."
+    }
+  ],
+  "ir_hash": "05ff1e16",
+  "code_digest": "006ded5fc24c930127f64751679134075ce5d41b2e75bba857b90cf37e41850c",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:20-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

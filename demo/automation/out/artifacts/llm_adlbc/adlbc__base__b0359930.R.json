@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__base__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BASE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRHI",
+            "target": "BASE"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "ADLBC seeded from LB, so LB.LBSTNRHI is present in the base; direct copy renamed to BASE via assign."
+    }
+  ],
+  "ir_hash": "8c051ac7",
+  "code_digest": "3f00bef9c1d5f77bf822ef9a2f662c2a243099e45202a4ea77b19734e576b78f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

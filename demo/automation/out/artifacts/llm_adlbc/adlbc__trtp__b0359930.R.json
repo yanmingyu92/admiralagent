@@ -1,0 +1,36 @@
+{
+  "artifact": "adlbc__trtp__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTP",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01P",
+            "target": "TRTP"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01P",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTP derived from ADSL.TRT01P; cross-domain merge by USUBJID."
+    }
+  ],
+  "ir_hash": "caee3ad3",
+  "code_digest": "2b893b4dc66328f7dffa928eebb377a65046cd4e7f15fcb3880560162bca4b88",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:20-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

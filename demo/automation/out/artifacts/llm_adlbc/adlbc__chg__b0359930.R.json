@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__chg__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "CHG",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL - BASE",
+            "target": "CHG"
+          }
+        }
+      ],
+      "spec_origin": "AVAL - BASE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "CHG computed as arithmetic over existing AVAL and BASE columns."
+    }
+  ],
+  "ir_hash": "dcfbc4f1",
+  "code_digest": "e3e9384f4dc9c30b6def931738fc73a45a08ca90c8da61761f7298e1b64f8a17",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

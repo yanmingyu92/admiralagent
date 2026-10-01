@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__trta__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "TRTA",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01A",
+            "target": "TRTA"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01A",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTA is defined as ADSL.TRT01A, a value from a different dataset than ADAE; merge_var pulls TRT01A into TRTA keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "eb59ef8c",
+  "code_digest": "daab3cee388784b63352c3cb1e3cc2f8adaf1c67a1ded97eb45115570a1b4095",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

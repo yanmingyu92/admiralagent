@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__race__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACE",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "RACE is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    }
+  ],
+  "ir_hash": "7bb6c523",
+  "code_digest": "181f171d3ad16a5642451e43f1fb1417b98726c6ba23dad518b1237a5ba1ef35",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

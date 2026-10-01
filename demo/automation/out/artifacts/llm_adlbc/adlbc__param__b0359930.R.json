@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__param__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAM",
+      "steps": [],
+      "spec_origin": "Concatenated LB.LBTEST, '(', LB.LBSTRESU and ')'",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "PARAM requires string concatenation of LBTEST, literal parentheses and LBSTRESU; string concatenation is not representable by the available layer vocabulary (no function calls permitted)."
+    }
+  ],
+  "ir_hash": "c4f4024a",
+  "code_digest": "5050f37441b1dfaa94d54792a683ffa36005620d989327746c206c13580a30c9",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

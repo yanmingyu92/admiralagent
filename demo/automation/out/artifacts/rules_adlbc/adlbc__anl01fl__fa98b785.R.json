@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__anl01fl__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ANL01FL",
+      "steps": [],
+      "spec_origin": "If ALBTRVAL = max(ALBTRVAL) then ANL01FL is 'Y'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "a8b8a49f",
+  "code_digest": "3ece162ec3932f16be2239064b7b6eff567e4f2bd24158e39bd0e4f9361266d6",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:18-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

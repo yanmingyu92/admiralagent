@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aeser__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESER",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESER",
+            "target": "AESER"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESER",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESER exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "4ef360f1",
+  "code_digest": "bab86b9b43b0e03b46ff4ddcba4866f6aa27b23b0ca7c80633abcdbfba5a603d",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

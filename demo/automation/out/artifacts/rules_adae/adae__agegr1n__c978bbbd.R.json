@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__agegr1n__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1N",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.AGEGR1N"
+    }
+  ],
+  "ir_hash": "990348d9",
+  "code_digest": "a70615ed1158ed68adc73befbe54ea0885850db82236929a9f87d74898dcd41a",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:11-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

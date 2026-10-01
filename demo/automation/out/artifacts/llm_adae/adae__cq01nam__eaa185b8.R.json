@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__cq01nam__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "CQ01NAM",
+      "steps": [],
+      "spec_origin": "If AEDECOD contains any of the character strings of ('APPLICATION', 'DERMATITIS', 'ERYTHEMA', 'BLISTER') OR if AEBODSYS='SKIN AND SUBC UTANEOUS TISSUE DISORDERS' but AEDECOD is not in ('COLD SWEAT', 'HYPERHIDROSIS', 'ALOPECIA') then CQ01NAM='DERMATOLOGIC EVENTS' Otherwise CQ01NAM=NULL",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "CQ01NAM requires a multi-condition string-matching rule (contains any of a list of substrings, OR SOC match with an excluded PT list). Substring/contains matching and the compound conditional with NULL default are not expressible with the allowed layers and formula vocabulary. Human review required."
+    }
+  ],
+  "ir_hash": "0026ca86",
+  "code_digest": "85498ac1ef6295b9a491a1cebd7ffb1fe5cc4e853f5e7d516a0b3e0f76011ae0",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

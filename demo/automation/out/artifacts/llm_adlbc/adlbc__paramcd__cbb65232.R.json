@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__paramcd__cbb65232.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMCD",
+      "steps": [],
+      "spec_origin": "Copied directly from LB.TESTCD",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "LLM batch failed IR validation after max_attempts; recorded as needs_human by the demo fallback (see telemetry)."
+    }
+  ],
+  "ir_hash": "60e15233",
+  "code_digest": "125d344dc7578c4a301e6f3242ffc1fe818c349a97b90f7d9fdec97735f3c6ed",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:09-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

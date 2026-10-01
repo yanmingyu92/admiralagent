@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__adt__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ADT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBDTC",
+            "target": "ADT"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDTC",
+      "confidence": 0.65,
+      "needs_human": true,
+      "rationale": "ADT maps to LB.LBDTC, a character --DTC not present in the ADLBC base dataset. LBDTC is a character date-time needing imputation into a numeric ADT; a simple merge_var would not convert the character DTC to a numeric date, and the record-level linkage across multiple lab records needs additional keys. Correct handling (impute LB.LBDTC then merge, or use the LB record carried into ADLBC) requires human review."
+    }
+  ],
+  "ir_hash": "70c4b9b0",
+  "code_digest": "04271857b30d5b4129029f429539b97ab364e809bf5f59cab3bd632a9a399d48",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__dsraefl__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "DSRAEFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "DSR01AEFL",
+            "target": "DSRAEFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.DSR01AEFL",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "DSRAEFL is copied from ADSL.DSR01AEFL under a new name; the source name differs and is not in the base dataset, so merge_var pulls it from adsl keyed on STUDYID and USUBJID."
+    }
+  ],
+  "ir_hash": "d79e8b0b",
+  "code_digest": "b4352a1ad833431a94991d32f66defe0f9117340a0cc14e974aab0ce012f4f94",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

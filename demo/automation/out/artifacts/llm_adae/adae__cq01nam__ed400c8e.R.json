@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__cq01nam__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "CQ01NAM",
+      "steps": [],
+      "spec_origin": "If AEDECOD contains any of the character strings of ('APPLICATION', 'DERMATITIS', 'ERYTHEMA', 'BLISTER') OR if AEBODSYS='SKIN AND SUBC UTANEOUS TISSUE DISORDERS' but AEDECOD is not in ('COLD SWEAT', 'HYPERHIDROSIS', 'ALOPECIA') then CQ01NAM='DERMATOLOGIC EVENTS' Otherwise CQ01NAM=NULL",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "The derivation is a complex conditional with substring matching (contains any of a list) and negated set membership, plus a NULL otherwise value. This requires function calls (grepl, %in%) and conditional logic that the IR layers cannot express. Requires human review."
+    }
+  ],
+  "ir_hash": "42d34cc4",
+  "code_digest": "8fd3dd67792c5a1a8994d362e3403bb994b05c7db8800a193d0fa5ad6ca16b20",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

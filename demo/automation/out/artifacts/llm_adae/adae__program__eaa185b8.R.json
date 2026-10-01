@@ -1,0 +1,1033 @@
+{
+  "artifact": "adae__program__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "STUDYID comes from ADSL, a different dataset than the ADAE target base (ae), so it is pulled via merge_var keyed on USUBJID; a direct assign would fail because STUDYID is not guaranteed in the base ae records."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SITEID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SITEID",
+            "target": "SITEID"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SITEID",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "SITEID is sourced from ADSL.SITEID, a different dataset than the ADAE base, so merge_var on USUBJID brings the value in."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "USUBJID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "USUBJID",
+            "target": "USUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 0.8,
+      "needs_human": true,
+      "rationale": "USUBJID is copied directly from ADSL. However, USUBJID is normally the key already present in ae and cannot be merged from adsl on itself without duplicate-record risk; if ae carries USUBJID this should be an assign on the base, which cannot be confirmed from the spec alone."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTA",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01A",
+            "target": "TRTA"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01A",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTA is defined as ADSL.TRT01A, a value from a different dataset than ADAE; merge_var pulls TRT01A into TRTA keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTAN is defined as ADSL.TRT01AN, a value from a different dataset than the ADAE base; merge_var brings TRT01AN into TRTAN keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGE",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGE is sourced from ADSL.AGE, a different dataset than the ADAE base; merge_var pulls AGE onto ADAE keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGEGR1 is defined as ADSL.AGEGR1, a value from a different dataset than the ADAE base; merge_var brings AGEGR1 in keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1N",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGEGR1N is defined as ADSL.AGEGR1N, a value from a different dataset than the ADAE base; merge_var brings AGEGR1N in keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.RACE",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "RACE is defined as ADSL.RACE, a value from a different dataset than the ADAE base; merge_var brings RACE in keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.RACEN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "RACEN is defined as ADSL.RACEN, a value from a different dataset than the ADAE base; merge_var brings RACEN in keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SEX",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "SEX is defined as ADSL.SEX, a value from a different dataset than the ADAE base; merge_var brings SEX in keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SAFFL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SAFFL",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "SAFFL is defined as ADSL.SAFFL, a value from a different dataset than the ADAE base; merge_var brings SAFFL in keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRTSDT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTSDT is defined as ADSL.TRTSDT, a value from a different dataset than the ADAE base; merge_var brings TRTSDT in keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTEDT",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRTEDT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTEDT is defined as ADSL.TRTEDT, a value from a different dataset than the ADAE base; merge_var brings TRTEDT in keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "AESTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ASTDT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESTDTC, converted to a numeric SAS date. Some events with partial dates are imputed in a conservative manner. If the day component is missing, a value of '01' is used. If both the month and day are missing no imputation is performed as these dates clearly indicate a start prior to the beginning of treatment. There are no events with completely missing start dates.",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "ASTDT is derived from AE.AESTDTC; AESTDTC is already present in the ADAE base (ae), so impute_dtc on the base imputes the day component with 'first' (day '01'); output is date-only ASTDT with accompanying ASTDTF flag."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDTF",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "AESTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ASTDT"
+          }
+        }
+      ],
+      "spec_origin": "ASTDTF='D' if the day value within the character date is imputed. Note that only day values needed to be imputed for this study.",
+      "confidence": 0.75,
+      "needs_human": true,
+      "rationale": "ASTDTF is the day-imputation flag ('D') produced by the impute_dtc call that creates ASTDT; it is not independently derivable without that producer and its presence depends on day imputation, so it is flagged for human review."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDY",
+      "steps": [],
+      "spec_origin": "IF ASTDT>=TRTSDT>MISSING then ASTDY=ASTDT-TRTSDT+1 Else if TRTSDT>ASTDT>MISSING then ASTDY=ASTDT-TRTSDT",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "ASTDY is a conditional study-day computation (ASTDT>=TRTSDT then ASTDT-TRTSDT+1 else ASTDT-TRTSDT). The compute_var layer allows arithmetic and grouping parentheses only, so the conditional/missing-value guarded logic cannot be expressed with the allowed vocabulary. Human review required."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AENDT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "AEENDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "AENDT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEENDTC, converted to a numeric SAS date",
+      "confidence": 0.75,
+      "needs_human": true,
+      "rationale": "AENDT is derived from AE.AEENDTC. The spec text does not state an imputation rule for partial end dates, whereas impute_dtc requires an explicit highest_imputation and date_imputation. A conservative 'first' day imputation is assumed but is not confirmed by the spec, so human review is required."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AENDY",
+      "steps": [],
+      "spec_origin": "IF AENDT>=TRTSDT>MISSING then AENDY=AENDT-TRTSDT+1 Else if TRTSDT>AENDT>MISSING then AENDY=AENDT-TRTSDT",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "AENDY is a conditional study-day computation (AENDT>=TRTSDT then AENDT-TRTSDT+1 else AENDT-TRTSDT). The compute_var layer allows arithmetic and grouping parentheses only, so the conditional/missing-value guarded logic cannot be expressed with the allowed vocabulary. Human review required."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ADURN",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AENDT - ASTDT + 1",
+            "target": "ADURN"
+          }
+        }
+      ],
+      "spec_origin": "ADURN=AENDT-ASTDT+1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "ADURN is a straightforward column-wise arithmetic expression over existing columns AENDT and ASTDT, matching the compute_var layer."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ADURU",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "literal": "DAYS",
+            "target": "ADURU"
+          }
+        }
+      ],
+      "spec_origin": "If ADURN is not missing then ADURU='DAYS'",
+      "confidence": 0.7,
+      "needs_human": true,
+      "rationale": "ADURU is conditional on ADURN being non-missing ('DAYS' when ADURN present). A pure literal assign loses the conditional guard on ADURN, and the conditional form is not expressible with the allowed arithmetic-only vocabulary, so human review is required."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AETERM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AETERM",
+            "target": "AETERM"
+          }
+        }
+      ],
+      "spec_origin": "AE.AETERM",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AETERM comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AELLT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AELLT",
+            "target": "AELLT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AELLT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AELLT comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AELLTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AELLTCD",
+            "target": "AELLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AELLTCD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AELLTCD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEDECOD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEDECOD",
+            "target": "AEDECOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEDECOD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEDECOD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEPTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEPTCD",
+            "target": "AEPTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEPTCD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEPTCD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLT",
+            "target": "AEHLT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEHLT comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLTCD",
+            "target": "AEHLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLTCD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEHLTCD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLGT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLGT",
+            "target": "AEHLGT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLGT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEHLGT comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLGTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLGTCD",
+            "target": "AEHLGTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLGTCD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEHLGTCD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEBODSYS",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEBODSYS",
+            "target": "AEBODSYS"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEBODSYS",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEBODSYS comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOC",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOC",
+            "target": "AESOC"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOC",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESOC comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOCCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOCCD",
+            "target": "AESOCCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOCCD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESOCCD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESEV",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESEV",
+            "target": "AESEV"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESEV",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESEV comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESER",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESER",
+            "target": "AESER"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESER",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESER comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESCAN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESCAN",
+            "target": "AESCAN"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESCAN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESCAN comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESCONG",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESCONG",
+            "target": "AESCONG"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESCONG",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESCONG comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESDISAB",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESDISAB",
+            "target": "AESDISAB"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDISAB",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESDISAB comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESDTH",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESDTH",
+            "target": "AESDTH"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDTH",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESDTH comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESHOSP",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESHOSP",
+            "target": "AESHOSP"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESHOSP",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESHOSP comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESLIFE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESLIFE",
+            "target": "AESLIFE"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESLIFE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESLIFE comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOD",
+            "target": "AESOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESOD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEREL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEREL",
+            "target": "AEREL"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEREL",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEREL comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEACN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEACN",
+            "target": "AEACN"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEACN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEACN comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEOUT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEOUT",
+            "target": "AEOUT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEOUT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AEOUT comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESEQ",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESEQ",
+            "target": "AESEQ"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESEQ",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESEQ comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEMFL",
+      "steps": [],
+      "spec_origin": "If ASTDT >= TRTSDT > . then TRTEMFL='Y'. Otherwise TRTEMFL='N'",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "TRTEMFL requires a conditional assignment (Y when ASTDT >= TRTSDT and non-missing, else N). The assign layer only supports a direct copy or a literal constant; the conditional/missing-guarded logic is not expressible with the allowed layers and formula vocabulary. Human review required."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": "USUBJID",
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCFL=?Y?) within each Subject",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AOCCFL flags the first occurrence within each subject, restricted to TRTEMFL='Y', ordered by ASTDT and AESEQ, matching the extreme_flag layer with mode='first'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCSFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCSFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCSFL=?Y?) within each Subject and SOC",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "Flags the first record within each subject and SOC, restricted to TRTEMFL='Y', ordered by ASTDT and AESEQ, matching extreme_flag with mode='first'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCPFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS",
+              "AEDECOD"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCPFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCPFL=?Y?) within each Subject, SOC, and PT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "Flags the first record within each subject, SOC and PT, restricted to TRTEMFL='Y', ordered by ASTDT and AESEQ, matching extreme_flag with mode='first'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC02FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": "USUBJID",
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y' & AESER == 'Y'",
+            "target": "AOCC02FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC02FL=?Y?) within each Subject",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "Flags the first record within each subject restricted to TRTEMFL='Y' and AESER='Y', ordered by ASTDT and AESEQ, matching extreme_flag with mode='first'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC03FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y' & AESER == 'Y'",
+            "target": "AOCC03FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC03FL=?Y?) within each Subject and SOC",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "Flags the first record within each subject and SOC restricted to TRTEMFL='Y' and AESER='Y', ordered by ASTDT and AESEQ, matching extreme_flag with mode='first'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC04FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS",
+              "AEDECOD"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y' & AESER == 'Y'",
+            "target": "AOCC04FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC04FL=?Y?) within each Subject, SOC, and PT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "Flags the first record within each subject, SOC and PT restricted to TRTEMFL='Y' and AESER='Y', ordered by ASTDT and AESEQ, matching extreme_flag with mode='first'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "CQ01NAM",
+      "steps": [],
+      "spec_origin": "If AEDECOD contains any of the character strings of ('APPLICATION', 'DERMATITIS', 'ERYTHEMA', 'BLISTER') OR if AEBODSYS='SKIN AND SUBC UTANEOUS TISSUE DISORDERS' but AEDECOD is not in ('COLD SWEAT', 'HYPERHIDROSIS', 'ALOPECIA') then CQ01NAM='DERMATOLOGIC EVENTS' Otherwise CQ01NAM=NULL",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "CQ01NAM requires a multi-condition string-matching rule (contains any of a list of substrings, OR SOC match with an excluded PT list). Substring/contains matching and the compound conditional with NULL default are not expressible with the allowed layers and formula vocabulary. Human review required."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC01FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": "USUBJID",
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "CQ01NAM == 'DERMATOLOGIC EVENTS' & TRTEMFL == 'Y'",
+            "target": "AOCC01FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to CQ01NAM='DERMATOLOGIC EVENTS' and TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC01FL=?Y?) within each Subject (Flag First Treatment Emergent Dermatological Event for Time to Event Analysis)",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "Flags the first record within each subject restricted to CQ01NAM='DERMATOLOGIC EVENTS' and TRTEMFL='Y', ordered by ASTDT and AESEQ, matching extreme_flag with mode='first'. Depends on CQ01NAM producer."
+    }
+  ],
+  "ir_hash": "eaa185b8",
+  "code_digest": "035573cda55432c355b97541f61d76c2c0ae9b48e8aed3be3287c818021b571e",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:14-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__anl01fl__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ANL01FL",
+      "steps": [],
+      "spec_origin": "If ALBTRVAL = max(ALBTRVAL) then ANL01FL is 'Y'",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "ANL01FL is a max-value extreme flag on a non-standard analyte-specific variable (ALBTRVAL) with 'Y' true value; the flag logic could map to extreme_flag but the by_vars and analyte scoping are ambiguous, requiring human review."
+    }
+  ],
+  "ir_hash": "47c2a249",
+  "code_digest": "960567e9097f8c245d4259f5c2ef9bbf5f5df174835e8e7ae2e40940d92d770b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

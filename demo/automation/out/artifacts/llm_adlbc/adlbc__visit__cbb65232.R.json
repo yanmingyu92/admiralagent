@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__visit__cbb65232.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "VISIT",
+      "steps": [],
+      "spec_origin": "Copied directly from LB.VISIT",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "LLM batch failed IR validation after max_attempts; recorded as needs_human by the demo fallback (see telemetry)."
+    }
+  ],
+  "ir_hash": "c41cd417",
+  "code_digest": "7632e100eab0013e1e2177c7b1096964ade6e85545cc3402e039f696863fdd82",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:09-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

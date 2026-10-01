@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__ady__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ADY",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBDY",
+            "target": "ADY"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDY",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is seeded from LB, so LB.LBDY is already present in the target base; direct copy via assign."
+    }
+  ],
+  "ir_hash": "597893fc",
+  "code_digest": "946e107c423ded0081c7a89c05dac4433688b1bf52ef61ca8b26d2348def4625",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:20-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

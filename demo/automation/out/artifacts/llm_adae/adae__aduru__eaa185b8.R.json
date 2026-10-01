@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aduru__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ADURU",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "literal": "DAYS",
+            "target": "ADURU"
+          }
+        }
+      ],
+      "spec_origin": "If ADURN is not missing then ADURU='DAYS'",
+      "confidence": 0.7,
+      "needs_human": true,
+      "rationale": "ADURU is conditional on ADURN being non-missing ('DAYS' when ADURN present). A pure literal assign loses the conditional guard on ADURN, and the conditional form is not expressible with the allowed arithmetic-only vocabulary, so human review is required."
+    }
+  ],
+  "ir_hash": "34e0207c",
+  "code_digest": "8a51f9fc618f15dc9f51065ba1e59cb8af3f8d47b9bcf6ac322d5b7baf478f09",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

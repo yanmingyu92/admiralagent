@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__lbstresn__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSTRESN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTRESN",
+            "target": "LBSTRESN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "ADLBC is seeded from LB, so LB.LBSTRESN is already present in the target base; direct copy via assign."
+    }
+  ],
+  "ir_hash": "621538a8",
+  "code_digest": "748f269192d3ab1a349e328594930b52105948f849049d97d1c664f151d0ada4",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

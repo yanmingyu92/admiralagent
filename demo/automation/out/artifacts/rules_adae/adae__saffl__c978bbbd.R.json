@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__saffl__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SAFFL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SAFFL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.SAFFL"
+    }
+  ],
+  "ir_hash": "a6daeccc",
+  "code_digest": "f9e7891ec8c8bd054622a754c3888cde6459c65fe853522eaf7f0ed6728f486d",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:11-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

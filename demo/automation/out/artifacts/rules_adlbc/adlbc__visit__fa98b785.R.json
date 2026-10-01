@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__visit__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "VISIT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "VISIT",
+            "target": "VISIT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.VISIT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    }
+  ],
+  "ir_hash": "58a2b8f9",
+  "code_digest": "6d5e05f4092880ee7b921d4ba1caa40504da6189f9c448f7583753a2f1922b3a",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:18-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

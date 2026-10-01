@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__race__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    }
+  ],
+  "ir_hash": "e1695e14",
+  "code_digest": "bd9469dd491901f35bc5262e3cd605ea421590e16febfc0e8ff47042e0640240",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:18-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

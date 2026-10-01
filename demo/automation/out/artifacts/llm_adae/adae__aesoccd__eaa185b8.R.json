@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aesoccd__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESOCCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOCCD",
+            "target": "AESOCCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOCCD",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AESOCCD comes from the AE domain that seeds the ADAE base, so the column already exists in the target dataset; a direct assign copy is correct, not a merge."
+    }
+  ],
+  "ir_hash": "497190fa",
+  "code_digest": "30474229c3b558e406b57f91e9d6a96a108e39311c23e411262e2d25413c5ace",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

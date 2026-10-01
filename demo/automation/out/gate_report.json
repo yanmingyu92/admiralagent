@@ -1,43 +1,97 @@
 {
   "stage": "02_gate_render",
-  "generated_at": "2026-10-01 16:45:28 UTC",
+  "generated_at": "2026-10-01 21:47:04 UTC",
   "gate_policy": "Package default is gate-required. Programs here are written with require_gate = FALSE (explicit opt-out, no human approver in an unattended showcase). They are permanently self-labelled UNGATED DRAFT and never release-grade.",
-  "backends": {
-    "rules": {
-      "backend": "rules",
-      "variables": 49,
-      "needs_human": 32,
-      "gate": "PASS",
-      "gate_problems": null,
-      "require_gate": false,
-      "artifact_hash": "58d2eddc",
-      "program_artifact": "adsl__program__58d2eddc.R",
-      "release_grade": "ungated-draft",
-      "gate_enforced": false
+  "datasets": {
+    "ADSL": {
+      "rules": {
+        "backend": "rules",
+        "variables": 49,
+        "needs_human": 32,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "58d2eddc",
+        "program_artifact": "adsl__program__58d2eddc.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      },
+      "llm": {
+        "backend": "llm-deepseek",
+        "variables": 49,
+        "needs_human": 27,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "350b2ef0",
+        "program_artifact": "adsl__program__350b2ef0.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      },
+      "consensus": {
+        "backend": "llm-deepseek-consensus3",
+        "variables": 12,
+        "needs_human": 5,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "f2f6fe52",
+        "program_artifact": "adsl__program__f2f6fe52.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      }
     },
-    "llm": {
-      "backend": "llm-deepseek",
-      "variables": 49,
-      "needs_human": 27,
-      "gate": "PASS",
-      "gate_problems": null,
-      "require_gate": false,
-      "artifact_hash": "350b2ef0",
-      "program_artifact": "adsl__program__350b2ef0.R",
-      "release_grade": "ungated-draft",
-      "gate_enforced": false
+    "ADAE": {
+      "rules": {
+        "backend": "rules",
+        "variables": 55,
+        "needs_human": 16,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "c978bbbd",
+        "program_artifact": "adae__program__c978bbbd.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      },
+      "llm": {
+        "backend": "llm-deepseek",
+        "variables": 55,
+        "needs_human": 8,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "eaa185b8",
+        "program_artifact": "adae__program__eaa185b8.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      }
     },
-    "consensus": {
-      "backend": "llm-deepseek-consensus3",
-      "variables": 12,
-      "needs_human": 5,
-      "gate": "PASS",
-      "gate_problems": null,
-      "require_gate": false,
-      "artifact_hash": "f2f6fe52",
-      "program_artifact": "adsl__program__f2f6fe52.R",
-      "release_grade": "ungated-draft",
-      "gate_enforced": false
+    "ADLBC": {
+      "rules": {
+        "backend": "rules",
+        "variables": 46,
+        "needs_human": 14,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "fa98b785",
+        "program_artifact": "adlbc__program__fa98b785.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      },
+      "llm": {
+        "backend": "llm-deepseek",
+        "variables": 46,
+        "needs_human": 13,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "b0359930",
+        "program_artifact": "adlbc__program__b0359930.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      }
     }
   }
 }

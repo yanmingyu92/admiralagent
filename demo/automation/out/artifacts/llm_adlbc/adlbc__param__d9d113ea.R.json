@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__param__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAM",
+      "steps": [],
+      "spec_origin": "Concatenated LB.LBTEST, '(', LB.LBSTRESU and ')'",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "PARAM is built by concatenating LB.LBTEST, '(', LB.LBSTRESU and ')'. No supported layer performs column-wise string concatenation (compute_var allows arithmetic only), and merging per lab record requires record-level linkage. Human review required."
+    }
+  ],
+  "ir_hash": "ab2cfc0b",
+  "code_digest": "d439e0e1b4b7e98cd49606372f5278d4a6a86283d1a68be8ba62ef3665b4beea",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

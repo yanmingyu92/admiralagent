@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__racen__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACEN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "RACEN is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    }
+  ],
+  "ir_hash": "25ab2b52",
+  "code_digest": "a546fc3580f937b3645312afd37e8ab1faac953c8e7db5c310fdfd60b311bfef",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

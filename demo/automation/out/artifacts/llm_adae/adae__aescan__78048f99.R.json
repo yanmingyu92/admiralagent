@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aescan__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESCAN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESCAN",
+            "target": "AESCAN"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESCAN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESCAN exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "ed15151c",
+  "code_digest": "ec3626fc7ea9e75d05490cf6f3f632aa68fe8d4b9121479440efef99eb285aed",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}
