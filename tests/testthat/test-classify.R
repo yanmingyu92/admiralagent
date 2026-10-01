@@ -94,6 +94,48 @@ test_that("build_context is schema-only", {
   expect_null(ctx$TRTSDTM$values)
 })
 
+test_that("build_context carries the target dataset per variable (F-06)", {
+  spec <- mock_spec_adsl()
+  spec$dataset <- "ADAE"
+  ctx <- build_context(spec)
+  expect_true(all(vapply(ctx, function(x) identical(x$dataset, "ADAE"), logical(1))))
+})
+
+test_that("align_batch accepts a non-ADSL batch when dataset tokens match (F-06)", {
+  spec <- mock_spec_adsl()
+  spec$dataset <- "ADAE"
+  batch <- spec[1:2, ]
+  ir <- lapply(seq_len(nrow(batch)), function(i) {
+    new_variable_ir(
+      dataset = "ADAE", variable = batch$variable[i],
+      steps = list(new_step("assign", list(target = batch$variable[i], from = batch$variable[i]))),
+      spec_origin = batch$derivation[i], confidence = 1,
+      needs_human = FALSE, rationale = "test"
+    )
+  })
+  aligned <- align_batch(ir, batch)
+  expect_length(aligned, 2L)
+  expect_identical(vapply(aligned, function(v) v$dataset, character(1)), c("ADAE", "ADAE"))
+
+  # the guard itself is unchanged: a wrong dataset token is still rejected
+  ir_bad <- ir
+  ir_bad[[1]]$dataset <- "ADSL"
+  expect_error(align_batch(ir_bad, batch), "exactly one matching dataset/variable")
+})
+
+test_that("system prompt states the same-domain copy rule (F-10)", {
+  p <- build_system_prompt()
+  expect_true(grepl("NEVER merge a dataset into a target", p, fixed = TRUE))
+  expect_true(grepl("built from that same domain", p, fixed = TRUE))
+  expect_true(grepl("must uniquely identify records within dataset_add", p, fixed = TRUE))
+  # the rule is part of the structural contract (numbered rules), so the
+  # neutral/minimal voter variants keep it too
+  for (v in c("neutral", "minimal")) {
+    expect_true(grepl("NEVER merge a dataset into a target",
+                      build_system_prompt_variant(v), fixed = TRUE))
+  }
+})
+
 test_that("system prompt embeds the closed vocabulary", {
   p <- build_system_prompt()
   for (nm in layer_names()) expect_true(grepl(nm, p, fixed = TRUE))

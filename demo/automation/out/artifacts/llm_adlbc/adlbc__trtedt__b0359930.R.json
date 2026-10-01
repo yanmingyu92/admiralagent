@@ -1,0 +1,36 @@
+{
+  "artifact": "adlbc__trtedt__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTEDT",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTEDT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTEDT copied from ADSL; cross-domain pull by USUBJID."
+    }
+  ],
+  "ir_hash": "db7a2490",
+  "code_digest": "53be4f2cf43db2fe1a0046d05d9da0d68077225fd78409cdc795bd53ffb23dfd",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:20-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

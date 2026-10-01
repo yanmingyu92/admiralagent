@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__aoccfl__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCFL",
+      "steps": [],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCFL=?Y?) within each Subject",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "98bd9f13",
+  "code_digest": "9b7fdbea357bb398a02a889939643ed1cab550fa62dfce983ff4b33994cd22e5",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:12-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

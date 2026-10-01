@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__usubjid__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "USUBJID",
+      "steps": [],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "LLM batch failed IR validation after max_attempts; recorded as needs_human by the demo fallback (see telemetry)."
+    }
+  ],
+  "ir_hash": "458ebaec",
+  "code_digest": "317563d7dad455280239378e043d10b8cb775374c6c5d1dc01bb99ac4873ba47",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

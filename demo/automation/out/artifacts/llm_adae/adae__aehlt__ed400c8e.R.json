@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aehlt__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEHLT",
+            "target": "AEHLT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEHLT is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "f1acc08a",
+  "code_digest": "605935e86c143fef5ee274c0e96559202ceb427e11e60c81a4674db4662607f1",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

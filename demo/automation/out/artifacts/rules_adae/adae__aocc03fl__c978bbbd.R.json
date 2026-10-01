@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__aocc03fl__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC03FL",
+      "steps": [],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC03FL=?Y?) within each Subject and SOC",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "a1a13617",
+  "code_digest": "59769bd2e08115c2df8a9998a467e860e5e01c62dee6fad948576e5729dbdeca",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:12-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

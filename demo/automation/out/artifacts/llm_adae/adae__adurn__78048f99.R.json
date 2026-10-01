@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__adurn__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ADURN",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AENDT - ASTDT + 1",
+            "target": "ADURN"
+          }
+        }
+      ],
+      "spec_origin": "ADURN=AENDT-ASTDT+1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Arithmetic within existing records: ADURN = AENDT - ASTDT + 1."
+    }
+  ],
+  "ir_hash": "ec589b22",
+  "code_digest": "d8522afc6ed01cd423426a90a904d099fce97f6bb2a4f10964d465bd38870ad6",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

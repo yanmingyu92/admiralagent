@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__aentmtfl__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AENTMTFL",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "AENTMTFL derivation mixes VISITNUM=12 logic with a last-observed-analyte rule; the conflict and the undefined last-assessment logic across analytes require human decision, and no single supported layer captures it."
+    }
+  ],
+  "ir_hash": "680ab078",
+  "code_digest": "16a2dbd57edbf0e20a45708cfe34d1b05d9c7e9999120dff4bc1fb9f9dd8597f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

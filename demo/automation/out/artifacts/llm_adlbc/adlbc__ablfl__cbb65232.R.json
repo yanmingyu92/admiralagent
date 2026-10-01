@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__ablfl__cbb65232.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ABLFL",
+      "steps": [],
+      "spec_origin": "Copied directly from LB.LBBLFL",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "LLM batch failed IR validation after max_attempts; recorded as needs_human by the demo fallback (see telemetry)."
+    }
+  ],
+  "ir_hash": "ef915ae9",
+  "code_digest": "f27cbae208246040c63a224be4784c22cea4946c74ef68a817a810f9da477e14",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:09-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

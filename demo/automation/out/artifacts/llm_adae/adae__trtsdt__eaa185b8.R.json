@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__trtsdt__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRTSDT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTSDT is defined as ADSL.TRTSDT, a value from a different dataset than the ADAE base; merge_var brings TRTSDT in keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "60e9394d",
+  "code_digest": "c2213417d0248322af835b4c112ba6a8aaf51a5828af40d9e5146b421b8178cd",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

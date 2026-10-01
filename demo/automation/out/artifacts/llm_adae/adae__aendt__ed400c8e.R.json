@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__aendt__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AENDT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "last",
+            "dtc": "AEENDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "AENDT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEENDTC, converted to a numeric SAS date",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "AEENDTC is converted to a numeric date but the spec gives no explicit imputation rule. Partial-date imputation must be stated; end dates typically use 'last'. Confirmed imputation rule requires human review."
+    }
+  ],
+  "ir_hash": "607341f1",
+  "code_digest": "f9791291f6a4bc879dcc92f67527923bcabcb811513e6cac8846adfb05670f73",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

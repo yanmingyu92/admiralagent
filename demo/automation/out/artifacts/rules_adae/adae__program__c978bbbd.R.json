@@ -1,0 +1,823 @@
+{
+  "artifact": "adae__program__c978bbbd.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SITEID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SITEID",
+            "target": "SITEID"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SITEID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.SITEID"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "USUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "USUBJID",
+            "target": "USUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTA",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01A",
+            "target": "TRTA"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01A",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.TRT01A"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.TRT01AN"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.AGE"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.AGEGR1"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1N",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.AGEGR1N"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.RACE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.RACE"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.RACEN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.RACEN"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SEX",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.SEX"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SAFFL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SAFFL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.SAFFL"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRTSDT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.TRTSDT"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRTEDT",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRTEDT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.TRTEDT"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDT",
+      "steps": [],
+      "spec_origin": "AE.AESTDTC, converted to a numeric SAS date. Some events with partial dates are imputed in a conservative manner. If the day component is missing, a value of '01' is used. If both the month and day are missing no imputation is performed as these dates clearly indicate a start prior to the beginning of treatment. There are no events with completely missing start dates.",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDTF",
+      "steps": [],
+      "spec_origin": "ASTDTF='D' if the day value within the character date is imputed. Note that only day values needed to be imputed for this study.",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDY",
+      "steps": [],
+      "spec_origin": "IF ASTDT>=TRTSDT>MISSING then ASTDY=ASTDT-TRTSDT+1 Else if TRTSDT>ASTDT>MISSING then ASTDY=ASTDT-TRTSDT",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AENDT",
+      "steps": [],
+      "spec_origin": "AE.AEENDTC, converted to a numeric SAS date",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AENDY",
+      "steps": [],
+      "spec_origin": "IF AENDT>=TRTSDT>MISSING then AENDY=AENDT-TRTSDT+1 Else if TRTSDT>AENDT>MISSING then AENDY=AENDT-TRTSDT",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ADURN",
+      "steps": [],
+      "spec_origin": "ADURN=AENDT-ASTDT+1",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ADURU",
+      "steps": [],
+      "spec_origin": "If ADURN is not missing then ADURU='DAYS'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AETERM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AETERM",
+            "target": "AETERM"
+          }
+        }
+      ],
+      "spec_origin": "AE.AETERM",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AETERM"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AELLT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AELLT",
+            "target": "AELLT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AELLT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AELLT"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AELLTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AELLTCD",
+            "target": "AELLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AELLTCD",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AELLTCD"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEDECOD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEDECOD",
+            "target": "AEDECOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEDECOD",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEDECOD"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEPTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEPTCD",
+            "target": "AEPTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEPTCD",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEPTCD"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLT",
+            "target": "AEHLT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEHLT"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLTCD",
+            "target": "AEHLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLTCD",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEHLTCD"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLGT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLGT",
+            "target": "AEHLGT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLGT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEHLGT"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLGTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEHLGTCD",
+            "target": "AEHLGTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLGTCD",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEHLGTCD"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEBODSYS",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEBODSYS",
+            "target": "AEBODSYS"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEBODSYS",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEBODSYS"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOC",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOC",
+            "target": "AESOC"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOC",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESOC"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOCCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOCCD",
+            "target": "AESOCCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOCCD",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESOCCD"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESEV",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESEV",
+            "target": "AESEV"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESEV",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESEV"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESER",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESER",
+            "target": "AESER"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESER",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESER"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESCAN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESCAN",
+            "target": "AESCAN"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESCAN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESCAN"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESCONG",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESCONG",
+            "target": "AESCONG"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESCONG",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESCONG"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESDISAB",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESDISAB",
+            "target": "AESDISAB"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDISAB",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESDISAB"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESDTH",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESDTH",
+            "target": "AESDTH"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDTH",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESDTH"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESHOSP",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESHOSP",
+            "target": "AESHOSP"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESHOSP",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESHOSP"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESLIFE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESLIFE",
+            "target": "AESLIFE"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESLIFE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESLIFE"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOD",
+            "target": "AESOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOD",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESOD"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEREL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEREL",
+            "target": "AEREL"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEREL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEREL"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEACN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEACN",
+            "target": "AEACN"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEACN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEACN"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEOUT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEOUT",
+            "target": "AEOUT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEOUT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AEOUT"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESEQ",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESEQ",
+            "target": "AESEQ"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESEQ",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from AE.AESEQ"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEMFL",
+      "steps": [],
+      "spec_origin": "If ASTDT >= TRTSDT > . then TRTEMFL='Y'. Otherwise TRTEMFL='N'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCFL",
+      "steps": [],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCFL=?Y?) within each Subject",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCSFL",
+      "steps": [],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCSFL=?Y?) within each Subject and SOC",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCPFL",
+      "steps": [],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCPFL=?Y?) within each Subject, SOC, and PT",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC02FL",
+      "steps": [],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC02FL=?Y?) within each Subject",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC03FL",
+      "steps": [],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC03FL=?Y?) within each Subject and SOC",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC04FL",
+      "steps": [],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC04FL=?Y?) within each Subject, SOC, and PT",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "CQ01NAM",
+      "steps": [],
+      "spec_origin": "If AEDECOD contains any of the character strings of ('APPLICATION', 'DERMATITIS', 'ERYTHEMA', 'BLISTER') OR if AEBODSYS='SKIN AND SUBC UTANEOUS TISSUE DISORDERS' but AEDECOD is not in ('COLD SWEAT', 'HYPERHIDROSIS', 'ALOPECIA') then CQ01NAM='DERMATOLOGIC EVENTS' Otherwise CQ01NAM=NULL",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC01FL",
+      "steps": [],
+      "spec_origin": "Subset to CQ01NAM='DERMATOLOGIC EVENTS' and TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC01FL=?Y?) within each Subject (Flag First Treatment Emergent Dermatological Event for Time to Event Analysis)",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "c978bbbd",
+  "code_digest": "c654205511436e3e8965f1328101c0e573a88056d1a19eb4c90bd83515bcb1a7",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:11-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

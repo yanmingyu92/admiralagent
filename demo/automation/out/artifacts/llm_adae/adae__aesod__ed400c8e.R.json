@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aesod__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESOD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESOD",
+            "target": "AESOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESOD is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "46cd2dd3",
+  "code_digest": "7502b093abe7b0cb0e1426a3fb1ba91970639c34e7facfc2752461b8316499e1",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__parcat1__cbb65232.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARCAT1",
+      "steps": [],
+      "spec_origin": "Parameter Category 1",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "LLM batch failed IR validation after max_attempts; recorded as needs_human by the demo fallback (see telemetry)."
+    }
+  ],
+  "ir_hash": "cc87b303",
+  "code_digest": "0f875d9325e03edc9724f7e2e5170e4ce18ce19fa3e6b61bb39c59d38ac27807",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:09-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

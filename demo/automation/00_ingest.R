@@ -4,7 +4,12 @@
 #   - pilot5 submission define workbook (adam-pilot-5.xlsx)  -> ADaM spec
 #   - pilot5 original SDTM .xpt files                        -> execution inputs
 # Outputs (demo/automation/out/):
-#   - spec_adsl.rds / spec_adsl.csv   normalized spec (read_spec_df format)
+#   - spec_<ds>.rds / spec_<ds>.csv   normalized spec per dataset (read_spec_df
+#                                     format; ADSL keeps the unsuffixed names
+#                                     spec_adsl.rds / spec_adsl.csv)
+#   - mc_<ds>.rds                     mock_metacore() object per dataset, built
+#                                     from the workbook's Codelists sheet, for
+#                                     codelist_var execution (sources$mc)
 #   - ingest_manifest.json            provenance + file digests + derivation
 #                                     source counts (method vs predecessor)
 
@@ -12,20 +17,53 @@ source(file.path(dirname(sub("^--file=", "", grep("^--file=", commandArgs(FALSE)
 stage_banner("00", "ingest")
 
 stopifnot(file.exists(spec_xlsx))
-built <- build_spec_from_define_xlsx(spec_xlsx, dataset = "ADSL")
-spec <- built$spec
-saveRDS(spec, file.path(out_dir, "spec_adsl.rds"))
-utils::write.csv(spec, file.path(out_dir, "spec_adsl.csv"), row.names = FALSE)
+datasets <- showcase_datasets()
 
-sdtm_files <- file.path(sdtm_dir, paste0(c("dm", "ex", "vs", "ae", "sv", "ds", "sc", "mh", "qs"), ".xpt"))
+specs <- list()
+for (ds in datasets) {
+  built <- build_spec_from_define_xlsx(spec_xlsx, dataset = ds)
+  spec <- built$spec
+  specs[[ds]] <- list(spec = spec, derivation_source = built$derivation_source)
+  saveRDS(spec, out_file_ds("spec", ds, ".rds"))
+  utils::write.csv(spec, out_file_ds("spec", ds, ".csv"), row.names = FALSE)
+  cat(sprintf("%-6s spec variables: %d (derivation sources: %s)\n", ds, nrow(spec),
+              paste(names(table(built$derivation_source)), as.integer(table(built$derivation_source)),
+                    sep = "=", collapse = ", ")))
+}
+
+# --- codelists + executable metacore objects ----------------------------------
+# codelist_var steps render metatools::create_var_from_codelist(metacore = mc),
+# so every dataset needs an mc built from the workbook's own Codelists sheet
+# (finding F-02). If metacore is unavailable the mc is NULL and the manifest
+# records the boundary instead of faking one.
+codelists <- codelists_from_define_xlsx(spec_xlsx)
+cat("codelists built from Codelists sheet:", length(codelists), "\n")
+
+mc_paths <- list()
+for (ds in datasets) {
+  mc <- withCallingHandlers(
+    mock_metacore(specs[[ds]]$spec, codelists = codelists),
+    warning = function(w) {
+      cat(sprintf("%-6s mock_metacore warning: %s\n", ds, conditionMessage(w)))
+      invokeRestart("muffleWarning")
+    }
+  )
+  if (is.null(mc)) {
+    mc_paths[[ds]] <- list(path = NA, note = "metacore package not available; codelist_var cannot execute")
+  } else {
+    p <- out_file_ds("mc", ds, ".rds")
+    saveRDS(mc, p)
+    mc_paths[[ds]] <- list(path = p, n_codelists = length(codelists))
+  }
+}
+
+sdtm_files <- file.path(sdtm_dir, paste0(c("dm", "ex", "vs", "ae", "sv", "ds", "sc", "mh", "qs", "lb"), ".xpt"))
 sdtm_present <- file.exists(sdtm_files)
 sdtm_meta <- lapply(sdtm_files[sdtm_present], function(p) {
   x <- haven::read_xpt(p)
   list(file = basename(p), sha256 = file_sha256(p), rows = nrow(x), cols = ncol(x))
 })
 names(sdtm_meta) <- basename(sdtm_files[sdtm_present])
-
-oracle_adsl <- file.path(oracle_dir, "adsl.xpt")
 
 manifest <- list(
   stage = "00_ingest",
@@ -41,16 +79,22 @@ manifest <- list(
       "derivation 'Copied directly from <DS.VAR>'. No free text was invented."
     )
   ),
-  dataset = "ADSL",
-  n_spec_variables = nrow(spec),
-  derivation_source_counts = as.list(table(built$derivation_source)),
-  origin_counts = as.list(table(spec$origin)),
+  datasets = lapply(datasets, function(ds) {
+    list(
+      dataset = ds,
+      n_spec_variables = nrow(specs[[ds]]$spec),
+      derivation_source_counts = as.list(table(specs[[ds]]$derivation_source)),
+      origin_counts = as.list(table(specs[[ds]]$spec$origin)),
+      oracle = list(file = file.path(oracle_dir, paste0(tolower(ds), ".xpt")),
+                    sha256 = file_sha256(file.path(oracle_dir, paste0(tolower(ds), ".xpt")))),
+      metacore = mc_paths[[ds]]
+    )
+  }),
+  codelists_built = length(codelists),
   sdtm_inputs = sdtm_meta,
-  sdtm_missing = basename(sdtm_files[!sdtm_present]),
-  oracle_adsl = list(file = oracle_adsl, sha256 = file_sha256(oracle_adsl))
+  sdtm_missing = basename(sdtm_files[!sdtm_present])
 )
+names(manifest$datasets) <- datasets
 write_json(manifest, file.path(out_dir, "ingest_manifest.json"))
 
-cat("spec variables:", nrow(spec), "\n")
-cat("derivation sources:", paste(names(table(built$derivation_source)), as.integer(table(built$derivation_source)), sep = "=", collapse = ", "), "\n")
 cat("sdtm loaded:", length(sdtm_meta), "files; missing:", length(manifest$sdtm_missing), "\n")

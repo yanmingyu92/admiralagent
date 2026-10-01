@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__agegr1__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AGEGR1 is taken from ADSL via merge_var."
+    }
+  ],
+  "ir_hash": "3ac99ccd",
+  "code_digest": "9643041066610ed558a33fc5501aab17f820bff316d4faaebf25d54a89ba622c",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

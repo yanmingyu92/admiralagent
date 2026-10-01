@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__anrind__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ANRIND",
+      "steps": [],
+      "spec_origin": "if AVAL < [0.5*LBSTNRLO) then ANRIND = 'Y' else if AVAL > [0.5*LBSTRNHI),'H','N'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "11cf4c70",
+  "code_digest": "75fed68371724aee76b61d3d59a5143466afc54adc7d976dac9f4ec914d1ad0e",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:18-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

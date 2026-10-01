@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aeslife__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESLIFE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESLIFE",
+            "target": "AESLIFE"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESLIFE",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESLIFE exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "6692b48c",
+  "code_digest": "2a7019ecb4d46169032600f42e85da8fe14a75bb36f9b0279076649c6300d402",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

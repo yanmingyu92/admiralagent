@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__lbnrind__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "LBNRIND",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBNRIND",
+            "target": "LBNRIND"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBNRIND",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "LBNRIND is copied from LB.LBNRIND (a source-dataset BDS artifact), so it must be pulled with merge_var from lb. LBNRIND varies across a subject's many lab records, so STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys require human review."
+    }
+  ],
+  "ir_hash": "0cdb99a5",
+  "code_digest": "d18ac2a88d5633f7f8b18114a6bd8c3546ed727edc7c37b653fc29317920c2a3",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

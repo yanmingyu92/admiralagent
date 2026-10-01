@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__parcat1__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARCAT1",
+      "steps": [],
+      "spec_origin": "Parameter Category 1",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Derivation text is only the variable label with no source or rule; ambiguous mapping requires human review."
+    }
+  ],
+  "ir_hash": "24217940",
+  "code_digest": "a61feaf28ea53706a712060cc4661bf01923f486fac49e68f01c457200f5a074",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

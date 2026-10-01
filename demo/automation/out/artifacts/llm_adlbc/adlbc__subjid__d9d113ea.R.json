@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__subjid__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SUBJID",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "SUBJID is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    }
+  ],
+  "ir_hash": "8e060ba0",
+  "code_digest": "386c8e626e138a8c4059ff90b5cbd086d892a3c77abb78d7022ca3b45ebb8926",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

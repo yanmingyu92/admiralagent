@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__aval__cbb65232.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AVAL",
+      "steps": [],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "LLM batch failed IR validation after max_attempts; recorded as needs_human by the demo fallback (see telemetry)."
+    }
+  ],
+  "ir_hash": "0675b17d",
+  "code_digest": "2000a1a2dbfd30be8658b772a459943ede755934a4c07ecb44290149e4c87a64",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:09-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

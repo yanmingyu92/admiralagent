@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__astdtf__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDTF",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "AESTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ASTDT"
+          }
+        }
+      ],
+      "spec_origin": "ASTDTF='D' if the day value within the character date is imputed. Note that only day values needed to be imputed for this study.",
+      "confidence": 0.7,
+      "needs_human": true,
+      "rationale": "ASTDTF is the imputation flag produced by admiral::derive_vars_dtm with flag columns during the same imputation that creates ASTDT. The IR impute_dtc layer does not expose a flag target argument, so the exact flag column production cannot be expressed; requires human review."
+    }
+  ],
+  "ir_hash": "fc25b182",
+  "code_digest": "a4ec8ff11b63a5ddec58fbf4b35d77b49d511cb4907efdd64f44d9b4740c388b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

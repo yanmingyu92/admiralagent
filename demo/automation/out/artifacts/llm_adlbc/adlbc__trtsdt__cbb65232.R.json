@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__trtsdt__cbb65232.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTSDT",
+      "steps": [],
+      "spec_origin": "Copied directly from ADSL.TRTSDT",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "LLM batch failed IR validation after max_attempts; recorded as needs_human by the demo fallback (see telemetry)."
+    }
+  ],
+  "ir_hash": "05fad357",
+  "code_digest": "9806ea08eeecec6b8b41e8041e6d8c402ec83092c2d919891a630d0daa94237f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:09-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

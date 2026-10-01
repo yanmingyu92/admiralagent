@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aehltcd__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLTCD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEHLTCD",
+            "target": "AEHLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEHLTCD is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "98eb6e26",
+  "code_digest": "0734a13ad4d003432e8c31af46d6765e4be5f58ae13b20e975d82103bcc19db3",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

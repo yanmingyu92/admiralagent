@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__sex__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SEX",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "SEX is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    }
+  ],
+  "ir_hash": "80ddafa0",
+  "code_digest": "d1fe7f303ff0d5c2327ef13d7f6617b178c1b8e3883c604ca932a7a228bfb356",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

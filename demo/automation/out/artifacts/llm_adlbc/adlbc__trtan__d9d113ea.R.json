@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__trtan__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTAN derives from ADSL.TRT01AN, not present in the ADLBC base dataset; merge_var pulls it from the adsl source keyed on STUDYID and USUBJID."
+    }
+  ],
+  "ir_hash": "d52a0c96",
+  "code_digest": "10de01c9a249fa124ab20d7afd3d40405abe049831cdb2fdac8f0771197d6f99",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

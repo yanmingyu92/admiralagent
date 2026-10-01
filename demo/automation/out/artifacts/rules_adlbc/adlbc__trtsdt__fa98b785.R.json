@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__trtsdt__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTSDT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    }
+  ],
+  "ir_hash": "b1fba7ae",
+  "code_digest": "7a7f4e34bc5240df03252b6c1b8e121f7d78a35f70dbc979c8f2dbd29c68e9fc",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:17-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aduru__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ADURU",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "literal": "DAYS",
+            "target": "ADURU"
+          }
+        }
+      ],
+      "spec_origin": "If ADURN is not missing then ADURU='DAYS'",
+      "confidence": 0.75,
+      "needs_human": true,
+      "rationale": "Conditional constant assignment (only when ADURN not missing); a plain literal assign does not capture the condition, requiring human review."
+    }
+  ],
+  "ir_hash": "31acdf40",
+  "code_digest": "c9c6ac9eaed9e192badb91f3ac9556224721072eefbb8204216626e6c2cd4a61",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

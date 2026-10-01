@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__agegr1__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGEGR1",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGEGR1 is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    }
+  ],
+  "ir_hash": "0eb22afb",
+  "code_digest": "cb69d6a3f7bebc6b50f41b3792707208b962f5a6f3245e8fa23b4416551ffd73",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

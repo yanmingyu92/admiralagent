@@ -1,0 +1,43 @@
+{
+  "artifact": "adae__aocc01fl__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC01FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "CQ01NAM == 'DERMATOLOGIC EVENTS' & TRTEMFL == 'Y'",
+            "target": "AOCC01FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to CQ01NAM='DERMATOLOGIC EVENTS' and TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC01FL=?Y?) within each Subject (Flag First Treatment Emergent Dermatological Event for Time to Event Analysis)",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First treatment-emergent dermatologic event within subject, ordered by ASTDT then AESEQ."
+    }
+  ],
+  "ir_hash": "f0fd9c94",
+  "code_digest": "63a5e85e6e56f1e5746b2bfce932021010475991394b8b3da3c0758271ea5839",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:06-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

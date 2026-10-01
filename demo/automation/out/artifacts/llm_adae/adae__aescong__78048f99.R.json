@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aescong__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESCONG",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESCONG",
+            "target": "AESCONG"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESCONG",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESCONG exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "b69f126e",
+  "code_digest": "69085d959ba06e330e662814c9ec8e5d2758ce2425de519fa5a90ed3f780becb",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

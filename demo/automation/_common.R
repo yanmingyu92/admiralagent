@@ -140,7 +140,7 @@ build_spec_from_define_xlsx <- function(xlsx, dataset = "ADSL") {
 
 # --- SDTM loading -------------------------------------------------------------
 
-load_pilot5_sdtm <- function(names = c("dm", "ex", "vs", "ae", "sv", "ds", "sc", "mh", "qs")) {
+load_pilot5_sdtm <- function(names = c("dm", "ex", "vs", "ae", "sv", "ds", "sc", "mh", "qs", "lb")) {
   out <- list()
   for (nm in names) {
     p <- file.path(sdtm_dir, paste0(nm, ".xpt"))
@@ -150,6 +150,71 @@ load_pilot5_sdtm <- function(names = c("dm", "ex", "vs", "ae", "sv", "ds", "sc",
   # tokens the layer vocabulary references.
   if (!is.null(out$vs)) {
     out$vs <- dplyr::mutate(out$vs, AVAL = VSSTRESN, PARAMCD = VSTESTCD)
+  }
+  # Same BDS shape for lb (ADLBC base): PARAMCD/AVAL from LBTESTCD/LBSTRESN.
+  if (!is.null(out$lb)) {
+    out$lb <- dplyr::mutate(out$lb, AVAL = LBSTRESN, PARAMCD = LBTESTCD)
+  }
+  out
+}
+
+# --- multi-dataset configuration ----------------------------------------------
+# ADSL keeps its historical artifact names (no suffix) so existing references
+# do not break; additional datasets get a _<ds> suffix, e.g. ir_rules_adae.rds.
+# AA_DATASETS="ADSL,ADAE" restricts the run (default: all three).
+
+showcase_datasets <- function() {
+  env <- Sys.getenv("AA_DATASETS")
+  ds <- if (nzchar(env)) strsplit(env, ",")[[1]] else c("ADSL", "ADAE", "ADLBC")
+  trimws(ds)
+}
+
+ds_suffix <- function(dataset) {
+  if (dataset == "ADSL") "" else paste0("_", tolower(dataset))
+}
+
+# out_file("ir_rules", "ADAE", ".rds") -> <out_dir>/ir_rules_adae.rds
+out_file <- function(stem, dataset, ext) {
+  file.path(out_dir, paste0(stem, ds_suffix(dataset), ext))
+}
+
+# Artifact families that always carry the dataset name, for every dataset
+# (spec_adsl.rds, mc_adsl.rds, ...; unlike the ir_rules.rds convention above).
+out_file_ds <- function(stem, dataset, ext) {
+  file.path(out_dir, paste0(stem, "_", tolower(dataset), ext))
+}
+
+# SDTM domain that seeds each target dataset (execute_ir sources$base).
+dataset_base_domain <- function(dataset) {
+  switch(dataset, ADSL = "dm", ADAE = "ae", ADLBC = "lb",
+         stop("no base domain configured for ", dataset, call. = FALSE))
+}
+
+# Join keys for the oracle comparison (row identity per dataset).
+dataset_oracle_keys <- function(dataset) {
+  switch(dataset, ADSL = "USUBJID", ADAE = c("USUBJID", "AESEQ"),
+         ADLBC = c("USUBJID", "LBSEQ"),
+         stop("no oracle keys configured for ", dataset, call. = FALSE))
+}
+
+# --- codelists from the define workbook ---------------------------------------
+# The Codelists sheet is a long table (ID / ... / Term / Decoded Value), one
+# row per term. mock_metacore() wants a named list of code/decode data.frames;
+# the list name becomes the metacore code_id and matches the Variables sheet's
+# Codelist column verbatim (e.g. RACEN -> codelist "RACEN"). Term is the code
+# side (coerced to integer when the codelist's Data Type is integer); the
+# decode side is Decoded Value, falling back to Term when blank.
+
+codelists_from_define_xlsx <- function(xlsx) {
+  cl <- as.data.frame(readxl::read_excel(xlsx, sheet = "Codelists"))
+  out <- list()
+  for (id in unique(cl$ID)) {
+    rows <- cl[cl$ID == id, , drop = FALSE]
+    decode <- rows[["Decoded Value"]]
+    decode <- ifelse(is.na(decode), rows$Term, decode)
+    code <- rows$Term
+    if (all(rows[["Data Type"]] == "integer")) code <- suppressWarnings(as.integer(code))
+    out[[id]] <- data.frame(code = code, decode = decode, stringsAsFactors = FALSE)
   }
   out
 }

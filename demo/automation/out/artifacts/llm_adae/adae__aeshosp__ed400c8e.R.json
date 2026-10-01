@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aeshosp__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESHOSP",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESHOSP",
+            "target": "AESHOSP"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESHOSP",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESHOSP is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "b9c80d84",
+  "code_digest": "4e77f15a011b11d40ed40548d268ed94e7f3d33161fc80075ce9e89c7ae4bee4",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

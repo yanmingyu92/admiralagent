@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__astdtf__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDTF",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "AESTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ASTDT"
+          }
+        }
+      ],
+      "spec_origin": "ASTDTF='D' if the day value within the character date is imputed. Note that only day values needed to be imputed for this study.",
+      "confidence": 0.75,
+      "needs_human": true,
+      "rationale": "ASTDTF is the day-imputation flag ('D') produced by the impute_dtc call that creates ASTDT; it is not independently derivable without that producer and its presence depends on day imputation, so it is flagged for human review."
+    }
+  ],
+  "ir_hash": "96fe520c",
+  "code_digest": "9c85aa33b4f8041d20f90242f70f0d2b5ef36342d34987154498fbd8a2049777",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

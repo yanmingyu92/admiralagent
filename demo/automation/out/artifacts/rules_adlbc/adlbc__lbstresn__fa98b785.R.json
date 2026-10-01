@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__lbstresn__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSTRESN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTRESN",
+            "target": "LBSTRESN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    }
+  ],
+  "ir_hash": "38d2f80b",
+  "code_digest": "1ffd5ae65a6c1e8ad77bfc828ee93e26fcba2aee76d57f8bbe72f3388b72fb27",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:18-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

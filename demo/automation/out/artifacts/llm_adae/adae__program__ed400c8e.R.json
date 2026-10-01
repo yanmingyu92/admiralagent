@@ -1,0 +1,1202 @@
+{
+  "artifact": "adae__program__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "STUDYID is copied directly from ADSL; value brought into ADAE via merge_var keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SITEID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SITEID",
+            "target": "SITEID"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SITEID",
+      "confidence": 0.88,
+      "needs_human": false,
+      "rationale": "SITEID is taken from ADSL; value brought into ADAE via merge_var keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "USUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "literal": "USUBJID",
+            "target": "USUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "USUBJID is the merge key itself; it cannot be brought in by a merge keyed on USUBJID without creating a cyclic dependency. It must already exist in the ADAE base dataset, so a direct copy is not expressible without a source column. Requires human review of how USUBJID enters ADAE."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTA",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01A",
+            "target": "TRTA"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01A",
+      "confidence": 0.88,
+      "needs_human": false,
+      "rationale": "TRTA is the actual treatment, mapped from ADSL.TRT01A via merge_var keyed on USUBJID."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTAN is pulled from ADSL.TRT01AN via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AGE is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AGEGR1 is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1N",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AGEGR1N is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.RACE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "RACE is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.RACEN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "RACEN is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SEX",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "SEX is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SAFFL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SAFFL",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "SAFFL is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRTSDT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTSDT is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTEDT",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRTEDT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTEDT is taken from ADSL via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "AESTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ASTDT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESTDTC, converted to a numeric SAS date. Some events with partial dates are imputed in a conservative manner. If the day component is missing, a value of '01' is used. If both the month and day are missing no imputation is performed as these dates clearly indicate a start prior to the beginning of treatment. There are no events with completely missing start dates.",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESTDTC imputed to numeric ASTDT: missing day imputed to first (01); highest imputation D. The flag is produced by the flag-producing counterpart step from the same imputation."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDTF",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "AESTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ASTDT"
+          }
+        }
+      ],
+      "spec_origin": "ASTDTF='D' if the day value within the character date is imputed. Note that only day values needed to be imputed for this study.",
+      "confidence": 0.7,
+      "needs_human": true,
+      "rationale": "ASTDTF is the imputation flag produced by admiral::derive_vars_dtm with flag columns during the same imputation that creates ASTDT. The IR impute_dtc layer does not expose a flag target argument, so the exact flag column production cannot be expressed; requires human review."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDY",
+      "steps": [],
+      "spec_origin": "IF ASTDT>=TRTSDT>MISSING then ASTDY=ASTDT-TRTSDT+1 Else if TRTSDT>ASTDT>MISSING then ASTDY=ASTDT-TRTSDT",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "The derivation is a conditional (IF/ELSE IF) with MISSING checks that maps to a piecewise expression requiring function calls, which compute_var rejects. Cannot be expressed in the IR; requires human review."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AENDT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "last",
+            "dtc": "AEENDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "AENDT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEENDTC, converted to a numeric SAS date",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "AEENDTC is converted to a numeric date but the spec gives no explicit imputation rule. Partial-date imputation must be stated; end dates typically use 'last'. Confirmed imputation rule requires human review."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AENDY",
+      "steps": [],
+      "spec_origin": "IF AENDT>=TRTSDT>MISSING then AENDY=AENDT-TRTSDT+1 Else if TRTSDT>AENDT>MISSING then AENDY=AENDT-TRTSDT",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "The derivation is a conditional (IF/ELSE IF) with MISSING checks that maps to a piecewise expression requiring function calls, which compute_var rejects. Cannot be expressed in the IR; requires human review."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ADURN",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AENDT - ASTDT + 1",
+            "target": "ADURN"
+          }
+        }
+      ],
+      "spec_origin": "ADURN=AENDT-ASTDT+1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "ADURN is simple arithmetic over AENDT and ASTDT, both produced by earlier steps."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "ADURU",
+      "steps": [],
+      "spec_origin": "If ADURN is not missing then ADURU='DAYS'",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "The derivation is a conditional ('If ADURN is not missing then ADURU=DAYS'). assign only supports a single literal/source copy and compute_var rejects conditions; a conditional constant cannot be expressed in the IR. Requires human review."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AETERM",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AETERM",
+            "target": "AETERM"
+          }
+        }
+      ],
+      "spec_origin": "AE.AETERM",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AETERM is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AELLT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AELLT",
+            "target": "AELLT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AELLT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AELLT is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AELLTCD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AELLTCD",
+            "target": "AELLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AELLTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AELLTCD is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEDECOD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEDECOD",
+            "target": "AEDECOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEDECOD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEDECOD is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEPTCD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEPTCD",
+            "target": "AEPTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEPTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEPTCD is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEHLT",
+            "target": "AEHLT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEHLT is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLTCD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEHLTCD",
+            "target": "AEHLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEHLTCD is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLGT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEHLGT",
+            "target": "AEHLGT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLGT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEHLGT is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEHLGTCD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEHLGTCD",
+            "target": "AEHLGTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEHLGTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEHLGTCD is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEBODSYS",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEBODSYS",
+            "target": "AEBODSYS"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEBODSYS",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEBODSYS is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOC",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESOC",
+            "target": "AESOC"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOC",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESOC is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOCCD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESOCCD",
+            "target": "AESOCCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOCCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESOCCD is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESEV",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESEV",
+            "target": "AESEV"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESEV",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESEV is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESER",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESER",
+            "target": "AESER"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESER",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESER is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESCAN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESCAN",
+            "target": "AESCAN"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESCAN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESCAN is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESCONG",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESCONG",
+            "target": "AESCONG"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESCONG",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESCONG is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESDISAB",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESDISAB",
+            "target": "AESDISAB"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDISAB",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESDISAB is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESDTH",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESDTH",
+            "target": "AESDTH"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDTH",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESDTH is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESHOSP",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESHOSP",
+            "target": "AESHOSP"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESHOSP",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESHOSP is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESLIFE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESLIFE",
+            "target": "AESLIFE"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESLIFE",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESLIFE is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESOD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESOD",
+            "target": "AESOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESOD is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEREL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEREL",
+            "target": "AEREL"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEREL",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEREL is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEACN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEACN",
+            "target": "AEACN"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEACN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEACN is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AEOUT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AEOUT",
+            "target": "AEOUT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEOUT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEOUT is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AESEQ",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESEQ",
+            "target": "AESEQ"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESEQ",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESEQ is taken from the AE source dataset via merge_var."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEMFL",
+      "steps": [],
+      "spec_origin": "If ASTDT >= TRTSDT > . then TRTEMFL='Y'. Otherwise TRTEMFL='N'",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "The derivation is a conditional assigning 'Y' or 'N' based on a comparison with a missing check. assign supports only a single literal/source copy and compute_var rejects conditions, so this conditional constant cannot be expressed in the IR. Requires human review."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": "USUBJID",
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCFL=?Y?) within each Subject",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence within subject among treatment-emergent records: extreme_flag first ordered by ASTDT, AESEQ with restrict_filter scoping to TRTEMFL='Y'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCSFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCSFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCSFL=?Y?) within each Subject and SOC",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence within subject and SOC among treatment-emergent records: extreme_flag first ordered by ASTDT, AESEQ with restrict_filter TRTEMFL='Y'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCPFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS",
+              "AEDECOD"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCPFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCPFL=?Y?) within each Subject, SOC, and PT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence within subject, SOC and PT among treatment-emergent records: extreme_flag first ordered by ASTDT, AESEQ with restrict_filter TRTEMFL='Y'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC02FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": "USUBJID",
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y' & AESER == 'Y'",
+            "target": "AOCC02FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC02FL=?Y?) within each Subject",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence within subject among treatment-emergent serious records: extreme_flag first ordered by ASTDT, AESEQ with restrict_filter TRTEMFL='Y' and AESER='Y'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC03FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y' & AESER == 'Y'",
+            "target": "AOCC03FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC03FL=?Y?) within each Subject and SOC",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence within subject and SOC among treatment-emergent serious records: extreme_flag first ordered by ASTDT, AESEQ with restrict_filter TRTEMFL='Y' and AESER='Y'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC04FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS",
+              "AEDECOD"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y' & AESER == 'Y'",
+            "target": "AOCC04FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC04FL=?Y?) within each Subject, SOC, and PT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence within subject, SOC and PT among treatment-emergent serious records: extreme_flag first ordered by ASTDT, AESEQ with restrict_filter TRTEMFL='Y' and AESER='Y'."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "CQ01NAM",
+      "steps": [],
+      "spec_origin": "If AEDECOD contains any of the character strings of ('APPLICATION', 'DERMATITIS', 'ERYTHEMA', 'BLISTER') OR if AEBODSYS='SKIN AND SUBC UTANEOUS TISSUE DISORDERS' but AEDECOD is not in ('COLD SWEAT', 'HYPERHIDROSIS', 'ALOPECIA') then CQ01NAM='DERMATOLOGIC EVENTS' Otherwise CQ01NAM=NULL",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "The derivation is a complex conditional with substring matching (contains any of a list) and negated set membership, plus a NULL otherwise value. This requires function calls (grepl, %in%) and conditional logic that the IR layers cannot express. Requires human review."
+    },
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC01FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": "USUBJID",
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "CQ01NAM == 'DERMATOLOGIC EVENTS' & TRTEMFL == 'Y'",
+            "target": "AOCC01FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to CQ01NAM='DERMATOLOGIC EVENTS' and TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC01FL=?Y?) within each Subject (Flag First Treatment Emergent Dermatological Event for Time to Event Analysis)",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "First treatment-emergent dermatologic event per subject: extreme_flag first ordered by ASTDT, AESEQ with restrict_filter CQ01NAM='DERMATOLOGIC EVENTS' and TRTEMFL='Y'."
+    }
+  ],
+  "ir_hash": "ed400c8e",
+  "code_digest": "0799585a9f9f0f1829b996368dd6746fbc9b2e1c9d383f5ebbcc07df6ba03d5b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:37-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

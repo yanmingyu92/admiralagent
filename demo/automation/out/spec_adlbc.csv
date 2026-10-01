@@ -1,0 +1,47 @@
+"dataset","variable","label","type","origin","derivation","source_dataset","source_variable","order","codelist","length"
+"ADLBC","STUDYID","Study Identifier","text","predecessor","Copied directly from ADSL.STUDYID","adsl","STUDYID","1",NA,NA
+"ADLBC","SUBJID","Subject Identifier for the Study","text","predecessor","Copied directly from ADSL.SUBJID","adsl","SUBJID","2",NA,NA
+"ADLBC","USUBJID","Unique Subject Identifier","text","predecessor","Copied directly from ADSL.USUBJID","adsl","USUBJID","3",NA,NA
+"ADLBC","TRTP","Planned Treatment","text","derived","ADSL.TRT01P",NA,NA,"4","ARM",NA
+"ADLBC","TRTPN","Planned Treatment (N)","integer","derived","ADSL.TRT01PN",NA,NA,"5","ARMN",NA
+"ADLBC","TRTA","Actual Treatment","text","derived","ADSL.TRT01A",NA,NA,"6","ARM",NA
+"ADLBC","TRTAN","Actual Treatment (N)","integer","derived","ADSL.TRT01AN",NA,NA,"7","ARMN",NA
+"ADLBC","TRTSDT","Date of First Exposure to Treatment","integer","predecessor","Copied directly from ADSL.TRTSDT","adsl","TRTSDT","8",NA,NA
+"ADLBC","TRTEDT","Date of Last Exposure to Treatment","integer","predecessor","Copied directly from ADSL.TRTEDT","adsl","TRTEDT","9",NA,NA
+"ADLBC","AGE","Age","integer","predecessor","Copied directly from ADSL.AGE","adsl","AGE","10",NA,NA
+"ADLBC","AGEGR1","Pooled Age Group 1","text","predecessor","Copied directly from ADSL.AGEGR1","adsl","AGEGR1","11","AGEGR1",NA
+"ADLBC","AGEGR1N","Pooled Age Group 1 (N)","integer","predecessor","Copied directly from ADSL.AGEGR1N","adsl","AGEGR1N","12","AGEGR1N",NA
+"ADLBC","RACE","Race","text","predecessor","Copied directly from ADSL.RACE","adsl","RACE","13","RACE",NA
+"ADLBC","RACEN","Race (N)","integer","predecessor","Copied directly from ADSL.RACEN","adsl","RACEN","14","RACEN",NA
+"ADLBC","SEX","Sex","text","predecessor","Copied directly from ADSL.SEX","adsl","SEX","15","SEX",NA
+"ADLBC","COMP24FL","Completers of Week 24 Population Flag","text","predecessor","Copied directly from ADSL.COM01P24FL","adsl","COM01P24FL","16","YN",NA
+"ADLBC","DSRAEFL","Discontinued due to AE?","text","predecessor","Copied directly from ADSL.DSR01AEFL","adsl","DSR01AEFL","17","YN",NA
+"ADLBC","SAFFL","Safety Population Flag","text","predecessor","Copied directly from ADSL.SAF01FL","adsl","SAF01FL","18","YN",NA
+"ADLBC","AVISIT","Analysis Visit","text","derived","Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",NA,NA,"19","AVISIT",NA
+"ADLBC","AVISITN","Analysis Visit (N)","integer","assigned","Analysis Visit (N)",NA,NA,"20","AVISITN",NA
+"ADLBC","ADY","Analysis Relative Day","integer","derived","LB.LBDY",NA,NA,"21",NA,NA
+"ADLBC","ADT","Analysis Date","integer","derived","LB.LBDTC",NA,NA,"22",NA,NA
+"ADLBC","VISIT","Visit Name","text","predecessor","Copied directly from LB.VISIT","lb","VISIT","23","VISIT",NA
+"ADLBC","VISITNUM","Visit Number","float","predecessor","Copied directly from LB.VISITNUM","lb","VISITNUM","24","VISITNUM",NA
+"ADLBC","PARAM","Parameter","text","derived","Concatenated LB.LBTEST, '(', LB.LBSTRESU and ')'",NA,NA,"25","PARAM_ADLBC",NA
+"ADLBC","PARAMCD","Parameter Code","text","predecessor","Copied directly from LB.TESTCD","lb","TESTCD","26","PARAMCD_ADLBC",NA
+"ADLBC","PARAMN","Parameter (N)","integer","derived","Numeric code for Parameter",NA,NA,"27","PARAMN_ADLBC",NA
+"ADLBC","PARCAT1","Parameter Category 1","text","assigned","Parameter Category 1",NA,NA,"28","ADLBCAT",NA
+"ADLBC","AVAL","Analysis Value","float","predecessor","Copied directly from LB.LBSTRESN","lb","LBSTRESN","29",NA,NA
+"ADLBC","BASE","Baseline Value","float","derived","LB.LBSTNRHI",NA,NA,"30",NA,NA
+"ADLBC","CHG","Change from Baseline","float","derived","AVAL - BASE",NA,NA,"31",NA,NA
+"ADLBC","A1LO","Analysis Range 1 Lower Limit","float","derived","LB.LBSTNRLO",NA,NA,"32",NA,NA
+"ADLBC","A1HI","Analysis Range 1 Upper Limit","float","derived","LB.LBSTNRHI",NA,NA,"33",NA,NA
+"ADLBC","R2A1LO","Ratio to Analysis Range 1 Lower Limit","float","derived","AVAL / A1LO",NA,NA,"34",NA,NA
+"ADLBC","R2A1HI","Ratio to Analysis Range 1 Upper Limit","float","derived","AVAL / A1HI",NA,NA,"35",NA,NA
+"ADLBC","BR2A1LO","Base Ratio to Analysis Range 1 Lower Lim","float","derived","AVAL / A1LO at baseline",NA,NA,"36",NA,NA
+"ADLBC","BR2A1HI","Base Ratio to Analysis Range 1 Upper Lim","float","derived","AVAL / A1HI at baseline",NA,NA,"37",NA,NA
+"ADLBC","ANL01FL","Analysis Flag 01","text","assigned","If ALBTRVAL = max(ALBTRVAL) then ANL01FL is 'Y'",NA,NA,"38",NA,NA
+"ADLBC","ALBTRVAL","Amount Threshold Range","float","derived","Maximum of [LBSTRESN-(1.5*ULN)] and [(.5*LLN) - LBSTRESN]",NA,NA,"39",NA,NA
+"ADLBC","ANRIND","Analysis Reference Range Indicator","text","derived","if AVAL < [0.5*LBSTNRLO) then ANRIND = 'Y' else if AVAL > [0.5*LBSTRNHI),'H','N'",NA,NA,"40","LNH",NA
+"ADLBC","BNRIND","Baseline Reference Range Indicator","text","derived","if BASE < [0.5*LBSTNRLO) then ANRIND = 'Y' else if BASE > [0.5*LBSTRNHI),'H','N'",NA,NA,"41","LNH",NA
+"ADLBC","ABLFL","Baseline Record Flag","text","predecessor","Copied directly from LB.LBBLFL","lb","LBBLFL","42",NA,NA
+"ADLBC","AENTMTFL","Last value in treatment visit","text","derived","Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",NA,NA,"43",NA,NA
+"ADLBC","LBSEQ","Sequence Number","integer","predecessor","Copied directly from LB.LBSEQ","lb","LBSEQ","44",NA,NA
+"ADLBC","LBNRIND","Reference Range Indicator","text","predecessor","Copied directly from LB.LBNRIND","lb","LBNRIND","45","LBNRIND",NA
+"ADLBC","LBSTRESN","Numeric Result/Finding in Standard Units","float","predecessor","Copied directly from LB.LBSTRESN","lb","LBSTRESN","46",NA,NA

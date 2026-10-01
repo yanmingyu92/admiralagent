@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__r2a1lo__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1LO",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL / A1LO",
+            "target": "R2A1LO"
+          }
+        }
+      ],
+      "spec_origin": "AVAL / A1LO",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "R2A1LO = AVAL / A1LO is a column-wise arithmetic operation over existing AVAL and A1LO columns, both produced by earlier steps, so compute_var applies directly."
+    }
+  ],
+  "ir_hash": "f1f697bb",
+  "code_digest": "694a2ba87eec00bdc8fd8fdd4836a351dbaaeede5cd08b8bc5aafacabeca6811",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

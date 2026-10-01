@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__a1lo__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "A1LO",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSTNRLO",
+            "target": "A1LO"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRLO",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "A1LO is derived from LB.LBSTNRLO, a source-dataset BDS artifact, so it must be pulled with merge_var from lb. LBSTNRLO varies across a subject's many lab records, so STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys (e.g. PARAMCD, VISITNUM) require human review."
+    }
+  ],
+  "ir_hash": "1dcd3994",
+  "code_digest": "dba1b8d15b1bfa1fc269b54777c3d2110b2ebea411d865e620c4f3c74436ed01",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

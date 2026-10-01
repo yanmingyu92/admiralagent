@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__astdy__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDY",
+      "steps": [],
+      "spec_origin": "IF ASTDT>=TRTSDT>MISSING then ASTDY=ASTDT-TRTSDT+1 Else if TRTSDT>ASTDT>MISSING then ASTDY=ASTDT-TRTSDT",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "ASTDY is a conditional study-day computation (ASTDT>=TRTSDT then ASTDT-TRTSDT+1 else ASTDT-TRTSDT). The compute_var layer allows arithmetic and grouping parentheses only, so the conditional/missing-value guarded logic cannot be expressed with the allowed vocabulary. Human review required."
+    }
+  ],
+  "ir_hash": "1bc58e80",
+  "code_digest": "3f21779942a0f86ef54b1a2f1f24f224d746057c1673a02f371768ec1e1e3abb",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aeptcd__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEPTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEPTCD",
+            "target": "AEPTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEPTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEPTCD exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "eaedf882",
+  "code_digest": "31f01498e4484f14af744724be6cc7e2b60a1e88ebaff59e1bee851ed2665866",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

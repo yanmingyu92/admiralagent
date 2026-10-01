@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__br2a1lo__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1LO",
+      "steps": [],
+      "spec_origin": "AVAL / A1LO at baseline",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "BR2A1LO is AVAL/A1LO evaluated at baseline, but the rule does not define how to identify the baseline record or how BASE-level A1LO is selected; this requires a baseline-selection decision (flag/filter) that is not specified. Human review required."
+    }
+  ],
+  "ir_hash": "088de33b",
+  "code_digest": "d452bd19034f258a65a92aa08f496d05611a895048fa944401fbbe37c4c50789",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

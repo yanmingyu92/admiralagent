@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aesod__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESOD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESOD",
+            "target": "AESOD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESOD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESOD exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "241e3e1a",
+  "code_digest": "964c5420741ab12dc97894563f884e8b5c2db059a343eeb924c50958ab6d41de",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:05-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

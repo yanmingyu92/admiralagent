@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__trtemfl__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEMFL",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "ASTDT - TRTSDT",
+            "target": "TRTEMFL"
+          }
+        }
+      ],
+      "spec_origin": "If ASTDT >= TRTSDT > . then TRTEMFL='Y'. Otherwise TRTEMFL='N'",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "TRTEMFL is a conditional character flag (Y/N) based on ASTDT >= TRTSDT; the vocabulary lacks a conditional assignment layer, so it requires human review."
+    }
+  ],
+  "ir_hash": "4937db46",
+  "code_digest": "ee9258d21c1d95b41e4ad41c4e927f643bd0a06f7a5bb7a5b461c50b13347bb2",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:06-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

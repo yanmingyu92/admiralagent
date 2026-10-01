@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__trtemfl__eaa185b8.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEMFL",
+      "steps": [],
+      "spec_origin": "If ASTDT >= TRTSDT > . then TRTEMFL='Y'. Otherwise TRTEMFL='N'",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "TRTEMFL requires a conditional assignment (Y when ASTDT >= TRTSDT and non-missing, else N). The assign layer only supports a direct copy or a literal constant; the conditional/missing-guarded logic is not expressible with the allowed layers and formula vocabulary. Human review required."
+    }
+  ],
+  "ir_hash": "60ad558e",
+  "code_digest": "c037a7cb0310ba615205432008ad562373abb5f423f9b6b0c6a59678a628f485",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

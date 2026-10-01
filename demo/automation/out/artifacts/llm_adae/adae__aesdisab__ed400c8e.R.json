@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aesdisab__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESDISAB",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESDISAB",
+            "target": "AESDISAB"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDISAB",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESDISAB is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "68de4137",
+  "code_digest": "7044e7f2f8e9b1b395ed5b342acccb30447c67a77da85e3996c817d169dd12fd",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,686 @@
+{
+  "artifact": "adlbc__program__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SUBJID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "USUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "USUBJID",
+            "target": "USUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTP",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01P",
+            "target": "TRTP"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01P",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.TRT01P"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTPN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01PN",
+            "target": "TRTPN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01PN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.TRT01PN"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTA",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01A",
+            "target": "TRTA"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01A",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.TRT01A"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from ADSL.TRT01AN"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTSDT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRTEDT",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTEDT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGEGR1",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGEGR1N",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACEN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SEX",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "COMP24FL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "COM01P24FL",
+            "target": "COMP24FL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.COM01P24FL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "DSRAEFL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "DSR01AEFL",
+            "target": "DSRAEFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.DSR01AEFL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SAF01FL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SAF01FL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVISIT",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVISITN",
+      "steps": [],
+      "spec_origin": "Analysis Visit (N)",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ADY",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBDY",
+            "target": "ADY"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDY",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from LB.LBDY"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ADT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBDTC",
+            "target": "ADT"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDTC",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from LB.LBDTC"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "VISIT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "VISIT",
+            "target": "VISIT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.VISIT",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "VISITNUM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "VISITNUM",
+            "target": "VISITNUM"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.VISITNUM",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAM",
+      "steps": [],
+      "spec_origin": "Concatenated LB.LBTEST, '(', LB.LBSTRESU and ')'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TESTCD",
+            "target": "PARAMCD"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.TESTCD",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMN",
+      "steps": [],
+      "spec_origin": "Numeric code for Parameter",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARCAT1",
+      "steps": [],
+      "spec_origin": "Parameter Category 1",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: categorisation breakpoints require human decision"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVAL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTRESN",
+            "target": "AVAL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BASE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRHI",
+            "target": "BASE"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from LB.LBSTNRHI"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "CHG",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL - BASE",
+            "target": "CHG"
+          }
+        }
+      ],
+      "spec_origin": "AVAL - BASE",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: column arithmetic change from baseline"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "A1LO",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRLO",
+            "target": "A1LO"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRLO",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from LB.LBSTNRLO"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "A1HI",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRHI",
+            "target": "A1HI"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from LB.LBSTNRHI"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1LO",
+      "steps": [],
+      "spec_origin": "AVAL / A1LO",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1HI",
+      "steps": [],
+      "spec_origin": "AVAL / A1HI",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1LO",
+      "steps": [],
+      "spec_origin": "AVAL / A1LO at baseline",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1HI",
+      "steps": [],
+      "spec_origin": "AVAL / A1HI at baseline",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ANL01FL",
+      "steps": [],
+      "spec_origin": "If ALBTRVAL = max(ALBTRVAL) then ANL01FL is 'Y'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ALBTRVAL",
+      "steps": [],
+      "spec_origin": "Maximum of [LBSTRESN-(1.5*ULN)] and [(.5*LLN) - LBSTRESN]",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ANRIND",
+      "steps": [],
+      "spec_origin": "if AVAL < [0.5*LBSTNRLO) then ANRIND = 'Y' else if AVAL > [0.5*LBSTRNHI),'H','N'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BNRIND",
+      "steps": [],
+      "spec_origin": "if BASE < [0.5*LBSTNRLO) then ANRIND = 'Y' else if BASE > [0.5*LBSTRNHI),'H','N'",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ABLFL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBBLFL",
+            "target": "ABLFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBBLFL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AENTMTFL",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSEQ",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSEQ",
+            "target": "LBSEQ"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSEQ",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBNRIND",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBNRIND",
+            "target": "LBNRIND"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBNRIND",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSTRESN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTRESN",
+            "target": "LBSTRESN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: direct copy from source variable"
+    }
+  ],
+  "ir_hash": "fa98b785",
+  "code_digest": "2cfea1250c1bd7fb3482af86b61c41cfdfb34c3001206173aa23ad33af7d27fd",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:17-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,43 @@
+{
+  "artifact": "adae__aoccfl__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCFL=?Y?) within each Subject",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence within subject: restricted to treatment-emergent records, ordered by ASTDT then AESEQ, flagging first per subject."
+    }
+  ],
+  "ir_hash": "7cc3dc3d",
+  "code_digest": "1181dabca33933bcef56d9c718bb34d900b48e6bfbc19dae859f6cd0fcaf2151",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:06-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

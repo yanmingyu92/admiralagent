@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__usubjid__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "USUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "literal": "USUBJID",
+            "target": "USUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "USUBJID is the merge key itself; it cannot be brought in by a merge keyed on USUBJID without creating a cyclic dependency. It must already exist in the ADAE base dataset, so a direct copy is not expressible without a source column. Requires human review of how USUBJID enters ADAE."
+    }
+  ],
+  "ir_hash": "b7131ea4",
+  "code_digest": "a45ef30a093b6024007468aff86b8a7d99fd2bd7e7eea2479bb264b71a600361",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

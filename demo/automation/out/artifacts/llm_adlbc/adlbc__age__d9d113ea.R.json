@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__age__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGE",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGE is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    }
+  ],
+  "ir_hash": "59a49cb9",
+  "code_digest": "3e52c913e7c8aa8e789e7954ad31653d981711cfe9e099c57958e5cd880c57e9",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

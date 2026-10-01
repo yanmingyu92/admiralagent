@@ -1,0 +1,839 @@
+{
+  "artifact": "adlbc__program__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "STUDYID is a predecessor variable present in the ADLBC base dataset (carried from the ADMIRAL skeleton), so it is copied directly with assign rather than a merge, avoiding self-referential merge keys."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SUBJID",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "SUBJID is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "USUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "USUBJID",
+            "target": "USUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "USUBJID is a predecessor variable present in the ADLBC base dataset, copied directly with assign; no merge key is required or possible."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTP",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01P",
+            "target": "TRTP"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01P",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTP derives from ADSL.TRT01P, a variable not in the ADLBC base dataset; merge_var pulls it from the adsl source keyed on STUDYID and USUBJID, which are predecessor variables present in the base dataset."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTPN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01PN",
+            "target": "TRTPN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01PN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTPN derives from ADSL.TRT01PN, not present in the ADLBC base dataset; merge_var pulls it from the adsl source keyed on STUDYID and USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTA",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01A",
+            "target": "TRTA"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01A",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTA derives from ADSL.TRT01A, not present in the ADLBC base dataset; merge_var pulls it from the adsl source keyed on STUDYID and USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTAN derives from ADSL.TRT01AN, not present in the ADLBC base dataset; merge_var pulls it from the adsl source keyed on STUDYID and USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTSDT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTSDT is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRTEDT",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTEDT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "TRTEDT is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGE",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGE is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGEGR1",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGEGR1 is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGEGR1N",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AGEGR1N is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACE",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "RACE is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACEN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "RACEN is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SEX",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "SEX is a predecessor variable present in the ADLBC base dataset, copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "COMP24FL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "COM01P24FL",
+            "target": "COMP24FL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.COM01P24FL",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "COMP24FL is copied from ADSL.COM01P24FL under a new name; since the source variable name differs from the target and is not in the base dataset, merge_var pulls it from adsl keyed on STUDYID and USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "DSRAEFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "DSR01AEFL",
+            "target": "DSRAEFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.DSR01AEFL",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "DSRAEFL is copied from ADSL.DSR01AEFL under a new name; the source name differs and is not in the base dataset, so merge_var pulls it from adsl keyed on STUDYID and USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SAF01FL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SAF01FL",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "SAFFL is copied from ADSL.SAF01FL under a new name; the source name differs and is not in the base dataset, so merge_var pulls it from adsl keyed on STUDYID and USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVISIT",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "The derivation for AVISIT is internally inconsistent: the label is Analysis Visit (a text visit name) but the rule text describes a flag-style rule producing 'Y' based on VISITNUM=12 or last-observed-analyte logic. Determining the intended AVISIT values, the visit mapping, and the last-assessment logic requires human decision; no supported layer captures this."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVISITN",
+      "steps": [],
+      "spec_origin": "Analysis Visit (N)",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Derivation 'Analysis Visit (N)' provides no actual rule or source; the mapping from AVISIT to AVISITN is unspecified and likely requires an external visit decode table, which is not supplied."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ADY",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBDY",
+            "target": "ADY"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDY",
+      "confidence": 0.7,
+      "needs_human": true,
+      "rationale": "ADY maps to LB.LBDY, which is not present in the ADLBC base dataset; merge_var can pull it from lb keyed on STUDYID and USUBJID. However LBDY is not unique per subject (multiple lab records/analytes), so a by_vars of STUDYID/USUBJID alone loses the record-level linkage. A merged join may need additional keys (PARAMCD, VISITNUM) or ADY should be derived from ADT relative to TRTSDT; the correct record linkage requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ADT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBDTC",
+            "target": "ADT"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDTC",
+      "confidence": 0.65,
+      "needs_human": true,
+      "rationale": "ADT maps to LB.LBDTC, a character --DTC not present in the ADLBC base dataset. LBDTC is a character date-time needing imputation into a numeric ADT; a simple merge_var would not convert the character DTC to a numeric date, and the record-level linkage across multiple lab records needs additional keys. Correct handling (impute LB.LBDTC then merge, or use the LB record carried into ADLBC) requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "VISIT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "VISIT",
+            "target": "VISIT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.VISIT",
+      "confidence": 0.7,
+      "needs_human": true,
+      "rationale": "VISIT is copied from LB.VISIT, but VISIT varies across a subject's many lab records, so merging on STUDYID/USUBJID alone is ambiguous and would not preserve the per-record visit. Correct record-level linkage (e.g. by VISITNUM/PARAMCD) requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "VISITNUM",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID",
+              "PARAMCD",
+              "VISITNUM"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "VISITNUM",
+            "target": "VISITNUM"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.VISITNUM",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "VISITNUM is a predecessor from LB.VISITNUM, a source-dataset BDS artifact, so it must be pulled with merge_var from lb. However per-record linkage cannot be captured by STUDYID/USUBJID alone; the correct record keys require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAM",
+      "steps": [],
+      "spec_origin": "Concatenated LB.LBTEST, '(', LB.LBSTRESU and ')'",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "PARAM is built by concatenating LB.LBTEST, '(', LB.LBSTRESU and ')'. No supported layer performs column-wise string concatenation (compute_var allows arithmetic only), and merging per lab record requires record-level linkage. Human review required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMCD",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "TESTCD",
+            "target": "PARAMCD"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.TESTCD",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "PARAMCD is copied from LB.TESTCD (a source-dataset BDS artifact), so it must be pulled with merge_var from lb rather than assign. But TESTCD varies across a subject's many lab records and STUDYID/USUBJID alone is ambiguous; correct record-level linkage keys require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMN",
+      "steps": [],
+      "spec_origin": "Numeric code for Parameter",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "'Numeric code for Parameter' gives no explicit rule, mapping table, or source; deriving PARAMN from PARAM requires an external codelist/decode that is not supplied. Human review required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARCAT1",
+      "steps": [],
+      "spec_origin": "Parameter Category 1",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Derivation 'Parameter Category 1' restates the label only, providing no rule, source variable, or mapping; the values/assignment logic are unspecified and require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVAL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSTRESN",
+            "target": "AVAL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "AVAL is copied from LB.LBSTRESN (a source-dataset BDS artifact), so it must be pulled with merge_var from lb. LBSTRESN varies across a subject's many lab records, so STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys (e.g. PARAMCD, VISITNUM) require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BASE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSTNRHI",
+            "target": "BASE"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 0.5,
+      "needs_human": true,
+      "rationale": "BASE is derived from LB.LBSTNRHI, a source-dataset BDS artifact, pulled with merge_var from lb. LBSTNRHI is not obviously a baseline value (it is the upper limit of the reference range), and per-record linkage cannot be captured by STUDYID/USUBJID alone; the intended semantics and keys require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "CHG",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL - BASE",
+            "target": "CHG"
+          }
+        }
+      ],
+      "spec_origin": "AVAL - BASE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "CHG = AVAL - BASE is a column-wise arithmetic operation over existing AVAL and BASE columns in ADLBC; both are produced by earlier steps, so compute_var applies directly."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "A1LO",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSTNRLO",
+            "target": "A1LO"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRLO",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "A1LO is derived from LB.LBSTNRLO, a source-dataset BDS artifact, so it must be pulled with merge_var from lb. LBSTNRLO varies across a subject's many lab records, so STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys (e.g. PARAMCD, VISITNUM) require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "A1HI",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSTNRHI",
+            "target": "A1HI"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "A1HI is derived from LB.LBSTNRHI, a source-dataset BDS artifact, so it must be pulled with merge_var from lb. LBSTNRHI varies across a subject's many lab records, so STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1LO",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL / A1LO",
+            "target": "R2A1LO"
+          }
+        }
+      ],
+      "spec_origin": "AVAL / A1LO",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "R2A1LO = AVAL / A1LO is a column-wise arithmetic operation over existing AVAL and A1LO columns, both produced by earlier steps, so compute_var applies directly."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1HI",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL / A1HI",
+            "target": "R2A1HI"
+          }
+        }
+      ],
+      "spec_origin": "AVAL / A1HI",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "R2A1HI = AVAL / A1HI is a column-wise arithmetic operation over existing AVAL and A1HI columns, both produced by earlier steps, so compute_var applies directly."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1LO",
+      "steps": [],
+      "spec_origin": "AVAL / A1LO at baseline",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "BR2A1LO is AVAL/A1LO evaluated at baseline, but the rule does not define how to identify the baseline record or how BASE-level A1LO is selected; this requires a baseline-selection decision (flag/filter) that is not specified. Human review required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1HI",
+      "steps": [],
+      "spec_origin": "AVAL / A1HI at baseline",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "BR2A1HI is AVAL/A1HI evaluated at baseline, but the rule does not define how to identify the baseline record or select baseline A1HI; a baseline-selection decision is required. Human review required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ANL01FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID",
+              "PARAMCD"
+            ],
+            "mode": "last",
+            "order": "ALBTRVAL",
+            "target": "ANL01FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "If ALBTRVAL = max(ALBTRVAL) then ANL01FL is 'Y'",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "ANL01FL flags the record where ALBTRVAL equals its maximum within subject/analyte; extreme_flag with order on ALBTRVAL and mode 'last' approximates max. However the exact grouping (which PARAMCD/visit scope) and the precise ALBTRVAL producer dependency are ambiguous, warranting human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ALBTRVAL",
+      "steps": [],
+      "spec_origin": "Maximum of [LBSTRESN-(1.5*ULN)] and [(.5*LLN) - LBSTRESN]",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "ALBTRVAL requires (1) LBSTRESN, ULN and LLN pulled per lab record from lb (record-level linkage undefined), and (2) an element-wise max of two computed expressions, which no supported layer performs (compute_var is single-target arithmetic without max()). Human review required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ANRIND",
+      "steps": [],
+      "spec_origin": "if AVAL < [0.5*LBSTNRLO) then ANRIND = 'Y' else if AVAL > [0.5*LBSTRNHI),'H','N'",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "ANRIND requires an element-wise conditional comparing AVAL against 0.5*LBSTNRLO and 0.5*LBSTNRHI with multiple output levels ('Y'/'H'/'N'). No supported layer performs conditional/case categorization (categorize is numeric breakpoints only), the expressions contain scalar multiplications of pulled columns, and the range-limit source from lb lacks defined record-level keys. Human review required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BNRIND",
+      "steps": [],
+      "spec_origin": "if BASE < [0.5*LBSTNRLO) then ANRIND = 'Y' else if BASE > [0.5*LBSTRNHI),'H','N'",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "BNRIND requires an element-wise conditional comparing BASE against 0.5*LBSTNRLO and 0.5*LBSTNRHI with multiple output levels. No supported layer performs conditional/case categorization, and the range-limit source from lb lacks defined record-level keys. Human review required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ABLFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBBLFL",
+            "target": "ABLFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBBLFL",
+      "confidence": 0.5,
+      "needs_human": true,
+      "rationale": "ABLFL is copied from LB.LBBLFL (a source-dataset BDS artifact), so it must be pulled with merge_var from lb. LBBLFL varies across a subject's many lab records, so STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AENTMTFL",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "AENTMTFL derivation mixes VISITNUM=12 logic with a last-observed-analyte rule; the conflict and the undefined last-assessment logic across analytes require human decision, and no single supported layer captures it."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSEQ",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSEQ",
+            "target": "LBSEQ"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSEQ",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "LBSEQ is copied from LB.LBSEQ (a source-dataset BDS artifact), so it must be pulled with merge_var from lb. Wait, LBSEQ is the record-level sequence and STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBNRIND",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBNRIND",
+            "target": "LBNRIND"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBNRIND",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "LBNRIND is copied from LB.LBNRIND (a source-dataset BDS artifact), so it must be pulled with merge_var from lb. LBNRIND varies across a subject's many lab records, so STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys require human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSTRESN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "lb",
+            "mode": "first",
+            "source": "LBSTRESN",
+            "target": "LBSTRESN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "LBSTRESN is copied from LB.LBSTRESN (a source-dataset BDS artifact), so it must be pulled with merge_var from lb. LBSTRESN varies across a subject's many lab records, so STUDYID/USUBJID alone is ambiguous; correct per-record linkage keys require human review."
+    }
+  ],
+  "ir_hash": "d9d113ea",
+  "code_digest": "fefd9b62a49f40c67d0d7b80fda68d89532ed06e69d13ef7ef1e8c761666df15",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

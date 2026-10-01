@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aeout__78048f99.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEOUT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEOUT",
+            "target": "AEOUT"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEOUT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEOUT exists in the ADAE base dataset; direct copy."
+    }
+  ],
+  "ir_hash": "d5ccb615",
+  "code_digest": "2e424b4bab58ed94b932357aceea1a7f43c9322df54b962f88b3ee774d294ff3",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T16:10:06-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

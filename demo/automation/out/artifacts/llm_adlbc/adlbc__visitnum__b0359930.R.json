@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__visitnum__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "VISITNUM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "VISITNUM",
+            "target": "VISITNUM"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.VISITNUM",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "ADLBC is seeded from LB, so LB.VISITNUM is already present in the target base; direct copy via assign."
+    }
+  ],
+  "ir_hash": "157755f4",
+  "code_digest": "cd85f9264dd69b6b8acf837d4c94425d943c2c652b27e721b5cc35e6e2909c79",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:20-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

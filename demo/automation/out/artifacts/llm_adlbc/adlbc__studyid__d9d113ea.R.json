@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__studyid__d9d113ea.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "STUDYID is a predecessor variable present in the ADLBC base dataset (carried from the ADMIRAL skeleton), so it is copied directly with assign rather than a merge, avoiding self-referential merge keys."
+    }
+  ],
+  "ir_hash": "fd7a835b",
+  "code_digest": "4658f2ebbeb1c1c70fee9b5ad533915e18c374ca33c8dbba7006c19f59afbc9f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:43-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

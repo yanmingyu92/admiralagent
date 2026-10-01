@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__albtrval__b0359930.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ALBTRVAL",
+      "steps": [],
+      "spec_origin": "Maximum of [LBSTRESN-(1.5*ULN)] and [(.5*LLN) - LBSTRESN]",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "ALBTRVAL requires max() over two arithmetic expressions involving LBSTRESN, ULN and LLN; function calls are rejected by compute_var and the layer vocabulary cannot express this, requiring human review."
+    }
+  ],
+  "ir_hash": "75d17cd1",
+  "code_digest": "0527d069141f2ff86284edda4a372543244c7e06e15ebf62df65a407805a2564",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:21-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,39 @@
+{
+  "artifact": "adae__aeser__ed400c8e.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESER",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "ae",
+            "mode": "first",
+            "source": "AESER",
+            "target": "AESER"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESER",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESER is taken from the AE source dataset via merge_var."
+    }
+  ],
+  "ir_hash": "71db53bb",
+  "code_digest": "d186eb0d80f843cf91ba25028131e116721f8f7e6eab63d8b73f8543e3a97137",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:34:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__r2a1lo__fa98b785.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1LO",
+      "steps": [],
+      "spec_origin": "AVAL / A1LO",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "b657f1a1",
+  "code_digest": "a95187e6155ee3b9e9c5b4bd2a08d094b45b7cfe46d1b38a75c55e9b66d92077",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T17:47:18-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}
