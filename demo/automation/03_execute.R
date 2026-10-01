@@ -13,16 +13,16 @@ sdtm <- load_pilot5_sdtm()
 cat("SDTM sources:", paste(names(sdtm), collapse = ", "), "\n")
 
 backends <- c("rules", "llm")
-if (file.exists(file.path(OUT_DIR, "ir_llm_consensus.rds"))) backends <- c(backends, "consensus")
+if (file.exists(file.path(out_dir, "ir_llm_consensus.rds"))) backends <- c(backends, "consensus")
 
 for (nm in backends) {
-  rds <- file.path(OUT_DIR, switch(nm, rules = "ir_rules.rds", llm = "ir_llm.rds",
+  rds <- file.path(out_dir, switch(nm, rules = "ir_rules.rds", llm = "ir_llm.rds",
                                    consensus = "ir_llm_consensus.rds"))
   if (!file.exists(rds)) next
   ir <- readRDS(rds)
 
   sources <- c(list(base = sdtm$dm), sdtm[setdiff(names(sdtm), "dm")])
-  log_file <- file.path(OUT_DIR, paste0("execute_", nm, ".jsonl"))
+  log_file <- file.path(out_dir, paste0("execute_", nm, ".jsonl"))
   if (file.exists(log_file)) file.remove(log_file)  # fresh chain per run
 
   t0 <- Sys.time()
@@ -35,17 +35,17 @@ for (nm in backends) {
   if (inherits(res, "error")) {
     cat(sprintf("%-10s execute_ir FAILED at call level: %s\n", nm, conditionMessage(res)))
     write_json(list(stage = "03_execute", backend = nm, call_error = conditionMessage(res)),
-               file.path(OUT_DIR, paste0("exec_error_", nm, ".json")))
+               file.path(out_dir, paste0("exec_error_", nm, ".json")))
     next
   }
 
   target_nm <- setdiff(names(res), c("status", "env"))[1]
   produced <- res[[target_nm]]
-  saveRDS(produced, file.path(OUT_DIR, paste0("adsl_", nm, ".rds")))
-  utils::write.csv(res$status, file.path(OUT_DIR, paste0("exec_status_", nm, ".csv")), row.names = FALSE)
+  saveRDS(produced, file.path(out_dir, paste0("adsl_", nm, ".rds")))
+  utils::write.csv(res$status, file.path(out_dir, paste0("exec_status_", nm, ".csv")), row.names = FALSE)
 
   val <- run_validation(produced, ir, quiet = TRUE)
-  utils::write.csv(val, file.path(OUT_DIR, paste0("validation_", nm, ".csv")), row.names = FALSE)
+  utils::write.csv(val, file.path(out_dir, paste0("validation_", nm, ".csv")), row.names = FALSE)
 
   cat(sprintf("%-10s %.1fs | EXECUTED=%d ERROR=%d REVIEW=%d | validation PASS=%d FAIL=%d MANUAL=%d\n",
               nm, secs,

@@ -42,10 +42,12 @@ load_evals <- function(path = NULL) {
   cases <- lapply(seq_along(lines), function(i) {
     case <- tryCatch(
       jsonlite::fromJSON(lines[[i]], simplifyVector = TRUE),
-      error = function(e) stop(
-        "evals corpus line ", i, " is not valid JSON: ", conditionMessage(e),
-        call. = FALSE
-      )
+      error = function(e) {
+        stop(
+          "evals corpus line ", i, " is not valid JSON: ", conditionMessage(e),
+          call. = FALSE
+        )
+      }
     )
     # `expected_args` is an array of heterogeneous objects; simplifyVector
     # would fold it into a data.frame and silently transpose args into

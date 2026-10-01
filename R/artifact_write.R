@@ -14,15 +14,17 @@ sorted_args <- function(args) {
 }
 
 canonical_ir <- function(ir) {
-  plain <- lapply(ir, function(v) list(
-    dataset = v$dataset,
-    variable = v$variable,
-    steps = lapply(v$steps, function(s) list(layer = s$layer, args = sorted_args(s$args))),
-    spec_origin = v$spec_origin,
-    confidence = v$confidence,
-    needs_human = v$needs_human,
-    rationale = v$rationale
-  ))
+  plain <- lapply(ir, function(v) {
+    list(
+      dataset = v$dataset,
+      variable = v$variable,
+      steps = lapply(v$steps, function(s) list(layer = s$layer, args = sorted_args(s$args))),
+      spec_origin = v$spec_origin,
+      confidence = v$confidence,
+      needs_human = v$needs_human,
+      rationale = v$rationale
+    )
+  })
   jsonlite::toJSON(unname(plain), auto_unbox = TRUE, null = "null", na = "null", digits = NA)
 }
 
@@ -271,7 +273,7 @@ verify_artifact_integrity <- function(path, sc, ir) {
   # believed. Sidecars written before the label existed carry none and are read
   # as-is; their grade is inferred from the gate in `read_artifact()`.
   if (scalar_text(sc$release_grade) &&
-      !identical(sc$release_grade, artifact_release_grade(gate))) {
+        !identical(sc$release_grade, artifact_release_grade(gate))) {
     stop("release grade drift: this sidecar is labelled '", sc$release_grade,
          "' but carries ", if (is.null(gate)) "no approval gate" else "an approval gate",
          "; the grade label was edited", call. = FALSE)

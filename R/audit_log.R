@@ -223,7 +223,7 @@ verify_log <- function(file = aa_log_file(), key = log_key()) {
       error = function(e) NULL
     )
     if (!is.null(head) &&
-        (!identical(as.integer(head$seq), length(lines)) || !identical(head$digest, prev))) {
+          (!identical(as.integer(head$seq), length(lines)) || !identical(head$digest, prev))) {
       return(outcome(FALSE, length(lines) + 1L, paste0(
         "log ends at record ", length(lines), " but the head pointer records ",
         head$seq, "; records were removed from the end"

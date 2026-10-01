@@ -38,11 +38,13 @@ test_that("same layer chain with different args is agreement at layer_chain, dis
   # source column and imputation direction differ entirely.
   a <- list(dataset = "ADSL", variable = "TRTSDTM", needs_human = FALSE, steps = list(
     list(layer = "impute_dtc", args = list(target = "TRTSDTM", dtc = "RFSTDTC",
-         output_class = "dtm", highest_imputation = "M", date_imputation = "first"))
+                                           output_class = "dtm", highest_imputation = "M",
+                                           date_imputation = "first"))
   ))
   b <- list(dataset = "ADSL", variable = "TRTSDTM", needs_human = FALSE, steps = list(
     list(layer = "impute_dtc", args = list(target = "TRTSDTM", dtc = "RFENDTC",
-         output_class = "dtm", highest_imputation = "M", date_imputation = "last"))
+                                           output_class = "dtm", highest_imputation = "M",
+                                           date_imputation = "last"))
   ))
 
   expect_identical(ir_fingerprint(a, "layer_chain"), ir_fingerprint(b, "layer_chain"))

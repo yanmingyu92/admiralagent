@@ -19,17 +19,18 @@ md_table <- function(df) {
 
 fmt_pct <- function(x) ifelse(is.na(x), "n/a", sprintf("%.1f%%", as.numeric(x)))
 
-manifest <- read_json_or(file.path(OUT_DIR, "ingest_manifest.json"))
-gate <- read_json_or(file.path(OUT_DIR, "gate_report.json"))
-telemetry <- read_json_or(file.path(OUT_DIR, "llm_telemetry.json"))
-acc_summary <- read_json_or(file.path(OUT_DIR, "accuracy_summary.json"))
-rl <- read_csv_or(file.path(OUT_DIR, "rules_vs_llm_layers.csv"))
-consensus <- read_csv_or(file.path(OUT_DIR, "consensus.csv"))
+manifest <- read_json_or(file.path(out_dir, "ingest_manifest.json"))
+gate <- read_json_or(file.path(out_dir, "gate_report.json"))
+telemetry <- read_json_or(file.path(out_dir, "llm_telemetry.json"))
+acc_summary <- read_json_or(file.path(out_dir, "accuracy_summary.json"))
+rl <- read_csv_or(file.path(out_dir, "rules_vs_llm_layers.csv"))
+consensus <- read_csv_or(file.path(out_dir, "consensus.csv"))
 
-spec <- readRDS(file.path(OUT_DIR, "spec_adsl.rds"))
+spec <- readRDS(file.path(out_dir, "spec_adsl.rds"))
 
-L <- c()
-add <- function(...) L <<- c(L, paste0(...))
+report <- new.env(parent = emptyenv())
+report$lines <- c()
+add <- function(...) report$lines <- c(report$lines, paste0(...))
 
 add("# CDISC Pilot 5 Automation Showcase — admiralagent + DeepSeek")
 add("")
@@ -69,8 +70,8 @@ funnel_rows <- list()
 for (nm in c("rules", "llm", "consensus")) {
   g <- gate$backends[[nm]]
   if (is.null(g)) next
-  st <- read_csv_or(file.path(OUT_DIR, paste0("exec_status_", nm, ".csv")))
-  val <- read_csv_or(file.path(OUT_DIR, paste0("validation_", nm, ".csv")))
+  st <- read_csv_or(file.path(out_dir, paste0("exec_status_", nm, ".csv")))
+  val <- read_csv_or(file.path(out_dir, paste0("validation_", nm, ".csv")))
   funnel_rows[[nm]] <- data.frame(
     backend = nm,
     spec_vars = g$variables,
@@ -106,8 +107,8 @@ for (nm in c("rules", "llm")) {
 add("")
 add("### Per-variable table")
 add("")
-acc_rules <- read_csv_or(file.path(OUT_DIR, "accuracy_rules.csv"))
-acc_llm <- read_csv_or(file.path(OUT_DIR, "accuracy_llm.csv"))
+acc_rules <- read_csv_or(file.path(out_dir, "accuracy_rules.csv"))
+acc_llm <- read_csv_or(file.path(out_dir, "accuracy_llm.csv"))
 if (!is.null(acc_rules) && !is.null(acc_llm)) {
   merged <- merge(
     acc_rules[, c("variable", "status", "value_agree")],
@@ -176,14 +177,16 @@ add("")
 add("## 7. Failure taxonomy (`out/exec_status_<backend>.csv`)")
 add("")
 for (nm in c("rules", "llm")) {
-  st <- read_csv_or(file.path(OUT_DIR, paste0("exec_status_", nm, ".csv")))
+  st <- read_csv_or(file.path(out_dir, paste0("exec_status_", nm, ".csv")))
   if (is.null(st)) next
   errs <- st[st$status == "ERROR", ]
   add(sprintf("### %s: %d execution errors", nm, nrow(errs)))
   add("")
   if (nrow(errs)) {
     add(md_table(errs))
-  } else add("_(none)_")
+  } else {
+    add("_(none)_")
+  }
   add("")
 }
 
@@ -192,7 +195,7 @@ add("")
 add("## 8. needs_human inventory (from the IR objects)")
 add("")
 for (nm in c("rules", "llm")) {
-  rds <- file.path(OUT_DIR, switch(nm, rules = "ir_rules.rds", llm = "ir_llm.rds"))
+  rds <- file.path(out_dir, switch(nm, rules = "ir_rules.rds", llm = "ir_llm.rds"))
   if (!file.exists(rds)) next
   ir <- readRDS(rds)
   nh <- Filter(function(v) isTRUE(v$needs_human), ir)
@@ -205,7 +208,9 @@ for (nm in c("rules", "llm")) {
       stringsAsFactors = FALSE
     )
     add(md_table(df))
-  } else add("_(none)_")
+  } else {
+    add("_(none)_")
+  }
   add("")
 }
 
@@ -215,14 +220,16 @@ add("## 9. Findings registered this run (`out/findings.json`)")
 add("")
 add("Per the AGENTS.md improvement-loop convention, every ERROR/FAIL/MANUAL class observed gets a numbered finding with evidence. `severity`: **package** = code defect to fix; **demo** = pipeline configuration; **spec** = source-spec ambiguity; **oracle** = oracle convention the spec text does not mention.")
 add("")
-findings <- read_json_or(file.path(OUT_DIR, "findings.json"))
+findings <- read_json_or(file.path(out_dir, "findings.json"))
 if (!is.null(findings)) {
   for (f in findings$findings) {
     add(sprintf("- **%s (%s) — %s.** %s _Evidence: %s._",
                 f$id, f$severity, f$title, f$detail, f$evidence))
     if (!is.null(f$suggested_fix)) add(sprintf("  - Suggested fix: %s", f$suggested_fix))
   }
-} else add("_(none registered)_")
+} else {
+  add("_(none registered)_")
+}
 
 # --- limitations -----------------------------------------------------------------
 add("")
@@ -237,7 +244,7 @@ add("6. **Oracle differences may be spec ambiguity, not package error.** Where a
 add("7. **Programs are UNGATED DRAFTs.** No human approval gate covers these artifacts; they are demonstration output, not release-grade deliverables (DESIGN.md section 11, item 4).")
 add("8. **Single model, single dataset, and stochastic.** Numbers are for DeepSeek `deepseek-chat` on pilot5 ADSL only; they do not transfer to other models or datasets without re-measurement. LLM output also varies run to run at temperature defaults: across the two full runs behind this report's development, the full-spec needs_human count moved 24 -> 22 and the rules/LLM layer-chain agreement 78% -> 71% — run-to-run translation variance is exactly what the consensus mode in section 5 exists to measure and contain.")
 
-report_path <- file.path(AUTO_DIR, "REPORT.md")
-writeLines(L, report_path)
+report_path <- file.path(auto_dir, "REPORT.md")
+writeLines(report$lines, report_path)
 cat("written:", report_path, "\n")
-cat("lines:", length(L), "\n")
+cat("lines:", length(report$lines), "\n")

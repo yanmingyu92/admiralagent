@@ -33,20 +33,20 @@ this_script_path <- function() {
   file.path(getwd(), "run_all.R")
 }
 
-PKG_ROOT <- find_pkg_root()
-AUTO_DIR <- file.path(PKG_ROOT, "demo", "automation")
-OUT_DIR <- file.path(AUTO_DIR, "out")
-CDISC_DIR <- normalizePath(file.path(PKG_ROOT, "..", "cdisc_data"), winslash = "/", mustWork = FALSE)
-SPEC_XLSX <- file.path(CDISC_DIR, "pilot5data", "pilot5-submission", "pilot5-input",
+pkg_root <- find_pkg_root()
+auto_dir <- file.path(pkg_root, "demo", "automation")
+out_dir <- file.path(auto_dir, "out")
+cdisc_dir <- normalizePath(file.path(pkg_root, "..", "cdisc_data"), winslash = "/", mustWork = FALSE)
+spec_xlsx <- file.path(cdisc_dir, "pilot5data", "pilot5-submission", "pilot5-input",
                        "adamdata", "adam-pilot-5.xlsx")
-SDTM_DIR <- file.path(CDISC_DIR, "pilot5data", "original-sdtmdata")
-ORACLE_DIR <- file.path(CDISC_DIR, "pilot5data", "original-adamdata")
-ENV_FILE <- normalizePath(file.path(PKG_ROOT, "..", ".env"), winslash = "/", mustWork = FALSE)
+sdtm_dir <- file.path(cdisc_dir, "pilot5data", "original-sdtmdata")
+oracle_dir <- file.path(cdisc_dir, "pilot5data", "original-adamdata")
+env_file <- normalizePath(file.path(pkg_root, "..", ".env"), winslash = "/", mustWork = FALSE)
 
-if (!dir.exists(OUT_DIR)) dir.create(OUT_DIR, recursive = TRUE)
+if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
 
 # Source the package (demo context: no installed package assumed).
-for (f in list.files(file.path(PKG_ROOT, "R"), pattern = "[.]R$", full.names = TRUE)) source(f)
+for (f in list.files(file.path(pkg_root, "R"), pattern = "[.]R$", full.names = TRUE)) source(f)
 
 # --- .env loading (pattern from demo/demo_llm.R; values never printed) -------
 
@@ -64,12 +64,12 @@ read_env_file <- function(path) {
 
 ensure_deepseek_key <- function() {
   if (nzchar(Sys.getenv("DEEPSEEK_API_KEY"))) return(invisible(TRUE))
-  env <- read_env_file(ENV_FILE)
+  env <- read_env_file(env_file)
   if (!is.null(env$DEEPSEEK_API_KEY) && nzchar(env$DEEPSEEK_API_KEY)) {
     Sys.setenv(DEEPSEEK_API_KEY = env$DEEPSEEK_API_KEY)
     return(invisible(TRUE))
   }
-  stop("DEEPSEEK_API_KEY not found in environment or ", ENV_FILE, call. = FALSE)
+  stop("DEEPSEEK_API_KEY not found in environment or ", env_file, call. = FALSE)
 }
 
 make_chat <- function(model = "deepseek-chat") {
@@ -143,7 +143,7 @@ build_spec_from_define_xlsx <- function(xlsx, dataset = "ADSL") {
 load_pilot5_sdtm <- function(names = c("dm", "ex", "vs", "ae", "sv", "ds", "sc", "mh", "qs")) {
   out <- list()
   for (nm in names) {
-    p <- file.path(SDTM_DIR, paste0(nm, ".xpt"))
+    p <- file.path(sdtm_dir, paste0(nm, ".xpt"))
     if (file.exists(p)) out[[nm]] <- haven::read_xpt(p)
   }
   # BDS shape for vs, mirroring demo/demo_llm_exec.R: PARAMCD/AVAL are the
