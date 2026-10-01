@@ -3,7 +3,10 @@
   rendering: class/shape, layer known, required args present, exclusive-arg
   groups, per-layer semantic rules (enum values, formula token whitelists,
   label/break length agreement), BDS-artifact assign guards, vector-arg
-  typing, and foreign-only dataset detection. Dependency cycles are gated at
+  typing, foreign-only dataset detection, and column-rename tracking: a step
+  that references a column on a dataset where an earlier merge brought that
+  column in under a different name is reported (the old name only exists in
+  the merge's source dataset). Dependency cycles are gated at
   two levels: variable-level cycles report `cyclic dependencies: ...`, and
   cycles between deliverable datasets report a distinct
   `cyclic deliverable dependencies: ...` problem naming the datasets that
@@ -15,7 +18,10 @@
   rendering: class/shape, layer known, required args present, exclusive-arg
   groups, per-layer semantic rules (enum values, formula token whitelists,
   label/break length agreement), BDS-artifact assign guards, vector-arg
-  typing, and foreign-only dataset detection. Dependency cycles are gated at
+  typing, foreign-only dataset detection, and column-rename tracking: a step
+  that references a column on a dataset where an earlier merge brought that
+  column in under a different name is reported (the old name only exists in
+  the merge's source dataset). Dependency cycles are gated at
   two levels: variable-level cycles report `cyclic dependencies: ...`, and
   cycles between deliverable datasets report a distinct
   `cyclic deliverable dependencies: ...` problem naming the datasets that
@@ -66,7 +72,10 @@
   rendering: class/shape, layer known, required args present, exclusive-arg
   groups, per-layer semantic rules (enum values, formula token whitelists,
   label/break length agreement), BDS-artifact assign guards, vector-arg
-  typing, and foreign-only dataset detection. Dependency cycles are gated at
+  typing, foreign-only dataset detection, and column-rename tracking: a step
+  that references a column on a dataset where an earlier merge brought that
+  column in under a different name is reported (the old name only exists in
+  the merge's source dataset). Dependency cycles are gated at
   two levels: variable-level cycles report `cyclic dependencies: ...`, and
   cycles between deliverable datasets report a distinct
   `cyclic deliverable dependencies: ...` problem naming the datasets that

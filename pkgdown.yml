@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   admiralagent: admiralagent.html
   articles/cdisc-pilot-showcase: cdisc-pilot-showcase.html
-last_built: 2026-10-01T17:51Z
+last_built: 2026-10-01T19:10Z
 urls:
   reference: https://yanmingyu92.github.io/admiralagent/reference
   article: https://yanmingyu92.github.io/admiralagent/articles

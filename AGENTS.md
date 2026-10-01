@@ -53,7 +53,7 @@ IR（JSON），代码由确定性模板生成。LLM 永远不直接写 R 代码�
       `normalize_ir_records()`（R/safety.R） 已把 step 级 `on` 吸收进
       args，并在与 args\$on 冲突时报错
     - fromJSON simplifyVector=FALSE 把数组变 list → new_step 已归一化 +
-      VECTOR_ARGS 类型校验
+      vector_args 类型校验
     - LLM 会用 assign 拉跨数据集值、把 compute_param 直接放 ADSL → BDS
       黑名单 + foreign-only 校验 + prompt 规则
     - admiral 大版本会重命名参数（1.5: new_vars_prefix、set_values_to
