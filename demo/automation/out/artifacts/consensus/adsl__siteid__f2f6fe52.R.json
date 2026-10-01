@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__siteid__f2f6fe52.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "SITEID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SITEID",
+            "target": "SITEID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SITEID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Direct copy of DM.SITEID, which is already present in the subject-level base dataset."
+    }
+  ],
+  "ir_hash": "e3f07332",
+  "code_digest": "5646ac0fcf9f503b424b3288d4b6e812785ab23b1dac47b88bc5535595c78098",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:33-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,36 @@
+{
+  "stage": "04_oracle_compare",
+  "generated_at": "2026-10-01 16:45:40 UTC",
+  "oracle": {
+    "file": "C:/Users/JaimeYan/OneDrive - Kardigan/Desktop/job/cdisc_data/pilot5data/original-adamdata/adsl.xpt",
+    "rows": 254,
+    "cols": 49
+  },
+  "note": "produced ADSL is built from DM (no population subset); oracle has 254 subjects",
+  "backends": {
+    "rules": {
+      "produced_rows": 306,
+      "spec_variables": 49,
+      "compared": 15,
+      "fully_matching": 15,
+      "partial": 0,
+      "mean_value_agree": 100
+    },
+    "llm": {
+      "produced_rows": 306,
+      "spec_variables": 49,
+      "compared": 19,
+      "fully_matching": 16,
+      "partial": 3,
+      "mean_value_agree": 90.9
+    },
+    "consensus": {
+      "produced_rows": 306,
+      "spec_variables": 49,
+      "compared": 15,
+      "fully_matching": 15,
+      "partial": 0,
+      "mean_value_agree": 100
+    }
+  }
+}

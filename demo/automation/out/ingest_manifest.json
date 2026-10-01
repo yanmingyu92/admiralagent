@@ -1,0 +1,80 @@
+{
+  "stage": "00_ingest",
+  "generated_at": "2026-10-01 16:42:39 UTC",
+  "spec_source": {
+    "file": "C:/Users/JaimeYan/OneDrive - Kardigan/Desktop/job/cdisc_data/pilot5data/pilot5-submission/pilot5-input/adamdata/adam-pilot-5.xlsx",
+    "sha256": "aaee79438d93273a0376c880c29f1b5b83d707534befbd4ae7d8176b5f95d8a0",
+    "note": "P21-style define workbook from the pilot5 submission. Not metacore-compatible (read_spec() fails on it); spec rows were derived by joining Variables$Method to Methods$Description. Variables with only a Predecessor pointer received the mechanical derivation 'Copied directly from <DS.VAR>'. No free text was invented."
+  },
+  "dataset": "ADSL",
+  "n_spec_variables": 49,
+  "derivation_source_counts": {
+    "method": 47,
+    "predecessor": 2
+  },
+  "origin_counts": {
+    "derived": 47,
+    "predecessor": 2
+  },
+  "sdtm_inputs": {
+    "dm.xpt": {
+      "file": "dm.xpt",
+      "sha256": "7327baea97fd532d02385248da0c7240402e770099507e2c3a88e2ac706c02a6",
+      "rows": 306,
+      "cols": 25
+    },
+    "ex.xpt": {
+      "file": "ex.xpt",
+      "sha256": "37daacb3fdafba7b7ac7e254b51c43c4576f9ee45c87264da6b85e589ad7b8dc",
+      "rows": 591,
+      "cols": 17
+    },
+    "vs.xpt": {
+      "file": "vs.xpt",
+      "sha256": "eb54bb58944c1d725e74c7c0f91a9902212b072e8622c29976505283a8e64cd9",
+      "rows": 29643,
+      "cols": 24
+    },
+    "ae.xpt": {
+      "file": "ae.xpt",
+      "sha256": "05cf23dadadf1b6a11f4474c76724f870de389ba6a4312c825b30e299cb1e4d9",
+      "rows": 1191,
+      "cols": 35
+    },
+    "sv.xpt": {
+      "file": "sv.xpt",
+      "sha256": "ea831a4aceede71d26b6cc2d2a5bb04378dc91fcfeafae2aee6edc4fcb40fb52",
+      "rows": 3559,
+      "cols": 8
+    },
+    "ds.xpt": {
+      "file": "ds.xpt",
+      "sha256": "0dea6d298cf248c953c556ff61d0ade5bb133044761a37709a136e2d9ef580e8",
+      "rows": 596,
+      "cols": 13
+    },
+    "sc.xpt": {
+      "file": "sc.xpt",
+      "sha256": "9dca4cc3ef9631cbdbdd7b82db4a5f3cf7e52006da00f159fd293b53ae537957",
+      "rows": 254,
+      "cols": 14
+    },
+    "mh.xpt": {
+      "file": "mh.xpt",
+      "sha256": "d4c3539c2e9e14614b3261cea9564e004ef09ffc211e70320e2a1880aba18d90",
+      "rows": 1818,
+      "cols": 19
+    },
+    "qs.xpt": {
+      "file": "qs.xpt",
+      "sha256": "a1a68fbebbceb6237a8fba0f96b6b9ab8d476817200cde5a0b625966ac23cd6e",
+      "rows": 121749,
+      "cols": 20
+    }
+  },
+  "sdtm_missing": [],
+  "oracle_adsl": {
+    "file": "C:/Users/JaimeYan/OneDrive - Kardigan/Desktop/job/cdisc_data/pilot5data/original-adamdata/adsl.xpt",
+    "sha256": "83f7a82f8b371b758e246b906f66ae6700ceea0a8f32c02de5d3d27da74a64e3"
+  }
+}

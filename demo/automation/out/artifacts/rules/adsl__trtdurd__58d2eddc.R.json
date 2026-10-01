@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__trtdurd__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRTDURD",
+      "steps": [],
+      "spec_origin": "TRTEDT-TRTSDT+1",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "384f339c",
+  "code_digest": "c0fd8982d5361dd5fd717c20f7978fb84e4b27c8f0aaa0d62a686ef20702f62f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

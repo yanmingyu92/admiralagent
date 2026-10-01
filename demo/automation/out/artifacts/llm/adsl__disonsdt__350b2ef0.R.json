@@ -1,0 +1,40 @@
+{
+  "artifact": "adsl__disonsdt__350b2ef0.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DISONSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "mh",
+            "filter": "MHCAT == 'PRIMARY DIAGNOSIS'",
+            "mode": "first",
+            "source": "MHSTDTC",
+            "target": "DISONSDT"
+          }
+        }
+      ],
+      "spec_origin": "MH.MHSTDTC where MHCAT='PRIMARY DIAGNOSIS' converted to SAS date",
+      "confidence": 0.7,
+      "needs_human": true,
+      "rationale": "DISONSDT is a date target pulled from MH.MHSTDTC; spec gives no explicit DTC imputation rule and character-to-date conversion requires an imputation policy, so human review is needed."
+    }
+  ],
+  "ir_hash": "b05ff84e",
+  "code_digest": "43c5d653fcc4801df0c8731bcd78fe8d39d74ba428ba5caae99bce5800837889",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:33-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

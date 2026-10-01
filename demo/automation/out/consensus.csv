@@ -1,0 +1,13 @@
+"variable","signature_votes","chosen","unanimous"
+"SUBJID","assign@130366af:3","assign",TRUE
+"SITEID","assign@479f3af1:3","assign",TRUE
+"SITEGR1","needs_human@e4a67c77:3","needs_human",TRUE
+"ARM","assign@be0d2f24:3","assign",TRUE
+"TRT01P","assign@6a34d7e5:3","assign",TRUE
+"TRT01PN","needs_human@e4a67c77:3","needs_human",TRUE
+"TRT01A","assign@4f057cb5:3","assign",TRUE
+"TRT01AN","needs_human@e4a67c77:3","needs_human",TRUE
+"TRTSDT","merge_var->impute_dtc@8e7ceeab:1","merge_var->impute_dtc",TRUE
+"TRTEDT","needs_human@70e5bb3f:1","needs_human",TRUE
+"TRTDURD","compute_var@3103dfd0:1","compute_var",TRUE
+"AVGDD","needs_human@2674cf1d:1","needs_human",TRUE

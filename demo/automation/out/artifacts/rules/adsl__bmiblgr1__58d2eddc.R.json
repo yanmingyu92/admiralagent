@@ -1,0 +1,58 @@
+{
+  "artifact": "adsl__bmiblgr1__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "BMIBLGR1",
+      "steps": [
+        {
+          "layer": "compute_param",
+          "args": {
+            "avalu": "kg/m2",
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "formula": "AVAL.WEIGHT / (AVAL.HEIGHT / 100)^2",
+            "on": "vs",
+            "param": "Body Mass Index (kg/m2)",
+            "paramcd": "BMI",
+            "parameters": [
+              "WEIGHT",
+              "HEIGHT"
+            ]
+          }
+        },
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "vs",
+            "filter": "PARAMCD == 'BMI'",
+            "mode": "first",
+            "source": "AVAL",
+            "target": "BMIBLGR1"
+          }
+        }
+      ],
+      "spec_origin": "BMIBLGR1=\"<25\" if . < BMIBL <25. BMIBLGR1=\"25-<30\" if 25 <=BMIBL <30. BMIBLGR1=\">=30\"if BMIBL >=30.",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: BMI formula from WEIGHT/HEIGHT parameters, then merged to ADSL"
+    }
+  ],
+  "ir_hash": "92f69b07",
+  "code_digest": "edb3fcb1982cf4d1f31c0142c66daf1e715999cf0cc85dda4e45b2a8b1011d70",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

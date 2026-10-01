@@ -1,0 +1,46 @@
+{
+  "artifact": "adsl__bmiblgr1__350b2ef0.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "BMIBLGR1",
+      "steps": [
+        {
+          "layer": "categorize",
+          "args": {
+            "breaks": [
+              0,
+              25,
+              30,
+              "Inf"
+            ],
+            "from": "BMIBL",
+            "include_lowest": true,
+            "labels": [
+              "<25",
+              "25-<30",
+              ">=30"
+            ],
+            "right": false,
+            "target": "BMIBLGR1"
+          }
+        }
+      ],
+      "spec_origin": "BMIBLGR1=\"<25\" if . < BMIBL <25. BMIBLGR1=\"25-<30\" if 25 <=BMIBL <30. BMIBLGR1=\">=30\"if BMIBL >=30.",
+      "confidence": 0.7,
+      "needs_human": true,
+      "rationale": "Breakpoints 25 and 30 are explicit, but handling of missing/negative lower boundary requires confirmation of the low breakpoint placeholder."
+    }
+  ],
+  "ir_hash": "c06f05e2",
+  "code_digest": "a8ebb3a91f58c092a0f6d7cd15a77adbbac3c662713dd67d84811e11a04f5f13",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:32-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

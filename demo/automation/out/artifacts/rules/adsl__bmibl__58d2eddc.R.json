@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__bmibl__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "BMIBL",
+      "steps": [],
+      "spec_origin": "WEIGHTBL / ((HEIGHTBL/100)**2)",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "769e940f",
+  "code_digest": "a8d0ae08cbfb76f7f6b3e8d4680c0393e713c1972b3ce8c88983acc0be96c0cc",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

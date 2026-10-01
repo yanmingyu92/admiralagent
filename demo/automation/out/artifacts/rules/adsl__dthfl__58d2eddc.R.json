@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__dthfl__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DTHFL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "DTHFL",
+            "target": "DTHFL"
+          }
+        }
+      ],
+      "spec_origin": "DM.DTHFL",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.DTHFL"
+    }
+  ],
+  "ir_hash": "963564dc",
+  "code_digest": "2018e7a29635260f691318e13dcff14a925b11917d873326ff8fd96870bf37c4",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

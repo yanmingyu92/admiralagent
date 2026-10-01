@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__eosstt__350b2ef0.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "EOSSTT",
+      "steps": [],
+      "spec_origin": "COMPLETED if ADSL.DCDECOD='COMPLETED'. DISCONTINUED if ADSL.DCDECOD not equal to COMPLETED.",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Conditional mapping of DCDECOD to COMPLETED/DISCONTINUED; conditional logic not expressible with allowed operations."
+    }
+  ],
+  "ir_hash": "dcaed539",
+  "code_digest": "4f51245c2c309f8236ecac89e351d594728f0e1ce699ae88dd6c86bbc2a60dc7",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:33-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__visit1dt__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "VISIT1DT",
+      "steps": [],
+      "spec_origin": "SV.SVSTDTC when SV.VISITNUM=1, converted to SAS date",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "9bebfc31",
+  "code_digest": "3b6ad2a71885777b64e53a836293ef8c563351a34fe62d438c964a5fc372bb8c",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

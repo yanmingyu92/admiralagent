@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__trt01p__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01P",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "TRT01P"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 1,
+      "needs_human": false,
+      "rationale": "rule: predecessor copy from DM.ARM"
+    }
+  ],
+  "ir_hash": "3b30188c",
+  "code_digest": "67069b70fe00b863f1ab4234f1750c69074e9abf8e7275e3e1464635b8657ed6",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

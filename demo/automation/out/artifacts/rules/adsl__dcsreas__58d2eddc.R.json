@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__dcsreas__58d2eddc.R",
+  "package_version": "0.1.0",
+  "backend": "rules",
+  "model": null,
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DCSREAS",
+      "steps": [],
+      "spec_origin": "Grouping of DCDECOD values to support summarizing study completion status and reason for discontinuation",
+      "confidence": 1,
+      "needs_human": true,
+      "rationale": "rule: no matching pattern, routed to human review"
+    }
+  ],
+  "ir_hash": "cfa1bbea",
+  "code_digest": "889821e7a77d332231c9f58fa297803cb71b5a509324bc809a95e985c76e1b6c",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:30-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

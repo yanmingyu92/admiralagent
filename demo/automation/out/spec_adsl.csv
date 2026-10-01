@@ -1,0 +1,50 @@
+"dataset","variable","label","type","origin","derivation","source_dataset","source_variable","order","codelist","length"
+"ADSL","STUDYID","Study Identifier","text","predecessor","Copied directly from DM.STUDYID","dm","STUDYID","1",NA,NA
+"ADSL","USUBJID","Unique Subject Identifier","text","predecessor","Copied directly from DM.USUBJID","dm","USUBJID","2",NA,NA
+"ADSL","SUBJID","Subject Identifier for the Study","text","derived","DM.SUBJID",NA,NA,"3",NA,NA
+"ADSL","SITEID","Study Site Identifier","text","derived","DM.SITEID",NA,NA,"4",NA,NA
+"ADSL","SITEGR1","Pooled Site Group 1","text","derived","refer to SAP, Section 7.1 - if not pooled then SITEGR1=SITEID. If pooled, SITEGR1 will be 900",NA,NA,"5",NA,NA
+"ADSL","ARM","Description of Planned Arm","text","derived","DM.ARM",NA,NA,"6","ARM",NA
+"ADSL","TRT01P","Planned Treatment for Period 01","text","derived","DM.ARM",NA,NA,"7","ARM",NA
+"ADSL","TRT01PN","Planned Treatment for Period 01 (N)","integer","derived","Numeric code for TRT01P which corresponds to the randomized dose",NA,NA,"8","ARMN",NA
+"ADSL","TRT01A","Actual Treatment for Period 01","text","derived","TRT01A=TRT01P, i.e., no difference between actual and randomized treatment in this study.",NA,NA,"9","ARM",NA
+"ADSL","TRT01AN","Actual Treatment for Period 01 (N)","integer","derived","Numeric code for TRT01A which corresponds to the randomized dose",NA,NA,"10","ARMN",NA
+"ADSL","TRTSDT","Date of First Exposure to Treatment","integer","derived","SV.SVSTDTC when SV.VISITNUM=3, converted to SAS date",NA,NA,"11",NA,NA
+"ADSL","TRTEDT","Date of Last Exposure to Treatment","integer","derived","The date of final dose (from the CRF) is EX.EXENDTC on the subject's last EX record. If the date of final dose is missing for the subject and the subject discontinued after visit 3, use the date of discontinuation as the date of last dose. Convert the date to a SAS date.",NA,NA,"12",NA,NA
+"ADSL","TRTDURD","Total Treatment Duration (Days)","integer","derived","TRTEDT-TRTSDT+1",NA,NA,"13",NA,NA
+"ADSL","AVGDD","Avg Daily Dose (as planned)","float","derived","CUMDOSE/TRTDURD",NA,NA,"14",NA,NA
+"ADSL","CUMDOSE","Cumulative Dose (as planned)","float","derived","For ARMN=0 or 1: CUMDOSE=TRT01PN*TRTDUR. --- For ARMN=2: CUMDOSE will be based on 54mg per day for the # of days subj was in 1st dosing interval (i.e., visit4date-TRTSTDT+1 if 1st interval completed, TRTEDT-TRTSTDT+1 if subj discontinued <=visit 4 and > visit 3), 81mg per day for the # of days subj was in 2nd dosing interval (i.e., visit12date-visit4date if 2nd interval completed, TRTEDT-visit4date if subj discontinued <= visit 12 and > visit 4), and 54mg per day for the # of days subj was in 3rd dosing interval (i.e., TRTEDT - visit12date if subj continued after visit 12).",NA,NA,"15",NA,NA
+"ADSL","AGE","Age","integer","derived","DM.AGE",NA,NA,"16",NA,NA
+"ADSL","AGEGR1","Pooled Age Group 1","text","derived","Character variable derived from ADSL.AGEGR1N",NA,NA,"17","AGEGR1",NA
+"ADSL","AGEGR1N","Pooled Age Group 1 (N)","integer","derived","AGEGR1 = 1 if AGE <65. AGEGR1 = 2 if AGE 65-80. AGEGR1 = 3 if AGE >80.",NA,NA,"18","AGEGR1N",NA
+"ADSL","AGEU","Age Units","text","derived","DM.AGEU",NA,NA,"19","AGEU",NA
+"ADSL","RACE","Race","text","derived","DM.RACE",NA,NA,"20","RACE",NA
+"ADSL","RACEN","Race (N)","integer","derived","Numeric code for RACE",NA,NA,"21","RACEN",NA
+"ADSL","SEX","Sex","text","derived","DM.SEX",NA,NA,"22","SEX",NA
+"ADSL","ETHNIC","Ethnicity","text","derived","DM.ETHNIC",NA,NA,"23","ETHNIC",NA
+"ADSL","SAFFL","Safety Population Flag","text","derived","Y if ITTFL='Y' and TRTSDT ne missing. N otherwise",NA,NA,"24","YN",NA
+"ADSL","ITTFL","Intent-To-Treat Population Flag","text","derived","Y if ARMCD ne ' '. N otherwise",NA,NA,"25","YN",NA
+"ADSL","EFFFL","Efficacy Population Flag","text","derived","Y if SAFFL='Y AND subject has at least one record in QS for ADAS-Cog with VISITNUM>3 AND at least one record in QS for CIBIC+ with VISITNUM>3, N otherwise",NA,NA,"26","YN",NA
+"ADSL","COMP8FL","Completers of Week 8 Population Flag","text","derived","Y if subject has a SV.VISITNUM=8 and ENDDT >= date of visit 8, N otherwise",NA,NA,"27","YN",NA
+"ADSL","COMP16FL","Completers of Week 16 Population Flag","text","derived","Y if subject has a SV.VISITNUM=10 and ENDDT>=date of visit 10, N otherwise",NA,NA,"28","YN",NA
+"ADSL","COMP24FL","Completers of Week 24 Population Flag","text","derived","Y if subject has a SV.VISITNUM=12 and ENDDT>= date of visit 12 , N otherwise",NA,NA,"29","YN",NA
+"ADSL","DISCONFL","Did the Subject Discontinue the Study?","text","derived","Y if DCREASCD ^= 'Completed'. Null otherwise",NA,NA,"30",NA,NA
+"ADSL","DSRAEFL","Discontinued due to AE?","text","derived","Y if DCREASCD='Adverse Event'. Null otherwise",NA,NA,"31",NA,NA
+"ADSL","DTHFL","Subject Died?","text","derived","DM.DTHFL",NA,NA,"32",NA,NA
+"ADSL","BMIBL","Baseline BMI (kg/m^2)","float","derived","WEIGHTBL / ((HEIGHTBL/100)**2)",NA,NA,"33",NA,NA
+"ADSL","BMIBLGR1","Pooled Baseline BMI Group 1","text","derived","BMIBLGR1=""<25"" if . < BMIBL <25. BMIBLGR1=""25-<30"" if 25 <=BMIBL <30. BMIBLGR1="">=30""if BMIBL >=30.",NA,NA,"34","BMICAT",NA
+"ADSL","HEIGHTBL","Baseline Height (cm)","float","derived","VSSTRESN when VS.VSTESTCD='HEIGHT' and VS.VISITNUM=1",NA,NA,"35",NA,NA
+"ADSL","WEIGHTBL","Baseline Weight (kg)","float","derived","VSSTRESN when VS.VSTESTCD='WEIGHT' and VS.VISITNUM=3",NA,NA,"36",NA,NA
+"ADSL","EDUCLVL","Years of Education","integer","derived","SC.SCSTRESN where SC.SCTESTCD=EDLEVEL",NA,NA,"37",NA,NA
+"ADSL","DISONSDT","Date of Onset of Disease","integer","derived","MH.MHSTDTC where MHCAT='PRIMARY DIAGNOSIS' converted to SAS date",NA,NA,"38",NA,NA
+"ADSL","DURDIS","Duration of Disease (Months)","float","derived","number of months between VISIT1DT and DISONSET",NA,NA,"39",NA,NA
+"ADSL","DURDSGR1","Pooled Disease Duration Group 1","text","derived","grouping DURDIS values as <12 and >=12",NA,NA,"40","DURDISC",NA
+"ADSL","VISIT1DT","Date of Visit 1","integer","derived","SV.SVSTDTC when SV.VISITNUM=1, converted to SAS date",NA,NA,"41",NA,NA
+"ADSL","RFSTDTC","Subject Reference Start Date/Time","text","derived","DM.RFSTDTC",NA,NA,"42",NA,NA
+"ADSL","RFENDTC","Subject Reference End Date/Time","text","derived","DM.RFENDTC",NA,NA,"43",NA,NA
+"ADSL","VISNUMEN","End of Trt Visit (Vis 12 or Early Term.)","integer","derived","if DS.VISITNUM=13 where DSTERM='PROTCOL COMPLETED' then VISNUMEN=12, otherwise VISNUMEN=DS.VISITNUM where DSTERM='PROTCOL COMPLETED'",NA,NA,"44",NA,NA
+"ADSL","RFENDT","Date of Discontinuation/Completion","integer","derived","RFENDTC converted to SAS date",NA,NA,"45",NA,NA
+"ADSL","DCDECOD","Standardized Disposition Term","text","derived","DS.DSDECOD where DSCAT='DISPOSITION EVENT'",NA,NA,"46","DISCCD",NA
+"ADSL","EOSSTT","End of Study Status","text","derived","COMPLETED if ADSL.DCDECOD='COMPLETED'. DISCONTINUED if ADSL.DCDECOD not equal to COMPLETED.",NA,NA,"47",NA,NA
+"ADSL","DCSREAS","Reason for Discontinuation from Study","text","derived","Grouping of DCDECOD values to support summarizing study completion status and reason for discontinuation",NA,NA,"48","DISCREAS",NA
+"ADSL","MMSETOT","MMSE Total","integer","derived","sum of QS.QSORRES values for the subject when QSCAT = MINI-MENTAL STATE",NA,NA,"49",NA,NA

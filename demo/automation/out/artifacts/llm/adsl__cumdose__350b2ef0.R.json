@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__cumdose__350b2ef0.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "CUMDOSE",
+      "steps": [],
+      "spec_origin": "For ARMN=0 or 1: CUMDOSE=TRT01PN*TRTDUR. --- For ARMN=2: CUMDOSE will be based on 54mg per day for the # of days subj was in 1st dosing interval (i.e., visit4date-TRTSTDT+1 if 1st interval completed, TRTEDT-TRTSTDT+1 if subj discontinued <=visit 4 and > visit 3), 81mg per day for the # of days subj was in 2nd dosing interval (i.e., visit12date-visit4date if 2nd interval completed, TRTEDT-visit4date if subj discontinued <= visit 12 and > visit 4), and 54mg per day for the # of days subj was in 3rd dosing interval (i.e., TRTEDT - visit12date if subj continued after visit 12).",
+      "confidence": 0.25,
+      "needs_human": true,
+      "rationale": "Derivation is a complex multi-branch conditional dependent on ARMN, scheduled visit dates (visit4date, visit12date), dosing intervals and discontinuation logic; not expressible with the allowed operations."
+    }
+  ],
+  "ir_hash": "959d2dc3",
+  "code_digest": "e2de903d5d593f9985b5413fb0fd6347d796985bceb10df9029b3b0ecc33378b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T12:45:32-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}
