@@ -35,7 +35,9 @@ SEAM_ARGS <- list(
   obs_number = list(target = "ASEQ", by_vars = "USUBJID", order = "ADT"),
   categorize = list(target = "AGEGR1", from = "AGE", breaks = c(0, 18, 65, 200),
                     labels = c("<18", "18-64", ">=65")),
-  compute_var = list(target = "CHG", formula = "AVAL - BASE")
+  compute_var = list(target = "CHG", formula = "AVAL - BASE"),
+  assign_conditional = list(target = "ITTFL", condition = "ARMCD != ''",
+                            true_value = "Y", else_value = "N")
 )
 
 # The pre-seam quoter, kept here so the apostrophe claim below is a real

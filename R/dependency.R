@@ -51,13 +51,13 @@ step_refs <- function(v, s) {
     x <- a[[nm]]
     if (is.null(x)) next
     kind <- if (nm %in% c("parameters", "constant_parameters")) "parameter" else "column"
-    if (nm %in% c("filter", "restrict_filter", "formula")) {
+    if (nm %in% c("filter", "restrict_filter", "formula", "condition")) {
       # Column references come from the structured predicate AST, not a second
       # ad-hoc parse of the text; identical result to all.vars() over the
       # sublanguage safe_expression() accepts.
       x <- predicate_names(parse_predicate(x))
     }
-    if (nm %in% c("filter", "restrict_filter")) {
+    if (nm %in% c("filter", "restrict_filter", "condition")) {
       param_ds <- if (s$layer == "merge_var") a$dataset_add else ds
       add(param_ds, filter_parameters(a[[nm]]), "parameter")
     }

@@ -88,7 +88,7 @@ validate_ir_tokens <- function(ir) {
     a <- s$args; id <- paste0("[", v$variable, " ", s$layer, "]")
     for (nm in intersect(names(a), columns)) if (!valid_name(a[[nm]])) bad <- c(bad, paste(id, nm, "must contain uppercase variable identifiers only"))
     for (nm in intersect(names(a), c("on", "dataset_add", "dataset_lookup"))) if (!valid_name(a[[nm]], TRUE)) bad <- c(bad, paste(id, nm, "must be a dataset object identifier"))
-    for (nm in intersect(names(a), c("filter", "restrict_filter", "formula"))) if (!safe_expression(a[[nm]], nm == "formula")) bad <- c(bad, paste(id, nm, "fails token whitelist: use uppercase variables, numbers, quoted filter values, operators and parentheses; no calls or assignments"))
+    for (nm in intersect(names(a), c("filter", "restrict_filter", "formula", "condition"))) if (!safe_expression(a[[nm]], nm == "formula")) bad <- c(bad, paste(id, nm, "fails token whitelist: use uppercase variables, numbers, quoted filter values, operators and parentheses; no calls or assignments"))
     if (s$layer %in% c("compute_param", "summary_record") && identical(a$on %||% v$dataset, "ADSL")) bad <- c(bad, paste(id, "BDS parameter records cannot be computed directly on ADSL; use a source dataset and merge_var"))
     if (s$layer == "compute_param" && safe_expression(a$formula, TRUE)) {
       refs <- all.vars(parse(text = a$formula))
@@ -97,6 +97,7 @@ validate_ir_tokens <- function(ir) {
     if (s$layer == "compute_param" && a$paramcd %in% c(a$parameters, a$constant_parameters)) bad <- c(bad, paste(id, "computed paramcd must differ from input parameters"))
     if (s$layer == "impute_dtc" && a$dtc %in% step_output_columns(s)) bad <- c(bad, paste(id, "dtc must differ from all imputation output and flag columns"))
     if (s$layer == "extreme_flag" && !a$mode %in% c("first", "last")) bad <- c(bad, paste(id, "mode must be first or last"))
+    if (s$layer == "assign_conditional" && !is.null(a$target) && safe_expression(a$condition) && a$target %in% predicate_names(parse_predicate(a$condition))) bad <- c(bad, paste(id, "condition must not reference its own target"))
     if (s$layer == "date_shift" && (!is.finite(a$days) || a$days != floor(a$days))) bad <- c(bad, paste(id, "days must be finite whole days"))
     if (s$layer == "categorize" && (length(a$breaks) < 2L || is.unsorted(a$breaks, strictly = TRUE))) bad <- c(bad, paste(id, "breaks must be strictly increasing"))
     if (s$layer == "dtm_to_dt" && (!grepl("DTM$", a$source) || !identical(a$target, sub("DTM$", "DT", a$source)))) bad <- c(bad, paste(id, "target must equal source with DTM replaced by DT"))

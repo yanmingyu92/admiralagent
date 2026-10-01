@@ -229,7 +229,7 @@ test_that("rendered numeric breakpoints retain full boundary precision", {
 })
 
 
-test_that("all 14 layers survive 420 adversarial cross-gate and serialization probes", {
+test_that("all 15 layers survive 450 adversarial cross-gate and serialization probes", {
   e <- new.env(parent=baseenv())
   eval(parse(file="test-layers-golden.R",encoding="UTF-8")[[1]],envir=e)
   fixtures <- e$GOLDEN_ARGS
