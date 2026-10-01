@@ -17,6 +17,10 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="articles/admiralagent.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="articles/cdisc-pilot-showcase.html">CDISC Pilot 5 Automation Showcase</a></li>
+  </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json"></form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/yanmingyu92/admiralagent/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
@@ -66,15 +70,15 @@
 <div class="section level2">
 <h2 id="p2--架构轻装第-34-周">P2 — 架构轻装（第 3–4 周）<a class="anchor" aria-label="anchor" href="#p2--%E6%9E%B6%E6%9E%84%E8%BD%BB%E8%A3%85%E7%AC%AC-34-%E5%91%A8"></a></h2>
 <p>目标：降低维护面，把私有实现换成生态标准组件。</p>
-<ul class="task-list"><li><label><input type="checkbox">A1 MCP 层评估迁移到 mcptools + 可复用加固 wrapper（入站限制、错误目录、<code>mcp_redact_ir()</code> 抽为独立组件）；若保留私有 server，须写明理由</label></li>
+<ul class="task-list"><li><label><input type="checkbox" checked>A1 MCP 层评估迁移到 mcptools + 可复用加固 wrapper（入站限制、错误目录、<code>mcp_redact_ir()</code> 抽为独立组件）；若保留私有 server，须写明理由 — <strong>评估完成，结论 hybrid：保留私有 server</strong>（加固即产品：预解析字节上限/参数树限额/固定错误目录/IR 脱敏都活在 JSON-RPC 层，mcptools 无对应钩子；且其 Imports 含 ellmer/nanonext，违反零强依赖红线；517 行进程内安全契约测试会退化为进程级集成测试）。完整理由清单与复评触发条件见 <code>.agents/mcptools-assessment.md</code>（本地笔记）</label></li>
 <li><label><input type="checkbox">A2 API 面收敛：43 个导出审查，内部函数收回；IR 对象评估 S7 化（工具签名自描述）</label></li>
-<li><label><input type="checkbox">A3 <code>R/artifacts.R</code>（1230 行）拆分为 sidecar / audit-log / gate / manifest 四个模块</label></li>
+<li><label><input type="checkbox" checked>A3 <code>R/artifacts.R</code>（1230 行）拆分为 sidecar / audit-log / gate / manifest 四个模块 — 已完成机械拆分（<code>R/artifact_write.R</code> / <code>R/audit_log.R</code> / <code>R/gate.R</code> / <code>R/manifest.R</code>），61 个符号逐一核对各定义一次，零行为变更，全量测试 4801 绿</label></li>
 <li><label><input type="checkbox" checked>A4 <code>.agents/</code>（HANDOFF + 快照）从 git 全历史移除（filter-branch，开源前置条件）；本地保留、<code>.gitignore</code> 防再入库。注：因私有仓库 Actions 计费阻塞，仓库于 P1 后提前公开（ROADMAP 节奏调整，经用户确认）</label></li>
 </ul></div>
 <div class="section level2">
 <h2 id="p3--差异化资产第-2-个月">P3 — 差异化资产（第 2 个月）<a class="anchor" aria-label="anchor" href="#p3--%E5%B7%AE%E5%BC%82%E5%8C%96%E8%B5%84%E4%BA%A7%E7%AC%AC-2-%E4%B8%AA%E6%9C%88"></a></h2>
 <p>目标：把别人最难抄的东西做成公开资产。</p>
-<ul class="task-list"><li><label><input type="checkbox">V1 evals 从内部回归语料升级为公开可执行的验证器 API + 文档（L4 资产）</label></li>
+<ul class="task-list"><li><label><input type="checkbox" checked>V1 evals 从内部回归语料升级为公开可执行的验证器 API + 文档（L4 资产）— <code><a href="reference/run_agreement.html">run_agreement()</a></code> / <code><a href="reference/agreement_overstatement.html">agreement_overstatement()</a></code> 已导出（含 <code><a href="reference/print.aa_agreement.html">print.aa_agreement()</a></code>），roxygen 内置诚实性边界（自评分语料 ≠ oracle、IR agreement ≠ 双程编程），NAMESPACE +3、man +3、测试 +12（4801 绿）</label></li>
 <li><label><input type="checkbox">V2 真实 P21 vendor spec 适配（当前仅 mock spec + CDISC pilot1）</label></li>
 <li><label><input type="checkbox">V3 TLF 域对接评估：与 cards/gtsummary 的 ARD 衔接（ARD 是天然 sink，见 .agents/ARS-SPIKE.md 结论）</label></li>
 <li><label><input type="checkbox">V4 起草「agent-ready R 包成熟度模型 L0–L4」白皮书——生态话语权的支点</label></li>
@@ -85,12 +89,13 @@
 <h3 id="soft-launchp1-完成时">Soft-launch（P1 完成时）<a class="anchor" aria-label="anchor" href="#soft-launchp1-%E5%AE%8C%E6%88%90%E6%97%B6"></a></h3>
 <ul class="task-list"><li><label><input type="checkbox" checked>M1 GitHub 仓库公开（提前至 P1 后：私有 Actions 计费阻塞所致）：README 加 badges（R-CMD-check、testthat）+ GitHub 安装说明；demo GIF 待补</label></li>
 <li><label><input type="checkbox" checked>M2 pkgdown 站点上线：<a href="https://yanmingyu92.github.io/admiralagent/%EF%BC%88gh-pages" class="uri">https://yanmingyu92.github.io/admiralagent/（gh-pages</a> 自动部署，push 触发已启用）</label></li>
+<li><label><input type="checkbox" checked>M2b CDISC pilot5 自动化 showcase：<code>demo/automation/</code> 一键管线（00 ingest → 05 report，rules + DeepSeek 双后端，真实递交 spec/SDTM/oracle），<code>REPORT.md</code> 真实数字 + findings F-01~F-05 登记；pkgdown article <code>articles/cdisc-pilot-showcase.html</code> + README 入口（“See it run on real CDISC pilot data”）</label></li>
 <li><label><input type="checkbox" checked>M3 个人 r-universe 准备：<code>yanmingyu92/universe</code> 仓库 + packages.json 已建；<strong>待用户操作</strong>：安装 R-universe GitHub App（<a href="https://github.com/apps/r-universe%EF%BC%89%E5%88%B0%E8%AF%A5%E4%BB%93%E5%BA%93%E5%90%8E" class="external-link uri">https://github.com/apps/r-universe）到该仓库后</a> <a href="https://yanmingyu92.r-universe.dev" class="external-link uri">https://yanmingyu92.r-universe.dev</a> 生效；pharmaverse 收录列入 M7</label></li>
 </ul></div>
 <div class="section level3">
 <h3 id="hard-launchp2-完成时">Hard-launch（P2 完成时）<a class="anchor" aria-label="anchor" href="#hard-launchp2-%E5%AE%8C%E6%88%90%E6%97%B6"></a></h3>
-<ul class="task-list"><li><label><input type="checkbox">M4 英文博客：「LLM Never Writes R Code: Constrained IR for GxP Code Generation」——主打架构主张 + 诚实性边界（投 R-bloggers / Posit Blog 客座）</label></li>
-<li><label><input type="checkbox">M5 中文内容：知乎/小红书/公众号同步（架构故事 + 精度表诚实叙事，差异化记忆点）</label></li>
+<ul class="task-list"><li><label><input type="checkbox">M4 英文博客：「LLM Never Writes R Code: Constrained IR for GxP Code Generation」——主打架构主张 + 诚实性边界（投 R-bloggers / Posit Blog 客座）。<strong>草稿已落盘</strong> <code>docs-drafts/blog-llm-never-writes-r.md</code>（数字全部来自 pilot5 showcase REPORT.md，待投稿）</label></li>
+<li><label><input type="checkbox">M5 中文内容：知乎/小红书/公众号同步（架构故事 + 精度表诚实叙事，差异化记忆点）。<strong>大纲已落盘</strong> <code>docs-drafts/m5-zh-content-outline.md</code>（知乎长文 + 小红书卡片各一，待发布）</label></li>
 <li><label><input type="checkbox">M6 会议投稿：R/Pharma（通常 10–11 月）、posit::conf、useR!——主题即「agent-ready 临床编程」</label></li>
 <li><label><input type="checkbox">M7 pharmaverse 社区渗透：Slack 自我介绍、admiral Discussions 发设计帖、申请列入 pharmaverse 包清单</label></li>
 <li><label><input type="checkbox">M8 LinkedIn 英文帖 + 作者个人叙事（design doc 双语优势）</label></li>

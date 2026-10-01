@@ -240,7 +240,7 @@ MCP server（stdio，5 工具）与进程内 API
 ## 11. 诚实性边界（读者必须知道的五件事）
 
 1.  **IR 级 agreement
-    不是双程编程**：`run_agreement()`（R/evals.R）度量的是
+    不是双程编程**：[`run_agreement()`](https://yanmingyu92.github.io/admiralagent/reference/run_agreement.md)（R/evals.R）度量的是
     执行之前、多个 voter 对同一段 spec
     自由文本的独立**翻译**一致性。每个 voter 读的是同一段文本，spec
     本身的错误为所有 voter 共享；它不能替代对输出数据的
@@ -260,7 +260,7 @@ MCP server（stdio，5 工具）与进程内 API
     序列化即契约”，词汇表 或 canonical 规则变更时 golden 必须在同一
     commit 内显式迁移并注明。
 4.  **审批 gate 默认开启**：`AA_GATE_REQUIRED_DEFAULT <- TRUE`
-    （R/artifacts.R）。开箱即强制拦截：无 gate 的
+    （R/gate.R）。开箱即强制拦截：无 gate 的
     [`write_program_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/write_program_artifact.md)
     被拒绝，且拒绝本身写入审计日志。写未 gate
     的产物需要显式退出——单次调用 传 `require_gate = FALSE`

@@ -1,0 +1,31 @@
+# How much an args-blind label overstates agreement
+
+The defect this harness exists to quantify: comparing only the
+layer-name sequence counts two voters as agreeing whenever they pick the
+same layers, even when every argument differs. This reports the gap
+between the \`layer_chain\` and \`full\` agreement rates - i.e. the
+share of cases the old \[evals_layers_label()\] comparison would have
+scored as agreement but which differ semantically.
+
+The result inherits every caveat of \[run_agreement()\]: it is computed
+pre-execution over voters reading the same spec text from a self-scoring
+regression corpus, so it quantifies overstated translation consistency,
+not correctness and not independent double programming.
+
+## Usage
+
+``` r
+agreement_overstatement(res)
+```
+
+## Arguments
+
+- res:
+
+  An \`aa_agreement\` object from \`run_agreement()\`.
+
+## Value
+
+A list with \`layer_chain\`, \`full\`, \`overstatement\` (the
+difference) and \`cases\` (the ids counted as agreeing only at
+\`layer_chain\`).

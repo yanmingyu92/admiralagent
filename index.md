@@ -49,3 +49,12 @@ LLM never writes R code.
 
 Design & architecture: see `DESIGN.md`. Development conventions:
 `AGENTS.md`.
+
+**See it run on real CDISC pilot data**: the [CDISC Pilot 5 automation
+showcase](https://yanmingyu92.github.io/admiralagent/articles/cdisc-pilot-showcase.html)
+feeds the real pilot 5 submission spec and SDTM through the full
+pipeline (spec → IR → gate → render → execute → oracle comparison) with
+both the rules and DeepSeek LLM backends — real accuracy numbers, an
+explicit needs-human inventory, and an honest limitations section.
+Reproduce locally with `Rscript demo/automation/run_all.R` (report:
+`demo/automation/REPORT.md`).

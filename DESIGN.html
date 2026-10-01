@@ -17,6 +17,10 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="articles/admiralagent.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="articles/cdisc-pilot-showcase.html">CDISC Pilot 5 Automation Showcase</a></li>
+  </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json"></form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/yanmingyu92/admiralagent/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
@@ -230,13 +234,13 @@
 <div class="section level2">
 <h2 id="id_11-诚实性边界读者必须知道的五件事">11. 诚实性边界（读者必须知道的五件事）<a class="anchor" aria-label="anchor" href="#id_11-%E8%AF%9A%E5%AE%9E%E6%80%A7%E8%BE%B9%E7%95%8C%E8%AF%BB%E8%80%85%E5%BF%85%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E4%BA%94%E4%BB%B6%E4%BA%8B"></a></h2>
 <ol style="list-style-type: decimal"><li>
-<strong>IR 级 agreement 不是双程编程</strong>：<code>run_agreement()</code>（R/evals.R）度量的是 执行之前、多个 voter 对同一段 spec 自由文本的独立<strong>翻译</strong>一致性。每个 voter 读的是同一段文本，spec 本身的错误为所有 voter 共享；它不能替代对输出数据的 独立双程编程。夸大这一点会摧毁监管可信度。</li>
+<strong>IR 级 agreement 不是双程编程</strong>：<code><a href="reference/run_agreement.html">run_agreement()</a></code>（R/evals.R）度量的是 执行之前、多个 voter 对同一段 spec 自由文本的独立<strong>翻译</strong>一致性。每个 voter 读的是同一段文本，spec 本身的错误为所有 voter 共享；它不能替代对输出数据的 独立双程编程。夸大这一点会摧毁监管可信度。</li>
 <li>
 <strong>evals 语料是回归语料，不是 oracle</strong>：<code>inst/evals/spec-to-ir.jsonl</code> 全部 24 个案例的 <code>expected_args</code> 由当时的 <code>rules</code> 后端输出生成，钉住的是”当前 行为即契约”。引用它作为 validation 证据，等于系统在给自己打分。</li>
 <li>
 <strong>golden hash 与版本号解耦（已解决，存档说明）</strong>：<code>artifact_hash</code> 曾经把 <code>pkg_ver()</code> 混入哈希输入，使 golden <code>84a18650</code> 与 DESCRIPTION 的 Version 隐式耦合——版本号提升会移动 golden，即使没人碰哈希逻辑。现在哈希只覆盖 <code>canonical_ir(ir)</code>（golden 已迁移为 <code>6aea851a</code>），版本号仅作为溯源信息 记录在 sidecar / run manifest（<code>package_version_source</code> 标识”版本已知/ 版本猜测”）。<strong>仍需注意</strong>：golden 钉住的是”当前 IR 序列化即契约”，词汇表 或 canonical 规则变更时 golden 必须在同一 commit 内显式迁移并注明。</li>
 <li>
-<strong>审批 gate 默认开启</strong>：<code>AA_GATE_REQUIRED_DEFAULT &lt;- TRUE</code> （R/artifacts.R）。开箱即强制拦截：无 gate 的 <code><a href="reference/write_program_artifact.html">write_program_artifact()</a></code> 被拒绝，且拒绝本身写入审计日志。写未 gate 的产物需要显式退出——单次调用 传 <code>require_gate = FALSE</code> 参数，或会话级 <code>options(admiralagent.require_gate = FALSE)</code>。未 gate 的产物仍永久自我 标识——.R 头部 UNGATED DRAFT banner、sidecar 与审计记录中的 <code>release_grade</code> / <code>gate_enforced</code>、<code><a href="reference/read_artifact.html">read_artifact()</a></code> 拒绝自称已批准却无 批准的 sidecar。默认姿态是”强制开，退出记录在案”。</li>
+<strong>审批 gate 默认开启</strong>：<code>AA_GATE_REQUIRED_DEFAULT &lt;- TRUE</code> （R/gate.R）。开箱即强制拦截：无 gate 的 <code><a href="reference/write_program_artifact.html">write_program_artifact()</a></code> 被拒绝，且拒绝本身写入审计日志。写未 gate 的产物需要显式退出——单次调用 传 <code>require_gate = FALSE</code> 参数，或会话级 <code>options(admiralagent.require_gate = FALSE)</code>。未 gate 的产物仍永久自我 标识——.R 头部 UNGATED DRAFT banner、sidecar 与审计记录中的 <code>release_grade</code> / <code>gate_enforced</code>、<code><a href="reference/read_artifact.html">read_artifact()</a></code> 拒绝自称已批准却无 批准的 sidecar。默认姿态是”强制开，退出记录在案”。</li>
 <li>
 <strong>共模上限</strong>：词汇表里没有条件/时间窗（conditional / windowing）层，像 ADTTE 的 CNSR 这类派生会把所有 voter 逼进同样的弃权或同样的错映射。 词汇覆盖是安全属性；voter 数量再多也补不了词汇表的洞。</li>
 </ol></div>

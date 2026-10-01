@@ -5,11 +5,13 @@
 <url><loc>https://yanmingyu92.github.io/admiralagent/LICENSE-text.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/ROADMAP.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/articles/admiralagent.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/articles/cdisc-pilot-showcase.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/articles/index.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/authors.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/index.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/aa_layers.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/admiralagent-package.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/reference/agreement_overstatement.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/artifact_hash.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/build_context.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/build_system_prompt.html</loc></url>
@@ -38,6 +40,7 @@
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/new_variable_ir.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/order_variables.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/parse_define.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/reference/print.aa_agreement.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/read_artifact.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/read_dataset_json.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/read_define.html</loc></url>
@@ -46,6 +49,7 @@
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/render_program.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/render_step.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/render_variable.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/reference/run_agreement.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/run_evals.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/run_validation.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/spec_variables.html</loc></url>

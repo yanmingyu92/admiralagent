@@ -4,6 +4,8 @@
 
 - [`aa_layers()`](https://yanmingyu92.github.io/admiralagent/reference/aa_layers.md)
   : Layer registry
+- [`agreement_overstatement()`](https://yanmingyu92.github.io/admiralagent/reference/agreement_overstatement.md)
+  : How much an args-blind label overstates agreement
 - [`artifact_hash()`](https://yanmingyu92.github.io/admiralagent/reference/artifact_hash.md)
   : Artifact hash
 - [`build_context()`](https://yanmingyu92.github.io/admiralagent/reference/build_context.md)
@@ -58,6 +60,8 @@
   : Dependency-driven variable ordering
 - [`parse_define()`](https://yanmingyu92.github.io/admiralagent/reference/parse_define.md)
   : Parse define.xml
+- [`print(`*`<aa_agreement>`*`)`](https://yanmingyu92.github.io/admiralagent/reference/print.aa_agreement.md)
+  : Print an agreement report
 - [`read_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/read_artifact.md)
   : Read artifact
 - [`read_dataset_json()`](https://yanmingyu92.github.io/admiralagent/reference/read_dataset_json.md)
@@ -74,6 +78,8 @@
   : Render a step
 - [`render_variable()`](https://yanmingyu92.github.io/admiralagent/reference/render_variable.md)
   : Render a variable
+- [`run_agreement()`](https://yanmingyu92.github.io/admiralagent/reference/run_agreement.md)
+  : Cross-tabulate classification backends at every fingerprint level
 - [`run_evals()`](https://yanmingyu92.github.io/admiralagent/reference/run_evals.md)
   : Run the spec-to-IR classification evals
 - [`run_validation()`](https://yanmingyu92.github.io/admiralagent/reference/run_validation.md)

@@ -33,6 +33,12 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="articles/admiralagent.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/cdisc-pilot-showcase.html">CDISC Pilot 5 Automation Showcase</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -76,6 +82,7 @@
 <span>  <span class="op">)</span></span></code></pre></div>
 <p>Executing an IR is self-auditing: <code><a href="reference/execute_ir.html">execute_ir()</a></code> writes a hash-chained audit log with one record per variable plus one <code>run_manifest</code> per run, automatically — no manual manifest step. The artifact that is validated, approved and archived is the IR itself; the LLM never writes R code.</p>
 <p>Design &amp; architecture: see <code>DESIGN.md</code>. Development conventions: <code>AGENTS.md</code>.</p>
+<p><strong>See it run on real CDISC pilot data</strong>: the <a href="https://yanmingyu92.github.io/admiralagent/articles/cdisc-pilot-showcase.html">CDISC Pilot 5 automation showcase</a> feeds the real pilot 5 submission spec and SDTM through the full pipeline (spec → IR → gate → render → execute → oracle comparison) with both the rules and DeepSeek LLM backends — real accuracy numbers, an explicit needs-human inventory, and an honest limitations section. Reproduce locally with <code>Rscript demo/automation/run_all.R</code> (report: <code>demo/automation/REPORT.md</code>).</p>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>

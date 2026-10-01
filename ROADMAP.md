@@ -81,13 +81,21 @@ M2 门禁注释）
 
 A1 MCP 层评估迁移到 mcptools + 可复用加固
 wrapper（入站限制、错误目录、`mcp_redact_ir()`
-抽为独立组件）；若保留私有 server，须写明理由
+抽为独立组件）；若保留私有 server，须写明理由 — **评估完成，结论
+hybrid：保留私有
+server**（加固即产品：预解析字节上限/参数树限额/固定错误目录/IR
+脱敏都活在 JSON-RPC 层，mcptools 无对应钩子；且其 Imports 含
+ellmer/nanonext，违反零强依赖红线；517
+行进程内安全契约测试会退化为进程级集成测试）。完整理由清单与复评触发条件见
+`.agents/mcptools-assessment.md`（本地笔记）
 
 A2 API 面收敛：43 个导出审查，内部函数收回；IR 对象评估 S7
 化（工具签名自描述）
 
 A3 `R/artifacts.R`（1230 行）拆分为 sidecar / audit-log / gate /
-manifest 四个模块
+manifest 四个模块 — 已完成机械拆分（`R/artifact_write.R` /
+`R/audit_log.R` / `R/gate.R` / `R/manifest.R`），61
+个符号逐一核对各定义一次，零行为变更，全量测试 4801 绿
 
 A4 `.agents/`（HANDOFF + 快照）从 git
 全历史移除（filter-branch，开源前置条件）；本地保留、`.gitignore`
@@ -98,7 +106,14 @@ A4 `.agents/`（HANDOFF + 快照）从 git
 
 目标：把别人最难抄的东西做成公开资产。
 
-V1 evals 从内部回归语料升级为公开可执行的验证器 API + 文档（L4 资产）
+V1 evals 从内部回归语料升级为公开可执行的验证器 API + 文档（L4 资产）—
+[`run_agreement()`](https://yanmingyu92.github.io/admiralagent/reference/run_agreement.md)
+/
+[`agreement_overstatement()`](https://yanmingyu92.github.io/admiralagent/reference/agreement_overstatement.md)
+已导出（含
+[`print.aa_agreement()`](https://yanmingyu92.github.io/admiralagent/reference/print.aa_agreement.md)），roxygen
+内置诚实性边界（自评分语料 ≠ oracle、IR agreement ≠
+双程编程），NAMESPACE +3、man +3、测试 +12（4801 绿）
 
 V2 真实 P21 vendor spec 适配（当前仅 mock spec + CDISC pilot1）
 
@@ -118,6 +133,12 @@ M2 pkgdown
 站点上线：[https://yanmingyu92.github.io/admiralagent/（gh-pages](https://yanmingyu92.github.io/admiralagent/%EF%BC%88gh-pages)
 自动部署，push 触发已启用）
 
+M2b CDISC pilot5 自动化 showcase：`demo/automation/` 一键管线（00 ingest
+→ 05 report，rules + DeepSeek 双后端，真实递交
+spec/SDTM/oracle），`REPORT.md` 真实数字 + findings F-01~F-05
+登记；pkgdown article `articles/cdisc-pilot-showcase.html` + README
+入口（“See it run on real CDISC pilot data”）
+
 M3 个人 r-universe 准备：`yanmingyu92/universe` 仓库 + packages.json
 已建；**待用户操作**：安装 R-universe GitHub
 App（[https://github.com/apps/r-universe）到该仓库后](https://github.com/apps/r-universe%EF%BC%89%E5%88%B0%E8%AF%A5%E4%BB%93%E5%BA%93%E5%90%8E)
@@ -127,10 +148,14 @@ App（[https://github.com/apps/r-universe）到该仓库后](https://github.com/
 
 M4 英文博客：「LLM Never Writes R Code: Constrained IR for GxP Code
 Generation」——主打架构主张 + 诚实性边界（投 R-bloggers / Posit Blog
-客座）
+客座）。**草稿已落盘**
+`docs-drafts/blog-llm-never-writes-r.md`（数字全部来自 pilot5 showcase
+REPORT.md，待投稿）
 
 M5 中文内容：知乎/小红书/公众号同步（架构故事 +
-精度表诚实叙事，差异化记忆点）
+精度表诚实叙事，差异化记忆点）。**大纲已落盘**
+`docs-drafts/m5-zh-content-outline.md`（知乎长文 +
+小红书卡片各一，待发布）
 
 M6 会议投稿：R/Pharma（通常 10–11
 月）、posit::conf、useR!——主题即「agent-ready 临床编程」
