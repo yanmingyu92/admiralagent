@@ -107,19 +107,22 @@ compiler renders the <a href="https://pharmaverse.github.io/admiral/" class="ext
 <tr class="odd">
 <td>00</td>
 <td><code>00_ingest.R</code></td>
-<td>Builds the ADSL spec from the pilot5 submission’s P21-style define
-workbook (<code>adam-pilot-5.xlsx</code>, 49 ADSL variables: 47
-derivations verbatim from the Methods sheet, 2 mechanical
+<td>Builds the ADSL/ADAE/ADLBC specs from the pilot5 submission’s
+P21-style define workbook (<code>adam-pilot-5.xlsx</code>; derivations
+verbatim from the Methods sheet, or mechanical
 <code>Copied directly from &lt;DS.VAR&gt;</code> predecessor copies).
-Loads the original SDTM <code>.xpt</code> files; records sha256 digests
-of every input.</td>
+Converts the workbook’s Codelists sheet into an executable metacore per
+dataset (<code><a href="../reference/mock_metacore.html">mock_metacore()</a></code>), so <code>codelist_var</code>
+steps run against the submission’s own terminology. Loads the original
+SDTM <code>.xpt</code> files; records sha256 digests of every
+input.</td>
 </tr>
 <tr class="even">
 <td>01</td>
 <td><code>01_classify.R</code></td>
 <td>Classifies the same spec twice: <code>backend = "rules"</code>
 (zero-cost keyword baseline) and <code>backend = "llm"</code> (DeepSeek
-<code>deepseek-chat</code>). A deterministic 12-variable subset
+<code>deepseek-chat</code>). A deterministic 12-variable ADSL subset
 additionally runs <code>samples = 3, consensus = "majority"</code>.
 Latency and token usage are recorded.</td>
 </tr>
@@ -137,14 +140,15 @@ carries the UNGATED DRAFT banner and
 <td>03</td>
 <td><code>03_execute.R</code></td>
 <td>
-<code><a href="../reference/execute_ir.html">execute_ir()</a></code> against the real pilot5 SDTM,
+<code><a href="../reference/execute_ir.html">execute_ir()</a></code> against the real pilot5 SDTM (per-dataset
+base domain, metacore in <code>sources$mc</code>),
 <code><a href="../reference/run_validation.html">run_validation()</a></code>, hash-chained audit logs.</td>
 </tr>
 <tr class="odd">
 <td>04</td>
 <td><code>04_oracle_compare.R</code></td>
-<td>Variable-by-variable comparison against the submitted oracle
-<code>original-adamdata/adsl.xpt</code>.</td>
+<td>Variable-by-variable comparison against the submitted oracles
+<code>original-adamdata/{adsl,adae,adlbc}.xpt</code>.</td>
 </tr>
 <tr class="even">
 <td>05</td>
@@ -159,8 +163,11 @@ only.</td>
 <h2 id="what-automated-cleanly">What automated cleanly<a class="anchor" aria-label="anchor" href="#what-automated-cleanly"></a>
 </h2>
 <p>From the run behind this article (<code>out/gate_report.json</code>,
-<code>out/exec_status_&lt;backend&gt;.csv</code>,
+<code>out/exec_status_&lt;backend&gt;[_&lt;ds&gt;].csv</code>,
 <code>out/accuracy_summary.json</code>):</p>
+<div class="section level3">
+<h3 id="adsl-49-spec-variables">ADSL (49 spec variables)<a class="anchor" aria-label="anchor" href="#adsl-49-spec-variables"></a>
+</h3>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="14%">
@@ -201,6 +208,94 @@ only.</td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section level3">
+<h3 id="adae-55-spec-variables">ADAE (55 spec variables)<a class="anchor" aria-label="anchor" href="#adae-55-spec-variables"></a>
+</h3>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+</colgroup>
+<thead><tr class="header">
+<th>backend</th>
+<th>spec vars</th>
+<th>needs_human</th>
+<th>executed</th>
+<th>exec errors</th>
+<th>oracle: compared</th>
+<th>oracle: full match</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>rules</td>
+<td>55</td>
+<td>16</td>
+<td>27</td>
+<td>12</td>
+<td>20</td>
+<td><strong>20 (100%)</strong></td>
+</tr>
+<tr class="even">
+<td>LLM (DeepSeek)</td>
+<td>55</td>
+<td>8</td>
+<td>32</td>
+<td>15</td>
+<td>27</td>
+<td><strong>25 (mean agreement 96.3%)</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="adlbc-46-spec-variables">ADLBC (46 spec variables)<a class="anchor" aria-label="anchor" href="#adlbc-46-spec-variables"></a>
+</h3>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+</colgroup>
+<thead><tr class="header">
+<th>backend</th>
+<th>spec vars</th>
+<th>needs_human</th>
+<th>executed</th>
+<th>exec errors</th>
+<th>oracle: compared</th>
+<th>oracle: full match</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>rules</td>
+<td>46</td>
+<td>14</td>
+<td>15</td>
+<td>17</td>
+<td>14</td>
+<td><strong>12 (mean agreement 85.8%)</strong></td>
+</tr>
+<tr class="even">
+<td>LLM (DeepSeek)</td>
+<td>46</td>
+<td>13</td>
+<td>22</td>
+<td>11</td>
+<td>21</td>
+<td><strong>19 (mean agreement 90.5%)</strong></td>
+</tr>
+</tbody>
+</table>
 <p>The picture that emerges is a coverage/automation trade-off, not a
 winner:</p>
 <ul>
@@ -222,12 +317,13 @@ Limitations).</li>
 (rate assumption recorded in <code>out/llm_telemetry.json</code>).</li>
 </ul>
 </div>
+</div>
 <div class="section level2">
 <h2 id="what-needed-humans-and-why-that-is-the-point">What needed humans — and why that is the point<a class="anchor" aria-label="anchor" href="#what-needed-humans-and-why-that-is-the-point"></a>
 </h2>
-<p>The LLM abstained on 27/49 variables with a stated rationale each
-(<code>REPORT.md</code> §8). Grouped, the inventory is not random — it
-is the vocabulary boundary, stated out loud:</p>
+<p>On ADSL the LLM abstained on 27/49 variables with a stated rationale
+each (<code>REPORT.md</code> §8). Grouped, the inventory is not random —
+it is the vocabulary boundary, stated out loud:</p>
 <ul>
 <li>
 <strong>No conditional layer</strong>: SAFFL, ITTFL, DISCONFL,
@@ -258,17 +354,21 @@ numbered finding with evidence (<code>out/findings.json</code>,
 <code>REPORT.md</code> §9):</p>
 <ul>
 <li>
-<strong>F-01 (package)</strong> — an LLM chain
+<strong>F-01 (package) — RESOLVED.</strong> An LLM chain
 <code>merge_var(SVSTDTC → TRTSDT)</code> followed by
-<code>impute_dtc(dtc = SVSTDTC)</code> passes <code><a href="../reference/validate_ir.html">validate_ir()</a></code>
-but fails at execution, because the merge renamed the column away. The
-fail-closed execution layer caught it; the semantic gate could catch it
-earlier. Registered as a package defect.</li>
+<code>impute_dtc(dtc = SVSTDTC)</code> used to pass
+<code><a href="../reference/validate_ir.html">validate_ir()</a></code> and fail only at execution, because the merge
+renamed the column away. <code><a href="../reference/validate_ir.html">validate_ir()</a></code> now tracks merge
+renames across steps and rejects the reference at the gate, naming the
+column to use instead
+(<code>tests/testthat/test-renamed-columns.R</code>). The fail-closed
+line moved from the execution layer into the semantic gate.</li>
 <li>
-<strong>F-02 (demo config)</strong> — <code>codelist_var</code>
-needs a metacore object (<code>sources$mc</code>) the showcase didn’t
-build; RACEN-class derivations error at execution. Pipeline
-configuration gap, not an IR error.</li>
+<strong>F-02 (demo config) — RESOLVED.</strong>
+<code>codelist_var</code> needs a metacore object
+(<code>sources$mc</code>); ingest now builds one per dataset from the
+workbook’s own Codelists sheet, and probe-verified RACEN/TRT01PN/TRT01AN
+derivations match the oracle on 100% of joined subjects.</li>
 <li>
 <strong>F-03 (package)</strong> — the rules backend mapped
 BMIBLGR1’s categorisation text to <code>compute_param</code> on BMI
@@ -284,6 +384,18 @@ agreement is 19.7%/8.7%, but <strong>98.8%/94.5% at the oracle’s own
 storage precision</strong>: the oracle rounds to 1 decimal and the spec
 never says so. BMIBL’s 99.6% inherits the same rounding. The derivations
 are semantically correct.</li>
+<li>
+<strong>F-06…F-10 (from the ADAE/ADLBC expansion)</strong> — the
+improvement loop kept turning: <code><a href="../reference/build_context.html">build_context()</a></code> now states
+the target dataset (ADAE alignment failures → zero), a prompt rule makes
+same-domain base columns <code>assign</code> copies instead of
+self-merges (ADAE LLM executions 7 → 32, duplicate_records errors → 0),
+and the remaining findings record honest boundaries — e.g. F-09: ADLBC’s
+BASE derivation text literally says <code>LB.LBSTNRHI</code>, and
+executing it verbatim lands at 0.4% agreement with an oracle that uses
+baseline AVAL. The spec text, not the translator, is what a human would
+query. Full inventory: <code>out/findings.json</code>,
+<code>REPORT.md</code> §9.</li>
 </ul>
 <p>Also observed across development runs: DeepSeek’s full-spec
 needs_human count moved 24 → 22 → 27 and rules/LLM agreement 78% → 71% →
@@ -323,9 +435,9 @@ error.</strong> Disagreement rates here are not error rates.</li>
 covers them; they are demonstration output, not release-grade
 deliverables.</li>
 <li>
-<strong>Single model, single dataset, and stochastic.</strong>
-Numbers are DeepSeek <code>deepseek-chat</code> on pilot5 ADSL only, and
-LLM output varies run to run.</li>
+<strong>Single model, single study, and stochastic.</strong> Numbers
+are DeepSeek <code>deepseek-chat</code> on the pilot5 submission only
+(ADSL/ADAE/ADLBC), and LLM output varies run to run.</li>
 </ol>
 </div>
 <div class="section level2">

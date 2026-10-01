@@ -60,6 +60,15 @@ IR（JSON），代码由确定性模板生成。LLM 永远不直接写 R 代码�
       内公式）→ 只改 layers.R 模板，IR 不动
     - 旧产物重读必须过 read_artifact 归一化，坏产物会被 gate
       拦截（预期行为）
+    - LLM 会在 merge 改名后仍引用旧列名 →
+      `renamed_column_problems()`（R/ir.R） 门内追踪
+      merge_var/lookup_join 的 source→target
+      改名，引用旧名报出新名（F-01）
+    - 非 ADSL 数据集的 LLM 批次会照抄 prompt 示例的 “ADSL” →
+      [`build_context()`](https://yanmingyu92.github.io/admiralagent/reference/build_context.md)
+      每变量带 dataset 字段（F-06）；目标数据集基座域的列会被误用
+      merge_var 自并 （occurrence 数据 by 键重复，duplicate_records
+      关门）→ prompt 规则 5： 同域基座列必须 assign 直拷（F-10）
 
 ## 常用入口
 

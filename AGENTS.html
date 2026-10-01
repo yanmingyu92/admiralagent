@@ -75,6 +75,8 @@
 <li>LLM 会用 assign 拉跨数据集值、把 compute_param 直接放 ADSL → BDS 黑名单 + foreign-only 校验 + prompt 规则</li>
 <li>admiral 大版本会重命名参数（1.5: new_vars_prefix、set_values_to 内公式）→ 只改 layers.R 模板，IR 不动</li>
 <li>旧产物重读必须过 read_artifact 归一化，坏产物会被 gate 拦截（预期行为）</li>
+<li>LLM 会在 merge 改名后仍引用旧列名 → <code>renamed_column_problems()</code>（R/ir.R） 门内追踪 merge_var/lookup_join 的 source→target 改名，引用旧名报出新名（F-01）</li>
+<li>非 ADSL 数据集的 LLM 批次会照抄 prompt 示例的 “ADSL” → <code><a href="reference/build_context.html">build_context()</a></code> 每变量带 dataset 字段（F-06）；目标数据集基座域的列会被误用 merge_var 自并 （occurrence 数据 by 键重复，duplicate_records 关门）→ prompt 规则 5： 同域基座列必须 assign 直拷（F-10）</li>
 </ul></li>
 </ol></div>
 <div class="section level2">
