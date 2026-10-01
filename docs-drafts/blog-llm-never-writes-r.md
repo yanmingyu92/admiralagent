@@ -3,7 +3,9 @@
 *Draft for R-bloggers / Posit Blog guest post. Every number below comes from a
 one-command, re-runnable pipeline (`Rscript demo/automation/run_all.R`) against
 the public CDISC pilot 5 data; the evidence trail is `demo/automation/REPORT.md`
-plus machine-readable files under `demo/automation/out/` in the repo.*
+plus machine-readable files under `demo/automation/out/` in the repo — cited per
+section below (`out/gate_report.json`, `out/accuracy_summary.json`,
+`out/llm_telemetry.json`, `out/findings.json`).*
 
 ---
 
@@ -23,74 +25,165 @@ vocabulary, fail-closed: no guessing, no repair. What gets validated,
 approved, hashed and archived is the IR — not prose, not code.
 
 That's the architecture claim. This post is about what happened when we
-stopped asserting it and measured it.
+stopped asserting it and measured it — and then kept measuring, because the
+measurement loop started finding real bugs.
 
 ## The experiment: real data, real spec, one command
 
 We pointed the pipeline at the **CDISC pilot 5 submission**: the real
-P21-style ADaM define workbook (`adam-pilot-5.xlsx`, 49 ADSL variables, 47
-with verbatim derivation methods), the original SDTM `.xpt` files as
-execution inputs, and the submitted `adsl.xpt` as the accuracy oracle. Six
-staged scripts — ingest, classify, gate+render, execute, oracle-compare,
+P21-style ADaM define workbook (`adam-pilot-5.xlsx`), the original SDTM `.xpt`
+files as execution inputs, and the submitted `adsl.xpt` / `adae.xpt` /
+`adlbc.xpt` as accuracy oracles. What started as a single-dataset (ADSL)
+showcase now covers **three datasets from the same submission**: ADSL (49
+spec variables), ADAE (55), ADLBC (46) — source: `out/ingest_manifest.json`.
+Six staged scripts — ingest, classify, gate+render, execute, oracle-compare,
 report — run end-to-end from one command and are fully re-runnable.
 
-We classified the same spec twice: a zero-dependency **rules backend**
+We classified the same specs twice: a zero-dependency **rules backend**
 (keyword baseline) and **DeepSeek** (`deepseek-chat`, via `{ellmer}`). A
-12-variable subset additionally ran 3 samples with majority vote.
+12-variable ADSL subset additionally ran 3 samples with majority vote.
 
 ## The numbers
 
-| backend | spec vars | abstained (`needs_human`) | executed | exec errors | oracle: compared | oracle: full match |
-|---|---|---|---|---|---|---|
-| rules | 49 | 32 | 16 | 1 | 15 | **15 (100%)** |
-| DeepSeek | 49 | 27 | 20 | 2 | 19 | **16 (mean agreement 90.9%)** |
+Accuracy is computed against the submitted oracle on joined records only
+(dates exact, numerics within 1e-6, characters exact). Two caveats travel
+with every figure below: the produced datasets are built from the full SDTM
+base domain with **no population subsetting** (produced ADSL has 306 rows vs
+the oracle's 254 randomized subjects; produced ADLBC has 59,580 rows vs
+37,132), and agreement here is a self-comparison against one oracle — **not
+double programming**. Source: `out/accuracy_<backend>[_<ds>].csv`,
+`out/accuracy_summary.json`.
 
-- The rules baseline abstains on two-thirds of a real spec — but everything
-  it did derive matched the submitted ADSL **exactly**.
-- DeepSeek automated more (20 vs 16 variables), rules-vs-LLM layer chains
-  agreed on 82%, and the 3-sample consensus was unanimous on 12/12.
-- Marginal cost of the LLM: **84 seconds and $0.009** for all 49 variables
-  (5.5k input / 7.1k output tokens; rate assumption recorded in the repo).
+| dataset | backend | spec vars | abstained (`needs_human`) | executed | oracle: compared | oracle: full match | mean agreement |
+|---|---|---|---|---|---|---|---|
+| ADSL | rules | 49 | 32 | 16 | 15 | **15 (100%)** | 100.0% |
+| ADSL | DeepSeek | 49 | 27 | 20 | 19 | **16** | 90.9% |
+| ADAE | rules | 55 | 16 | 27 | 20 | **20 (100%)** | 100.0% |
+| ADAE | DeepSeek | 55 | 8 | 32 | 27 | **25** | 96.3% |
+| ADLBC | rules | 46 | 14 | 15 | 14 | **12** | 85.8% |
+| ADLBC | DeepSeek | 46 | 13 | 22 | 21 | **19** | 90.5% |
 
-But the headline number is the abstention column, not the accuracy column.
+- The rules baseline abstains on two-thirds of the ADSL spec — but everything
+  it did derive, on all three datasets, matched the oracle exactly where it
+  produced values at all (ADSL 15/15, ADAE 20/20; ADLBC's 85.8% is dominated
+  by a spec-text defect, see below).
+- DeepSeek automated more on every dataset (ADAE: 32 executed vs the rules
+  backend's 27, with only 8 abstentions out of 55).
+- Rules-vs-LLM layer chains agreed on 82% (ADSL), 58% (ADAE) and 57% (ADLBC)
+  of variables — translation consistency between two readers of the same
+  text, explicitly *not* a correctness claim. The 3-sample consensus on the
+  12-variable ADSL subset was unanimous on 12/12.
+- Marginal cost of the LLM: **$0.008–0.011 and 50–84 seconds per dataset**
+  (rate assumption recorded in the repo; the rules baseline runs in ~0.1s for
+  free). All three datasets together cost under three cents. Source:
+  `out/llm_telemetry.json`.
+
+But the headline column is still the abstention column, not the accuracy
+column.
 
 ## The boundary is the story
 
-DeepSeek declined 27 of 49 variables — and when you read the inventory, it is
-not random. It is the vocabulary boundary, stated out loud:
+DeepSeek declined 27 of 49 ADSL variables — and the inventory is not random.
+It is the vocabulary boundary, stated out loud, and it repeats with different
+accents on the other datasets:
 
-- **No conditional layer exists**, so every `Y if <condition>` flag (SAFFL,
-  ITTFL, DISCONFL, the COMP8/16/24 visit-window flags, EOSSTT) is abstained
-  on — the model cannot invent `ifelse` because `ifelse` is not in the
-  vocabulary.
-- **External references** (SAP sections, unstated codelists, undocumented
-  grouping schemes) are abstained on: SITEGR1, DCSREAS, TRT01PN.
+- **No conditional layer exists**, so every `Y if <condition>` flag is
+  abstained on — ADSL's SAFFL, ITTFL, DISCONFL, the COMP8/16/24 visit-window
+  flags, EOSSTT; ADAE's TRTEMFL and conditional study days (ASTDY/AENDY);
+  ADLBC's ANRIND/BNRIND (`if/else` normal-range indicators). The model cannot
+  invent `ifelse` because `ifelse` is not in the vocabulary.
+- **External references** (SAP sections, unstated codelists) are abstained
+  on: SITEGR1, DCSREAS, TRT01PN, ADLBC's PARAMN.
+- **Missing vocabulary, honestly reported**: ADLBC's PARAM needs string
+  concatenation ("LBTEST (LBSTRESU)") and abstains because the vocabulary has
+  no function calls; its ALBTRVAL needs `max()` over arithmetic expressions
+  and abstains for the same reason.
 - **Cross-dataset existence checks** (EFFFL, VISNUMEN) and **multi-branch
   clinical logic** (CUMDOSE's arm-conditional dosing intervals) are abstained
   on.
 
 A system that hallucinated these would be strictly worse than one that
-abstains. In a GxP narrative, "the machine said *I don't know* 27 times, with
-a stated reason each time" is a feature you can defend in an audit.
+abstains. In a GxP narrative, "the machine said *I don't know*, with a stated
+reason each time" is a feature you can defend in an audit.
+
+## The showcase audits itself: probe, finding, fix, regression
+
+The least expected outcome of expanding from ADSL to three datasets is that
+the pipeline started catching its own bugs — and the findings register
+(`out/findings.json`, F-01 through F-10) documents a working improvement
+loop, not a one-shot demo. Four resolved findings are worth the space:
+
+**F-01 — the fail-closed line moved forward.** An LLM-generated IR for ADSL's
+TRTSDT merged `SVSTDTC` into a new column `TRTSDT`, then tried to impute from
+`SVSTDTC` — which no longer existed under that name after the merge. The old
+semantic gate passed it; execution failed. The fail-closed execution layer
+caught it (transactional rollback, downstream variables refused stale
+inputs), but the right place to catch it was the gate. `validate_ir()` now
+tracks merge renames across steps and rejects the same class of IR **inside
+the gate, naming the new column in the error message** — with regression
+tests pinning the behavior. Architecturally this is the story of the whole
+package in miniature: a defense that used to live at execution time moved
+forward into the semantic gate, closer to where the mistake is made.
+
+**F-02 — codelists became executable.** DeepSeek chose the `codelist_var`
+layer for codelist-backed variables (RACEN, TRT01PN, TRT01AN), but the
+showcase had never built a metacore object, so those IRs errored at
+execution. The pipeline now converts the submission workbook's own
+`Codelists` sheet into one executable metacore per dataset
+(`out/mc_<ds>.rds`), and a direct probe confirms hand-built `codelist_var`
+IRs execute and match the oracle on 100% of the 254 joined subjects.
+Honesty footnote: the *cached* LLM run still abstains on those variables
+(run-to-run variance, limitation 8) — the fix is verified by probe and ready
+for any IR that selects the layer.
+
+**F-06 — one missing context field silently degraded a whole dataset.** The
+classification context never told the model which dataset it was translating
+for, and the only example in the system prompt said `"dataset":"ADSL"`. For
+ADAE variables whose derivation text reads "ADSL.TRT01A", the model dutifully
+echoed `ADSL`, the alignment check rejected entire batches, and 14 ADAE
+variables fell back to abstention. A one-line fix — put the spec's dataset
+column into every variable's payload — took ADAE's `needs_human` from 21 to
+8 and failed batches from 4 to 0 (ADLBC: 46 to 25, 16 to 0). Full test suite:
+4,815 passing.
+
+**F-10 — fixing F-06 exposed the next layer down.** With the dataset token
+fixed, the model followed the rule "to bring a value from another dataset,
+always merge" too literally: it merged AE into ADAE — whose base *is* AE —
+producing duplicate by-keys and 25 fail-closed `duplicate_records` errors.
+The fix landed at the prompt layer (vocabulary untouched): a new hard rule
+states that a column from the domain seeding the target must be copied with
+`assign`, and that merging a dataset into its own child is forbidden.
+Measured on rerun: **ADAE executed variables went 7 → 32, duplicate-record
+errors 25 → 0, oracle 27 compared / 25 full match / 96.3% mean**; ADLBC
+abstentions 25 → 13, executed 4 → 22.
+
+That sequence — probe, registered finding, fix, regression test, re-measure —
+is the point. The numbers in this post are post-loop numbers, and the loop is
+part of the product.
 
 ## Where it was wrong — and what kind of wrong
 
 The residual disagreements are more interesting than the clean matches:
 
 - **HEIGHTBL/WEIGHTBL: raw agreement 19.7%/8.7% — and 98.8%/94.5% at the
-  oracle's own precision.** The values trace to exactly the VS records the
-  spec names; the oracle stores them rounded to 1 decimal, a convention the
-  spec text never mentions. The derivation is right; the metadata was silent.
-- **AGEGR1N: every mismatch (11/254) is a subject aged exactly 80.** The spec
-  says both "65–80" and ">80". The model picked one reading, the submission
-  picked the other. A human programmer would have had to query the same
-  boundary.
-- **One genuine package defect found**: an LLM chain that merges `SVSTDTC`
-  into `TRTSDT` and then imputes from `SVSTDTC` passes the IR gate but fails
-  at execution — the merge renamed the column away, and the semantic gate
-  doesn't track that yet. The fail-closed execution layer caught it
-  (transactional rollback, downstream variables refused stale inputs), and
-  it's now a registered finding with a proposed fix.
+  oracle's own precision** (finding F-05). The values trace to exactly the VS
+  records the spec names; the oracle stores them rounded to 1 decimal, a
+  convention the spec text never mentions. The derivation is right; the
+  metadata was silent.
+- **AGEGR1N: in the run that derived it, every mismatch (11/254) was a
+  subject aged exactly 80** (finding F-04). The spec says both "65–80" and
+  ">80". The model picked one reading, the submission picked the other. A
+  human programmer would have had to query the same boundary. In the current
+  cached run the model abstains on this variable instead — run-to-run
+  variance, recorded as limitation 8.
+- **ADLBC BASE/CHG at 0.4% agreement is a defect in the spec text, executed
+  faithfully** (finding F-09). The workbook's derivation for BASE is
+  literally `LB.LBSTNRHI` — the record's own upper normal limit, not the
+  baseline value. The pipeline executes what the spec says and reports the
+  disagreement; a human programmer would raise a query at exactly this spot.
+- **Honest dependency cascades.** Most remaining ADAE execution errors are
+  variables that merge ADSL columns the ADSL backend itself abstained on —
+  cross-dataset derivations can only be as complete as their upstreams.
 
 This is why the pipeline compares against an oracle instead of asserting
 correctness: the honest output of an automation showcase is a *failure
@@ -100,8 +193,9 @@ taxonomy*, not a victory lap.
 
 The report's limitations section is verbatim and non-negotiable:
 
-1. Population subsetting is not automated (produced ADSL starts from DM; the
-   oracle is the 254-subject randomized population).
+1. Population subsetting is not automated (produced datasets start from the
+   full SDTM base domain; the ADSL oracle is the 254-subject randomized
+   population). Agreement is computed on joined records only.
 2. Vocabulary gaps are hard boundaries — more LLM voters cannot fix a
    missing layer.
 3. The rules backend is keyword-fragile; it's a baseline, not understanding.
@@ -111,9 +205,12 @@ The report's limitations section is verbatim and non-negotiable:
 6. Oracle differences may be spec ambiguity, not package error.
 7. The generated programs are UNGATED DRAFTs — no human approval gate covers
    them; they are demonstration output, never release-grade.
-8. Single model, single dataset, and stochastic: across three runs the
-   needs-human count moved 24 → 22 → 27. That variance is why the
-   consensus-voting mode exists.
+8. Single model, three datasets, and stochastic: across the two full ADSL
+   runs behind the report's development, the `needs_human` count moved
+   24 → 22 and rules/LLM layer-chain agreement 78% → 71%. That variance is
+   why the consensus-voting mode exists.
+9. Value-level metadata is out of scope (the workbook's `ValueLevel` sheet is
+   all ADADAS, which this run does not attempt).
 
 ## Why constrain the LLM at all?
 
@@ -127,7 +224,8 @@ afford.
 
 The LLM is a translator, not an author. The compiler writes the code. The
 gate decides what ships. And when the spec is ambiguous, the system says so —
-in the run above, 27 times out of 49, with receipts.
+across three real submission datasets, with receipts, and with a findings
+register showing the gate getting sharper because we measured it.
 
 ---
 
@@ -136,3 +234,23 @@ in the run above, 27 times out of 49, with receipts.
 REPORT.md + evidence files) lives in `demo/automation/`; the narrative
 version is on the
 [package site](https://yanmingyu92.github.io/admiralagent/articles/cdisc-pilot-showcase.html).*
+
+---
+
+## Submission notes (not part of the article)
+
+R-bloggers is an RSS aggregator — it does not accept articles directly; it
+re-publishes posts from registered blog feeds.
+
+- [USER ACTION] Publish this post on a blog you control that exposes an
+  RSS/Atom feed (e.g. a personal Quarto blog, or the pkgdown site above if it
+  has a blog section with a feed).
+- [USER ACTION] Submit the feed URL to R-bloggers via their "add your blog"
+  page (https://www.r-bloggers.com/add-your-blog/). The feed must be
+  R-focused and approval is manual.
+- Alternative path — Posit Blog guest post: there is no self-serve
+  submission form; guest posts are arranged by pitching Posit's developer
+  relations / blog editors. [USER ACTION] Send the pitch (this draft + a one
+  paragraph summary) through Posit's contact channels and agree timing with
+  the editors before publishing elsewhere, since cross-posting terms should
+  be confirmed with them.

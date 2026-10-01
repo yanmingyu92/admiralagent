@@ -39,7 +39,7 @@
 目标：降低维护面，把私有实现换成生态标准组件。
 
 - [x] A1 MCP 层评估迁移到 mcptools + 可复用加固 wrapper（入站限制、错误目录、`mcp_redact_ir()` 抽为独立组件）；若保留私有 server，须写明理由 — **评估完成，结论 hybrid：保留私有 server**（加固即产品：预解析字节上限/参数树限额/固定错误目录/IR 脱敏都活在 JSON-RPC 层，mcptools 无对应钩子；且其 Imports 含 ellmer/nanonext，违反零强依赖红线；517 行进程内安全契约测试会退化为进程级集成测试）。完整理由清单与复评触发条件见 `.agents/mcptools-assessment.md`（本地笔记）
-- [ ] A2 API 面收敛：43 个导出审查，内部函数收回；IR 对象评估 S7 化（工具签名自描述）
+- [ ] A2 API 面收敛：导出审查，内部函数收回；IR 对象评估 S7 化（工具签名自描述）— **审查完成，收回未实施**：NAMESPACE 实测 45 个 export + 1 个 S3method（"43" 是 P3 V1 前的旧数）；四档分类（A 核心 16 / B 合理 13 / C 收回候选 8 / D 需讨论 8）、C 档每候选的文档同步清单见 `.agents/p2-a2-export-review.md`（本地笔记）；S7 化评估结论**不建议列入 A2**（与 fail-closed 一次报全语义冲突、破 Imports 最小化红线、golden hash 稳定性风险；重开触发条件已记录）。收回实施属公开 API 变更，待用户确认后按清单执行
 - [x] A3 `R/artifacts.R`（1230 行）拆分为 sidecar / audit-log / gate / manifest 四个模块 — 已完成机械拆分（`R/artifact_write.R` / `R/audit_log.R` / `R/gate.R` / `R/manifest.R`），61 个符号逐一核对各定义一次，零行为变更，全量测试 4801 绿
 - [x] A4 `.agents/`（HANDOFF + 快照）从 git 全历史移除（filter-branch，开源前置条件）；本地保留、`.gitignore` 防再入库。注：因私有仓库 Actions 计费阻塞，仓库于 P1 后提前公开（ROADMAP 节奏调整，经用户确认）
 
@@ -48,9 +48,10 @@
 目标：把别人最难抄的东西做成公开资产。
 
 - [x] V1 evals 从内部回归语料升级为公开可执行的验证器 API + 文档（L4 资产）— `run_agreement()` / `agreement_overstatement()` 已导出（含 `print.aa_agreement()`），roxygen 内置诚实性边界（自评分语料 ≠ oracle、IR agreement ≠ 双程编程），NAMESPACE +3、man +3、测试 +12（4801 绿）
-- [ ] V2 真实 P21 vendor spec 适配（当前仅 mock spec + CDISC pilot1）
+- [ ] V2 真实 P21 vendor spec 适配 — **部分达成**：showcase 已跑通 pilot5 真实递交 define 工作簿（P21 风格 xlsx）的 ADSL/ADAE/ADLBC 三数据集（spec 构建 `build_spec_from_define_xlsx()`，codelist 摄取 `mock_metacore()`）。距"真实 P21 vendor spec 适配"仍缺：① define.xml 直接摄取（当前仅 xlsx 工作簿一种 layout，`R/define.R`）；② 多家 vendor spec 的 layout 差异覆盖；③ value-level metadata 机器化表达（ValueLevel 表，showcase 记录为边界 F-09/REPORT 限制 9）；④ 第二项研究复现（当前仅 pilot5 单一研究）
 - [ ] V3 TLF 域对接评估：与 cards/gtsummary 的 ARD 衔接（ARD 是天然 sink，见 .agents/ARS-SPIKE.md 结论）
 - [ ] V4 起草「agent-ready R 包成熟度模型 L0–L4」白皮书——生态话语权的支点
+- [ ] V5 条件层（conditional）词汇 — **评估完成，未实施**（词汇扩张 = 攻击面扩张，实施前需用户确认）：showcase 实测 9 个 `Y if <condition>` 类弃权（SAFFL/ITTFL/DISCONFL/DSRAEFL/EOSSTT/COMP*FL），候选层 `assign_conditional`（复用 filter 子语言、纯增量、golden `6aea851a` 无需迁移）确定可转 4/9，另 5 个需存在性/missingness 原语（建议阶段 2 独立评估）；完整设计/安全分析/实测清单见 `.agents/conditional-layer-assessment.md`（本地笔记）
 
 ## P4 — 推广（P0+P1 完成后启动，soft-launch → hard-launch）
 
@@ -58,13 +59,13 @@
 
 - [x] M1 GitHub 仓库公开（提前至 P1 后：私有 Actions 计费阻塞所致）：README 加 badges（R-CMD-check、testthat）+ GitHub 安装说明；demo GIF 待补
 - [x] M2 pkgdown 站点上线：https://yanmingyu92.github.io/admiralagent/（gh-pages 自动部署，push 触发已启用）
-- [x] M2b CDISC pilot5 自动化 showcase：`demo/automation/` 一键管线（00 ingest → 05 report，rules + DeepSeek 双后端，真实递交 spec/SDTM/oracle），`REPORT.md` 真实数字 + findings F-01~F-05 登记；pkgdown article `articles/cdisc-pilot-showcase.html` + README 入口（"See it run on real CDISC pilot data"）
+- [x] M2b CDISC pilot5 自动化 showcase：`demo/automation/` 一键管线（00 ingest → 05 report，rules + DeepSeek 双后端，真实递交 spec/SDTM/oracle），`REPORT.md` 真实数字 + findings 登记；pkgdown article `articles/cdisc-pilot-showcase.html` + README 入口（"See it run on real CDISC pilot data"）。**已扩域**：ADSL → ADSL/ADAE/ADLBC 三数据集（`AA_DATASETS` 驱动）；findings F-01~F-10，其中 F-01（validate_ir 列改名追踪，`ee0f748`）/F-02（define 工作簿 Codelists → metacore）/F-06（build_context 带 dataset）/F-07（chat 重置韧性）/F-10（同域基座列 assign 规则）已修复并回归，F-03~F-05/F-08/F-09 为如实记录的边界
 - [x] M3 个人 r-universe 准备：`yanmingyu92/universe` 仓库 + packages.json 已建；**待用户操作**：安装 R-universe GitHub App（https://github.com/apps/r-universe）到该仓库后 https://yanmingyu92.r-universe.dev 生效；pharmaverse 收录列入 M7
 
 ### Hard-launch（P2 完成时）
 
-- [ ] M4 英文博客：「LLM Never Writes R Code: Constrained IR for GxP Code Generation」——主打架构主张 + 诚实性边界（投 R-bloggers / Posit Blog 客座）。**草稿已落盘** `docs-drafts/blog-llm-never-writes-r.md`（数字全部来自 pilot5 showcase REPORT.md，待投稿）
-- [ ] M5 中文内容：知乎/小红书/公众号同步（架构故事 + 精度表诚实叙事，差异化记忆点）。**大纲已落盘** `docs-drafts/m5-zh-content-outline.md`（知乎长文 + 小红书卡片各一，待发布）
+- [ ] M4 英文博客：「LLM Never Writes R Code: Constrained IR for GxP Code Generation」——主打架构主张 + 诚实性边界（投 R-bloggers / Posit Blog 客座）。**终稿已落盘** `docs-drafts/blog-llm-never-writes-r.md`（数字与 pilot5 三数据集 showcase REPORT.md 一致，含 F-01 门前移叙事与 F-06→F-10 改进回路案例；文末 R-bloggers/Posit 投稿路径，用户操作步骤已标注 [USER ACTION]，待投稿）
+- [ ] M5 中文内容：知乎/小红书/公众号同步（架构故事 + 精度表诚实叙事，差异化记忆点）。**知乎成稿已落盘** `docs-drafts/m5-zhihu-article.md`（大纲 `docs-drafts/m5-zh-content-outline.md`，数字与最新 REPORT.md 一致，待发布）
 - [ ] M6 会议投稿：R/Pharma（通常 10–11 月）、posit::conf、useR!——主题即「agent-ready 临床编程」
 - [ ] M7 pharmaverse 社区渗透：Slack 自我介绍、admiral Discussions 发设计帖、申请列入 pharmaverse 包清单
 - [ ] M8 LinkedIn 英文帖 + 作者个人叙事（design doc 双语优势）
