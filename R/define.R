@@ -36,9 +36,11 @@ parse_define <- function(path) {
   }
   doc <- tryCatch(
     xml2::read_xml(path),
-    error = function(e) stop(
-      "cannot parse define file as XML: ", conditionMessage(e), call. = FALSE
-    )
+    error = function(e) {
+      stop(
+        "cannot parse define file as XML: ", conditionMessage(e), call. = FALSE
+      )
+    }
   )
 
   child1 <- function(node, name) {

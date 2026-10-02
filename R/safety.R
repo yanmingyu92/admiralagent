@@ -19,10 +19,12 @@ validate_ir_shape <- function(ir) {
     v <- ir[[j]]
     id <- paste0("[variable ", j, "]")
     if (!is.list(v) || !inherits(v, "aa_variable_ir")) {
-      bad <- c(bad, paste(id, "must be an aa_variable_ir object")); next
+      bad <- c(bad, paste(id, "must be an aa_variable_ir object"))
+      next
     }
     if (!exact_fields(v, c("dataset", "variable", "steps", "spec_origin", "confidence", "needs_human", "rationale"))) {
-      bad <- c(bad, paste(id, "fields must be uniquely named, exact IR fields")); next
+      bad <- c(bad, paste(id, "fields must be uniquely named, exact IR fields"))
+      next
     }
     for (nm in c("dataset", "variable")) {
       if (!scalar_text(v[[nm]]) || !valid_name(v[[nm]])) bad <- c(bad, paste(id, nm, "must be one uppercase identifier"))
@@ -32,23 +34,34 @@ validate_ir_shape <- function(ir) {
     }
     if (!scalar_flag(v$needs_human)) bad <- c(bad, paste(id, "needs_human must be TRUE or FALSE"))
     if (!real_numeric(v$confidence) || length(v$confidence) != 1L || anyNA(v$confidence) || any(!is.finite(v$confidence)) || any(v$confidence < 0 | v$confidence > 1)) bad <- c(bad, paste(id, "confidence must be a finite number in [0, 1]"))
-    if (!is.list(v$steps)) { bad <- c(bad, paste(id, "steps must be a list")); next }
+    if (!is.list(v$steps)) {
+      bad <- c(bad, paste(id, "steps must be a list"))
+      next
+    }
     for (i in seq_along(v$steps)) {
-      st <- v$steps[[i]]; sid <- paste(id, "step", i)
+      st <- v$steps[[i]]
+      sid <- paste(id, "step", i)
       if (!is.list(st) || !scalar_text(st$layer) || !st$layer %in% names(layers)) {
-        bad <- c(bad, paste(sid, "unknown layer; use layer_names()")); next
+        bad <- c(bad, paste(sid, "unknown layer; use layer_names()"))
+        next
       }
       if (!exact_fields(st, c("layer", "args"))) {
-        bad <- c(bad, paste(sid, "fields must be exactly layer and args")); next
+        bad <- c(bad, paste(sid, "fields must be exactly layer and args"))
+        next
       }
       a <- st$args
       if (!is.list(a) || (length(a) && (is.null(names(a)) || anyNA(names(a)) || any(!nzchar(names(a))) || anyDuplicated(names(a))))) {
-        bad <- c(bad, paste(sid, "args must be a uniquely named list")); next
+        bad <- c(bad, paste(sid, "args must be a uniquely named list"))
+        next
       }
       schema <- c(layers[[st$layer]]$args, list(on = "character, source dataset object"))
       for (nm in names(a)) {
-        x <- a[[nm]]; desc <- schema[[nm]]
-        if (is.null(desc)) { bad <- c(bad, paste(sid, "unknown arg", nm)); next }
+        x <- a[[nm]]
+        desc <- schema[[nm]]
+        if (is.null(desc)) {
+          bad <- c(bad, paste(sid, "unknown arg", nm))
+          next
+        }
         vector <- grepl("vector", desc, fixed = TRUE)
         good <- if (startsWith(desc, "character")) is.character(x) else if (startsWith(desc, "numeric")) real_numeric(x) else is.logical(x)
         good <- good && is.null(dim(x)) && length(x) > 0L && (vector || length(x) == 1L) && !anyNA(x)
@@ -85,7 +98,8 @@ validate_ir_tokens <- function(ir) {
   bad <- character()
   columns <- c("target", "from", "source", "dtc", "start", "end", "by_vars", "order", "analysis_var", "parameters", "constant_parameters")
   for (v in ir) for (s in v$steps) {
-    a <- s$args; id <- paste0("[", v$variable, " ", s$layer, "]")
+    a <- s$args
+    id <- paste0("[", v$variable, " ", s$layer, "]")
     for (nm in intersect(names(a), columns)) if (!valid_name(a[[nm]])) bad <- c(bad, paste(id, nm, "must contain uppercase variable identifiers only"))
     for (nm in intersect(names(a), c("on", "dataset_add", "dataset_lookup"))) if (!valid_name(a[[nm]], TRUE)) bad <- c(bad, paste(id, nm, "must be a dataset object identifier"))
     for (nm in intersect(names(a), c("filter", "restrict_filter", "formula", "condition"))) if (!safe_expression(a[[nm]], nm == "formula")) bad <- c(bad, paste(id, nm, "fails token whitelist: use uppercase variables, numbers, quoted filter values, operators and parentheses; no calls or assignments"))
@@ -143,7 +157,7 @@ normalize_ir_records <- function(records) {
     if (!is.list(rec$steps) || (length(rec$steps) && !is.null(names(rec$steps)))) stop("steps must be an array", call. = FALSE)
     steps <- lapply(rec$steps, function(st) {
       if (!exact_fields(st, c("layer", "args", "on"), c("layer", "args")) ||
-          !scalar_text(st$layer) || !st$layer %in% names(layers)) stop("unknown layer or invalid step; provide layer and args", call. = FALSE)
+            !scalar_text(st$layer) || !st$layer %in% names(layers)) stop("unknown layer or invalid step; provide layer and args", call. = FALSE)
       a <- st$args
       if (!is.list(a) || (length(a) && !exact_fields(a, c(names(layers[[st$layer]]$args), "on"), character()))) stop("args have missing names, duplicates or unknown fields", call. = FALSE)
       if ("on" %in% names(st)) {
@@ -159,17 +173,19 @@ normalize_ir_records <- function(records) {
           val <- lapply(val, function(z) if (identical(z, "Inf")) Inf else if (identical(z, "-Inf")) -Inf else z)
         }
         if (!is.null(desc) && grepl("vector", desc, fixed = TRUE) && is.list(val) &&
-            is.null(names(val)) && length(val)) {
-          ok <- vapply(val, function(z) length(z) == 1L &&
-            if (startsWith(desc, "character")) is.character(z) else is.numeric(z), logical(1))
+              is.null(names(val)) && length(val)) {
+          ok <- vapply(val, function(z) {
+            length(z) == 1L &&
+              if (startsWith(desc, "character")) is.character(z) else is.numeric(z)
+          }, logical(1))
           if (all(ok)) a[[nm]] <- unlist(val, use.names = FALSE)
         }
       }
       structure(list(layer = st$layer, args = a), class = c("aa_step", "list"))
     })
     new_variable_ir(rec$dataset, rec$variable, steps,
-      spec_origin = rec$spec_origin %||% NA_character_, confidence = rec$confidence,
-      needs_human = rec$needs_human, rationale = rec$rationale %||% NA_character_)
+                    spec_origin = rec$spec_origin %||% NA_character_, confidence = rec$confidence,
+                    needs_human = rec$needs_human, rationale = rec$rationale %||% NA_character_)
   })
 }
 

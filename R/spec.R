@@ -1,4 +1,4 @@
-SPEC_REQUIRED_COLS <- c("dataset", "variable", "label", "type", "origin", "derivation")
+spec_required_cols <- c("dataset", "variable", "label", "type", "origin", "derivation")
 
 #' Normalize a flat spec data frame
 #'
@@ -15,7 +15,7 @@ SPEC_REQUIRED_COLS <- c("dataset", "variable", "label", "type", "origin", "deriv
 read_spec_df <- function(df) {
   if (!is.data.frame(df)) stop("spec must be a data.frame with required columns", call. = FALSE)
   if (anyNA(names(df)) || any(!nzchar(names(df))) || anyDuplicated(names(df))) stop("spec column names must be non-empty and unique", call. = FALSE)
-  missing <- setdiff(SPEC_REQUIRED_COLS, names(df))
+  missing <- setdiff(spec_required_cols, names(df))
   if (length(missing) > 0) {
     stop("spec data frame is missing required columns: ", paste(missing, collapse = ", "), call. = FALSE)
   }
@@ -23,7 +23,7 @@ read_spec_df <- function(df) {
   for (col in optional) {
     if (!col %in% names(df)) df[[col]] <- rep(NA_character_, nrow(df))
   }
-  for (col in c(SPEC_REQUIRED_COLS, optional)) {
+  for (col in c(spec_required_cols, optional)) {
     if (!is.atomic(df[[col]]) || !is.null(dim(df[[col]]))) stop("spec column '", col, "' must contain scalar cells, not lists or matrices", call. = FALSE)
   }
   df[] <- lapply(df, function(x) if (is.factor(x)) as.character(x) else x)

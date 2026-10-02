@@ -7,13 +7,13 @@
 # `aa_variable_ir` (intermediates are alpha-renamed) and never reaches codegen.
 
 # Args whose value is a set: element order carries no meaning.
-SET_SEMANTIC_ARGS <- c("by_vars", "parameters", "constant_parameters")
+set_semantic_args <- c("by_vars", "parameters", "constant_parameters")
 # Args naming columns in some dataset; subject to intermediate alpha-renaming.
-COLUMN_ARGS <- c("target", "from", "source", "dtc", "start", "end", "analysis_var", "by_vars", "order")
+column_args <- c("target", "from", "source", "dtc", "start", "end", "analysis_var", "by_vars", "order")
 # Args holding an expression; normalized through the R parser, then renamed.
-EXPR_ARGS <- c("filter", "restrict_filter", "formula", "condition")
+expr_args <- c("filter", "restrict_filter", "formula", "condition")
 # Args naming a dataset object; case-insensitive by `valid_name(object = TRUE)`.
-DATASET_ARGS <- c("on", "dataset_add", "dataset_lookup")
+dataset_args <- c("on", "dataset_add", "dataset_lookup")
 
 # Fill registry-declared defaults so an omitted arg compares equal to the same
 # arg stated explicitly. A default may be a literal or a function of the
@@ -81,15 +81,15 @@ canonical_step <- function(s, v, map, layers) {
   args$on <- args$on %||% v$dataset
   for (nm in names(args)) {
     x <- args[[nm]]
-    if (nm %in% DATASET_ARGS) {
+    if (nm %in% dataset_args) {
       x <- tolower(x)
-    } else if (nm %in% EXPR_ARGS) {
+    } else if (nm %in% expr_args) {
       x <- rename_tokens(canonical_expression(x), map)
-    } else if (nm %in% COLUMN_ARGS) {
+    } else if (nm %in% column_args) {
       x <- rename_tokens(x, map)
     }
     if (is.numeric(x)) x <- as.double(x)
-    if (nm %in% SET_SEMANTIC_ARGS && is.character(x)) x <- sort(x)
+    if (nm %in% set_semantic_args && is.character(x)) x <- sort(x)
     args[[nm]] <- x
   }
   list(layer = s$layer, args = if (length(args)) args[order(names(args))] else args)

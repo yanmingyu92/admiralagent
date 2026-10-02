@@ -114,17 +114,21 @@ run_validation <- function(data, ir, quiet = FALSE) {
         seen <- c(seen, cid)
         entry <- registry[[cid]]
         if (is.null(entry)) {
-          status <- "MANUAL"; details <- "unknown check id"
+          status <- "MANUAL"
+          details <- "unknown check id"
         } else {
           res <- tryCatch(entry$fn(data, v$variable, s$args), error = function(e) {
             paste0("MANUAL: check errored (", conditionMessage(e), ")")
           })
           if (grepl("^FAIL", res)) {
-            status <- "FAIL"; details <- res
+            status <- "FAIL"
+            details <- res
           } else if (grepl("^MANUAL", res)) {
-            status <- "MANUAL"; details <- res
+            status <- "MANUAL"
+            details <- res
           } else {
-            status <- "PASS"; details <- ""
+            status <- "PASS"
+            details <- ""
           }
         }
         rows[[length(rows) + 1]] <- data.frame(
