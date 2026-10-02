@@ -2,7 +2,7 @@ exprs_chr <- function(x) paste(x, collapse = ", ")
 
 # Languages the renderer seam knows about. "r" is the only one implemented;
 # the others exist so an unimplemented target fails loudly and by name.
-AA_LANGUAGES <- c("r", "sas", "python")
+aa_languages <- c("r", "sas", "python")
 
 #' Quote a literal for one target language
 #'
@@ -15,7 +15,7 @@ AA_LANGUAGES <- c("r", "sas", "python")
 #'   occur in PARAM text ("Investigator's choice"). Quoting is therefore a
 #'   per-language decision taken here, not a serialisation side effect.
 #' @param x Values to quote; coerced with `as.character()`.
-#' @param language One of `AA_LANGUAGES`.
+#' @param language One of `aa_languages`.
 #' @return Character vector of literals in the target language's syntax.
 #' @noRd
 quote_literal <- function(x, language = "r") {
@@ -504,12 +504,12 @@ aa_layers <- function() {
   )
   # Dependency schema lives beside argument and render definitions.
   input_args <- list(assign = "from", merge_var = c("by_vars", "order", "source", "filter"),
-    lookup_join = c("by_vars", "source"), impute_dtc = "dtc", dtm_to_dt = "source",
-    duration = c("start", "end"), date_shift = "source",
-    compute_param = c("by_vars", "parameters", "constant_parameters", "filter"),
-    summary_record = c("by_vars", "analysis_var"), extreme_flag = c("by_vars", "order", "restrict_filter"),
-    codelist_var = "from", obs_number = c("by_vars", "order"), categorize = "from", compute_var = "formula",
-    assign_conditional = "condition")
+                     lookup_join = c("by_vars", "source"), impute_dtc = "dtc", dtm_to_dt = "source",
+                     duration = c("start", "end"), date_shift = "source",
+                     compute_param = c("by_vars", "parameters", "constant_parameters", "filter"),
+                     summary_record = c("by_vars", "analysis_var"), extreme_flag = c("by_vars", "order", "restrict_filter"),
+                     codelist_var = "from", obs_number = c("by_vars", "order"), categorize = "from", compute_var = "formula",
+                     assign_conditional = "condition")
   for (nm in names(registry)) registry[[nm]]$inputs <- input_args[[nm]]
   out <- lapply(names(registry), function(nm) {
     layer <- registry[[nm]]
@@ -542,7 +542,7 @@ aa_layers <- function() {
 # rule is written down; dependency and execution consumers call it.
 impute_dtc_outputs <- function(target, output_class) {
   if (is.null(target) || !is.character(target) || length(target) != 1L ||
-      is.na(target) || !nzchar(target)) return(character())
+        is.na(target) || !nzchar(target)) return(character())
   prefix <- sub("(DTM|DT)$", "", target)
   unique(c(target, paste0(prefix, "DTF"), if (identical(output_class, "dtm")) paste0(prefix, "TMF")))
 }
@@ -565,7 +565,7 @@ render_not_implemented <- function(layer, language) {
 # and R form) and subsettable (`set[["sas"]]`, the language-explicit form).
 aa_renderset <- function(layer, r) {
   languages <- list(r = r)
-  for (language in setdiff(AA_LANGUAGES, "r")) {
+  for (language in setdiff(aa_languages, "r")) {
     languages[[language]] <- render_not_implemented(layer, language)
   }
   set <- r
@@ -666,7 +666,7 @@ predicate_node <- function(x) {
   list(type = "opaque", text = paste(deparse(x), collapse = " "))
 }
 
-PREDICATE_TIGHT_OPS <- c("^", ":", "$", "@", "::", ":::")
+predicate_tight_ops <- c("^", ":", "$", "@", "::", ":::")
 
 #' Reconstruct predicate text from its AST in one target language
 #'
@@ -675,7 +675,7 @@ PREDICATE_TIGHT_OPS <- c("^", ":", "$", "@", "::", ":::")
 #'   implemented; other languages error by name, exactly like the layer render
 #'   stubs, so a renderer cannot silently emit R syntax into a SAS program.
 #' @param node A node produced by [parse_predicate()].
-#' @param language One of `AA_LANGUAGES`.
+#' @param language One of `aa_languages`.
 #' @return A single expression string.
 #' @noRd
 deparse_predicate <- function(node, language = "r") {
@@ -687,8 +687,8 @@ deparse_predicate <- function(node, language = "r") {
     node$type,
     name = node$name,
     literal = if (is.character(node$value)) quote_literal(node$value, language)
-      else if (is.logical(node$value)) as.character(node$value)
-      else format(node$value, trim = TRUE, scientific = FALSE, digits = 17),
+    else if (is.logical(node$value)) as.character(node$value)
+    else format(node$value, trim = TRUE, scientific = FALSE, digits = 17),
     opaque = node$text,
     call = deparse_predicate_call(node, language),
     stop("unknown predicate node type", call. = FALSE)
@@ -701,7 +701,7 @@ deparse_predicate_call <- function(node, language) {
   if (!is.na(op) && identical(op, "(") && length(parts) == 1L) return(paste0("(", parts, ")"))
   if (!is.na(op) && op %in% c("-", "+", "!") && length(parts) == 1L) return(paste0(op, parts))
   if (!is.na(op) && length(parts) == 2L && !grepl("^[A-Za-z._]", op)) {
-    sep <- if (op %in% PREDICATE_TIGHT_OPS) "" else " "
+    sep <- if (op %in% predicate_tight_ops) "" else " "
     return(paste0(parts[1], sep, op, sep, parts[2]))
   }
   named <- ifelse(nzchar(node$arg_names), paste0(node$arg_names, " = ", parts), parts)
@@ -736,11 +736,12 @@ predicate_paramcd_values <- function(node) {
   visit <- function(n) {
     if (is.null(n) || !is.list(n) || !identical(n$type, "call")) return(character())
     if (identical(n$op, "==") && length(n$args) == 2L) {
-      a <- n$args[[1]]; b <- n$args[[2]]
+      a <- n$args[[1]]
+      b <- n$args[[2]]
       if (identical(a$type, "name") && identical(a$name, "PARAMCD") &&
-          identical(b$type, "literal") && is.character(b$value)) return(b$value)
+            identical(b$type, "literal") && is.character(b$value)) return(b$value)
       if (identical(b$type, "name") && identical(b$name, "PARAMCD") &&
-          identical(a$type, "literal") && is.character(a$value)) return(a$value)
+            identical(a$type, "literal") && is.character(a$value)) return(a$value)
     }
     unlist(lapply(n$args, visit), use.names = FALSE)
   }
@@ -813,8 +814,8 @@ admiral_required_layers <- function(ir) {
 check_admiral_compat <- function(ir, installed = NA) {
   assert_ir_shape(ir, allow_empty = TRUE)
   if (!is.null(installed) && !inherits(installed, "numeric_version") &&
-      !(is.character(installed) && scalar_text(installed) && nzchar(installed)) &&
-      !(is.atomic(installed) && is.null(dim(installed)) && length(installed) == 1L && is.na(installed))) {
+        !(is.character(installed) && scalar_text(installed) && nzchar(installed)) &&
+        !(is.atomic(installed) && is.null(dim(installed)) && length(installed) == 1L && is.na(installed))) {
     stop("installed must be one version string, package_version, NA or NULL", call. = FALSE)
   }
   if (inherits(installed, "numeric_version") && length(installed) != 1L) stop("installed must be one version", call. = FALSE)

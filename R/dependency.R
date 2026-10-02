@@ -40,7 +40,8 @@ order_variables <- function(ir, known_columns = character()) {
 }
 
 step_refs <- function(v, s) {
-  a <- s$args; ds <- a$on %||% v$dataset
+  a <- s$args
+  ds <- a$on %||% v$dataset
   rows <- list()
   add <- function(dataset, inputs, kind = "column") {
     for (input in inputs) if (!is.null(input) && is.character(input) && length(input) == 1L && !is.na(input) && nzchar(input)) {
@@ -67,7 +68,9 @@ step_refs <- function(v, s) {
     } else if (s$layer == "lookup_join") {
       add(a$dataset_lookup, x, kind)
       if (nm == "by_vars") add(ds, x)
-    } else add(ds, x, kind)
+    } else {
+      add(ds, x, kind)
+    }
   }
   if (s$layer == "compute_param") add(ds, c("PARAMCD", "AVAL"))
   if (s$layer == "summary_record") add(ds, c("PARAMCD", a$analysis_var %||% "AVAL"))
@@ -101,7 +104,8 @@ step_products <- function(v, s) {
 ref_keys <- function(refs) paste(refs$dataset, refs$kind, refs$input, sep = "::")
 variable_product_keys <- function(v) unique(unlist(lapply(v$steps, function(s) ref_keys(step_products(v, s)))))
 variable_input_keys <- function(v) {
-  made <- character(); refs <- character()
+  made <- character()
+  refs <- character()
   for (s in v$steps) {
     refs <- c(refs, setdiff(ref_keys(step_refs(v, s)), made))
     made <- union(made, ref_keys(step_products(v, s)))
@@ -165,11 +169,15 @@ dependency_graph <- function(ir, known_columns = character()) {
     }
   }
   ranks <- vapply(ir, function(v) ir_rank(v), numeric(1))
-  placed <- integer(); blocked <- integer()
+  placed <- integer()
+  blocked <- integer()
   while (length(placed) < n) {
     remaining <- setdiff(seq_len(n), placed)
     ready <- remaining[vapply(parents[remaining], function(ps) all(ps %in% placed), logical(1))]
-    if (!length(ready)) { blocked <- union(blocked, remaining); ready <- remaining }
+    if (!length(ready)) {
+      blocked <- union(blocked, remaining)
+      ready <- remaining
+    }
     pick <- ready[order(ranks[ready], ready)][1]
     placed <- c(placed, pick)
   }
@@ -203,7 +211,7 @@ ir_dependency_report <- function(ir, known_columns = character()) {
         key <- ref_keys(refs[i, , drop = FALSE])
         if (!key %in% unlist(available) && !refs$input[i] %in% known_columns) {
           rows[[length(rows) + 1L]] <- data.frame(variable = v$variable, input = refs$input[i],
-            dataset = refs$dataset[i], issue = "not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation")
+                                                  dataset = refs$dataset[i], issue = "not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation")
         }
       }
       available[[length(available) + 1L]] <- ref_keys(step_products(v, s))

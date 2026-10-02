@@ -21,7 +21,7 @@ step_rank <- function(v) {
 render_step <- function(step, v, i) {
   assert_valid_ir(list(v))
   if (!real_numeric(i) || length(i) != 1L || !is.finite(i) || i < 1 ||
-      i != floor(i) || i > length(v$steps)) stop("i must be a valid step index within v$steps", call. = FALSE)
+        i != floor(i) || i > length(v$steps)) stop("i must be a valid step index within v$steps", call. = FALSE)
   if (!identical(step, v$steps[[i]])) stop("step must be identical to v$steps[[i]]; validate the complete parent IR", call. = FALSE)
   render_step_validated(step, v, i)
 }
@@ -38,8 +38,8 @@ render_step_validated <- function(step, v, i, language = "r") {
   checks <- vapply(l$checks, function(cid) aa_checks()[[cid]]$description, character(1))
   check_lines <- paste0("# CHECK: ", checks)
   if (step$layer == "merge_var" &&
-      is.null(step$args$order) &&
-      !is.null(step$args$mode) && step$args$mode %in% c("first", "last")) {
+        is.null(step$args$order) &&
+        !is.null(step$args$mode) && step$args$mode %in% c("first", "last")) {
     check_lines <- c(
       check_lines,
       paste0(
@@ -148,8 +148,8 @@ gate_header_lines <- function(gate) {
 
 assert_render_language <- function(language) {
   if (!is.character(language) || length(language) != 1L || is.na(language) ||
-      !language %in% AA_LANGUAGES) {
-    stop("language must be one of ", paste(AA_LANGUAGES, collapse = ", "), call. = FALSE)
+        !language %in% aa_languages) {
+    stop("language must be one of ", paste(aa_languages, collapse = ", "), call. = FALSE)
   }
   invisible(language)
 }
