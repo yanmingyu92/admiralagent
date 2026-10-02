@@ -3,8 +3,10 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   admiralagent: admiralagent.html
+  articles/anatomy-of-a-derivation: anatomy-of-a-derivation.html
   articles/cdisc-pilot-showcase: cdisc-pilot-showcase.html
-last_built: 2026-10-02T01:02Z
+  articles/ir-vs-freeform: ir-vs-freeform.html
+last_built: 2026-10-02T13:18Z
 urls:
   reference: https://yanmingyu92.github.io/admiralagent/reference
   article: https://yanmingyu92.github.io/admiralagent/articles

@@ -149,6 +149,19 @@ F-11（“部分兑现”）；纯增量、golden `6aea851a` 未迁移；剩余 
 个需存在性/missingness 原语（阶段 2 另开评估，未实施）。设计/安全分析见
 `.agents/conditional-layer-assessment.md`（本地笔记）
 
+V6 对照实验（约束 IR vs 自由代码生成）+ 中间过程可视化 —
+**已完成**（本轮，用户批准设计
+`.agents/freeform-comparison-design.md`）：同 spec/同模型/同 oracle/同
+schema 级输入，ADSL 全 49
+变量。结果如实（F-12）：自由生成臂覆盖更高（executed 28 vs 21）但 21
+个响亮错误 + 4 个静默错误（VISNUMEN 0%、DCSREAS 55.5%、SITEGR1
+87.8%）；约束臂 4 个”静默”全属 F-05 舍入家族。沙盒条款：对照臂代码只活
+`demo/automation/freeform/`（静态门禁先扫后跑、独立 R 进程、CONTROL ARM
+标注，F-13 登记门禁一次误报）。落点：REPORT.md §11 +
+`articles/ir-vs-freeform.html`（对照与 GxP 叙事）+
+`articles/anatomy-of-a-derivation.html`（三案例全链条 + 流程 SVG +
+审计摘录）。博客/知乎稿暂不纳入（投稿前再定）
+
 ## P4 — 推广（P0+P1 完成后启动，soft-launch → hard-launch）
 
 ### Soft-launch（P1 完成时）
@@ -169,7 +182,9 @@ on real CDISC pilot data”）。**已扩域**：ADSL → ADSL/ADAE/ADLBC
 F-01（validate_ir 列改名追踪，`ee0f748`）/F-02（define 工作簿 Codelists
 → metacore）/F-06（build_context 带 dataset）/F-07（chat
 重置韧性）/F-10（同域基座列 assign
-规则）已修复并回归，F-03~F-05/F-08/F-09 为如实记录的边界
+规则）已修复并回归，F-03~F-05/F-08/F-09 为如实记录的边界；F-11 登记
+`assign_conditional` 部分兑现，F-12/F-13 登记 V6
+对照实验结论与沙盒门禁误报（见 V6）
 
 M3 个人 r-universe 准备：`yanmingyu92/universe` 仓库 + packages.json
 已建；**待用户操作**：安装 R-universe GitHub

@@ -19,7 +19,9 @@
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="articles/cdisc-pilot-showcase.html">CDISC Pilot 5 Automation Showcase</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="articles/anatomy-of-a-derivation.html">Anatomy of a Derivation</a></li>
+    <li><a class="dropdown-item" href="articles/cdisc-pilot-showcase.html">CDISC Pilot 5 Automation Showcase</a></li>
+    <li><a class="dropdown-item" href="articles/ir-vs-freeform.html">Constrained IR vs Free-Form Code Generation</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json"></form></li>
@@ -83,6 +85,7 @@
 <li><label><input type="checkbox">V3 TLF 域对接评估：与 cards/gtsummary 的 ARD 衔接（ARD 是天然 sink，见 .agents/ARS-SPIKE.md 结论）</label></li>
 <li><label><input type="checkbox">V4 起草「agent-ready R 包成熟度模型 L0–L4」白皮书——生态话语权的支点</label></li>
 <li><label><input type="checkbox" checked>V5 条件层（conditional）词汇 — <strong>阶段 1 已实施</strong>（<code>assign_conditional</code>，<code>70e17e8</code>；用户批准，词汇扩张经确认）：showcase 实测 9 个 <code>Y if &lt;condition&gt;</code> 类弃权（SAFFL/ITTFL/DISCONFL/DSRAEFL/EOSSTT/COMP*FL），评估预测确定可转 4/9，<strong>实测只有 ITTFL 端到端落地（oracle 100%）</strong>——EOSSTT 链断于上游 DCDECOD 弃权、DISCONFL/DSRAEFL 未转化，已如实登记 F-11（“部分兑现”）；纯增量、golden <code>6aea851a</code> 未迁移；剩余 5 个需存在性/missingness 原语（阶段 2 另开评估，未实施）。设计/安全分析见 <code>.agents/conditional-layer-assessment.md</code>（本地笔记）</label></li>
+<li><label><input type="checkbox" checked>V6 对照实验（约束 IR vs 自由代码生成）+ 中间过程可视化 — <strong>已完成</strong>（本轮，用户批准设计 <code>.agents/freeform-comparison-design.md</code>）：同 spec/同模型/同 oracle/同 schema 级输入，ADSL 全 49 变量。结果如实（F-12）：自由生成臂覆盖更高（executed 28 vs 21）但 21 个响亮错误 + 4 个静默错误（VISNUMEN 0%、DCSREAS 55.5%、SITEGR1 87.8%）；约束臂 4 个”静默”全属 F-05 舍入家族。沙盒条款：对照臂代码只活 <code>demo/automation/freeform/</code>（静态门禁先扫后跑、独立 R 进程、CONTROL ARM 标注，F-13 登记门禁一次误报）。落点：REPORT.md §11 + <code>articles/ir-vs-freeform.html</code>（对照与 GxP 叙事）+ <code>articles/anatomy-of-a-derivation.html</code>（三案例全链条 + 流程 SVG + 审计摘录）。博客/知乎稿暂不纳入（投稿前再定）</label></li>
 </ul></div>
 <div class="section level2">
 <h2 id="p4--推广p0p1-完成后启动soft-launch--hard-launch">P4 — 推广（P0+P1 完成后启动，soft-launch → hard-launch）<a class="anchor" aria-label="anchor" href="#p4--%E6%8E%A8%E5%B9%BFp0p1-%E5%AE%8C%E6%88%90%E5%90%8E%E5%90%AF%E5%8A%A8soft-launch--hard-launch"></a></h2>
@@ -90,7 +93,7 @@
 <h3 id="soft-launchp1-完成时">Soft-launch（P1 完成时）<a class="anchor" aria-label="anchor" href="#soft-launchp1-%E5%AE%8C%E6%88%90%E6%97%B6"></a></h3>
 <ul class="task-list"><li><label><input type="checkbox" checked>M1 GitHub 仓库公开（提前至 P1 后：私有 Actions 计费阻塞所致）：README 加 badges（R-CMD-check、testthat）+ GitHub 安装说明；demo GIF 待补</label></li>
 <li><label><input type="checkbox" checked>M2 pkgdown 站点上线：<a href="https://yanmingyu92.github.io/admiralagent/%EF%BC%88gh-pages" class="uri">https://yanmingyu92.github.io/admiralagent/（gh-pages</a> 自动部署，push 触发已启用）</label></li>
-<li><label><input type="checkbox" checked>M2b CDISC pilot5 自动化 showcase：<code>demo/automation/</code> 一键管线（00 ingest → 05 report，rules + DeepSeek 双后端，真实递交 spec/SDTM/oracle），<code>REPORT.md</code> 真实数字 + findings 登记；pkgdown article <code>articles/cdisc-pilot-showcase.html</code> + README 入口（“See it run on real CDISC pilot data”）。<strong>已扩域</strong>：ADSL → ADSL/ADAE/ADLBC 三数据集（<code>AA_DATASETS</code> 驱动）；findings F-01~F-10，其中 F-01（validate_ir 列改名追踪，<code>ee0f748</code>）/F-02（define 工作簿 Codelists → metacore）/F-06（build_context 带 dataset）/F-07（chat 重置韧性）/F-10（同域基座列 assign 规则）已修复并回归，F-03~F-05/F-08/F-09 为如实记录的边界</label></li>
+<li><label><input type="checkbox" checked>M2b CDISC pilot5 自动化 showcase：<code>demo/automation/</code> 一键管线（00 ingest → 05 report，rules + DeepSeek 双后端，真实递交 spec/SDTM/oracle），<code>REPORT.md</code> 真实数字 + findings 登记；pkgdown article <code>articles/cdisc-pilot-showcase.html</code> + README 入口（“See it run on real CDISC pilot data”）。<strong>已扩域</strong>：ADSL → ADSL/ADAE/ADLBC 三数据集（<code>AA_DATASETS</code> 驱动）；findings F-01~F-10，其中 F-01（validate_ir 列改名追踪，<code>ee0f748</code>）/F-02（define 工作簿 Codelists → metacore）/F-06（build_context 带 dataset）/F-07（chat 重置韧性）/F-10（同域基座列 assign 规则）已修复并回归，F-03~F-05/F-08/F-09 为如实记录的边界；F-11 登记 <code>assign_conditional</code> 部分兑现，F-12/F-13 登记 V6 对照实验结论与沙盒门禁误报（见 V6）</label></li>
 <li><label><input type="checkbox" checked>M3 个人 r-universe 准备：<code>yanmingyu92/universe</code> 仓库 + packages.json 已建；<strong>待用户操作</strong>：安装 R-universe GitHub App（<a href="https://github.com/apps/r-universe%EF%BC%89%E5%88%B0%E8%AF%A5%E4%BB%93%E5%BA%93%E5%90%8E" class="external-link uri">https://github.com/apps/r-universe）到该仓库后</a> <a href="https://yanmingyu92.r-universe.dev" class="external-link uri">https://yanmingyu92.r-universe.dev</a> 生效；pharmaverse 收录列入 M7</label></li>
 </ul></div>
 <div class="section level3">
