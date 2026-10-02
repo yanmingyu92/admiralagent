@@ -1,0 +1,16 @@
+```r
+derive <- function(adsl, sources) {
+  # derive RFENDT: RFENDTC (character ISO 8601) converted to a Date (SAS date).
+  # RFENDT is the study reference end date; we take the date part of RFENDTC.
+  # Partial dates that cannot be parsed become NA (highest_imputation = "n").
+  adsl <- adsl |>
+    derive_vars_dt(
+      new_vars_prefix = "RFEND",
+      dtc = RFENDTC,
+      highest_imputation = "n",
+      date_imputation = "first"
+    )
+
+  adsl
+}
+```

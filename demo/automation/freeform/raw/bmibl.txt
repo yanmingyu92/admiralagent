@@ -1,0 +1,11 @@
+```r
+derive <- function(adsl, sources) {
+  # Derive BMIBL: baseline BMI in kg/m^2 as WEIGHTBL / ((HEIGHTBL/100)^2).
+  # WEIGHTBL (kg) and HEIGHTBL (cm) are expected to be present in adsl from earlier derivations.
+  adsl <- adsl |>
+    mutate(
+      BMIBL = WEIGHTBL / ((HEIGHTBL / 100)^2)
+    )
+  adsl
+}
+```

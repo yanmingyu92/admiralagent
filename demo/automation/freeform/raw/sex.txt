@@ -1,0 +1,9 @@
+```r
+derive <- function(adsl, sources) {
+  # derive SEX: copied directly from DM.SEX. adsl already starts as a copy of DM,
+  # so SEX is carried over as-is; we only ensure the controlled terminology is applied.
+  adsl <- adsl |>
+    mutate(SEX = factor(SEX, levels = c("M", "F")))
+  adsl
+}
+```

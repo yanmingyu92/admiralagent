@@ -1,0 +1,9 @@
+```r
+derive <- function(adsl, sources) {
+  # derive AGE: per spec, simply carry DM.AGE through as an integer.
+  # adsl already starts as a copy of DM, so AGE is present; we just ensure it is integer.
+  adsl <- adsl |>
+    mutate(AGE = as.integer(AGE))
+  adsl
+}
+```

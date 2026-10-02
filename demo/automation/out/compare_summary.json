@@ -1,0 +1,129 @@
+{
+  "stage": "08_compare",
+  "generated_at": "2026-10-02 03:41:43 UTC",
+  "design_doc": ".agents/freeform-comparison-design.md",
+  "dataset": "ADSL",
+  "spec_variables": 49,
+  "model": "deepseek-chat",
+  "arms": {
+    "constrained_ir": {
+      "description": "LLM translates spec to closed-vocabulary Layer IR; deterministic compiler renders code; validate_ir() fail-closed",
+      "evidence_files": [
+        "demo/automation/out/ir_llm.rds",
+        "demo/automation/out/accuracy_llm.csv",
+        "demo/automation/out/exec_status_llm.csv",
+        "demo/automation/out/validation_llm.csv",
+        "demo/automation/out/gate_report.json",
+        "demo/automation/out/llm_telemetry.json"
+      ],
+      "cache_date": "2026-10-01 (reused, zero new LLM spend)",
+      "abstained_needs_human": 25,
+      "executed": 21,
+      "execution_errors": 3,
+      "validation_fail": 3,
+      "silent_errors": 4,
+      "silent_error_variables": ["BMIBL", "BMIBLGR1", "HEIGHTBL", "WEIGHTBL"],
+      "silent_error_detail": [
+        {
+          "variable": "BMIBL",
+          "value_agree": 99.6,
+          "value_agree_oracle_prec": null
+        },
+        {
+          "variable": "BMIBLGR1",
+          "value_agree": 99.2,
+          "value_agree_oracle_prec": null
+        },
+        {
+          "variable": "HEIGHTBL",
+          "value_agree": 19.7,
+          "value_agree_oracle_prec": 98.8
+        },
+        {
+          "variable": "WEIGHTBL",
+          "value_agree": 8.7,
+          "value_agree_oracle_prec": 94.5
+        }
+      ],
+      "review_burden": {
+        "variables": 24,
+        "total_loc": 233,
+        "total_comment_lines": 153,
+        "total_bare_logic_points": 56,
+        "median_loc": 8
+      },
+      "cost_usd": 0.0114,
+      "compared": 20,
+      "fully_matching": 16,
+      "partial": 4,
+      "mean_value_agree": 91.4
+    },
+    "freeform": {
+      "description": "LLM writes executable R directly, same schema-level inputs, sandboxed; NOT package output",
+      "evidence_files": [
+        "demo/automation/out/compare_freeform_gen.csv",
+        "demo/automation/out/compare_exec_status.csv",
+        "demo/automation/out/compare_accuracy_freeform.csv",
+        "demo/automation/out/compare_freeform_telemetry.json"
+      ],
+      "generated_ok": 49,
+      "abstained": 0,
+      "blocked_by_static_gate": 0,
+      "parse_fail": 0,
+      "call_errors": 0,
+      "executed": 28,
+      "execution_errors": 21,
+      "executed_with_warnings": 0,
+      "silent_errors": 4,
+      "silent_error_variables": ["DCSREAS", "HEIGHTBL", "SITEGR1", "VISNUMEN"],
+      "silent_error_detail": [
+        {
+          "variable": "DCSREAS",
+          "value_agree": 55.5,
+          "value_agree_oracle_prec": null
+        },
+        {
+          "variable": "HEIGHTBL",
+          "value_agree": 19.7,
+          "value_agree_oracle_prec": 98.8
+        },
+        {
+          "variable": "SITEGR1",
+          "value_agree": 87.8,
+          "value_agree_oracle_prec": null
+        },
+        {
+          "variable": "VISNUMEN",
+          "value_agree": 0,
+          "value_agree_oracle_prec": null
+        }
+      ],
+      "review_burden": {
+        "variables": 49,
+        "total_loc": 1067,
+        "total_comment_lines": 430,
+        "total_bare_logic_points": 561,
+        "median_loc": 18
+      },
+      "cost_usd": 0.0139,
+      "compared": 26,
+      "fully_matching": 22,
+      "partial": 4,
+      "mean_value_agree": 90.9
+    }
+  },
+  "definitions": {
+    "coverage": "executed / 49 spec variables, per arm",
+    "silent_error": "EXECUTED + nothing flagged the variable (arm A: validation PASS; arm B: no warning captured) + oracle compared + value_agree < 100",
+    "fail_closed": "arm A: needs_human abstentions + validation FAIL + execution ERROR; arm B analogues: abstain + static-gate BLOCKED + execution ERROR",
+    "review_burden": "proxy: non-blank LOC / comment lines / bare logic points of generated code; arm A LOC includes mandated CHECK comments and DISCLAIMER header"
+  },
+  "honesty": [
+    "variables an arm did not derive are scored not_produced even when the DM seed every arm starts from already carries the column (verified a no-op for arm A: its 20 compared variables are all EXECUTED)",
+    "single model (deepseek-chat), single study (pilot5 ADSL), single run per arm",
+    "arm A numbers are from the 2026-10-01 cached run; arm B is a fresh run - run-to-run LLM variance is documented in REPORT.md limitation 8",
+    "oracle agreement is not double programming (DESIGN.md section 11.1)",
+    "review burden is a mechanical proxy, not a measured human review effort",
+    "spec-ambiguity disagreements (findings F-04/F-09) are not scored as errors for either arm"
+  ]
+}

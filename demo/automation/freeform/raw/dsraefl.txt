@@ -1,0 +1,16 @@
+```r
+derive <- function(adsl, sources) {
+  # Derive DSRAEFL: "Y" if the subject's disposition reason code (DCREASCD) is
+  # "Adverse Event", NA otherwise. DCREASCD is an ADSL variable derived earlier
+  # in the ADSL build (from DS), so it is available on the incoming adsl.
+  adsl <- adsl |>
+    mutate(
+      DSRAEFL = if_else(
+        !is.na(DCREASCD) & DCREASCD == "Adverse Event",
+        "Y",
+        NA_character_
+      )
+    )
+  adsl
+}
+```

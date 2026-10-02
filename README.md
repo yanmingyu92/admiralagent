@@ -51,3 +51,10 @@ feeds the real pilot 5 submission spec and SDTM through the full pipeline
 and DeepSeek LLM backends — real accuracy numbers, an explicit needs-human
 inventory, and an honest limitations section. Reproduce locally with
 `Rscript demo/automation/run_all.R` (report: `demo/automation/REPORT.md`).
+Two companion pieces go deeper: a
+[controlled experiment](https://yanmingyu92.github.io/admiralagent/articles/ir-vs-freeform.html)
+pits the constrained-IR route against free-form code generation (same model,
+same spec, same oracle), and
+[Anatomy of a Derivation](https://yanmingyu92.github.io/admiralagent/articles/anatomy-of-a-derivation.html)
+follows three real variables through the full spec → IR → gate → code →
+oracle chain.

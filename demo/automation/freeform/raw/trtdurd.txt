@@ -1,0 +1,15 @@
+```r
+derive <- function(adsl, sources) {
+  # TRTDURD: Total Treatment Duration (Days) = TRTEDT - TRTSDT + 1
+  # TRTSDT/TRTEDT are derived earlier in ADSL; guard against missing dates so the
+  # arithmetic yields NA rather than an error.
+  adsl |>
+    mutate(
+      TRTDURD = if_else(
+        !is.na(TRTSDT) & !is.na(TRTEDT),
+        as.integer(TRTEDT - TRTSDT + 1),
+        NA_integer_
+      )
+    )
+}
+```

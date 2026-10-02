@@ -1,0 +1,10 @@
+```r
+derive <- function(adsl, sources) {
+  # derive ARM: planned arm description is taken directly from DM.ARM.
+  # ADSL starts as a copy of DM, so ARM is already present; we simply ensure it
+  # exists as a character variable carrying the DM.ARM values.
+  adsl <- adsl |>
+    mutate(ARM = as.character(ARM))
+  adsl
+}
+```

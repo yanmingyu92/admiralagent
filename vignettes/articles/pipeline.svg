@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" font-family="Helvetica, Arial, sans-serif" font-size="12" role="img" aria-label="admiralagent pipeline: spec to Layer IR to gate to compiled code to execution, oracle comparison and audited artifacts">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7280"/>
+    </marker>
+    <marker id="arrow-dash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9a6a3a"/>
+    </marker>
+  </defs>
+
+  <!-- Row 1: spec -> parse -> LLM translation -> gate -->
+  <rect x="20" y="36" width="126" height="64" rx="6" fill="#f4f6f8" stroke="#6b7280" stroke-width="1.2"/>
+  <text x="83" y="60" text-anchor="middle" font-weight="bold" fill="#1f2937">Spec xlsx</text>
+  <text x="83" y="77" text-anchor="middle" fill="#4b5563">P21-style</text>
+  <text x="83" y="91" text-anchor="middle" fill="#4b5563">derivation text</text>
+
+  <line x1="146" y1="68" x2="166" y2="68" stroke="#6b7280" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <rect x="170" y="36" width="140" height="64" rx="6" fill="#f4f6f8" stroke="#6b7280" stroke-width="1.2"/>
+  <text x="240" y="60" text-anchor="middle" font-weight="bold" fill="#1f2937">Deterministic</text>
+  <text x="240" y="77" text-anchor="middle" font-weight="bold" fill="#1f2937">parsing</text>
+  <text x="240" y="91" text-anchor="middle" fill="#4b5563">spec &#8594; metacore</text>
+
+  <line x1="310" y1="68" x2="330" y2="68" stroke="#6b7280" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <rect x="334" y="20" width="196" height="96" rx="6" fill="#eef3ee" stroke="#4f7a5a" stroke-width="1.2"/>
+  <text x="432" y="40" text-anchor="middle" font-weight="bold" fill="#1f2937">LLM translation</text>
+  <text x="432" y="55" text-anchor="middle" fill="#4b5563">DeepSeek &#8594; Layer IR</text>
+  <text x="432" y="69" text-anchor="middle" fill="#4b5563">JSON, closed vocabulary</text>
+  <text x="432" y="84" text-anchor="middle" fill="#4b5563">(15 layers, aa_layers())</text>
+  <text x="432" y="100" text-anchor="middle" font-style="italic" fill="#6b7280">schema-only context; never patient data</text>
+
+  <line x1="530" y1="68" x2="550" y2="68" stroke="#6b7280" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <rect x="554" y="36" width="160" height="64" rx="6" fill="#fdf3e7" stroke="#b45309" stroke-width="1.4"/>
+  <text x="634" y="60" text-anchor="middle" font-weight="bold" fill="#1f2937">validate_ir() gate</text>
+  <text x="634" y="77" text-anchor="middle" fill="#4b5563">fail-closed semantic</text>
+  <text x="634" y="91" text-anchor="middle" fill="#4b5563">checks before any code</text>
+
+  <!-- abstention branch -->
+  <line x1="714" y1="68" x2="738" y2="68" stroke="#9a6a3a" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#arrow-dash)"/>
+  <rect x="742" y="20" width="138" height="96" rx="6" fill="#fbf1ec" stroke="#b45309" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text x="811" y="40" text-anchor="middle" font-weight="bold" fill="#7c3f0e">needs_human</text>
+  <text x="811" y="55" text-anchor="middle" fill="#7c3f0e">no code rendered</text>
+  <text x="811" y="70" text-anchor="middle" fill="#7c3f0e">recorded abstention</text>
+  <text x="811" y="85" text-anchor="middle" fill="#7c3f0e">with stated rationale</text>
+  <text x="811" y="102" text-anchor="middle" fill="#7c3f0e">&#8594; human review queue</text>
+
+  <!-- gate -> compiler (down) -->
+  <line x1="634" y1="100" x2="634" y2="146" stroke="#6b7280" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="642" y="130" fill="#6b7280">PASS</text>
+
+  <!-- Row 2: compiler -> execution -> oracle -> artifacts (right to left) -->
+  <rect x="554" y="150" width="160" height="64" rx="6" fill="#f4f6f8" stroke="#6b7280" stroke-width="1.2"/>
+  <text x="634" y="174" text-anchor="middle" font-weight="bold" fill="#1f2937">Deterministic</text>
+  <text x="634" y="189" text-anchor="middle" font-weight="bold" fill="#1f2937">compiler</text>
+  <text x="634" y="204" text-anchor="middle" fill="#4b5563">R code + CHECK comments</text>
+
+  <line x1="554" y1="182" x2="534" y2="182" stroke="#6b7280" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <rect x="384" y="150" width="146" height="64" rx="6" fill="#f4f6f8" stroke="#6b7280" stroke-width="1.2"/>
+  <text x="457" y="178" text-anchor="middle" font-weight="bold" fill="#1f2937">execute_ir()</text>
+  <text x="457" y="194" text-anchor="middle" fill="#4b5563">+ run_validation()</text>
+
+  <line x1="384" y1="182" x2="364" y2="182" stroke="#6b7280" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <rect x="214" y="150" width="146" height="64" rx="6" fill="#f4f6f8" stroke="#6b7280" stroke-width="1.2"/>
+  <text x="287" y="174" text-anchor="middle" font-weight="bold" fill="#1f2937">Oracle</text>
+  <text x="287" y="189" text-anchor="middle" font-weight="bold" fill="#1f2937">comparison</text>
+  <text x="287" y="204" text-anchor="middle" fill="#4b5563">vs submitted ADaM</text>
+
+  <line x1="214" y1="182" x2="194" y2="182" stroke="#6b7280" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <rect x="20" y="140" width="170" height="84" rx="6" fill="#eef1f6" stroke="#4a5b7a" stroke-width="1.2"/>
+  <text x="105" y="160" text-anchor="middle" font-weight="bold" fill="#1f2937">Artifacts</text>
+  <text x="105" y="176" text-anchor="middle" fill="#4b5563">program + per-variable</text>
+  <text x="105" y="191" text-anchor="middle" fill="#4b5563">JSON sidecar: ir_hash,</text>
+  <text x="105" y="206" text-anchor="middle" fill="#4b5563">code_digest,</text>
+  <text x="105" y="219" text-anchor="middle" fill="#4b5563">release_grade</text>
+
+  <!-- Audit lane -->
+  <rect x="20" y="286" width="860" height="108" rx="8" fill="#f7f5f0" stroke="#8a7a55" stroke-width="1.2"/>
+  <text x="40" y="308" font-weight="bold" fill="#5c5036" letter-spacing="2">AUDIT LANE</text>
+  <text x="40" y="330" fill="#5c5036">Hash-chained audit log (schema admiralagent-audit-1): each record's digest covers the previous record's digest;</text>
+  <text x="40" y="347" fill="#5c5036">verify_log() walks the chain and flags any break.</text>
+  <text x="40" y="370" fill="#5c5036">run_manifest record: R + package versions, operator, per-source xxhash64 digests of input data,</text>
+  <text x="40" y="387" fill="#5c5036">gate-enforcement status of the run.</text>
+
+  <!-- dashed feeds into audit lane -->
+  <line x1="457" y1="214" x2="457" y2="282" stroke="#8a7a55" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow-dash)"/>
+  <text x="465" y="252" fill="#8a7a55">execute_variable events</text>
+  <line x1="105" y1="224" x2="105" y2="282" stroke="#8a7a55" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow-dash)"/>
+  <text x="113" y="252" fill="#8a7a55">sidecar digests sealed</text>
+
+  <!-- legend -->
+  <line x1="620" y1="250" x2="650" y2="250" stroke="#6b7280" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <text x="656" y="254" fill="#6b7280">deterministic flow</text>
+  <line x1="790" y1="250" x2="820" y2="250" stroke="#9a6a3a" stroke-width="1.3" stroke-dasharray="5 3" marker-end="url(#arrow-dash)"/>
+  <text x="826" y="254" fill="#9a6a3a">audit / abstain</text>
+</svg>

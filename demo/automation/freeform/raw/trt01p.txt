@@ -1,0 +1,9 @@
+```r
+derive <- function(adsl, sources) {
+  # derive TRT01P: Planned Treatment for Period 01 is taken directly from DM.ARM
+  # (planned arm description). adsl is a copy of DM, so ARM is available.
+  adsl <- adsl |>
+    mutate(TRT01P = ARM)
+  adsl
+}
+```

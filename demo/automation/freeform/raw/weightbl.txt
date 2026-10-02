@@ -1,0 +1,15 @@
+```r
+derive <- function(adsl, sources) {
+  # WEIGHTBL: Baseline Weight (kg) taken from VS where VSTESTCD = "WEIGHT" and VISITNUM = 3.
+  # Merge the single qualifying weight measurement per subject onto ADSL.
+  vs <- sources$vs |>
+    filter(VSTESTCD == "WEIGHT", VISITNUM == 3) |>
+    select(USUBJID, WEIGHTBL = VSSTRESN)
+
+  adsl |>
+    derive_vars_merged(
+      dataset_add = vs,
+      by_vars     = vars(USUBJID)
+    )
+}
+```

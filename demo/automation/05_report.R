@@ -307,6 +307,66 @@ add("7. **Programs are UNGATED DRAFTs.** No human approval gate covers these art
 add("8. **Single model, three datasets, and stochastic.** Numbers are for DeepSeek `deepseek-chat` on pilot5 ADSL/ADAE/ADLBC only; they do not transfer to other models or datasets without re-measurement. LLM output also varies run to run at temperature defaults: across the two full ADSL runs behind this report's development, the full-spec needs_human count moved 24 -> 22 and the rules/LLM layer-chain agreement 78% -> 71% — run-to-run translation variance is exactly what the consensus mode in section 5 exists to measure and contain.")
 add("9. **Value-level metadata is out of scope.** The workbook's `ValueLevel` sheet (15 rows, all ADADAS) carries where-clause derivations (`PARAMCD EQ ...`) that the flat spec extraction cannot express; no dataset in this run uses it, and ADADAS/ADQSADAS/ADTTE are not attempted.")
 
+# --- controlled experiment: constrained IR vs free-form ------------------------
+add("")
+add("## 11. Controlled experiment: constrained IR vs free-form code generation (`out/compare_summary.json`)")
+add("")
+cmp <- read_json_or(file.path(out_dir, "compare_summary.json"))
+if (is.null(cmp)) {
+  add("_(not run yet — run `06_freeform_generate.R`, then `07_freeform_execute.R` in its own Rscript process, then `08_compare.R`; design: `.agents/freeform-comparison-design.md`)_")
+} else {
+  ca <- cmp$arms$constrained_ir
+  cb <- cmp$arms$freeform
+  add("Same spec (ADSL, ", cmp$spec_variables, " variables), same model (`", cmp$model, "`), same oracle, same schema-level inputs (`build_context()` JSON + SDTM column schemas + workbook codelists; no patient data in either arm's prompts). The comparison is against **free-form code generation**, not against skills/MCP as distribution channels — the package itself ships an MCP server and a SKILL.md. Design and fairness rules: `.agents/freeform-comparison-design.md`.")
+  add("")
+  add("- **Arm A (constrained IR)**: ", ca$description, ". Numbers read from the cached run's evidence files (", ca$cache_date, ").")
+  add("- **Arm B (free-form, CONTROL ARM)**: ", cb$description, ". Generated code lives only in `demo/automation/freeform/` (static sandbox gate before execution, separate R process, tryCatch + time limit) and never enters the package or any release surface.")
+  add("")
+  cmp_rows <- data.frame(
+    metric = c("abstained (needs_human / ABSTAIN+blocked+parse_fail)",
+               "executed (coverage)", "execution errors",
+               "oracle: compared", "oracle: full match (100%)", "oracle: mean value agreement",
+               "**silent errors** (wrong answer, nothing flagged)",
+               "fail-closed intercepts (abstain + validation FAIL + exec ERROR)",
+               "review burden proxy: total LOC (vars with code)",
+               "review burden proxy: bare logic points",
+               "LLM cost (USD)"),
+    constrained_ir = c(
+      ca$abstained_needs_human,
+      ca$executed, ca$execution_errors,
+      ca$compared, ca$fully_matching, fmt_pct(ca$mean_value_agree),
+      length(ca$silent_error_variables),
+      ca$abstained_needs_human + ca$validation_fail + ca$execution_errors,
+      sprintf("%d (%d)", ca$review_burden$total_loc, ca$review_burden$variables),
+      ca$review_burden$total_bare_logic_points,
+      if (is.null(ca$cost_usd)) "n/a" else sprintf("$%.4f", ca$cost_usd)
+    ),
+    freeform = c(
+      cb$abstained + cb$blocked_by_static_gate + cb$parse_fail + cb$call_errors,
+      cb$executed, cb$execution_errors,
+      cb$compared, cb$fully_matching, fmt_pct(cb$mean_value_agree),
+      length(cb$silent_error_variables),
+      cb$abstained + cb$blocked_by_static_gate + cb$execution_errors,
+      sprintf("%d (%d)", cb$review_burden$total_loc, cb$review_burden$variables),
+      cb$review_burden$total_bare_logic_points,
+      sprintf("$%.4f", cb$cost_usd)
+    ),
+    stringsAsFactors = FALSE, check.names = FALSE
+  )
+  add(md_table(cmp_rows))
+  add("")
+  fmt_vars <- function(v) if (length(v)) paste(v, collapse = ", ") else "none"
+  add("- Arm A silent-error variables: ", fmt_vars(unlist(ca$silent_error_variables)), ".")
+  add("- Arm B silent-error variables: ", fmt_vars(unlist(cb$silent_error_variables)), ".")
+  add("- Arm B executed with warnings: ", cb$executed_with_warnings, " (warnings captured by the sandbox are 'loud' and excluded from silent errors).")
+  add("")
+  add("Metric definitions (machine-readable: `compare_summary.json$definitions`): ", cmp$definitions$silent_error, ". Review burden is a mechanical proxy (", cmp$definitions$review_burden, "), not measured human effort.")
+  add("")
+  add("**Honesty boundaries for this section**:")
+  for (h in cmp$honesty) add("- ", h)
+  add("")
+}
+
 report_path <- file.path(auto_dir, "REPORT.md")
 writeLines(report$lines, report_path)
 cat("written:", report_path, "\n")

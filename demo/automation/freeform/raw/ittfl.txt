@@ -1,0 +1,16 @@
+```r
+derive <- function(adsl, sources) {
+  # derive ITTFL: Intent-To-Treat Population Flag
+  # "Y" if ARMCD is not a blank/empty value, "N" otherwise.
+  # Treat both NA and blank/whitespace-only ARMCD as "not treated" -> "N".
+  adsl <- adsl |>
+    dplyr::mutate(
+      ITTFL = dplyr::if_else(
+        !is.na(ARMCD) & trimws(ARMCD) != "",
+        "Y",
+        "N"
+      )
+    )
+  adsl
+}
+```

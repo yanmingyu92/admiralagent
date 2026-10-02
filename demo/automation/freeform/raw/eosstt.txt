@@ -1,0 +1,18 @@
+```r
+derive <- function(adsl, sources) {
+  # derive EOSSTT: End of Study Status
+  # DCDECOD is the standardized disposition term from the DS domain (last disposition
+  # record). If it equals "COMPLETED", the subject completed the study; any other
+  # (non-missing) disposition term means the subject discontinued.
+  # We rely on ADSL.DCDECOD having been derived by an earlier step.
+  adsl <- adsl |>
+    mutate(
+      EOSSTT = case_when(
+        DCDECOD == "COMPLETED" ~ "COMPLETED",
+        !is.na(DCDECOD)        ~ "DISCONTINUED",
+        TRUE                   ~ NA_character_
+      )
+    )
+  adsl
+}
+```

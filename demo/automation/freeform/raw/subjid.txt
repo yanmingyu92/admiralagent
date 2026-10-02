@@ -1,0 +1,11 @@
+```r
+derive <- function(adsl, sources) {
+  # derive SUBJID: DM.SUBJID carried over directly into ADSL.
+  # adsl is a copy of DM, so SUBJID is already present; re-assert it from
+  # sources$dm as the explicit source of truth, preserving row order.
+  adsl <- adsl |>
+    mutate(SUBJID = sources$dm$SUBJID[match(USUBJID, sources$dm$USUBJID)])
+
+  adsl
+}
+```

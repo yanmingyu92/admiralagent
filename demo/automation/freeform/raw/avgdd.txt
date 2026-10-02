@@ -1,0 +1,16 @@
+```r
+derive <- function(adsl, sources) {
+  # derive AVGDD: Avg Daily Dose (as planned) = CUMDOSE / TRTDURD
+  # Both CUMDOSE and TRTDURD are assumed to have been derived in earlier steps of ADSL.
+  # Guard against division by zero / missing TRTDURD.
+  adsl <- adsl |>
+    mutate(
+      AVGDD = if_else(
+        !is.na(CUMDOSE) & !is.na(TRTDURD) & TRTDURD > 0,
+        CUMDOSE / TRTDURD,
+        NA_real_
+      )
+    )
+  adsl
+}
+```
