@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__trt01p__1141e7d3.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01P",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "TRT01P"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from DM, so ARM is already present in the target base; TRT01P copies ARM directly."
+    }
+  ],
+  "ir_hash": "3ab39628",
+  "code_digest": "69bdd28d483eccf98962dff9f6876d0e95dff5f9b4fa5a2a98db88c48bbacafb",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:17-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

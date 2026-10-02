@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__saffl__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SAFFL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SAFFL",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "Safety population flag is pulled from ADSL.SAFFL via a subject-level merge keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "e5825e92",
+  "code_digest": "c41576d791d415951ff1b64282df460e6386910d05efb6dd24c9782050face02",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

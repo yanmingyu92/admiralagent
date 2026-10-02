@@ -1,0 +1,36 @@
+{
+  "artifact": "adlbc__age__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AGE copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    }
+  ],
+  "ir_hash": "b18a8460",
+  "code_digest": "3f0bab1646d4ad30931d2b05f3269e317d43eada5a8cc3519617ed143828c709",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:37-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

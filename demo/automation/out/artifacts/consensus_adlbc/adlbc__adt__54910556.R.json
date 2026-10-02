@@ -1,0 +1,36 @@
+{
+  "artifact": "adlbc__adt__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ADT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "LBDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ADT"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDTC",
+      "confidence": 0.75,
+      "needs_human": false,
+      "rationale": "Convert LB.LBDTC character date to numeric ADT date. Imputation defaults applied since spec does not specify; date_imputation 'first' with highest_imputation 'D'."
+    }
+  ],
+  "ir_hash": "9e5e9d54",
+  "code_digest": "8e6841fe09152c62826eba445e3dce47e32d832ce31a337fccbdbaa04424e8a1",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

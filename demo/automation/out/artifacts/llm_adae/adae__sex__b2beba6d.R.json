@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__sex__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SEX",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "SEX is sourced from the separate subject-level ADSL dataset, so a merge_var keyed on USUBJID is used."
+    }
+  ],
+  "ir_hash": "9dfff168",
+  "code_digest": "9e7aface49624475e43bafc58ce4b9b380074a754a4008712e528bf745d85b72",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

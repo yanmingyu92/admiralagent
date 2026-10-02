@@ -1,0 +1,41 @@
+{
+  "artifact": "adsl__weightbl__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "WEIGHTBL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "vs",
+            "filter": "VSTESTCD == 'WEIGHT' & VISITNUM == 3",
+            "mode": "first",
+            "order": "VSSTRESN",
+            "source": "VSSTRESN",
+            "target": "WEIGHTBL"
+          }
+        }
+      ],
+      "spec_origin": "VSSTRESN when VS.VSTESTCD='WEIGHT' and VS.VISITNUM=3",
+      "confidence": 0.75,
+      "needs_human": false,
+      "rationale": "Pull VSSTRESN from vs where VSTESTCD='WEIGHT' and VISITNUM=3; merged into ADSL by STUDYID/USUBJID."
+    }
+  ],
+  "ir_hash": "e30f2c3d",
+  "code_digest": "8ddb58fb672537ab3cab4ad737e239d9ce55f89ce6dfb68e0f367ecd93a2c31f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

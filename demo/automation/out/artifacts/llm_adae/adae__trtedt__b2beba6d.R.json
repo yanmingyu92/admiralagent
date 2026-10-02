@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__trtedt__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTEDT",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRTEDT",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "Last exposure date is sourced from the separate subject-level ADSL dataset via a merge_var keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "b0e919ca",
+  "code_digest": "5f75f127d017ad7f435e6a37e8860878dbd8dbd7703a1d7105612a30dbbcde11",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

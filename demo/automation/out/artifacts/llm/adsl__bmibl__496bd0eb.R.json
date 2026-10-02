@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__bmibl__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "BMIBL",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "WEIGHTBL / (HEIGHTBL / 100)^2",
+            "target": "BMIBL"
+          }
+        }
+      ],
+      "spec_origin": "WEIGHTBL / ((HEIGHTBL/100)**2)",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "BMIBL = WEIGHTBL / (HEIGHTBL/100)^2, column-wise arithmetic over existing columns produced by earlier steps."
+    }
+  ],
+  "ir_hash": "0dfa22ab",
+  "code_digest": "67e81445074dfc9e851aa75bb77d9327c65aee828adb15b183df6faaa2980d89",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aelltcd__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AELLTCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AELLTCD",
+            "target": "AELLTCD"
+          }
+        }
+      ],
+      "spec_origin": "AE.AELLTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AELLTCD originates in the AE domain that seeds ADAE, so it is a direct copy from the target base rather than a cross-dataset merge."
+    }
+  ],
+  "ir_hash": "a2c484d1",
+  "code_digest": "9ff36ef94f876e7b627b816c03c23ecc3059f18454a4e1c3699734e3159dd229",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

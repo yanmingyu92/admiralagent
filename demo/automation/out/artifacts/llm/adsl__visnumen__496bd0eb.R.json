@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__visnumen__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "VISNUMEN",
+      "steps": [],
+      "spec_origin": "if DS.VISITNUM=13 where DSTERM='PROTCOL COMPLETED' then VISNUMEN=12, otherwise VISNUMEN=DS.VISITNUM where DSTERM='PROTCOL COMPLETED'",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "VISNUMEN derives from DS.VISITNUM with a conditional remap (13->12) and a DSTERM='PROTCOL COMPLETED' filter; value pulled from another dataset with ambiguous conditional logic. Human review required."
+    }
+  ],
+  "ir_hash": "c12bc84b",
+  "code_digest": "1cb1e99ca34fb79cd0425976dd20e5cacf79441787de7d357b227886d541efde",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

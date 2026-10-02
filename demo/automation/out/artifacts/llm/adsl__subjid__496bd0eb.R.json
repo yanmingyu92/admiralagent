@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__subjid__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SUBJID",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from dm, so SUBJID is already present in the target base; copy directly."
+    }
+  ],
+  "ir_hash": "1b902859",
+  "code_digest": "78cd510f255232a4524a925f59f1b552ffa47835ff6c097f875b9f7f1c2017bf",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

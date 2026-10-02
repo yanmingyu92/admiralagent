@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__br2a1hi__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1HI",
+      "steps": [],
+      "spec_origin": "AVAL / A1HI at baseline",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "The derivation 'AVAL / A1HI at baseline' requires selecting the baseline record to compute the ratio, which needs an explicit baseline flag/selection rule not provided, so human review is required."
+    }
+  ],
+  "ir_hash": "1d0d131c",
+  "code_digest": "cd1f1509d6be3146319f9042ab9fb6f71b8c51d3a270aad4cc856271b160df6b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,40 @@
+{
+  "artifact": "adae__aocc02fl__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AOCC02FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": "USUBJID",
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y' & AESER == 'Y'",
+            "target": "AOCC02FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and AESER='Y' and sort by Subject (USUBJID), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCC02FL=?Y?) within each Subject",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence of serious treatment-emergent event per subject, ordered by ASTDT then AESEQ, scoped to TRTEMFL='Y' and AESER='Y'."
+    }
+  ],
+  "ir_hash": "0f34066c",
+  "code_digest": "b3dde1b39ebc2f328a70eed9aeacd46d35c92875a9f98ead8d10fb3233c7ab19",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:28-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

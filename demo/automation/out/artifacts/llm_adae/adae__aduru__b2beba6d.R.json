@@ -1,0 +1,34 @@
+{
+  "artifact": "adae__aduru__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ADURU",
+      "steps": [
+        {
+          "layer": "assign_conditional",
+          "args": {
+            "condition": "ADURN != ''",
+            "target": "ADURU",
+            "true_value": "DAYS"
+          }
+        }
+      ],
+      "spec_origin": "If ADURN is not missing then ADURU='DAYS'",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Condition 'ADURN is not missing' tests missingness of a numeric column, which the filter sublanguage cannot express (no is.na/style checks; ADURN != '' is not a valid missingness test for numerics). Needs human review."
+    }
+  ],
+  "ir_hash": "25185ec6",
+  "code_digest": "7facefd76cc4b347a1fd3ed96646887b49fefd5dfc41d009bd861233f6702d68",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__lbnrind__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "LBNRIND",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBNRIND",
+            "target": "LBNRIND"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBNRIND",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBNRIND is already present in the target base and is copied directly with assign."
+    }
+  ],
+  "ir_hash": "972e5991",
+  "code_digest": "fae57c27b01804bfcc3e500d0f6acc8f68dfa6e83d1d685681c95b10cb66b532",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__aval__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AVAL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTRESN",
+            "target": "AVAL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBSTRESN is already present in the target base and is copied directly with assign."
+    }
+  ],
+  "ir_hash": "df30166e",
+  "code_digest": "b450610abd05ed25182d141b78bb3010c3b1da6acf07ea66c6fa625918c8038f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

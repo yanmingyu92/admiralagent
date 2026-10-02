@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__siteid__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "SITEID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SITEID",
+            "target": "SITEID"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.SITEID",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "SITEID is pulled from ADSL, a separate subject-level dataset, so a merge_var keyed on USUBJID is used."
+    }
+  ],
+  "ir_hash": "1a94c9c9",
+  "code_digest": "07da59cff39a098c63cfd9db232ee3c7c98109143b554612a2990f490fef8d81",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:26-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__sex__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "DM.SEX",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from dm, so SEX is already present in the target base; copy directly."
+    }
+  ],
+  "ir_hash": "56ddfd74",
+  "code_digest": "25bbd0ccee91db839b4e304988a3564fc299aafd2a08e69aa0540ade85b8fe91",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

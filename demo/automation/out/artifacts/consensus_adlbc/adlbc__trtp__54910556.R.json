@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__trtp__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTP",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01P",
+            "target": "TRTP"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01P",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "Pull planned treatment from ADSL into ADLBC; ADSL is a different dataset than ADLBC so merge_var applies."
+    }
+  ],
+  "ir_hash": "daa80c94",
+  "code_digest": "10d90ca2c62bf1bfd6358c3c6d3d9ccb1579738c05cde903e3172c88e338ac4e",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

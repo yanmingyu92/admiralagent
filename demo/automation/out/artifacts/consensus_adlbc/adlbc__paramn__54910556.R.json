@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__paramn__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMN",
+      "steps": [],
+      "spec_origin": "Numeric code for Parameter",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "Numeric code for Parameter requires an external codelist mapping between PARAMCD/PARAM and the numeric code; no codelist referenced in spec and mapping is ambiguous."
+    }
+  ],
+  "ir_hash": "e187809e",
+  "code_digest": "6b7fac7ef56c2865940fdc3bb2f8ee2bb583a8472612c5b88a0f01ba1b1b73fe",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:40-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

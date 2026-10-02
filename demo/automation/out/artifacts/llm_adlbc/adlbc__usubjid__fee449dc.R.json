@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__usubjid__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "USUBJID",
+      "steps": [],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "USUBJID is copied from ADSL, but it is the unique subject identifier used as the merge key to bring all other ADSL variables into ADLBC; keying a merge on the target column itself creates a cyclic dependency, so this requires human review of the merge strategy."
+    }
+  ],
+  "ir_hash": "89f5c6c6",
+  "code_digest": "9f73d325fd2e9b821964c6595d77ed8c172fdc05331380e1525f761ebb498626",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:37-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

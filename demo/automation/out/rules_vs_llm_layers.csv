@@ -23,7 +23,7 @@
 "SEX","assign","assign",TRUE
 "ETHNIC","assign","assign",TRUE
 "SAFFL","needs_human","needs_human",TRUE
-"ITTFL","needs_human","needs_human",TRUE
+"ITTFL","needs_human","assign_conditional",FALSE
 "EFFFL","needs_human","needs_human",TRUE
 "COMP8FL","needs_human","needs_human",TRUE
 "COMP16FL","needs_human","needs_human",TRUE
@@ -32,7 +32,7 @@
 "DSRAEFL","needs_human","needs_human",TRUE
 "DTHFL","assign","assign",TRUE
 "BMIBL","needs_human","compute_var",FALSE
-"BMIBLGR1","compute_param->merge_var","needs_human",FALSE
+"BMIBLGR1","compute_param->merge_var","categorize",FALSE
 "HEIGHTBL","needs_human","merge_var",FALSE
 "WEIGHTBL","needs_human","merge_var",FALSE
 "EDUCLVL","needs_human","merge_var",FALSE
@@ -44,7 +44,7 @@
 "RFENDTC","assign","assign",TRUE
 "VISNUMEN","needs_human","needs_human",TRUE
 "RFENDT","impute_dtc","needs_human",FALSE
-"DCDECOD","needs_human","merge_var",FALSE
-"EOSSTT","needs_human","needs_human",TRUE
+"DCDECOD","needs_human","needs_human",TRUE
+"EOSSTT","needs_human","assign_conditional",FALSE
 "DCSREAS","needs_human","needs_human",TRUE
 "MMSETOT","needs_human","needs_human",TRUE

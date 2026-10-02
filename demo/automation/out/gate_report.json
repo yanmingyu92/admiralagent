@@ -1,6 +1,6 @@
 {
   "stage": "02_gate_render",
-  "generated_at": "2026-10-01 21:47:04 UTC",
+  "generated_at": "2026-10-02 00:05:09 UTC",
   "gate_policy": "Package default is gate-required. Programs here are written with require_gate = FALSE (explicit opt-out, no human approver in an unattended showcase). They are permanently self-labelled UNGATED DRAFT and never release-grade.",
   "datasets": {
     "ADSL": {
@@ -19,12 +19,12 @@
       "llm": {
         "backend": "llm-deepseek",
         "variables": 49,
-        "needs_human": 27,
+        "needs_human": 25,
         "gate": "PASS",
         "gate_problems": null,
         "require_gate": false,
-        "artifact_hash": "350b2ef0",
-        "program_artifact": "adsl__program__350b2ef0.R",
+        "artifact_hash": "496bd0eb",
+        "program_artifact": "adsl__program__496bd0eb.R",
         "release_grade": "ungated-draft",
         "gate_enforced": false
       },
@@ -35,8 +35,8 @@
         "gate": "PASS",
         "gate_problems": null,
         "require_gate": false,
-        "artifact_hash": "f2f6fe52",
-        "program_artifact": "adsl__program__f2f6fe52.R",
+        "artifact_hash": "1141e7d3",
+        "program_artifact": "adsl__program__1141e7d3.R",
         "release_grade": "ungated-draft",
         "gate_enforced": false
       }
@@ -57,12 +57,24 @@
       "llm": {
         "backend": "llm-deepseek",
         "variables": 55,
-        "needs_human": 8,
+        "needs_human": 6,
         "gate": "PASS",
         "gate_problems": null,
         "require_gate": false,
-        "artifact_hash": "eaa185b8",
-        "program_artifact": "adae__program__eaa185b8.R",
+        "artifact_hash": "b2beba6d",
+        "program_artifact": "adae__program__b2beba6d.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      },
+      "consensus": {
+        "backend": "llm-deepseek-consensus3",
+        "variables": 12,
+        "needs_human": 0,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "07fd8680",
+        "program_artifact": "adae__program__07fd8680.R",
         "release_grade": "ungated-draft",
         "gate_enforced": false
       }
@@ -83,12 +95,24 @@
       "llm": {
         "backend": "llm-deepseek",
         "variables": 46,
-        "needs_human": 13,
+        "needs_human": 15,
         "gate": "PASS",
         "gate_problems": null,
         "require_gate": false,
-        "artifact_hash": "b0359930",
-        "program_artifact": "adlbc__program__b0359930.R",
+        "artifact_hash": "fee449dc",
+        "program_artifact": "adlbc__program__fee449dc.R",
+        "release_grade": "ungated-draft",
+        "gate_enforced": false
+      },
+      "consensus": {
+        "backend": "llm-deepseek-consensus3",
+        "variables": 12,
+        "needs_human": 3,
+        "gate": "PASS",
+        "gate_problems": null,
+        "require_gate": false,
+        "artifact_hash": "54910556",
+        "program_artifact": "adlbc__program__54910556.R",
         "release_grade": "ungated-draft",
         "gate_enforced": false
       }

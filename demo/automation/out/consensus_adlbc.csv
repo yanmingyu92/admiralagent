@@ -1,0 +1,13 @@
+"variable","signature_votes","chosen","unanimous"
+"TRTP","merge_var@2a28e374:3","merge_var",TRUE
+"TRTPN","merge_var@8fa1a314:3","merge_var",TRUE
+"TRTA","merge_var@2643ea11:3","merge_var",TRUE
+"TRTAN","merge_var@c51195d3:3","merge_var",TRUE
+"AVISIT","needs_human@e4a67c77:3","needs_human",TRUE
+"ADY","assign@31140215:3","assign",TRUE
+"ADT","impute_dtc@29f04bcc:3","impute_dtc",TRUE
+"PARAM","needs_human@e4a67c77:3","needs_human",TRUE
+"PARAMN","needs_human@e4a67c77:3","needs_human",TRUE
+"BASE","assign@7813c248:3","assign",TRUE
+"CHG","compute_var@caa046e4:3","compute_var",TRUE
+"A1LO","assign@b375bfae:3","assign",TRUE

@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__base__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BASE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRHI",
+            "target": "BASE"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "BASE (baseline value) is mapped to LB.LBSTNRHI, the reference high limit of the normal range, which is inconsistent with a baseline analysis value; this likely improper mapping requires human review."
+    }
+  ],
+  "ir_hash": "1eb2215c",
+  "code_digest": "75ebf3a6d65588792206eeb44fb43239c618eaf93ad1d3b2a45f7e9e557ac66f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__trtan__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "Pull actual treatment number from ADSL into ADLBC."
+    }
+  ],
+  "ir_hash": "bae8944f",
+  "code_digest": "5cfdfcc2d03bc16db72c95f29f6b5c34fa1180c4db6ecff3debc26d08eebc523",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

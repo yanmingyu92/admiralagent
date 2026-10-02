@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__trtedt__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRTEDT",
+      "steps": [],
+      "spec_origin": "The date of final dose (from the CRF) is EX.EXENDTC on the subject's last EX record. If the date of final dose is missing for the subject and the subject discontinued after visit 3, use the date of discontinuation as the date of last dose. Convert the date to a SAS date.",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Rule combines last EX record EXENDTC with a fallback to discontinuation date if missing; conditional fallback logic and source of discontinuation date are not fully specified, requiring human review."
+    }
+  ],
+  "ir_hash": "198b2463",
+  "code_digest": "b3e62e35e27e1d8d935f595a2bbe765521db067abf53cc30606d85b742ee606e",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

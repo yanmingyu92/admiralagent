@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__mmsetot__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "MMSETOT",
+      "steps": [],
+      "spec_origin": "sum of QS.QSORRES values for the subject when QSCAT = MINI-MENTAL STATE",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "MMSETOT is a sum of QS.QSORRES values where QSCAT='MINI-MENTAL STATE'; QSORRES is character and the specific QSTESTCD item set plus any visit/timepoint scope is ambiguous. summary_record operates on BDS PARAMCD/AVAL records and does not map cleanly to summing character QSORRES items. Human review required."
+    }
+  ],
+  "ir_hash": "356ccff4",
+  "code_digest": "b06d1f4227dad69bad254ed21c809d6dcee3f1c5773d5040af98731a16ced0af",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__dcsreas__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DCSREAS",
+      "steps": [],
+      "spec_origin": "Grouping of DCDECOD values to support summarizing study completion status and reason for discontinuation",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "DCSREAS is a grouping of DCDECOD values requiring an external mapping table (decode -> reason group) not provided in the spec. Human review required."
+    }
+  ],
+  "ir_hash": "76fadffe",
+  "code_digest": "c5f028ce738ac9411fd3b0b58dad9a545bd90b9a30a2566a1e923bfb503778a9",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__avgdd__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "AVGDD",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "CUMDOSE / TRTDURD",
+            "target": "AVGDD"
+          }
+        }
+      ],
+      "spec_origin": "CUMDOSE/TRTDURD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AVGDD = CUMDOSE / TRTDURD; both columns exist from earlier steps. CUMDOSE derivation is complex but this division is unambiguous."
+    }
+  ],
+  "ir_hash": "acc13886",
+  "code_digest": "673ead7925155c2db83470bae1c5777988c82ec4ac1dbfa4ae6ebc6651e60d42",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

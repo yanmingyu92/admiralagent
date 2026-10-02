@@ -1,0 +1,51 @@
+{
+  "artifact": "adsl__visit1dt__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "VISIT1DT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "sv",
+            "filter": "VISITNUM == 1",
+            "mode": "first",
+            "order": "SVSTDTC",
+            "source": "SVSTDTC",
+            "target": "VISIT1DT"
+          }
+        },
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "SVSTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "VISIT1DT"
+          }
+        }
+      ],
+      "spec_origin": "SV.SVSTDTC when SV.VISITNUM=1, converted to SAS date",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "VISIT1DT pulled from SV at VISITNUM=1 as a character DTC requiring imputation; imputation policy (highest_imputation, date_imputation) is not stated in the spec, requiring human review."
+    }
+  ],
+  "ir_hash": "24dfc4ed",
+  "code_digest": "440f8650388c3b3ca7f7497729c353f522932766d792507399f83382adb44b24",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,39 @@
+{
+  "artifact": "adlbc__trtpn__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTPN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01PN",
+            "target": "TRTPN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01PN",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "Pull planned treatment number from ADSL into ADLBC."
+    }
+  ],
+  "ir_hash": "f3ba1335",
+  "code_digest": "85a59f02a2e884f49705fd2c27d8d5370910cce3f504eb3dba6a77ab1353a3a6",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

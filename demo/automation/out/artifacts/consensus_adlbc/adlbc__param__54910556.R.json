@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__param__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAM",
+      "steps": [],
+      "spec_origin": "Concatenated LB.LBTEST, '(', LB.LBSTRESU and ')'",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "Concatenation of LBTEST, literal '(', LBSTRESU and ')' requires string paste; not expressible with the constrained formula (arithmetic only, no function calls)."
+    }
+  ],
+  "ir_hash": "39da4fe6",
+  "code_digest": "9e3a8daa93e8315f4a3d77771aadabbd494aaa6cd690a995cdff3a660cd0f7a1",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

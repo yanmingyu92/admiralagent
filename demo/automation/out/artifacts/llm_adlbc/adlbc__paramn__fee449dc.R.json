@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__paramn__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMN",
+      "steps": [],
+      "spec_origin": "Numeric code for Parameter",
+      "confidence": 0.15,
+      "needs_human": true,
+      "rationale": "The derivation only states 'Numeric code for Parameter' with no source variable or numeric mapping/codelist, so the assignment cannot be determined and requires human review."
+    }
+  ],
+  "ir_hash": "8419736d",
+  "code_digest": "510b557130944eba4dd674bce48ef83034ba03311984e98f4a2ff3a6878c8b91",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

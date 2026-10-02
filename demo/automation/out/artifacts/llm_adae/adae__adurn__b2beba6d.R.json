@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__adurn__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ADURN",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AENDT - ASTDT + 1",
+            "target": "ADURN"
+          }
+        }
+      ],
+      "spec_origin": "ADURN=AENDT-ASTDT+1",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "Analysis duration is a straightforward column-wise arithmetic over the already-derived AENDT and ASTDT columns."
+    }
+  ],
+  "ir_hash": "fffee806",
+  "code_digest": "9ceb7bf7a133902a4e204ab550c668163938d53e7e97bd0378936e574c658433",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

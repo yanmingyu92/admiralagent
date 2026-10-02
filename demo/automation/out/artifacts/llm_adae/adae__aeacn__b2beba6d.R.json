@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aeacn__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEACN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEACN",
+            "target": "AEACN"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEACN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEACN originates in the AE domain that seeds ADAE, so it is a direct copy from the target base rather than a cross-dataset merge."
+    }
+  ],
+  "ir_hash": "96bb380e",
+  "code_digest": "dcf7625e859f6d4ecd1e01058c0a8765f757c60dcd86e0b18578e6f69f59dcfc",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:28-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

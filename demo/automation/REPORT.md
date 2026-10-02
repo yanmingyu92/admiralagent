@@ -11,7 +11,7 @@ Rscript demo/automation/run_all.R            # cached LLM results reused
 AA_FORCE_LLM=1 Rscript demo/automation/run_all.R   # re-spend on DeepSeek
 ```
 
-Every number below is read from a machine-readable file under `demo/automation/out/` (cited per section). Generated: 2026-10-01 22:04:19 UTC.
+Every number below is read from a machine-readable file under `demo/automation/out/` (cited per section). Generated: 2026-10-02 00:11:38 UTC.
 
 ## 1. Inputs (`out/ingest_manifest.json`)
 
@@ -31,7 +31,7 @@ Sources: `out/gate_report.json`, `out/exec_status_<backend>[_<ds>].csv`, `out/va
 | backend | spec_vars | needs_human | gate | executed | exec_error | review | val_PASS | val_FAIL | val_MANUAL |
 |---|---|---|---|---|---|---|---|---|---|
 | rules | 49 | 32 | PASS | 16 | 1 | 32 | 18 | 1 | 32 |
-| llm | 49 | 27 | PASS | 20 | 2 | 27 | 24 | 2 | 27 |
+| llm | 49 | 25 | PASS | 21 | 3 | 25 | 24 | 3 | 28 |
 | consensus | 12 |  5 | PASS |  6 | 1 |  5 |  8 | 1 |  5 |
 
 ### ADAE
@@ -39,14 +39,16 @@ Sources: `out/gate_report.json`, `out/exec_status_<backend>[_<ds>].csv`, `out/va
 | backend | spec_vars | needs_human | gate | executed | exec_error | review | val_PASS | val_FAIL | val_MANUAL |
 |---|---|---|---|---|---|---|---|---|---|
 | rules | 55 | 16 | PASS | 27 | 12 | 16 | 22 | 17 | 16 |
-| llm | 55 |  8 | PASS | 32 | 15 |  8 | 28 | 33 |  8 |
+| llm | 55 |  6 | PASS | 33 | 16 |  6 | 29 | 34 |  7 |
+| consensus | 12 |  0 | PASS |  6 |  6 |  0 |  6 | 18 |  0 |
 
 ### ADLBC
 
 | backend | spec_vars | needs_human | gate | executed | exec_error | review | val_PASS | val_FAIL | val_MANUAL |
 |---|---|---|---|---|---|---|---|---|---|
 | rules | 46 | 14 | PASS | 15 | 17 | 14 | 16 | 16 | 14 |
-| llm | 46 | 13 | PASS | 22 | 11 | 13 | 23 | 27 | 13 |
+| llm | 46 | 15 | PASS | 19 | 12 | 15 | 20 | 28 | 15 |
+| consensus | 12 |  3 | PASS |  7 |  2 |  3 |  8 |  6 |  3 |
 
 `consensus` covers only the 12-variable subset of section 5, so its denominators differ from the full-spec backends by design.
 
@@ -59,7 +61,7 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 ### ADSL (oracle 254 rows × 49 cols)
 
 - **rules**: 15/49 spec variables compared, 15 fully matching, 0 partial, mean value agreement 100.0% (produced 306 rows).
-- **llm**: 19/49 spec variables compared, 16 fully matching, 3 partial, mean value agreement 90.9% (produced 306 rows).
+- **llm**: 20/49 spec variables compared, 16 fully matching, 4 partial, mean value agreement 91.4% (produced 306 rows).
 
 | variable | rules_status | rules_agree% | llm_status | llm_agree% | llm_agree%@oracle_prec |
 |---|---|---|---|---|---|
@@ -87,7 +89,7 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 | SEX | compared | 100 | compared | 100.0 | NA |
 | ETHNIC | compared | 100 | compared | 100.0 | NA |
 | SAFFL | not_produced | NA | not_produced | NA | NA |
-| ITTFL | not_produced | NA | not_produced | NA | NA |
+| ITTFL | not_produced | NA | compared | 100.0 | NA |
 | EFFFL | not_produced | NA | not_produced | NA | NA |
 | COMP8FL | not_produced | NA | not_produced | NA | NA |
 | COMP16FL | not_produced | NA | not_produced | NA | NA |
@@ -96,7 +98,7 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 | DSRAEFL | not_produced | NA | not_produced | NA | NA |
 | DTHFL | compared | 100 | compared | 100.0 | NA |
 | BMIBL | not_produced | NA | compared |  99.6 | NA |
-| BMIBLGR1 | not_produced | NA | not_produced | NA | NA |
+| BMIBLGR1 | not_produced | NA | compared |  99.2 | NA |
 | HEIGHTBL | not_produced | NA | compared |  19.7 | 98.8 |
 | WEIGHTBL | not_produced | NA | compared |   8.7 | 94.5 |
 | EDUCLVL | not_produced | NA | compared | 100.0 | NA |
@@ -108,7 +110,7 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 | RFENDTC | compared | 100 | compared | 100.0 | NA |
 | VISNUMEN | not_produced | NA | not_produced | NA | NA |
 | RFENDT | compared | 100 | not_produced | NA | NA |
-| DCDECOD | not_produced | NA | compared | 100.0 | NA |
+| DCDECOD | not_produced | NA | not_produced | NA | NA |
 | EOSSTT | not_produced | NA | not_produced | NA | NA |
 | DCSREAS | not_produced | NA | not_produced | NA | NA |
 | MMSETOT | not_produced | NA | not_produced | NA | NA |
@@ -179,74 +181,75 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 ### ADLBC (oracle 37132 rows × 46 cols)
 
 - **rules**: 14/46 spec variables compared, 12 fully matching, 2 partial, mean value agreement 85.8% (produced 59580 rows).
-- **llm**: 21/46 spec variables compared, 19 fully matching, 2 partial, mean value agreement 90.5% (produced 59580 rows).
+- **llm**: 19/46 spec variables compared, 19 fully matching, 0 partial, mean value agreement 100.0% (produced 59580 rows).
 
 | variable | rules_status | rules_agree% | llm_status | llm_agree% | llm_agree%@oracle_prec |
 |---|---|---|---|---|---|
-| STUDYID | compared | 100.0 | compared | 100.0 | NA |
-| SUBJID | not_produced | NA | compared | 100.0 | NA |
-| USUBJID | compared | 100.0 | compared | 100.0 | NA |
-| TRTP | not_produced | NA | compared | 100.0 | NA |
+| STUDYID | compared | 100.0 | compared | 100 | NA |
+| SUBJID | not_produced | NA | compared | 100 | NA |
+| USUBJID | compared | 100.0 | compared | 100 | NA |
+| TRTP | not_produced | NA | compared | 100 | NA |
 | TRTPN | not_produced | NA | not_produced | NA | NA |
-| TRTA | not_produced | NA | compared | 100.0 | NA |
+| TRTA | not_produced | NA | compared | 100 | NA |
 | TRTAN | not_produced | NA | not_produced | NA | NA |
 | TRTSDT | not_produced | NA | not_produced | NA | NA |
 | TRTEDT | not_produced | NA | not_produced | NA | NA |
-| AGE | not_produced | NA | compared | 100.0 | NA |
+| AGE | not_produced | NA | compared | 100 | NA |
 | AGEGR1 | not_produced | NA | not_produced | NA | NA |
 | AGEGR1N | not_produced | NA | not_produced | NA | NA |
-| RACE | not_produced | NA | compared | 100.0 | NA |
+| RACE | not_produced | NA | compared | 100 | NA |
 | RACEN | not_produced | NA | not_produced | NA | NA |
-| SEX | not_produced | NA | compared | 100.0 | NA |
+| SEX | not_produced | NA | compared | 100 | NA |
 | COMP24FL | not_produced | NA | not_produced | NA | NA |
 | DSRAEFL | not_produced | NA | not_produced | NA | NA |
 | SAFFL | not_produced | NA | not_produced | NA | NA |
 | AVISIT | not_produced | NA | not_produced | NA | NA |
 | AVISITN | not_produced | NA | not_produced | NA | NA |
-| ADY | compared | 100.0 | compared | 100.0 | NA |
+| ADY | compared | 100.0 | compared | 100 | NA |
 | ADT | compared | 100.0 | not_produced | NA | NA |
-| VISIT | compared | 100.0 | compared | 100.0 | NA |
-| VISITNUM | compared | 100.0 | compared | 100.0 | NA |
+| VISIT | compared | 100.0 | compared | 100 | NA |
+| VISITNUM | compared | 100.0 | compared | 100 | NA |
 | PARAM | not_produced | NA | not_produced | NA | NA |
-| PARAMCD | compared | 100.0 | compared | 100.0 | NA |
+| PARAMCD | compared | 100.0 | compared | 100 | NA |
 | PARAMN | not_produced | NA | not_produced | NA | NA |
 | PARCAT1 | not_produced | NA | not_produced | NA | NA |
-| AVAL | compared | 100.0 | compared | 100.0 | NA |
-| BASE | compared |   0.4 | compared |   0.4 | NA |
-| CHG | compared |   0.4 | compared |   0.4 | NA |
-| A1LO | compared | 100.0 | compared | 100.0 | NA |
-| A1HI | compared | 100.0 | compared | 100.0 | NA |
-| R2A1LO | not_produced | NA | compared | 100.0 | NA |
-| R2A1HI | not_produced | NA | compared | 100.0 | NA |
+| AVAL | compared | 100.0 | compared | 100 | NA |
+| BASE | compared |   0.4 | not_produced | NA | NA |
+| CHG | compared |   0.4 | not_produced | NA | NA |
+| A1LO | compared | 100.0 | compared | 100 | NA |
+| A1HI | compared | 100.0 | compared | 100 | NA |
+| R2A1LO | not_produced | NA | compared | 100 | NA |
+| R2A1HI | not_produced | NA | compared | 100 | NA |
 | BR2A1LO | not_produced | NA | not_produced | NA | NA |
 | BR2A1HI | not_produced | NA | not_produced | NA | NA |
 | ANL01FL | not_produced | NA | not_produced | NA | NA |
 | ALBTRVAL | not_produced | NA | not_produced | NA | NA |
 | ANRIND | not_produced | NA | not_produced | NA | NA |
 | BNRIND | not_produced | NA | not_produced | NA | NA |
-| ABLFL | compared | 100.0 | compared | 100.0 | NA |
+| ABLFL | compared | 100.0 | compared | 100 | NA |
 | AENTMTFL | not_produced | NA | not_produced | NA | NA |
 | LBSEQ | join_key | NA | join_key | NA | NA |
-| LBNRIND | compared | 100.0 | compared | 100.0 | NA |
-| LBSTRESN | compared | 100.0 | compared | 100.0 | NA |
+| LBNRIND | compared | 100.0 | compared | 100 | NA |
+| LBSTRESN | compared | 100.0 | compared | 100 | NA |
 
 `llm_agree%@oracle_prec` is only populated for HEIGHTBL/WEIGHTBL: the oracle stores these rounded to 1 decimal while the spec text never mentions rounding, so agreement at the oracle's own storage precision is reported alongside the raw figure (finding F-05).
 
 ## 4. Rules vs LLM layer-chain agreement (`out/rules_vs_llm_layers[_<ds>].csv`)
 
-**ADSL**: identical layer chains on **40/49** variables (82%).
+**ADSL**: identical layer chains on **39/49** variables (80%).
 
 | variable | rules | llm | agree |
 |---|---|---|---|
 | TRTDURD | needs_human | compute_var | FALSE |
 | AVGDD | needs_human | compute_var | FALSE |
+| ITTFL | needs_human | assign_conditional | FALSE |
 | BMIBL | needs_human | compute_var | FALSE |
-| BMIBLGR1 | compute_param->merge_var | needs_human | FALSE |
+| BMIBLGR1 | compute_param->merge_var | categorize | FALSE |
 | HEIGHTBL | needs_human | merge_var | FALSE |
 | WEIGHTBL | needs_human | merge_var | FALSE |
 | EDUCLVL | needs_human | merge_var | FALSE |
 | RFENDT | impute_dtc | needs_human | FALSE |
-| DCDECOD | needs_human | merge_var | FALSE |
+| EOSSTT | needs_human | assign_conditional | FALSE |
 
 **ADAE**: identical layer chains on **32/55** variables (58%).
 
@@ -254,7 +257,6 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 |---|---|---|---|
 | STUDYID | assign | merge_var | FALSE |
 | SITEID | assign | merge_var | FALSE |
-| USUBJID | assign | needs_human | FALSE |
 | TRTA | assign | merge_var | FALSE |
 | TRTAN | assign | merge_var | FALSE |
 | AGE | assign | merge_var | FALSE |
@@ -268,6 +270,7 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 | TRTEDT | assign | merge_var | FALSE |
 | ASTDT | needs_human | impute_dtc | FALSE |
 | ADURN | needs_human | compute_var | FALSE |
+| TRTEMFL | needs_human | assign_conditional | FALSE |
 | AOCCFL | needs_human | extreme_flag | FALSE |
 | AOCCSFL | needs_human | extreme_flag | FALSE |
 | AOCCPFL | needs_human | extreme_flag | FALSE |
@@ -276,12 +279,13 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 | AOCC04FL | needs_human | extreme_flag | FALSE |
 | AOCC01FL | needs_human | extreme_flag | FALSE |
 
-**ADLBC**: identical layer chains on **26/46** variables (57%).
+**ADLBC**: identical layer chains on **24/46** variables (52%).
 
 | variable | rules | llm | agree |
 |---|---|---|---|
 | STUDYID | assign | merge_var | FALSE |
 | SUBJID | assign | merge_var | FALSE |
+| USUBJID | assign | needs_human | FALSE |
 | TRTP | assign | merge_var | FALSE |
 | TRTPN | assign | merge_var | FALSE |
 | TRTA | assign | merge_var | FALSE |
@@ -298,6 +302,7 @@ Join on the dataset's row-identity keys (ADSL: USUBJID; ADAE: USUBJID+AESEQ; ADL
 | DSRAEFL | assign | merge_var | FALSE |
 | SAFFL | assign | merge_var | FALSE |
 | ADT | assign | needs_human | FALSE |
+| BASE | assign | needs_human | FALSE |
 | R2A1LO | needs_human | compute_var | FALSE |
 | R2A1HI | needs_human | compute_var | FALSE |
 
@@ -317,10 +322,44 @@ This is IR-level agreement between two translators reading the same spec text �
 | TRT01PN | needs_human@e4a67c77:3 | needs_human | TRUE |
 | TRT01A | assign@4f057cb5:3 | assign | TRUE |
 | TRT01AN | needs_human@e4a67c77:3 | needs_human | TRUE |
-| TRTSDT | merge_var->impute_dtc@8e7ceeab:1 | merge_var->impute_dtc | TRUE |
-| TRTEDT | needs_human@70e5bb3f:1 | needs_human | TRUE |
-| TRTDURD | compute_var@3103dfd0:1 | compute_var | TRUE |
-| AVGDD | needs_human@2674cf1d:1 | needs_human | TRUE |
+| TRTSDT | merge_var->impute_dtc@8e7ceeab:3 | merge_var->impute_dtc | TRUE |
+| TRTEDT | needs_human@e4a67c77:3 | needs_human | TRUE |
+| TRTDURD | compute_var@3103dfd0:3 | compute_var | TRUE |
+| AVGDD | needs_human@e4a67c77:3 | needs_human | TRUE |
+
+**ADAE** subset: 12 derived-origin variables (first 12 in spec order, deterministic), 3 samples, majority vote. Unanimous on **12/12** variables.
+
+| variable | signature_votes | chosen | unanimous |
+|---|---|---|---|
+| SITEID | merge_var@290b7337:3 | merge_var | TRUE |
+| TRTA | merge_var@2643ea11:3 | merge_var | TRUE |
+| TRTAN | merge_var@c51195d3:3 | merge_var | TRUE |
+| AGE | merge_var@31c03d0d:3 | merge_var | TRUE |
+| AGEGR1 | merge_var@7cbe0856:3 | merge_var | TRUE |
+| AGEGR1N | merge_var@85380682:3 | merge_var | TRUE |
+| RACE | merge_var@910e8e0f:3 | merge_var | TRUE |
+| RACEN | merge_var@e4e276ef:3 | merge_var | TRUE |
+| SEX | merge_var@95c7c39b:3 | merge_var | TRUE |
+| SAFFL | merge_var@9b8d6e71:3 | merge_var | TRUE |
+| TRTSDT | merge_var@ba80db4f:3 | merge_var | TRUE |
+| TRTEDT | merge_var@4cf7d2d5:3 | merge_var | TRUE |
+
+**ADLBC** subset: 12 derived-origin variables (first 12 in spec order, deterministic), 3 samples, majority vote. Unanimous on **12/12** variables.
+
+| variable | signature_votes | chosen | unanimous |
+|---|---|---|---|
+| TRTP | merge_var@2a28e374:3 | merge_var | TRUE |
+| TRTPN | merge_var@8fa1a314:3 | merge_var | TRUE |
+| TRTA | merge_var@2643ea11:3 | merge_var | TRUE |
+| TRTAN | merge_var@c51195d3:3 | merge_var | TRUE |
+| AVISIT | needs_human@e4a67c77:3 | needs_human | TRUE |
+| ADY | assign@31140215:3 | assign | TRUE |
+| ADT | impute_dtc@29f04bcc:3 | impute_dtc | TRUE |
+| PARAM | needs_human@e4a67c77:3 | needs_human | TRUE |
+| PARAMN | needs_human@e4a67c77:3 | needs_human | TRUE |
+| BASE | assign@7813c248:3 | assign | TRUE |
+| CHG | compute_var@caa046e4:3 | compute_var | TRUE |
+| A1LO | assign@b375bfae:3 | assign | TRUE |
 
 Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec errors are shared by every voter; consensus measures translation variance, not correctness. Vocabulary gaps (e.g. conditional/windowing layers) push all voters into the same abstention or the same wrong mapping — more voters cannot fix a vocabulary hole.
 
@@ -328,21 +367,21 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 
 ### ADSL
 
-- **full**: cached; last measured run: 84.2s, 5,505 in / 7,083 out tokens, est. cost $0.0093 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
-- **consensus**: cached; last measured run: 84.9s, 4,951 in / 7,827 out tokens, est. cost $0.0099 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
-- **rules baseline**: 0.101s, zero cost.
+- **full**: 107.6s, 6,952 in / 8,628 out tokens, est. cost $0.0114 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
+- **consensus**: 56.8s, 4,522 in / 4,782 out tokens, est. cost $0.0065 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
+- **rules baseline**: 0.149s, zero cost.
 
 ### ADAE
 
-- **full**: 67.0s, 7,179 in / 7,799 out tokens, est. cost $0.0105 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
-- **consensus**: skipped — cost cap: 3x sampling reserved for ADSL; AA_CONSENSUS_ALL=1 opts in.
-- **rules baseline**: 0.029s, zero cost.
+- **full**: 126.3s, 7,652 in / 10,118 out tokens, est. cost $0.0132 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
+- **consensus**: 46.6s, 3,787 in / 3,762 out tokens, est. cost $0.0052 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
+- **rules baseline**: 0.017s, zero cost.
 
 ### ADLBC
 
-- **full**: 50.2s, 5,483 in / 6,326 out tokens, est. cost $0.0084 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
-- **consensus**: skipped — cost cap: 3x sampling reserved for ADSL; AA_CONSENSUS_ALL=1 opts in.
-- **rules baseline**: 0.009s, zero cost.
+- **full**: 91.4s, 5,724 in / 7,335 out tokens, est. cost $0.0096 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
+- **consensus**: 60.2s, 3,905 in / 4,974 out tokens, est. cost $0.0065 (rate assumption: $0.27/M in, $1.10/M out, 2025 price sheet).
+- **rules baseline**: 0.016s, zero cost.
 
 
 ## 7. Failure taxonomy (`out/exec_status_<backend>[_<ds>].csv`)
@@ -353,10 +392,11 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 |---|---|---|
 | BMIBLGR1 | ERROR | [duplicate_records] admiral::derive_param_computed() [step 1/2, layer compute_param]: message redacted (may contain data values); enable options(admiralagent.error_detail = TRUE) and read aa_last_error_detail() |
 
-### ADSL / llm: 2 execution errors
+### ADSL / llm: 3 execution errors
 
 | variable | status | note |
 |---|---|---|
+| EOSSTT | ERROR | column 'DCDECOD' is missing from source dataset 'ADSL' |
 | TRTDURD | ERROR | column 'TRTEDT' is missing from source dataset 'ADSL' |
 | AVGDD | ERROR | upstream derivation failed; stale inputs are not used |
 
@@ -377,7 +417,7 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 | TRTSDT | ERROR | column 'TRTSDT' is missing from source dataset 'ADAE' |
 | TRTEDT | ERROR | column 'TRTEDT' is missing from source dataset 'ADAE' |
 
-### ADAE / llm: 15 execution errors
+### ADAE / llm: 16 execution errors
 
 | variable | status | note |
 |---|---|---|
@@ -388,13 +428,14 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 | SAFFL | ERROR | column 'SAFFL' is missing from source dataset 'adsl' |
 | TRTSDT | ERROR | column 'TRTSDT' is missing from source dataset 'adsl' |
 | TRTEDT | ERROR | column 'TRTEDT' is missing from source dataset 'adsl' |
-| AOCCFL | ERROR | column 'TRTEMFL' is missing from source dataset 'ADAE' |
-| AOCCSFL | ERROR | column 'TRTEMFL' is missing from source dataset 'ADAE' |
-| AOCCPFL | ERROR | column 'TRTEMFL' is missing from source dataset 'ADAE' |
-| AOCC02FL | ERROR | column 'TRTEMFL' is missing from source dataset 'ADAE' |
-| AOCC03FL | ERROR | column 'TRTEMFL' is missing from source dataset 'ADAE' |
-| AOCC04FL | ERROR | column 'TRTEMFL' is missing from source dataset 'ADAE' |
-| AOCC01FL | ERROR | column 'CQ01NAM' is missing from source dataset 'ADAE' |
+| TRTEMFL | ERROR | upstream derivation failed; stale inputs are not used |
+| AOCCFL | ERROR | upstream derivation failed; stale inputs are not used |
+| AOCCSFL | ERROR | upstream derivation failed; stale inputs are not used |
+| AOCCPFL | ERROR | upstream derivation failed; stale inputs are not used |
+| AOCC02FL | ERROR | upstream derivation failed; stale inputs are not used |
+| AOCC03FL | ERROR | upstream derivation failed; stale inputs are not used |
+| AOCC04FL | ERROR | upstream derivation failed; stale inputs are not used |
+| AOCC01FL | ERROR | upstream derivation failed; stale inputs are not used |
 | ADURN | ERROR | column 'AENDT' is missing from source dataset 'ADAE' |
 
 ### ADLBC / rules: 17 execution errors
@@ -419,7 +460,7 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 | SAFFL | ERROR | column 'SAF01FL' is missing from source dataset 'ADLBC' |
 | PARAMCD | ERROR | column 'TESTCD' is missing from source dataset 'ADLBC' |
 
-### ADLBC / llm: 11 execution errors
+### ADLBC / llm: 12 execution errors
 
 | variable | status | note |
 |---|---|---|
@@ -434,6 +475,7 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 | DSRAEFL | ERROR | column 'DSR01AEFL' is missing from source dataset 'adsl' |
 | SAFFL | ERROR | column 'SAF01FL' is missing from source dataset 'adsl' |
 | PARAMCD | ERROR | column 'TESTCD' is missing from source dataset 'ADLBC' |
+| CHG | ERROR | column 'BASE' is missing from source dataset 'ADLBC' |
 
 
 ## 8. needs_human inventory (from the IR objects)
@@ -475,37 +517,35 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 | DCSREAS | rule: no matching pattern, routed to human review |
 | MMSETOT | rule: no matching pattern, routed to human review |
 
-### ADSL / llm: 27 variables abstained
+### ADSL / llm: 25 variables abstained
 
 | variable | rationale |
 |---|---|
-| SITEGR1 | Derivation depends on external SAP pooling rules (Section 7.1) not fully specified; conditional site pooling decision is human-only. |
-| TRT01PN | Numeric code for planned treatment requires an external codelist mapping (randomized dose); no explicit codelist provided in spec. |
-| TRT01AN | Numeric code for actual treatment requires an external codelist mapping (randomized dose); no explicit codelist provided. |
-| TRTSDT | TRTSDT is a date target pulled from SV.SVSTDTC at VISITNUM=3; the spec does not supply an explicit DTC imputation rule, and character-to-date conversion requires human review of the partial-date/imputation policy. |
-| TRTEDT | Derivation contains a conditional fallback (missing final dose -> discontinuation date) requiring conditional selection logic and external CRF/DS references; ambiguous and human-only. |
-| CUMDOSE | Derivation is a complex multi-branch conditional dependent on ARMN, scheduled visit dates (visit4date, visit12date), dosing intervals and discontinuation logic; not expressible with the allowed operations. |
-| AGEGR1 | AGEGR1 is the character decode of AGEGR1N, but the exact label text (e.g. '<65', '65-80', '>80') is not given in the spec; the codelist decode mapping must be confirmed. |
-| AGEGR1N | Age breakpoints: 1 if AGE<65, 2 if 65-80, 3 if >80. Breakpoints are explicit but boundary handling (closed/open at 65 and 80/81) requires confirmation; low boundary placeholder needed. |
-| RACEN | Numeric code for RACE requires an external codelist mapping; no explicit codelist supplied in the spec. |
-| SAFFL | SAFFL is a conditional flag (Y if ITTFL='Y' and TRTSDT not missing, else N); conditional logic is not expressible with the allowed operations. |
-| ITTFL | Conditional flag (Y if ARMCD ne ' ', N otherwise); conditional logic is not expressible with allowed operations. |
-| EFFFL | Multi-condition flag spanning SAFFL plus existence checks across QS records for ADAS-Cog and CIBIC+ with VISITNUM>3; requires complex conditional joins not expressible with allowed operations. |
-| COMP8FL | Conditional flag requiring SV.VISITNUM=8 record and comparison of ENDDT to visit 8 date; external date lookups and conditional logic not expressible with allowed operations. |
-| COMP16FL | Conditional flag requiring SV.VISITNUM=10 record and comparison of ENDDT to visit 10 date; external date lookups and conditional logic not expressible with allowed operations. |
-| COMP24FL | Conditional flag requiring SV.VISITNUM=12 record and comparison of ENDDT to visit 12 date; external date lookups and conditional logic not expressible with allowed operations. |
-| DISCONFL | Conditional flag (Y if DCREASCD ^= 'Completed', Null otherwise); conditional logic not expressible with allowed operations. |
-| DSRAEFL | Conditional flag (Y if DCREASCD='Adverse Event', Null otherwise); conditional logic not expressible with allowed operations. |
-| BMIBLGR1 | Breakpoints 25 and 30 are explicit, but handling of missing/negative lower boundary requires confirmation of the low breakpoint placeholder. |
-| DISONSDT | DISONSDT is a date target pulled from MH.MHSTDTC; spec gives no explicit DTC imputation rule and character-to-date conversion requires an imputation policy, so human review is needed. |
-| DURDIS | Duration in months between VISIT1DT and DISONSDT; VISIT1DT is not defined in this spec and must be confirmed as a valid date endpoint in the base dataset. |
-| DURDSGR1 | Breakpoint at 12 is explicit but the lower boundary placeholder and missing handling require confirmation of low breakpoint. |
-| VISIT1DT | VISIT1DT is a date target pulled from SV.SVSTDTC at VISITNUM=1; spec gives no explicit DTC imputation rule and character-to-date conversion requires an imputation policy. |
-| VISNUMEN | Conditional derivation (VISITNUM=13 remapped to 12, else DS.VISITNUM) with DSTERM filter; branching conditional logic not expressible with allowed operations. |
-| RFENDT | RFENDTC character date converted to a SAS date; no explicit imputation rule given, and DTC imputation policy must be confirmed by human review. |
-| EOSSTT | Conditional mapping of DCDECOD to COMPLETED/DISCONTINUED; conditional logic not expressible with allowed operations. |
-| DCSREAS | Grouping of DCDECOD values into standardized discontinuation reasons requires an external mapping/codelist not provided. |
-| MMSETOT | MMSETOT is a subject-level sum of QS.QSORRES (character) values where QSCAT='MINI-MENTAL STATE'; requires filtering, character-to-numeric conversion, and aggregation across QS records not expressible with the allowed ope |
+| SITEGR1 | Pooling logic depends on SAP Section 7.1 and an external pooling specification (which sites are pooled to 900). The rule is ambiguous and cannot be encoded from the spec text alone. |
+| TRT01PN | Numeric treatment code requires an external decode mapping TRT01P to dose numbers, which is not provided as a codelist in the spec. |
+| TRT01AN | Numeric treatment code requires an external decode mapping TRT01A to dose numbers, which is not provided as a codelist in the spec. |
+| TRTSDT | TRTSDT is pulled from SV at VISITNUM=3; source is a character DTC needing imputation. Whether VISITNUM=3 or VISIT='VISIT 3' is used and the imputation policy make this ambiguous; human review needed. |
+| TRTEDT | Rule combines last EX record EXENDTC with a fallback to discontinuation date if missing; conditional fallback logic and source of discontinuation date are not fully specified, requiring human review. |
+| CUMDOSE | Multi-interval dose accumulation depends on ARMN (not in spec), TRTDUR (undefined token), visit4date/visit12date (external visit dates not in spec), and per-interval conditional logic. Cannot be encoded from the spec tex |
+| AGEGR1 | AGEGR1 is a character decode derived from AGEGR1N; the numeric-to-character label mapping is not provided as a codelist, requiring human review. |
+| AGEGR1N | AGE <65 -> 1, AGE 65-80 -> 2, AGE >80 -> 3. Numeric output with character labels serialized as strings; the exact breakpoint boundaries (whether 65 and 80 are inclusive) and the fact that a codelist mapping is expected r |
+| RACEN | Numeric code for RACE requires an external decode/codelist mapping RACE values to numeric codes, which is not provided in the spec. |
+| SAFFL | Condition requires a missingness check (TRTSDT ne missing) and setting 'N' otherwise; the filter sublanguage cannot express is.na()-style missingness checks, so this must be routed to human review. |
+| EFFFL | Requires existence checks against QS records for ADAS-Cog and CIBIC+ with VISITNUM>3 (parameter/visit dependent record-existence logic across another dataset). Cannot be expressed with the available layers without extern |
+| COMP8FL | Requires existence of a SV record at VISITNUM=8 plus comparison of an ENDDT (discontinuation/end date, not in spec) against the visit 8 date pulled from SV. The ENDDT source and visit-date merge are ambiguous; human revi |
+| COMP16FL | Requires existence of a SV record at VISITNUM=10 plus comparison of an ENDDT (not in spec) against the visit 10 date pulled from SV. The ENDDT source and visit-date merge are ambiguous; human review required. |
+| COMP24FL | Requires existence of a SV record at VISITNUM=12 plus comparison of an ENDDT (not in spec) against the visit 12 date pulled from SV. The ENDDT source and visit-date merge are ambiguous; human review required. |
+| DISCONFL | DCREASCD is not confirmed present in the ADSL base (likely derived from DS); null-vs-blank else value is ambiguous and missingness routing is uncertain. Human review required. |
+| DSRAEFL | DCREASCD is not confirmed present in the ADSL base (likely derived from DS); null-vs-blank else value is ambiguous. Human review required. |
+| DISONSDT | Pull MHSTDTC from mh where MHCAT='PRIMARY DIAGNOSIS' as a character DTC requiring imputation; imputation policy (highest_imputation, date_imputation) is not stated in the spec, requiring human review. |
+| DURDIS | DURDIS is months between VISIT1DT and DISONSET; VISIT1DT is not a spec column and DISONSET differs from the derived DISONSDT, so the endpoints are ambiguous. Human review required. |
+| DURDSGR1 | Grouping DURDIS as <12 and >=12 is derivable via categorize, but DURDIS itself is not reliably derivable (ambiguous endpoints), so this variable is blocked on DURDIS resolution. Human review required. |
+| VISIT1DT | VISIT1DT pulled from SV at VISITNUM=1 as a character DTC requiring imputation; imputation policy (highest_imputation, date_imputation) is not stated in the spec, requiring human review. |
+| VISNUMEN | VISNUMEN derives from DS.VISITNUM with a conditional remap (13->12) and a DSTERM='PROTCOL COMPLETED' filter; value pulled from another dataset with ambiguous conditional logic. Human review required. |
+| RFENDT | RFENDT is RFENDTC converted to a SAS date; as a partial-date character, imputation policy (highest_imputation, date_imputation) is not stated in the spec, requiring human review. |
+| DCDECOD | Pull DSDECOD from ds where DSCAT='DISPOSITION EVENT'; the selection order (first vs last) among disposition records is not specified, requiring human review. |
+| DCSREAS | DCSREAS is a grouping of DCDECOD values requiring an external mapping table (decode -> reason group) not provided in the spec. Human review required. |
+| MMSETOT | MMSETOT is a sum of QS.QSORRES values where QSCAT='MINI-MENTAL STATE'; QSORRES is character and the specific QSTESTCD item set plus any visit/timepoint scope is ambiguous. summary_record operates on BDS PARAMCD/AVAL reco |
 
 ### ADAE / rules: 16 variables abstained
 
@@ -528,18 +568,16 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 | CQ01NAM | rule: no matching pattern, routed to human review |
 | AOCC01FL | rule: no matching pattern, routed to human review |
 
-### ADAE / llm: 8 variables abstained
+### ADAE / llm: 6 variables abstained
 
 | variable | rationale |
 |---|---|
-| USUBJID | USUBJID is copied directly from ADSL. However, USUBJID is normally the key already present in ae and cannot be merged from adsl on itself without duplicate-record risk; if ae carries USUBJID this should be an assign on t |
-| ASTDTF | ASTDTF is the day-imputation flag ('D') produced by the impute_dtc call that creates ASTDT; it is not independently derivable without that producer and its presence depends on day imputation, so it is flagged for human r |
-| ASTDY | ASTDY is a conditional study-day computation (ASTDT>=TRTSDT then ASTDT-TRTSDT+1 else ASTDT-TRTSDT). The compute_var layer allows arithmetic and grouping parentheses only, so the conditional/missing-value guarded logic ca |
-| AENDT | AENDT is derived from AE.AEENDTC. The spec text does not state an imputation rule for partial end dates, whereas impute_dtc requires an explicit highest_imputation and date_imputation. A conservative 'first' day imputati |
-| AENDY | AENDY is a conditional study-day computation (AENDT>=TRTSDT then AENDT-TRTSDT+1 else AENDT-TRTSDT). The compute_var layer allows arithmetic and grouping parentheses only, so the conditional/missing-value guarded logic ca |
-| ADURU | ADURU is conditional on ADURN being non-missing ('DAYS' when ADURN present). A pure literal assign loses the conditional guard on ADURN, and the conditional form is not expressible with the allowed arithmetic-only vocabu |
-| TRTEMFL | TRTEMFL requires a conditional assignment (Y when ASTDT >= TRTSDT and non-missing, else N). The assign layer only supports a direct copy or a literal constant; the conditional/missing-guarded logic is not expressible wit |
-| CQ01NAM | CQ01NAM requires a multi-condition string-matching rule (contains any of a list of substrings, OR SOC match with an excluded PT list). Substring/contains matching and the compound conditional with NULL default are not ex |
+| ASTDTF | ASTDTF must be 'D' only when the day component of AESTDTC was actually imputed, which requires detecting a partial (day-missing) date. This condition depends on the imputation flag produced by derive_vars_dtm, which cann |
+| ASTDY | ASTDY uses a conditional day-relative formula with two branches (ASTDT>=TRTSDT gives +1 inclusive, TRTSDT>ASTDT gives exclusive). This mixed inclusive/exclusive conditional arithmetic cannot be expressed by compute_var ( |
+| AENDT | AEENDTC is converted to a numeric date, but the spec gives no imputation rule for partial end dates. highest_imputation and date_imputation cannot be determined from the text. Needs human review of the imputation policy. |
+| AENDY | AENDY uses a conditional day-relative formula with two branches (AENDT>=TRTSDT gives +1 inclusive, TRTSDT>AENDT gives exclusive). This mixed inclusive/exclusive conditional arithmetic cannot be expressed by compute_var n |
+| ADURU | Condition 'ADURN is not missing' tests missingness of a numeric column, which the filter sublanguage cannot express (no is.na/style checks; ADURN != '' is not a valid missingness test for numerics). Needs human review. |
+| CQ01NAM | CQ01NAM requires substring matching (contains) of AEDECOD against a list of strings and negation against an exclusion list, neither expressible in the filter sublanguage (no function calls, no %in%). The within-'...' log |
 
 ### ADLBC / rules: 14 variables abstained
 
@@ -560,23 +598,25 @@ Caveat (DESIGN.md section 11): all voters read the *same* spec text, so spec err
 | BNRIND | rule: no matching pattern, routed to human review |
 | AENTMTFL | rule: no matching pattern, routed to human review |
 
-### ADLBC / llm: 13 variables abstained
+### ADLBC / llm: 15 variables abstained
 
 | variable | rationale |
 |---|---|
-| AVISIT | Derivation describes a complex last-observation/last-assessment analyte-specific flag rule that requires human interpretation; no unambiguous layer mapping. |
-| AVISITN | Derivation text is only the variable label with no source or rule; ambiguous mapping requires human review. |
-| ADT | ADT is derived from LB.LBDTC, a character date; conversion requires an explicit imputation rule which is not provided in the spec. |
-| PARAM | PARAM requires string concatenation of LBTEST, literal parentheses and LBSTRESU; string concatenation is not representable by the available layer vocabulary (no function calls permitted). |
-| PARAMN | PARAMN requires an external numeric parameter-code lookup/codelist not provided in the spec. |
-| PARCAT1 | Derivation text is only the variable label with no source or rule; ambiguous mapping requires human review. |
-| BR2A1LO | BR2A1LO requires the ADY/BASE selection of the baseline AVAL and A1LO records (a filter-scoped ratio), which is not expressible with a plain column-wise compute_var; requires human decision on baseline record selection. |
-| BR2A1HI | BR2A1HI requires the baseline-scoped ratio (AVAL / A1HI at baseline), needing filter-based baseline record selection not expressible with plain column-wise compute_var; requires human decision. |
-| ANL01FL | ANL01FL is a max-value extreme flag on a non-standard analyte-specific variable (ALBTRVAL) with 'Y' true value; the flag logic could map to extreme_flag but the by_vars and analyte scoping are ambiguous, requiring human  |
-| ALBTRVAL | ALBTRVAL requires max() over two arithmetic expressions involving LBSTRESN, ULN and LLN; function calls are rejected by compute_var and the layer vocabulary cannot express this, requiring human review. |
-| ANRIND | ANRIND is a conditional (if/else) derivation mapping to 'L'/'H'/'N' categories; conditionals are not supported by the layer vocabulary, requiring human review. |
-| BNRIND | BNRIND is a conditional (if/else) derivation mapping to 'L'/'H'/'N' categories over BASE; conditionals are not supported by the layer vocabulary, requiring human review. |
-| AENTMTFL | Derivation describes a complex last-observation/last-assessment analyte-specific flag rule requiring human interpretation; no unambiguous layer mapping. |
+| USUBJID | USUBJID is copied from ADSL, but it is the unique subject identifier used as the merge key to bring all other ADSL variables into ADLBC; keying a merge on the target column itself creates a cyclic dependency, so this req |
+| AVISIT | The derivation is an ambiguous narrative conflating a visit label with a flag-style last-observation rule; it references VISITNUM and analyte-level last assessment logic that cannot be expressed as a single deterministic |
+| AVISITN | The derivation is only the label 'Analysis Visit (N)' with no source variable or mapping rule; the numeric visit mapping cannot be determined from the spec, so human review is required. |
+| ADT | ADT derives from the LB.LBDTC character date, but the spec gives no imputation rule; a default day-first imputation is applied and flagged for human confirmation. |
+| PARAM | The derivation concatenates LB.LBTEST, '(', LB.LBSTRESU and ')' with literal parentheses; string concatenation with embedded literals is not expressible in the compute_var arithmetic sublanguage, so this requires human r |
+| PARAMN | The derivation only states 'Numeric code for Parameter' with no source variable or numeric mapping/codelist, so the assignment cannot be determined and requires human review. |
+| PARCAT1 | The derivation is only the label 'Parameter Category 1' with no source variable or rule, so the assigned value cannot be determined and requires human review. |
+| BASE | BASE (baseline value) is mapped to LB.LBSTNRHI, the reference high limit of the normal range, which is inconsistent with a baseline analysis value; this likely improper mapping requires human review. |
+| BR2A1LO | The derivation 'AVAL / A1LO at baseline' requires selecting the baseline record to compute the ratio, which needs an explicit baseline flag/selection rule not provided, so human review is required. |
+| BR2A1HI | The derivation 'AVAL / A1HI at baseline' requires selecting the baseline record to compute the ratio, which needs an explicit baseline flag/selection rule not provided, so human review is required. |
+| ANL01FL | The rule flags the record where ALBTRVAL equals its maximum (max(ALBTRVAL)); extreme_flag with mode=last on AVAL approximates this but max() selection semantics and the exact by_vars grouping are not specified, so human  |
+| ALBTRVAL | The derivation uses max() over two arithmetic expressions of LBSTRESN with ULN/LLN constants; max() is a function call not allowed in the compute_var sublanguage, and ULN/LLN reference columns are ambiguous, so human rev |
+| ANRIND | The derivation text is malformed, referencing bracket mismatches and inconsistent output values ('H','N','Y') across a low/high range comparison; the intent cannot be reliably reconstructed and requires human review. |
+| BNRIND | The derivation text is malformed, referencing bracket mismatches and inconsistent output values ('Y','H','N') across a low/high range comparison of BASE against half the normal limits; the intent cannot be reliably recon |
+| AENTMTFL | The derivation is an ambiguous narrative conflating a visit label with a flag-style last-observation rule; it references VISITNUM and analyte-level last assessment logic that cannot be expressed as a single deterministic |
 
 
 ## 9. Findings registered (`out/findings.json`)
@@ -603,6 +643,8 @@ Per the AGENTS.md improvement-loop convention, every ERROR/FAIL/MANUAL class obs
 - **F-10 (package) [resolved by adccebb] — post-F-06 LLM translates same-domain copies as merge_var(dataset_add=<base domain>), which fails closed on occurrence-level targets.** With the dataset token fixed, the model follows the system rule 'to bring a value from another dataset ALWAYS use merge_var' literally: ADAE variables copied from AE (AETERM, AELLT, AESEQ, 25 variables) became merge_var(dataset_add="ae", by_vars=STUDYID+USUBJID, mode=first) instead of assign. But ADAE's base IS ae, the by-keys are duplicated on occurrence-level data, and no order arg was given, so admiral::derive_vars_merged() fails closed with duplicate_records (25 execution errors). A second class (7 errors) merges columns from sources$adsl that the ADSL llm backend itself abstained on (TRTSDT, TRT01AN, RACEN, SAFFL, AGEGR1, AGEGR1N, TRTEDT) - cross-dataset variables can only be as complete as the producing backend's ADSL. Net effect on ADAE llm: needs_human 21 -> 8 but EXECUTED 26 -> 7 (validation FAIL 13 -> 58). Contrast: the rules backend's naive assign is semantically right for same-domain copies (ADAE rules EXECUTED=27, 20/20 compared variables at 100%). The model cannot see which domain seeds the target, so it cannot know assign was correct here. Recorded, not worked around: 03_execute now also supplies the base domain under its own name so these IRs execute as far as admiral's own duplicate-key guard allows. _Evidence: out/exec_status_llm_adae.csv (25x duplicate_records merge_var dataset_add=ae, 7x 'column ... missing from source dataset adsl'), out/ir_llm_adae.rds (AETERM/AESEQ merge_var steps), out/exec_status_llm_adlbc.csv, comparison with out/exec_status_rules_adae.csv (assign, EXECUTED=27)._
   - Suggested fix: Tell the model which domain seeds the target dataset (e.g. a base_domain field in build_context()/batch_prompt), so same-domain copies map to assign and merge_var is reserved for genuinely foreign datasets; optionally add an order arg requirement hint for occurrence-level merges.
   - Resolution: Fixed at the prompt-rule layer (vocabulary and golden hashes untouched): new numbered hard rule 5 in build_system_prompt() states that when source_dataset is the domain seeding the target (ADSL<-dm, ADAE<-ae, ADLBC<-lb) the column is already in the base and MUST be copied with assign, that merging a dataset into a target built from that same domain is forbidden (duplicate by-keys on occurrence data, duplicate_records), and that merge_var/lookup_join are reserved for OTHER datasets with by_vars(+order) uniquely identifying records in dataset_add. Placed in the numbered region (structural contract), not the convention block, so the neutral/minimal voter variants keep it - regression test asserts its key sentences in all three variants; full suite FAIL=0 PASS=4820. Measured on the ADAE/ADLBC reruns (0 failed batches, $0.0105/$0.0084): ADAE llm EXECUTED 7 -> 32, ERROR 40 -> 15, validation FAIL 58 -> 33, oracle 27 compared / 25 full-match / 96.3% mean; ADLBC llm needs_human 25 -> 13, EXECUTED 4 -> 22, oracle 21 compared / 19 full-match / 90.5% mean. duplicate_records errors: 25 -> 0. Remaining ADAE errors are honest dependency cascades (7x ADSL-llm-abstained columns, AOCC*/ADURN upstreams abstained); remaining ADLBC errors include 3 hallucinated source column names (SAF01FL/DSR01AEFL/COM01P24FL) that the fail-closed execution layer caught.
+- **F-11 (demo) — assign_conditional (layer 15, commit 70e17e8) converts 2/9 conditional-family variables; only ITTFL reaches oracle-aligned execution - conversion prediction half-confirmed.** Measurement rerun with AA_FORCE_LLM=1 AA_CONSENSUS_ALL=1 after the assign_conditional layer landed. The evaluation note predicted a confident 4/9 conversion (ITTFL directly; EOSSTT/DISCONFL/DSRAEFL via the DCDECOD chain). Measured on the ADSL llm backend: ITTFL converted (assign_conditional, condition="ARMCD != ' '", true=Y else=N), EXECUTED, 100% oracle agreement - prediction confirmed. EOSSTT converted (condition on DCDECOD) but ERRORed: the chain link DCDECOD was itself abstained (needs_human) in this run, so the DCDECOD chain is only as available as a stochastic upstream translation (last run DCDECOD was derived at 100% oracle agreement). DISCONFL/DSRAEFL stayed needs_human this run - prediction over-optimistic given run-to-run variance. SAFFL/EFFFL (cross-dataset existence) and COMP8FL/COMP16FL/COMP24FL (visit-window existence) stayed needs_human - still genuine vocabulary holes (limitation 2). The rules backend does not use the new layer (evals pin its abstention) - expected, not a defect. _Evidence: out/exec_status_llm.csv (ITTFL EXECUTED, EOSSTT ERROR 'column DCDECOD is missing from source dataset ADSL', DISCONFL/DSRAEFL/DCDECOD REVIEW), out/accuracy_llm.csv (ITTFL 100%), out/ir_llm.rds (assign_conditional steps for ITTFL/EOSSTT), out/llm_telemetry.json (forced rerun, all datasets + all consensus, 0 failed batches)._
+  - Suggested fix: None at the demo level. The layer works as designed; the residual gap is (a) stochastic upstream abstention (consensus mode exists to measure/contain it) and (b) windowing/existence vocabulary holes (separate roadmap item).
 
 ## 10. Limitations (read this before quoting any number above)
 

@@ -1,0 +1,44 @@
+{
+  "artifact": "adae__aoccpfl__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AOCCPFL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "USUBJID",
+              "AEBODSYS",
+              "AEDECOD"
+            ],
+            "mode": "first",
+            "order": [
+              "ASTDT",
+              "AESEQ"
+            ],
+            "restrict_filter": "TRTEMFL == 'Y'",
+            "target": "AOCCPFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Subset to TRTEMFL='Y' and sort by Subject (USUBJID), System Organ Class (AEBODSYS), Preferred Term (AEDECOD), Start Date (ASTDT), and Sequence Number (AESEQ) and flag the first record (set AOCCPFL=?Y?) within each Subject, SOC, and PT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First occurrence of preferred term per subject, SOC and PT, ordered by ASTDT then AESEQ, scoped to treatment-emergent events."
+    }
+  ],
+  "ir_hash": "4fed7314",
+  "code_digest": "24a63a6bb9b2a9e3e2da211ed686e867fdf5ed25fcbf22c73d41313e07f33920",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:28-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

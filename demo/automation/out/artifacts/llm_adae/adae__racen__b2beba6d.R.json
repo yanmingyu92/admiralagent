@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__racen__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.RACEN",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "Numeric race is pulled from ADSL.RACEN via a subject-level merge keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "c2b72bf2",
+  "code_digest": "ead61ebe397f0be3c5217c4406396f7c7ee6b78e911c087b2622056932911f78",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

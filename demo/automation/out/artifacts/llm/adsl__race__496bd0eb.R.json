@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__race__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "DM.RACE",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from dm, so RACE is already present in the target base; copy directly."
+    }
+  ],
+  "ir_hash": "e75bc75e",
+  "code_digest": "db523bee3f013dd12c3861a954fc9838ceb874d46edd1d83d6f488179e6065f9",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

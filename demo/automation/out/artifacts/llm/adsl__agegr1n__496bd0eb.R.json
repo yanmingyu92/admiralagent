@@ -1,0 +1,44 @@
+{
+  "artifact": "adsl__agegr1n__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "categorize",
+          "args": {
+            "breaks": [
+              0,
+              64.999999,
+              80.999999,
+              "Inf"
+            ],
+            "from": "AGE",
+            "labels": [
+              "1",
+              "2",
+              "3"
+            ],
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "AGEGR1 = 1 if AGE <65. AGEGR1 = 2 if AGE 65-80. AGEGR1 = 3 if AGE >80.",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "AGE <65 -> 1, AGE 65-80 -> 2, AGE >80 -> 3. Numeric output with character labels serialized as strings; the exact breakpoint boundaries (whether 65 and 80 are inclusive) and the fact that a codelist mapping is expected rather than cut() make the encoding uncertain. Human review recommended to confirm interval semantics and label type."
+    }
+  ],
+  "ir_hash": "e131ccb6",
+  "code_digest": "8cd6ec110eee56face3bb6a4d7201155962289b230df5e4dba2fe1b42e9e1929",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,6 +1,6 @@
 {
   "stage": "04_oracle_compare",
-  "generated_at": "2026-10-01 21:47:35 UTC",
+  "generated_at": "2026-10-02 00:06:06 UTC",
   "note": "produced datasets are built from the full SDTM base domain (no population/parameter subsetting); oracles are subsetted",
   "datasets": {
     "ADSL": {
@@ -22,10 +22,10 @@
         "llm": {
           "produced_rows": 306,
           "spec_variables": 49,
-          "compared": 19,
+          "compared": 20,
           "fully_matching": 16,
-          "partial": 3,
-          "mean_value_agree": 90.9
+          "partial": 4,
+          "mean_value_agree": 91.4
         },
         "consensus": {
           "produced_rows": 306,
@@ -60,6 +60,14 @@
           "fully_matching": 25,
           "partial": 2,
           "mean_value_agree": 96.3
+        },
+        "consensus": {
+          "produced_rows": 1191,
+          "spec_variables": 55,
+          "compared": 26,
+          "fully_matching": 26,
+          "partial": 0,
+          "mean_value_agree": 100
         }
       }
     },
@@ -82,10 +90,18 @@
         "llm": {
           "produced_rows": 59580,
           "spec_variables": 46,
-          "compared": 21,
+          "compared": 19,
           "fully_matching": 19,
+          "partial": 0,
+          "mean_value_agree": 100
+        },
+        "consensus": {
+          "produced_rows": 59580,
+          "spec_variables": 46,
+          "compared": 14,
+          "fully_matching": 12,
           "partial": 2,
-          "mean_value_agree": 90.5
+          "mean_value_agree": 85.8
         }
       }
     }

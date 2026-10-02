@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__trt01p__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01P",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "TRT01P"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Planned treatment is copied from dm.ARM, already present in the target base; direct assignment."
+    }
+  ],
+  "ir_hash": "e1faeb73",
+  "code_digest": "dc2d4c0c551598135cf417fa1482774445a86642a53ba091efb2e65d60709bf0",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

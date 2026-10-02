@@ -1,6 +1,6 @@
 {
   "stage": "01_classify",
-  "generated_at": "2026-10-01 21:45:07 UTC",
+  "generated_at": "2026-10-01 23:56:59 UTC",
   "model": "deepseek-chat",
   "rate_assumption": {
     "input_per_m": 0.27,
@@ -11,53 +11,33 @@
     "ADSL": {
       "runs": {
         "full": {
-          "cached": true,
-          "last_uncached": {
-            "cached": false,
-            "variables": 49,
-            "samples": 1,
-            "latency_secs": 84.2,
-            "tokens": {
-              "input": 5505,
-              "output": 7083
-            },
-            "failed_batches": [],
-            "chat_resets": 0,
-            "cost_usd": 0.0093
-          }
+          "cached": false,
+          "variables": 49,
+          "samples": 1,
+          "latency_secs": 107.6,
+          "tokens": {
+            "input": 6952,
+            "output": 8628
+          },
+          "failed_batches": [],
+          "chat_resets": 0,
+          "cost_usd": 0.0114
         },
         "consensus": {
-          "cached": true,
+          "cached": false,
           "subset": ["SUBJID", "SITEID", "SITEGR1", "ARM", "TRT01P", "TRT01PN", "TRT01A", "TRT01AN", "TRTSDT", "TRTEDT", "TRTDURD", "AVGDD"],
-          "last_uncached": {
-            "cached": false,
-            "subset": [
-              "SUBJID",
-              "SITEID",
-              "SITEGR1",
-              "ARM",
-              "TRT01P",
-              "TRT01PN",
-              "TRT01A",
-              "TRT01AN",
-              "TRTSDT",
-              "TRTEDT",
-              "TRTDURD",
-              "AVGDD"
-            ],
-            "samples": 3,
-            "consensus": "majority",
-            "latency_secs": 84.9,
-            "tokens": {
-              "input": 4951,
-              "output": 7827
-            },
-            "unanimous_rate": 1,
-            "cost_usd": 0.0099
-          }
+          "samples": 3,
+          "consensus": "majority",
+          "latency_secs": 56.8,
+          "tokens": {
+            "input": 4522,
+            "output": 4782
+          },
+          "unanimous_rate": 1,
+          "cost_usd": 0.0065
         }
       },
-      "rules_latency_secs": 0.101
+      "rules_latency_secs": 0.149
     },
     "ADAE": {
       "runs": {
@@ -65,20 +45,30 @@
           "cached": false,
           "variables": 55,
           "samples": 1,
-          "latency_secs": 67,
+          "latency_secs": 126.3,
           "tokens": {
-            "input": 7179,
-            "output": 7799
+            "input": 7652,
+            "output": 10118
           },
           "failed_batches": [],
           "chat_resets": 0,
-          "cost_usd": 0.0105
+          "cost_usd": 0.0132
         },
         "consensus": {
-          "skipped": "cost cap: 3x sampling reserved for ADSL; AA_CONSENSUS_ALL=1 opts in"
+          "cached": false,
+          "subset": ["SITEID", "TRTA", "TRTAN", "AGE", "AGEGR1", "AGEGR1N", "RACE", "RACEN", "SEX", "SAFFL", "TRTSDT", "TRTEDT"],
+          "samples": 3,
+          "consensus": "majority",
+          "latency_secs": 46.6,
+          "tokens": {
+            "input": 3787,
+            "output": 3762
+          },
+          "unanimous_rate": 1,
+          "cost_usd": 0.0052
         }
       },
-      "rules_latency_secs": 0.029
+      "rules_latency_secs": 0.017
     },
     "ADLBC": {
       "runs": {
@@ -86,20 +76,30 @@
           "cached": false,
           "variables": 46,
           "samples": 1,
-          "latency_secs": 50.2,
+          "latency_secs": 91.4,
           "tokens": {
-            "input": 5483,
-            "output": 6326
+            "input": 5724,
+            "output": 7335
           },
           "failed_batches": [],
           "chat_resets": 0,
-          "cost_usd": 0.0084
+          "cost_usd": 0.0096
         },
         "consensus": {
-          "skipped": "cost cap: 3x sampling reserved for ADSL; AA_CONSENSUS_ALL=1 opts in"
+          "cached": false,
+          "subset": ["TRTP", "TRTPN", "TRTA", "TRTAN", "AVISIT", "ADY", "ADT", "PARAM", "PARAMN", "BASE", "CHG", "A1LO"],
+          "samples": 3,
+          "consensus": "majority",
+          "latency_secs": 60.2,
+          "tokens": {
+            "input": 3905,
+            "output": 4974
+          },
+          "unanimous_rate": 1,
+          "cost_usd": 0.0065
         }
       },
-      "rules_latency_secs": 0.009
+      "rules_latency_secs": 0.016
     }
   }
 }

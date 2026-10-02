@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__avgdd__1141e7d3.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "AVGDD",
+      "steps": [],
+      "spec_origin": "CUMDOSE/TRTDURD",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "CUMDOSE is not defined by any producer in the spec, so the AVGDD endpoint is missing; requires human review."
+    }
+  ],
+  "ir_hash": "aac7baed",
+  "code_digest": "cc3913242c048c7d4b7931489088f2b3a72330c1f4ec1f231809cd2f3796e813",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:17-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__agegr1n__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1N",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "Numeric pooled age group is pulled from ADSL.AGEGR1N via a subject-level merge keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "f4448a40",
+  "code_digest": "b238806709941bae135e0e5457a9fd0a1c6017f43acb37b442d1734ccdbbab19",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

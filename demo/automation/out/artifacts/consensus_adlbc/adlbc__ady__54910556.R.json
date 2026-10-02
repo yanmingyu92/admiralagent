@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__ady__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "ADY",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBDY",
+            "target": "ADY"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDY",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADLBC is built from LB, so LBDY is already present in the target base; direct copy."
+    }
+  ],
+  "ir_hash": "6223cc28",
+  "code_digest": "0432ecb7e0a9fc7cbc57e608850bcdf2303b59540615a30ddf7dd9e6c381f4ed",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

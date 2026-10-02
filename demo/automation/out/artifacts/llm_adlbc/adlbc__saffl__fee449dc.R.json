@@ -1,0 +1,36 @@
+{
+  "artifact": "adlbc__saffl__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SAF01FL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SAF01FL",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "SAFFL copies the ADSL source variable SAF01FL into ADLBC under a new name via merge keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "47319edc",
+  "code_digest": "23152ba1a0e788a8d135a83251c745416ea27929859be227fc8001143cd34fe5",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__trtdurd__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRTDURD",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "TRTEDT - TRTSDT + 1",
+            "target": "TRTDURD"
+          }
+        }
+      ],
+      "spec_origin": "TRTEDT-TRTSDT+1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTDURD = TRTEDT - TRTSDT + 1, column-wise arithmetic over existing date columns; both endpoints produced by earlier steps."
+    }
+  ],
+  "ir_hash": "bde96b6b",
+  "code_digest": "7bd11b3fc27a3b003698c39f3ebe00782c1fa9049d2d4916ceb908bbb3ab3275",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

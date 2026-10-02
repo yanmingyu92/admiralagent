@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__br2a1lo__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1LO",
+      "steps": [],
+      "spec_origin": "AVAL / A1LO at baseline",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "The derivation 'AVAL / A1LO at baseline' requires selecting the baseline record to compute the ratio, which needs an explicit baseline flag/selection rule not provided, so human review is required."
+    }
+  ],
+  "ir_hash": "38f0a212",
+  "code_digest": "f9bbccd7d0073e8072656f2dfe2be50ad1c27971ee1de0b032410cb50fa63c60",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

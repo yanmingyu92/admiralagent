@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aeshosp__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESHOSP",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESHOSP",
+            "target": "AESHOSP"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESHOSP",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESHOSP originates in the AE domain that seeds ADAE, so it is a direct copy from the target base rather than a cross-dataset merge."
+    }
+  ],
+  "ir_hash": "6f2e5024",
+  "code_digest": "6a0a5fb786517658c06a7bc308d9ce3762f0fb66dc8746a1b751de1682c9d7b8",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:28-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

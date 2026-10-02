@@ -1,0 +1,198 @@
+{
+  "artifact": "adsl__program__1141e7d3.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SUBJID",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from DM, so SUBJID is already present in the target base; direct copy."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SITEID",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "SITEID",
+            "target": "SITEID"
+          }
+        }
+      ],
+      "spec_origin": "DM.SITEID",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from DM, so SITEID is already present in the target base; direct copy."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "SITEGR1",
+      "steps": [],
+      "spec_origin": "refer to SAP, Section 7.1 - if not pooled then SITEGR1=SITEID. If pooled, SITEGR1 will be 900",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Pooling decision and pooled value (900) are SAP-driven and require external study-specific decisions; not expressible from the spec alone."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "ARM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "ARM"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from DM, so ARM is already present in the target base; direct copy."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01P",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "TRT01P"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from DM, so ARM is already present in the target base; TRT01P copies ARM directly."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01PN",
+      "steps": [],
+      "spec_origin": "Numeric code for TRT01P which corresponds to the randomized dose",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Numeric code mapping from planned treatment to randomized dose requires a codelist/lookup not provided in the spec; ambiguous without explicit mapping."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01A",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01P",
+            "target": "TRT01A"
+          }
+        }
+      ],
+      "spec_origin": "TRT01A=TRT01P, i.e., no difference between actual and randomized treatment in this study.",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "Explicit statement that actual equals planned treatment (no difference); direct copy of TRT01P."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01AN",
+      "steps": [],
+      "spec_origin": "Numeric code for TRT01A which corresponds to the randomized dose",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Numeric code mapping from actual treatment to randomized dose requires a codelist/lookup not provided in the spec; ambiguous without explicit mapping."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "sv",
+            "filter": "VISITNUM == 3",
+            "mode": "first",
+            "order": "SVSTDTC",
+            "source": "SVSTDTC",
+            "target": "SVSTDTC"
+          }
+        },
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "SVSTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "SV.SVSTDTC when SV.VISITNUM=3, converted to SAS date",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "First qualifying SV visit-3 date pulled from sv then imputed to SAS date."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTEDT",
+      "steps": [],
+      "spec_origin": "The date of final dose (from the CRF) is EX.EXENDTC on the subject's last EX record. If the date of final dose is missing for the subject and the subject discontinued after visit 3, use the date of discontinuation as the date of last dose. Convert the date to a SAS date.",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "Conditional fallback to discontinuation date (with DS/visit-3 logic) is ambiguous and requires human-only decisions on which records and source variables to use."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "TRTDURD",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "TRTEDT - TRTSDT + 1",
+            "target": "TRTDURD"
+          }
+        }
+      ],
+      "spec_origin": "TRTEDT-TRTSDT+1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Arithmetic over existing date columns; inclusive day count."
+    },
+    {
+      "dataset": "ADSL",
+      "variable": "AVGDD",
+      "steps": [],
+      "spec_origin": "CUMDOSE/TRTDURD",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "CUMDOSE is not defined by any producer in the spec, so the AVGDD endpoint is missing; requires human review."
+    }
+  ],
+  "ir_hash": "1141e7d3",
+  "code_digest": "ef737691fe90680efa1cfcd1d6146442b91f88d80abff07f72efac0cac290404",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

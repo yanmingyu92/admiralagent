@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aesev__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESEV",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESEV",
+            "target": "AESEV"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESEV",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESEV originates in the AE domain that seeds ADAE, so it is a direct copy from the target base rather than a cross-dataset merge."
+    }
+  ],
+  "ir_hash": "807c0a7d",
+  "code_digest": "517ccf070801ffc8ce4f6ea75aa8e06f95b0c523d0ca729556373a8bda6443f3",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}
