@@ -90,13 +90,17 @@ ellmer/nanonext，违反零强依赖红线；517
 `.agents/mcptools-assessment.md`（本地笔记）
 
 A2 API 面收敛：导出审查，内部函数收回；IR 对象评估 S7
-化（工具签名自描述）— **审查完成，收回未实施**：NAMESPACE 实测 45 个
-export + 1 个 S3method（“43” 是 P3 V1 前的旧数）；四档分类（A 核心 16 /
-B 合理 13 / C 收回候选 8 / D 需讨论 8）、C 档每候选的文档同步清单见
-`.agents/p2-a2-export-review.md`（本地笔记）；S7 化评估结论**不建议列入
-A2**（与 fail-closed 一次报全语义冲突、破 Imports 最小化红线、golden
-hash 稳定性风险；重开触发条件已记录）。收回实施属公开 API
-变更，待用户确认后按清单执行
+化（工具签名自描述）— **审查 + C 档收回均已实施**（用户批准）：NAMESPACE
+实测 45 个 export + 1 个 S3method（“43” 是 P3 V1
+前的旧数）；四档分类与同步清单见
+`.agents/p2-a2-export-review.md`（本地笔记）；C 档 8
+个（`validation_comments`/`is_valid_ir`/`render_step`/`order_variables`/`parse_define`/`mock_spec_adtte`/`mock_spec_advs`/`log_run`）已收回为
+`@keywords internal`（man 页保留，45→37 export，门禁零风险已实证，4959
+测试全绿）；D 档 8 个不动；S7 化评估结论**不建议**（与 fail-closed
+一次报全语义冲突、破 Imports 最小化红线、golden hash
+稳定性风险；重开触发条件已记录）。遗留排查项：10 个内部 S3
+方法（`ir_refs.*` 等）未在 NAMESPACE 注册（pre-existing，roxygenise
+警告）
 
 A3 `R/artifacts.R`（1230 行）拆分为 sidecar / audit-log / gate /
 manifest 四个模块 — 已完成机械拆分（`R/artifact_write.R` /
@@ -135,12 +139,14 @@ V3 TLF 域对接评估：与 cards/gtsummary 的 ARD 衔接（ARD 是天然 sink
 
 V4 起草「agent-ready R 包成熟度模型 L0–L4」白皮书——生态话语权的支点
 
-V5 条件层（conditional）词汇 — **评估完成，未实施**（词汇扩张 =
-攻击面扩张，实施前需用户确认）：showcase 实测 9 个 `Y if <condition>`
-类弃权（SAFFL/ITTFL/DISCONFL/DSRAEFL/EOSSTT/COMP\*FL），候选层
-`assign_conditional`（复用 filter 子语言、纯增量、golden `6aea851a`
-无需迁移）确定可转 4/9，另 5 个需存在性/missingness 原语（建议阶段 2
-独立评估）；完整设计/安全分析/实测清单见
+V5 条件层（conditional）词汇 — **阶段 1
+已实施**（`assign_conditional`，`70e17e8`；用户批准，词汇扩张经确认）：showcase
+实测 9 个 `Y if <condition>`
+类弃权（SAFFL/ITTFL/DISCONFL/DSRAEFL/EOSSTT/COMP\*FL），评估预测确定可转
+4/9，**实测只有 ITTFL 端到端落地（oracle 100%）**——EOSSTT 链断于上游
+DCDECOD 弃权、DISCONFL/DSRAEFL 未转化，已如实登记
+F-11（“部分兑现”）；纯增量、golden `6aea851a` 未迁移；剩余 5
+个需存在性/missingness 原语（阶段 2 另开评估，未实施）。设计/安全分析见
 `.agents/conditional-layer-assessment.md`（本地笔记）
 
 ## P4 — 推广（P0+P1 完成后启动，soft-launch → hard-launch）

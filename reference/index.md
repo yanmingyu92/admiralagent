@@ -28,16 +28,12 @@
   : Execute a Layer IR against source datasets
 - [`ir_dependency_report()`](https://yanmingyu92.github.io/admiralagent/reference/ir_dependency_report.md)
   : IR dependency report
-- [`is_valid_ir()`](https://yanmingyu92.github.io/admiralagent/reference/is_valid_ir.md)
-  : IR validity predicate
 - [`layer_docs()`](https://yanmingyu92.github.io/admiralagent/reference/layer_docs.md)
   : Layer documentation cards
 - [`layer_names()`](https://yanmingyu92.github.io/admiralagent/reference/layer_names.md)
   : Layer names
 - [`load_evals()`](https://yanmingyu92.github.io/admiralagent/reference/load_evals.md)
   : Load the spec-to-IR classification eval corpus
-- [`log_run()`](https://yanmingyu92.github.io/admiralagent/reference/log_run.md)
-  : Log a run
 - [`mcp_handle_request()`](https://yanmingyu92.github.io/admiralagent/reference/mcp_handle_request.md)
   : Handle one MCP / JSON-RPC 2.0 request
 - [`mcp_serve()`](https://yanmingyu92.github.io/admiralagent/reference/mcp_serve.md)
@@ -48,18 +44,10 @@
   : Build a minimal executable metacore object from a spec data frame
 - [`mock_spec_adsl()`](https://yanmingyu92.github.io/admiralagent/reference/mock_spec_adsl.md)
   : Mock ADSL spec
-- [`mock_spec_adtte()`](https://yanmingyu92.github.io/admiralagent/reference/mock_spec_adtte.md)
-  : Mock ADTTE spec
-- [`mock_spec_advs()`](https://yanmingyu92.github.io/admiralagent/reference/mock_spec_advs.md)
-  : Mock ADVS spec
 - [`new_step()`](https://yanmingyu92.github.io/admiralagent/reference/new_step.md)
   : New layer step
 - [`new_variable_ir()`](https://yanmingyu92.github.io/admiralagent/reference/new_variable_ir.md)
   : New variable IR
-- [`order_variables()`](https://yanmingyu92.github.io/admiralagent/reference/order_variables.md)
-  : Dependency-driven variable ordering
-- [`parse_define()`](https://yanmingyu92.github.io/admiralagent/reference/parse_define.md)
-  : Parse define.xml
 - [`print(`*`<aa_agreement>`*`)`](https://yanmingyu92.github.io/admiralagent/reference/print.aa_agreement.md)
   : Print an agreement report
 - [`read_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/read_artifact.md)
@@ -74,8 +62,6 @@
   : Normalize spec data frame
 - [`render_program()`](https://yanmingyu92.github.io/admiralagent/reference/render_program.md)
   : Render program
-- [`render_step()`](https://yanmingyu92.github.io/admiralagent/reference/render_step.md)
-  : Render a step
 - [`render_variable()`](https://yanmingyu92.github.io/admiralagent/reference/render_variable.md)
   : Render a variable
 - [`run_agreement()`](https://yanmingyu92.github.io/admiralagent/reference/run_agreement.md)
@@ -88,8 +74,6 @@
   : Spec rows for a dataset
 - [`validate_ir()`](https://yanmingyu92.github.io/admiralagent/reference/validate_ir.md)
   : IR validation gate
-- [`validation_comments()`](https://yanmingyu92.github.io/admiralagent/reference/validation_comments.md)
-  : Validation comments
 - [`write_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/write_artifact.md)
   : Write variable artifacts
 - [`write_program_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/write_program_artifact.md)

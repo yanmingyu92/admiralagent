@@ -31,7 +31,7 @@ Six staged, idempotent scripts under `demo/automation/`:
 | stage | script | what it does |
 |----|----|----|
 | 00 | `00_ingest.R` | Builds the ADSL/ADAE/ADLBC specs from the pilot5 submission’s P21-style define workbook (`adam-pilot-5.xlsx`; derivations verbatim from the Methods sheet, or mechanical `Copied directly from <DS.VAR>` predecessor copies). Converts the workbook’s Codelists sheet into an executable metacore per dataset ([`mock_metacore()`](https://yanmingyu92.github.io/admiralagent/reference/mock_metacore.md)), so `codelist_var` steps run against the submission’s own terminology. Loads the original SDTM `.xpt` files; records sha256 digests of every input. |
-| 01 | `01_classify.R` | Classifies the same spec twice: `backend = "rules"` (zero-cost keyword baseline) and `backend = "llm"` (DeepSeek `deepseek-chat`). A deterministic 12-variable ADSL subset additionally runs `samples = 3, consensus = "majority"`. Latency and token usage are recorded. |
+| 01 | `01_classify.R` | Classifies the same spec twice: `backend = "rules"` (zero-cost keyword baseline) and `backend = "llm"` (DeepSeek `deepseek-chat`). A deterministic 12-variable subset per dataset additionally runs `samples = 3, consensus = "majority"`. Latency and token usage are recorded. |
 | 02 | `02_gate_render.R` | [`validate_ir()`](https://yanmingyu92.github.io/admiralagent/reference/validate_ir.md) gate, then program + per-variable artifacts. Written with `require_gate = FALSE` — an explicit, recorded opt-out (no human approver in an unattended run); every program carries the UNGATED DRAFT banner and `release_grade = "ungated-draft"`. |
 | 03 | `03_execute.R` | [`execute_ir()`](https://yanmingyu92.github.io/admiralagent/reference/execute_ir.md) against the real pilot5 SDTM (per-dataset base domain, metacore in `sources$mc`), [`run_validation()`](https://yanmingyu92.github.io/admiralagent/reference/run_validation.md), hash-chained audit logs. |
 | 04 | `04_oracle_compare.R` | Variable-by-variable comparison against the submitted oracles `original-adamdata/{adsl,adae,adlbc}.xpt`. |
@@ -47,56 +47,89 @@ From the run behind this article (`out/gate_report.json`,
 | backend | spec vars | needs_human | executed | exec errors | oracle: compared | oracle: full match |
 |----|----|----|----|----|----|----|
 | rules | 49 | 32 | 16 | 1 | 15 | **15 (100%)** |
-| LLM (DeepSeek) | 49 | 27 | 20 | 2 | 19 | **16 (mean agreement 90.9%)** |
+| LLM (DeepSeek) | 49 | 25 | 21 | 3 | 20 | **16 (mean agreement 91.4%)** |
+| consensus (3 samples) | 12 | 5 | 6 | 1 | 15 | **15 (100%)** |
 
 ### ADAE (55 spec variables)
 
 | backend | spec vars | needs_human | executed | exec errors | oracle: compared | oracle: full match |
 |----|----|----|----|----|----|----|
 | rules | 55 | 16 | 27 | 12 | 20 | **20 (100%)** |
-| LLM (DeepSeek) | 55 | 8 | 32 | 15 | 27 | **25 (mean agreement 96.3%)** |
+| LLM (DeepSeek) | 55 | 6 | 33 | 16 | 27 | **25 (mean agreement 96.3%)** |
+| consensus (3 samples) | 12 | 0 | 6 | 6 | 26 | **26 (100%)** |
 
 ### ADLBC (46 spec variables)
 
 | backend | spec vars | needs_human | executed | exec errors | oracle: compared | oracle: full match |
 |----|----|----|----|----|----|----|
 | rules | 46 | 14 | 15 | 17 | 14 | **12 (mean agreement 85.8%)** |
-| LLM (DeepSeek) | 46 | 13 | 22 | 11 | 21 | **19 (mean agreement 90.5%)** |
+| LLM (DeepSeek) | 46 | 15 | 19 | 12 | 19 | **19 (100%)** |
+| consensus (3 samples) | 12 | 3 | 7 | 2 | 14 | **12 (mean agreement 85.8%)** |
+
+The consensus rows vote on a deterministic 12-variable subset per
+dataset (unanimous 12/12 on all three); their oracle comparison spans
+the full spec with the voted choices applied
+(`out/accuracy_summary.json`), so consensus denominators differ from the
+subset funnel by design.
 
 The picture that emerges is a coverage/automation trade-off, not a
 winner:
 
 - The **rules baseline** abstains on two-thirds of a real spec (32/49) —
   but every variable it did derive matched the oracle exactly.
-- **DeepSeek automates meaningfully more** (20 executed vs 16), and the
-  extra variables it took on are exactly where the residual disagreement
-  lives — see below.
-- Rules-vs-LLM layer chains agreed on **40/49 variables (82%)** —
-  IR-level agreement between two translators reading the same text,
-  **not** double programming (see Limitations).
-- The 3-sample consensus run on the 12-variable subset was **unanimous
-  on 12/12** variables.
-- Cost is a rounding error: the full 49-variable run used 5,505 input /
-  7,083 output tokens in 84s — **≈ \$0.009** at list prices (rate
-  assumption recorded in `out/llm_telemetry.json`).
+- **DeepSeek automates meaningfully more** (ADSL 21 executed vs 16; ADAE
+  33 vs 27), and the extra variables it takes on are exactly where the
+  residual disagreement lives — see below. On ADLBC this run, every
+  variable the LLM produced matched the oracle in full (19/19, joined
+  records only) — while its coverage moved *down* (19 executed vs 22
+  last run): run-to-run translation variance, not a regression (see
+  Limitations).
+- Rules-vs-LLM layer chains agreed on **39/49 (80%)** on ADSL, 32/55
+  (58%) on ADAE, 24/46 (52%) on ADLBC — IR-level agreement between two
+  translators reading the same text, **not** double programming (see
+  Limitations).
+- The 3-sample consensus run on each 12-variable subset was **unanimous
+  on 12/12** variables, on all three datasets.
+- Cost is a rounding error: the measured run behind this article
+  re-spent on everything (three full-spec runs + three consensus runs)
+  for **≈ \$0.053 total**; a single full-spec dataset is 91–126s and
+  \$0.010–0.013 at list prices (rate assumption recorded in
+  `out/llm_telemetry.json`).
 
 ## What needed humans — and why that is the point
 
-On ADSL the LLM abstained on 27/49 variables with a stated rationale
+On ADSL the LLM abstained on 25/49 variables with a stated rationale
 each (`REPORT.md` §8). Grouped, the inventory is not random — it is the
 vocabulary boundary, stated out loud:
 
-- **No conditional layer**: SAFFL, ITTFL, DISCONFL, DSRAEFL, EOSSTT, and
-  the COMP8/16/24FL visit-window flags are all `Y if <condition>`
-  derivations. The vocabulary has no conditional/ifelse layer, so the
-  model abstains instead of inventing one.
+- **Record-existence and windowing logic**: EFFFL (QS records for two
+  instruments), VISNUMEN (DS-conditioned), and the COMP8/16/24FL
+  visit-window flags all require existence checks across records or
+  datasets that no layer expresses. These remain genuine vocabulary
+  holes.
+- **Missingness checks**: SAFFL (`Y` if TRTSDT non-missing) abstains
+  because the filter sublanguage cannot express an
+  [`is.na()`](https://rdrr.io/r/base/NA.html)-style test.
 - **External references**: SITEGR1 (defers to SAP §7.1), DCSREAS (an
   unstated grouping scheme), TRT01PN/TRT01AN (treatment codelist not in
   the spec).
-- **Cross-dataset existence**: EFFFL (QS records for two instruments),
-  VISNUMEN (DS-conditioned), MMSETOT (subject-level sum over QS).
 - **Multi-branch clinical logic**: CUMDOSE’s arm-conditional
   dosing-interval arithmetic.
+
+**The boundary moved this run — narrowly, and honestly.** The vocabulary
+gained a 15th layer, `assign_conditional` (a guarded
+`Y if <condition> else <N>` assignment). Of the 9 conditional-family
+variables the evaluation note predicted it could convert (“confidently
+4/9”), the measured run delivered exactly one end-to-end: **ITTFL** —
+converted, executed, 100% oracle agreement. EOSSTT was also converted
+but failed closed at execution because its upstream DCDECOD happened to
+be abstained by the LLM in this run (last run it was derived at 100%);
+DISCONFL/DSRAEFL stayed abstentions. One variable landed, one is a
+stochastic upstream away, two were over-predicted. That is registered as
+finding F-11, not spun as a victory: a layer landing changes what is
+*expressible*, not what any single stochastic run *chooses*. The rules
+backend deliberately does not use the new layer — the evals corpus pins
+its abstention as contract.
 
 A system that hallucinated these would be worse than one that abstains.
 Fail-closed is the feature.
@@ -123,7 +156,8 @@ finding with evidence (`out/findings.json`, `REPORT.md` §9):
   subjects.
 - **F-03 (package)** — the rules backend mapped BMIBLGR1’s
   categorisation text to `compute_param` on BMI keywords. Keyword
-  fragility, documented as such.
+  fragility, documented as such. (The LLM backend this run mapped it to
+  `categorize` and reached 99.2% oracle agreement.)
 - **F-04 (spec ambiguity)** — AGEGR1N: in an earlier run all 11/254
   mismatches were subjects aged exactly 80; the spec says both “65–80”
   and “\>80”. A human programmer would have to query the same boundary.
@@ -139,24 +173,34 @@ finding with evidence (`out/findings.json`, `REPORT.md` §9):
   prompt rule makes same-domain base columns `assign` copies instead of
   self-merges (ADAE LLM executions 7 → 32, duplicate_records errors →
   0), and the remaining findings record honest boundaries — e.g. F-09:
-  ADLBC’s BASE derivation text literally says `LB.LBSTNRHI`, and
-  executing it verbatim lands at 0.4% agreement with an oracle that uses
-  baseline AVAL. The spec text, not the translator, is what a human
-  would query. Full inventory: `out/findings.json`, `REPORT.md` §9.
+  ADLBC’s BASE derivation text literally says `LB.LBSTNRHI`. The rules
+  backend still executes it verbatim (0.4% agreement with an oracle that
+  uses baseline AVAL); this run the LLM instead *abstained* on BASE as a
+  “likely improper mapping” — which is exactly the query a human
+  programmer would raise. The spec text, not the translator, is what a
+  human would query. Full inventory: `out/findings.json`, `REPORT.md`
+  §9.
+- **F-11 (demo)** — the `assign_conditional` story above: 2/9
+  conditional-family variables converted, 1/9 reached oracle-aligned
+  execution; the evaluation’s confident 4/9 prediction was
+  over-optimistic given run-to-run variance, and is recorded as such.
 
-Also observed across development runs: DeepSeek’s full-spec needs_human
-count moved 24 → 22 → 27 and rules/LLM agreement 78% → 71% → 82% between
-runs. Translation variance is real, visible, and exactly what the
-consensus mode exists to measure.
+Also observed across development runs: DeepSeek’s full-spec ADSL
+needs_human count moved 24 → 22 → 27 → 25 and rules/LLM agreement 78% →
+71% → 82% → 80% between runs. Translation variance is real, visible, and
+exactly what the consensus mode exists to measure.
 
 ## Limitations (verbatim from the report — read before quoting any number)
 
 1.  **Population subsetting is not automated.** Produced ADSL starts
     from DM (all screened subjects); the oracle has 254 randomized
     subjects. Agreement is computed on the join only.
-2.  **Vocabulary gaps are hard boundaries.** No conditional/windowing
-    layers; COMP\*FL, EFFFL, CUMDOSE, ADTTE-style CNSR can only abstain
-    or be approximated. More voters cannot fix a vocabulary hole.
+2.  **Vocabulary gaps are hard boundaries.** A narrow
+    `assign_conditional` layer now exists, but
+    record-existence/windowing derivations (COMP\*FL, EFFFL),
+    missingness-guarded flags (SAFFL), CUMDOSE’s multi-branch logic and
+    ADTTE-style CNSR still can only abstain or be approximated. More
+    voters cannot fix a vocabulary hole.
 3.  **The rules backend is keyword-fragile.** It is a zero-cost
     baseline, not a claim of understanding.
 4.  **The evals corpus is self-scoring.** `inst/evals/spec-to-ir.jsonl`

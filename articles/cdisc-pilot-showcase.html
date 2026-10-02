@@ -122,9 +122,10 @@ input.</td>
 <td><code>01_classify.R</code></td>
 <td>Classifies the same spec twice: <code>backend = "rules"</code>
 (zero-cost keyword baseline) and <code>backend = "llm"</code> (DeepSeek
-<code>deepseek-chat</code>). A deterministic 12-variable ADSL subset
-additionally runs <code>samples = 3, consensus = "majority"</code>.
-Latency and token usage are recorded.</td>
+<code>deepseek-chat</code>). A deterministic 12-variable subset per
+dataset additionally runs
+<code>samples = 3, consensus = "majority"</code>. Latency and token
+usage are recorded.</td>
 </tr>
 <tr class="odd">
 <td>02</td>
@@ -200,11 +201,20 @@ only.</td>
 <tr class="even">
 <td>LLM (DeepSeek)</td>
 <td>49</td>
-<td>27</td>
+<td>25</td>
+<td>21</td>
+<td>3</td>
 <td>20</td>
-<td>2</td>
-<td>19</td>
-<td><strong>16 (mean agreement 90.9%)</strong></td>
+<td><strong>16 (mean agreement 91.4%)</strong></td>
+</tr>
+<tr class="odd">
+<td>consensus (3 samples)</td>
+<td>12</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>15</td>
+<td><strong>15 (100%)</strong></td>
 </tr>
 </tbody>
 </table>
@@ -244,11 +254,20 @@ only.</td>
 <tr class="even">
 <td>LLM (DeepSeek)</td>
 <td>55</td>
-<td>8</td>
-<td>32</td>
-<td>15</td>
+<td>6</td>
+<td>33</td>
+<td>16</td>
 <td>27</td>
 <td><strong>25 (mean agreement 96.3%)</strong></td>
+</tr>
+<tr class="odd">
+<td>consensus (3 samples)</td>
+<td>12</td>
+<td>0</td>
+<td>6</td>
+<td>6</td>
+<td>26</td>
+<td><strong>26 (100%)</strong></td>
 </tr>
 </tbody>
 </table>
@@ -288,14 +307,28 @@ only.</td>
 <tr class="even">
 <td>LLM (DeepSeek)</td>
 <td>46</td>
-<td>13</td>
-<td>22</td>
-<td>11</td>
-<td>21</td>
-<td><strong>19 (mean agreement 90.5%)</strong></td>
+<td>15</td>
+<td>19</td>
+<td>12</td>
+<td>19</td>
+<td><strong>19 (100%)</strong></td>
+</tr>
+<tr class="odd">
+<td>consensus (3 samples)</td>
+<td>12</td>
+<td>3</td>
+<td>7</td>
+<td>2</td>
+<td>14</td>
+<td><strong>12 (mean agreement 85.8%)</strong></td>
 </tr>
 </tbody>
 </table>
+<p>The consensus rows vote on a deterministic 12-variable subset per
+dataset (unanimous 12/12 on all three); their oracle comparison spans
+the full spec with the voted choices applied
+(<code>out/accuracy_summary.json</code>), so consensus denominators
+differ from the subset funnel by design.</p>
 <p>The picture that emerges is a coverage/automation trade-off, not a
 winner:</p>
 <ul>
@@ -303,46 +336,69 @@ winner:</p>
 spec (32/49) — but every variable it did derive matched the oracle
 exactly.</li>
 <li>
-<strong>DeepSeek automates meaningfully more</strong> (20 executed
-vs 16), and the extra variables it took on are exactly where the
-residual disagreement lives — see below.</li>
-<li>Rules-vs-LLM layer chains agreed on <strong>40/49 variables
-(82%)</strong> — IR-level agreement between two translators reading the
-same text, <strong>not</strong> double programming (see
-Limitations).</li>
-<li>The 3-sample consensus run on the 12-variable subset was
-<strong>unanimous on 12/12</strong> variables.</li>
-<li>Cost is a rounding error: the full 49-variable run used 5,505 input
-/ 7,083 output tokens in 84s — <strong>≈ $0.009</strong> at list prices
-(rate assumption recorded in <code>out/llm_telemetry.json</code>).</li>
+<strong>DeepSeek automates meaningfully more</strong> (ADSL 21
+executed vs 16; ADAE 33 vs 27), and the extra variables it takes on are
+exactly where the residual disagreement lives — see below. On ADLBC this
+run, every variable the LLM produced matched the oracle in full (19/19,
+joined records only) — while its coverage moved <em>down</em> (19
+executed vs 22 last run): run-to-run translation variance, not a
+regression (see Limitations).</li>
+<li>Rules-vs-LLM layer chains agreed on <strong>39/49 (80%)</strong> on
+ADSL, 32/55 (58%) on ADAE, 24/46 (52%) on ADLBC — IR-level agreement
+between two translators reading the same text, <strong>not</strong>
+double programming (see Limitations).</li>
+<li>The 3-sample consensus run on each 12-variable subset was
+<strong>unanimous on 12/12</strong> variables, on all three
+datasets.</li>
+<li>Cost is a rounding error: the measured run behind this article
+re-spent on everything (three full-spec runs + three consensus runs) for
+<strong>≈ $0.053 total</strong>; a single full-spec dataset is 91–126s
+and $0.010–0.013 at list prices (rate assumption recorded in
+<code>out/llm_telemetry.json</code>).</li>
 </ul>
 </div>
 </div>
 <div class="section level2">
 <h2 id="what-needed-humans-and-why-that-is-the-point">What needed humans — and why that is the point<a class="anchor" aria-label="anchor" href="#what-needed-humans-and-why-that-is-the-point"></a>
 </h2>
-<p>On ADSL the LLM abstained on 27/49 variables with a stated rationale
+<p>On ADSL the LLM abstained on 25/49 variables with a stated rationale
 each (<code>REPORT.md</code> §8). Grouped, the inventory is not random —
 it is the vocabulary boundary, stated out loud:</p>
 <ul>
 <li>
-<strong>No conditional layer</strong>: SAFFL, ITTFL, DISCONFL,
-DSRAEFL, EOSSTT, and the COMP8/16/24FL visit-window flags are all
-<code>Y if &lt;condition&gt;</code> derivations. The vocabulary has no
-conditional/ifelse layer, so the model abstains instead of inventing
-one.</li>
+<strong>Record-existence and windowing logic</strong>: EFFFL (QS
+records for two instruments), VISNUMEN (DS-conditioned), and the
+COMP8/16/24FL visit-window flags all require existence checks across
+records or datasets that no layer expresses. These remain genuine
+vocabulary holes.</li>
+<li>
+<strong>Missingness checks</strong>: SAFFL (<code>Y</code> if TRTSDT
+non-missing) abstains because the filter sublanguage cannot express an
+<code><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na()</a></code>-style test.</li>
 <li>
 <strong>External references</strong>: SITEGR1 (defers to SAP §7.1),
 DCSREAS (an unstated grouping scheme), TRT01PN/TRT01AN (treatment
 codelist not in the spec).</li>
 <li>
-<strong>Cross-dataset existence</strong>: EFFFL (QS records for two
-instruments), VISNUMEN (DS-conditioned), MMSETOT (subject-level sum over
-QS).</li>
-<li>
 <strong>Multi-branch clinical logic</strong>: CUMDOSE’s
 arm-conditional dosing-interval arithmetic.</li>
 </ul>
+<p><strong>The boundary moved this run — narrowly, and
+honestly.</strong> The vocabulary gained a 15th layer,
+<code>assign_conditional</code> (a guarded
+<code>Y if &lt;condition&gt; else &lt;N&gt;</code> assignment). Of the 9
+conditional-family variables the evaluation note predicted it could
+convert (“confidently 4/9”), the measured run delivered exactly one
+end-to-end: <strong>ITTFL</strong> — converted, executed, 100% oracle
+agreement. EOSSTT was also converted but failed closed at execution
+because its upstream DCDECOD happened to be abstained by the LLM in this
+run (last run it was derived at 100%); DISCONFL/DSRAEFL stayed
+abstentions. One variable landed, one is a stochastic upstream away, two
+were over-predicted. That is registered as finding F-11, not spun as a
+victory: a layer landing changes what is <em>expressible</em>, not what
+any single stochastic run <em>chooses</em>. The rules backend
+deliberately does not use the new layer — the evals corpus pins its
+abstention as contract.</p>
 <p>A system that hallucinated these would be worse than one that
 abstains. Fail-closed is the feature.</p>
 </div>
@@ -372,7 +428,9 @@ derivations match the oracle on 100% of joined subjects.</li>
 <li>
 <strong>F-03 (package)</strong> — the rules backend mapped
 BMIBLGR1’s categorisation text to <code>compute_param</code> on BMI
-keywords. Keyword fragility, documented as such.</li>
+keywords. Keyword fragility, documented as such. (The LLM backend this
+run mapped it to <code>categorize</code> and reached 99.2% oracle
+agreement.)</li>
 <li>
 <strong>F-04 (spec ambiguity)</strong> — AGEGR1N: in an earlier run
 all 11/254 mismatches were subjects aged exactly 80; the spec says both
@@ -391,16 +449,23 @@ the target dataset (ADAE alignment failures → zero), a prompt rule makes
 same-domain base columns <code>assign</code> copies instead of
 self-merges (ADAE LLM executions 7 → 32, duplicate_records errors → 0),
 and the remaining findings record honest boundaries — e.g. F-09: ADLBC’s
-BASE derivation text literally says <code>LB.LBSTNRHI</code>, and
-executing it verbatim lands at 0.4% agreement with an oracle that uses
-baseline AVAL. The spec text, not the translator, is what a human would
-query. Full inventory: <code>out/findings.json</code>,
+BASE derivation text literally says <code>LB.LBSTNRHI</code>. The rules
+backend still executes it verbatim (0.4% agreement with an oracle that
+uses baseline AVAL); this run the LLM instead <em>abstained</em> on BASE
+as a “likely improper mapping” — which is exactly the query a human
+programmer would raise. The spec text, not the translator, is what a
+human would query. Full inventory: <code>out/findings.json</code>,
 <code>REPORT.md</code> §9.</li>
+<li>
+<strong>F-11 (demo)</strong> — the <code>assign_conditional</code>
+story above: 2/9 conditional-family variables converted, 1/9 reached
+oracle-aligned execution; the evaluation’s confident 4/9 prediction was
+over-optimistic given run-to-run variance, and is recorded as such.</li>
 </ul>
-<p>Also observed across development runs: DeepSeek’s full-spec
-needs_human count moved 24 → 22 → 27 and rules/LLM agreement 78% → 71% →
-82% between runs. Translation variance is real, visible, and exactly
-what the consensus mode exists to measure.</p>
+<p>Also observed across development runs: DeepSeek’s full-spec ADSL
+needs_human count moved 24 → 22 → 27 → 25 and rules/LLM agreement 78% →
+71% → 82% → 80% between runs. Translation variance is real, visible, and
+exactly what the consensus mode exists to measure.</p>
 </div>
 <div class="section level2">
 <h2 id="limitations-verbatim-from-the-report-read-before-quoting-any-number">Limitations (verbatim from the report — read before quoting any
@@ -412,10 +477,12 @@ number)<a class="anchor" aria-label="anchor" href="#limitations-verbatim-from-th
 ADSL starts from DM (all screened subjects); the oracle has 254
 randomized subjects. Agreement is computed on the join only.</li>
 <li>
-<strong>Vocabulary gaps are hard boundaries.</strong> No
-conditional/windowing layers; COMP*FL, EFFFL, CUMDOSE, ADTTE-style CNSR
-can only abstain or be approximated. More voters cannot fix a vocabulary
-hole.</li>
+<strong>Vocabulary gaps are hard boundaries.</strong> A narrow
+<code>assign_conditional</code> layer now exists, but
+record-existence/windowing derivations (COMP*FL, EFFFL),
+missingness-guarded flags (SAFFL), CUMDOSE’s multi-branch logic and
+ADTTE-style CNSR still can only abstain or be approximated. More voters
+cannot fix a vocabulary hole.</li>
 <li>
 <strong>The rules backend is keyword-fragile.</strong> It is a
 zero-cost baseline, not a claim of understanding.</li>
