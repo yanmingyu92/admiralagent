@@ -1,0 +1,9 @@
+```r
+derive <- function(adsl, sources) {
+  # derive AGEU: take Age Units directly from DM.AGEU (as per spec "DM.AGEU")
+  adsl <- adsl |>
+    mutate(AGEU = sources$dm$AGEU[match(USUBJID, sources$dm$USUBJID)])
+
+  adsl
+}
+```

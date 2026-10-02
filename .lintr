@@ -21,6 +21,10 @@ exclusions: list(
     # Generated admiral programs written by the showcase pipeline - machine
     # output committed as evidence, same class as demo/gen above.
     "demo/automation/out/artifacts",
+    # Free-form CONTROL ARM code from the comparison experiment: LLM-written
+    # R kept verbatim as the object of study (see
+    # .agents/freeform-comparison-design.md), never package output.
+    "demo/automation/freeform",
     # The A3 split (R/artifacts.R -> four modules) moved code verbatim; the
     # UPPER_SNAKE constants below were grandfathered in the old file and the
     # move must not force a cross-tree rename. Only the inherited linter/file

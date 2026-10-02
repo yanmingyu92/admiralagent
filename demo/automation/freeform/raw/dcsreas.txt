@@ -1,0 +1,60 @@
+```r
+derive <- function(adsl, sources) {
+  # Derive DCSREAS: Reason for Discontinuation from Study.
+  # We take the disposition event from DS where DSCAT indicates study
+  # discontinuation/completion status, and group the DSDECOD value into the
+  # controlled terminology decodes for our output.
+  ds <- sources$ds
+
+  # Identify the subject-level disposition record capturing the study
+  # completion/discontinuation status. DSCAT "DISPOSITION EVENT" is the
+  # standard category for this.
+  dcs <- ds |>
+    filter(
+      toupper(DSCAT) == "DISPOSITION EVENT",
+      toupper(DSDECOD) %in% c(
+        "COMPLETED",
+        "ADVERSE EVENT",
+        "DEATH",
+        "I/E NOT MET",
+        "LACK OF EFFICACY",
+        "LOST TO FOLLOW-UP",
+        "PHYSICIAN DECISION",
+        "PROTOCOL VIOLATION",
+        "STUDY TERMINATED BY SPONSOR",
+        "WITHDRAWAL BY SUBJECT"
+      )
+    ) |>
+    # If more than one qualifying record exists, pick the last one.
+    arrange(USUBJID, DSSTDTC) |>
+    distinct(USUBJID, .keep_all = TRUE)
+
+  dcs_grp <- dcs |>
+    transmute(
+      USUBJID,
+      DCSREAS = case_when(
+        toupper(DSDECOD) == "COMPLETED"                    ~ "Completed",
+        toupper(DSDECOD) == "ADVERSE EVENT"                ~ "Adverse Event",
+        toupper(DSDECOD) == "DEATH"                        ~ "Death",
+        toupper(DSDECOD) == "I/E NOT MET"                  ~ "I/E Not Met",
+        toupper(DSDECOD) == "LACK OF EFFICACY"             ~ "Lack of Efficacy",
+        toupper(DSDECOD) == "LOST TO FOLLOW-UP"            ~ "Lost to Follow-up",
+        toupper(DSDECOD) == "PHYSICIAN DECISION"           ~ "Physician Decision",
+        toupper(DSDECOD) == "PROTOCOL VIOLATION"           ~ "Protocol Violation",
+        toupper(DSDECOD) == "STUDY TERMINATED BY SPONSOR"  ~ "Sponsor Decision",
+        toupper(DSDECOD) == "WITHDRAWAL BY SUBJECT"        ~ "Withdrew Consent",
+        TRUE                                               ~ NA_character_
+      )
+    )
+
+  # Merge onto ADSL by USUBJID.
+  adsl <- derive_vars_merged(
+    adsl,
+    dataset_add = dcs_grp,
+    by_vars = exprs(USUBJID),
+    new_vars = exprs(DCSREAS)
+  )
+
+  adsl
+}
+```

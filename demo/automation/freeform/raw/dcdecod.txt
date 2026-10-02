@@ -1,0 +1,24 @@
+```r
+derive <- function(adsl, sources) {
+  # derive DCDECOD: standardized disposition term from DS where DSCAT = 'DISPOSITION EVENT'
+  # A subject can have multiple disposition event records; take the last one
+  # (ordered by DSSTDTC / DSSEQ) so the final disposition status is captured.
+  ds <- sources$ds
+
+  ds_disp <- ds |>
+    filter(DSCAT == "DISPOSITION EVENT", !is.na(DSDECOD)) |>
+    # order by collection/start date then sequence to identify the last record
+    arrange(USUBJID, DSSTDTC, DSSEQ)
+
+  adsl <- adsl |>
+    derive_vars_merged(
+      dataset_add = ds_disp,
+      by_vars = exprs(USUBJID),
+      order = exprs(DSSTDTC, DSSEQ),
+      mode = "last",
+      new_vars = exprs(DCDECOD = DSDECOD)
+    )
+
+  adsl
+}
+```

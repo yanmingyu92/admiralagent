@@ -11,7 +11,7 @@ Rscript demo/automation/run_all.R            # cached LLM results reused
 AA_FORCE_LLM=1 Rscript demo/automation/run_all.R   # re-spend on DeepSeek
 ```
 
-Every number below is read from a machine-readable file under `demo/automation/out/` (cited per section). Generated: 2026-10-02 00:29:25 UTC.
+Every number below is read from a machine-readable file under `demo/automation/out/` (cited per section). Generated: 2026-10-02 03:41:43 UTC.
 
 ## 1. Inputs (`out/ingest_manifest.json`)
 
@@ -645,6 +645,10 @@ Per the AGENTS.md improvement-loop convention, every ERROR/FAIL/MANUAL class obs
   - Resolution: Fixed at the prompt-rule layer (vocabulary and golden hashes untouched): new numbered hard rule 5 in build_system_prompt() states that when source_dataset is the domain seeding the target (ADSL<-dm, ADAE<-ae, ADLBC<-lb) the column is already in the base and MUST be copied with assign, that merging a dataset into a target built from that same domain is forbidden (duplicate by-keys on occurrence data, duplicate_records), and that merge_var/lookup_join are reserved for OTHER datasets with by_vars(+order) uniquely identifying records in dataset_add. Placed in the numbered region (structural contract), not the convention block, so the neutral/minimal voter variants keep it - regression test asserts its key sentences in all three variants; full suite FAIL=0 PASS=4820. Measured on the ADAE/ADLBC reruns (0 failed batches, $0.0105/$0.0084): ADAE llm EXECUTED 7 -> 32, ERROR 40 -> 15, validation FAIL 58 -> 33, oracle 27 compared / 25 full-match / 96.3% mean; ADLBC llm needs_human 25 -> 13, EXECUTED 4 -> 22, oracle 21 compared / 19 full-match / 90.5% mean. duplicate_records errors: 25 -> 0. Remaining ADAE errors are honest dependency cascades (7x ADSL-llm-abstained columns, AOCC*/ADURN upstreams abstained); remaining ADLBC errors include 3 hallucinated source column names (SAF01FL/DSR01AEFL/COM01P24FL) that the fail-closed execution layer caught.
 - **F-11 (demo) — assign_conditional (layer 15, commit 70e17e8) converts 2/9 conditional-family variables; only ITTFL reaches oracle-aligned execution - conversion prediction half-confirmed.** Measurement rerun with AA_FORCE_LLM=1 AA_CONSENSUS_ALL=1 after the assign_conditional layer landed. The evaluation note predicted a confident 4/9 conversion (ITTFL directly; EOSSTT/DISCONFL/DSRAEFL via the DCDECOD chain). Measured on the ADSL llm backend: ITTFL converted (assign_conditional, condition="ARMCD != ' '", true=Y else=N), EXECUTED, 100% oracle agreement - prediction confirmed. EOSSTT converted (condition on DCDECOD) but ERRORed: the chain link DCDECOD was itself abstained (needs_human) in this run, so the DCDECOD chain is only as available as a stochastic upstream translation (last run DCDECOD was derived at 100% oracle agreement). DISCONFL/DSRAEFL stayed needs_human this run - prediction over-optimistic given run-to-run variance. SAFFL/EFFFL (cross-dataset existence) and COMP8FL/COMP16FL/COMP24FL (visit-window existence) stayed needs_human - still genuine vocabulary holes (limitation 2). The rules backend does not use the new layer (evals pin its abstention) - expected, not a defect. _Evidence: out/exec_status_llm.csv (ITTFL EXECUTED, EOSSTT ERROR 'column DCDECOD is missing from source dataset ADSL', DISCONFL/DSRAEFL/DCDECOD REVIEW), out/accuracy_llm.csv (ITTFL 100%), out/ir_llm.rds (assign_conditional steps for ITTFL/EOSSTT), out/llm_telemetry.json (forced rerun, all datasets + all consensus, 0 failed batches)._
   - Suggested fix: None at the demo level. The layer works as designed; the residual gap is (a) stochastic upstream abstention (consensus mode exists to measure/contain it) and (b) windowing/existence vocabulary holes (separate roadmap item).
+- **F-12 (demo) — Controlled experiment (constrained IR vs free-form code generation, ADSL 49 vars, same model/oracle/inputs): free-form wins coverage (28 vs 21 executed) at 21 loud errors + 4 silent wrong answers; constrained IR's 4 'silent' are the documented F-05 rounding family.** Arm B (DeepSeek writes R directly, skill-quality prompt, same build_context() schema inputs, sandboxed) produced code for 49/49 variables, executed 28, errored loudly on 21 (43%; 7 from the outdated admiral vars() API, the rest mutate/case_when errors cascading from missing upstreams), and emitted 4 silent wrong answers (executed, no warning, oracle compared, agree < 100%): DCSREAS 55.5%, SITEGR1 87.8%, VISNUMEN 0.0%, HEIGHTBL 19.7%. Arm A (constrained IR, cached 2026-10-01 run) executed 21, abstained 25, and its 4 mechanical 'silent errors' are BMIBL 99.6%/BMIBLGR1 99.2%/HEIGHTBL 19.7%/WEIGHTBL 8.7% - the documented F-05 oracle 1-decimal rounding family (94.5-98.8% at oracle precision for the two raw flags; the BMIs inherit the rounding). VISNUMEN is the clean contrast: arm A abstained (existence/windowing vocabulary hole, REPORT section 8), arm B silently produced a flag agreeing with the oracle on 0% of joined subjects. Oracle mean agreement on compared variables: A 91.4% vs B 90.9%. Review burden proxy: A 233 LOC / 56 bare logic points over 24 coded variables vs B 1067 LOC / 561 bare points over 49. Costs: A $0.0114, B $0.0139. Honest read: B covers more; A's failures are loud or abstained, B's residual risk is silent. Single model, single run per arm - variance documented in limitation 8. _Evidence: out/compare_summary.json, out/compare_freeform_gen.csv, out/compare_exec_status.csv, out/compare_accuracy_freeform.csv, out/compare_review_burden.csv, demo/automation/freeform/ (CONTROL ARM code), .agents/freeform-comparison-design.md._
+  - Suggested fix: None - this is experiment output, registered as required whether or not it matched expectations. It matched the coverage/credibility trade-off hypothesis on every axis except silent-error COUNT parity (4 vs 4); the composition differs fundamentally (rounding convention vs genuinely wrong values), which the per-variable detail in compare_summary.json preserves.
+- **F-13 (demo) — Free-form static sandbox gate false positive: the pattern 'source[ ]*[(]' fires on prose comments like 'source (DM.SITEID)'.** SITEID's first free-form attempt was BLOCKED by the static gate because a comment mentioned the source dataset as 'source (DM...)'. The retry rephrased and passed, so no data was lost, but a comment-only match is a false positive by definition (the gate should scan code, not prose). Recorded because the gate is part of the experiment's safety story: it fired once in 49 variables and the single firing was a false positive. _Evidence: out/compare_freeform_gen.csv (SITEID attempts=2, note 'static sandbox gate: source[ ]*[(]'), demo/automation/06_freeform_generate.R static_gate()._
+  - Suggested fix: If the experiment is rerun, strip comments before scanning or tokenize; do not weaken the real rules (install/network/system bans all stand).
 
 ## 10. Limitations (read this before quoting any number above)
 
@@ -657,3 +661,39 @@ Per the AGENTS.md improvement-loop convention, every ERROR/FAIL/MANUAL class obs
 7. **Programs are UNGATED DRAFTs.** No human approval gate covers these artifacts; they are demonstration output, not release-grade deliverables (DESIGN.md section 11, item 4).
 8. **Single model, three datasets, and stochastic.** Numbers are for DeepSeek `deepseek-chat` on pilot5 ADSL/ADAE/ADLBC only; they do not transfer to other models or datasets without re-measurement. LLM output also varies run to run at temperature defaults: across the two full ADSL runs behind this report's development, the full-spec needs_human count moved 24 -> 22 and the rules/LLM layer-chain agreement 78% -> 71% — run-to-run translation variance is exactly what the consensus mode in section 5 exists to measure and contain.
 9. **Value-level metadata is out of scope.** The workbook's `ValueLevel` sheet (15 rows, all ADADAS) carries where-clause derivations (`PARAMCD EQ ...`) that the flat spec extraction cannot express; no dataset in this run uses it, and ADADAS/ADQSADAS/ADTTE are not attempted.
+
+## 11. Controlled experiment: constrained IR vs free-form code generation (`out/compare_summary.json`)
+
+Same spec (ADSL, 49 variables), same model (`deepseek-chat`), same oracle, same schema-level inputs (`build_context()` JSON + SDTM column schemas + workbook codelists; no patient data in either arm's prompts). The comparison is against **free-form code generation**, not against skills/MCP as distribution channels — the package itself ships an MCP server and a SKILL.md. Design and fairness rules: `.agents/freeform-comparison-design.md`.
+
+- **Arm A (constrained IR)**: LLM translates spec to closed-vocabulary Layer IR; deterministic compiler renders code; validate_ir() fail-closed. Numbers read from the cached run's evidence files (2026-10-01 (reused, zero new LLM spend)).
+- **Arm B (free-form, CONTROL ARM)**: LLM writes executable R directly, same schema-level inputs, sandboxed; NOT package output. Generated code lives only in `demo/automation/freeform/` (static sandbox gate before execution, separate R process, tryCatch + time limit) and never enters the package or any release surface.
+
+| metric | constrained_ir | freeform |
+|---|---|---|
+| abstained (needs_human / ABSTAIN+blocked+parse_fail) | 25 | 0 |
+| executed (coverage) | 21 | 28 |
+| execution errors | 3 | 21 |
+| oracle: compared | 20 | 26 |
+| oracle: full match (100%) | 16 | 22 |
+| oracle: mean value agreement | 91.4% | 90.9% |
+| **silent errors** (wrong answer, nothing flagged) | 4 | 4 |
+| fail-closed intercepts (abstain + validation FAIL + exec ERROR) | 31 | 21 |
+| review burden proxy: total LOC (vars with code) | 233 (24) | 1067 (49) |
+| review burden proxy: bare logic points | 56 | 561 |
+| LLM cost (USD) | $0.0114 | $0.0139 |
+
+- Arm A silent-error variables: BMIBL, BMIBLGR1, HEIGHTBL, WEIGHTBL.
+- Arm B silent-error variables: DCSREAS, HEIGHTBL, SITEGR1, VISNUMEN.
+- Arm B executed with warnings: 0 (warnings captured by the sandbox are 'loud' and excluded from silent errors).
+
+Metric definitions (machine-readable: `compare_summary.json$definitions`): EXECUTED + nothing flagged the variable (arm A: validation PASS; arm B: no warning captured) + oracle compared + value_agree < 100. Review burden is a mechanical proxy (proxy: non-blank LOC / comment lines / bare logic points of generated code; arm A LOC includes mandated CHECK comments and DISCLAIMER header), not measured human effort.
+
+**Honesty boundaries for this section**:
+- variables an arm did not derive are scored not_produced even when the DM seed every arm starts from already carries the column (verified a no-op for arm A: its 20 compared variables are all EXECUTED)
+- single model (deepseek-chat), single study (pilot5 ADSL), single run per arm
+- arm A numbers are from the 2026-10-01 cached run; arm B is a fresh run - run-to-run LLM variance is documented in REPORT.md limitation 8
+- oracle agreement is not double programming (DESIGN.md section 11.1)
+- review burden is a mechanical proxy, not a measured human review effort
+- spec-ambiguity disagreements (findings F-04/F-09) are not scored as errors for either arm
+

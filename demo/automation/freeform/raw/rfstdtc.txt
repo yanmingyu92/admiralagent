@@ -1,0 +1,11 @@
+```r
+derive <- function(adsl, sources) {
+  # derive RFSTDTC: take the subject reference start date/time straight from DM.
+  # DM is the source of adsl (adsl starts as a copy of DM), so RFSTDTC is
+  # already present; this derivation simply ensures the column exists and is
+  # character, matching the "DM.RFSTDTC" contract.
+  adsl <- adsl |>
+    mutate(RFSTDTC = as.character(RFSTDTC))
+  adsl
+}
+```

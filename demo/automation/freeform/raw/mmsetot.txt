@@ -1,0 +1,19 @@
+```r
+derive <- function(adsl, sources) {
+  # MMSETOT: MMSE Total = sum of QS.QSORRES for records where QSCAT = "MINI-MENTAL STATE".
+  # QSORRES is character; convert to numeric (non-numeric responses become NA) and sum
+  # per subject. Subjects with no MMSE records (or no numeric responses) get NA.
+  mmse <- sources$qs |>
+    filter(QSCAT == "MINI-MENTAL STATE") |>
+    mutate(.score = suppressWarnings(as.numeric(QSORRES))) |>
+    group_by(USUBJID) |>
+    summarise(
+      MMSETOT = if (all(is.na(.score))) NA_real_ else sum(.score, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    mutate(MMSETOT = as.integer(MMSETOT))
+
+  adsl |>
+    left_join(mmse, by = "USUBJID")
+}
+```

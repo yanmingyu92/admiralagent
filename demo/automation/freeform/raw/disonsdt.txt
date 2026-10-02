@@ -1,0 +1,23 @@
+```r
+derive <- function(adsl, sources) {
+  # DISONSDT: Date of Onset of Disease
+  # Take MH.MHSTDTC from the record where MHCAT = 'PRIMARY DIAGNOSIS' and
+  # convert it to a Date. One record per subject is expected; if several exist
+  # we take the earliest onset.
+  mh_primary <- sources$mh |>
+    filter(MHCAT == "PRIMARY DIAGNOSIS", !is.na(MHSTDTC)) |>
+    mutate(DISONSDT = as.Date(convert_dtc_to_dt(MHSTDTC))) |>
+    filter(!is.na(DISONSDT))
+
+  adsl <- adsl |>
+    derive_vars_merged(
+      dataset_add = mh_primary,
+      by_vars = exprs(USUBJID),
+      order = exprs(DISONSDT),
+      mode = "first",
+      new_vars = exprs(DISONSDT)
+    )
+
+  adsl
+}
+```

@@ -1,0 +1,19 @@
+```r
+derive <- function(adsl, sources) {
+  # derive AGEGR1N: pooled age group 1 (numeric)
+  #   1 = AGE < 65
+  #   2 = AGE 65-80 (inclusive of 65 and 80)
+  #   3 = AGE > 80
+  # AGE is the numeric age in DM (and hence in ADSL). Boundaries follow the
+  # derivation text literally: 64 -> 1, 65 -> 2, 80 -> 2, 81 -> 3.
+  adsl <- adsl |>
+    dplyr::mutate(
+      AGEGR1N = dplyr::case_when(
+        AGE < 65 ~ 1,
+        AGE >= 65 & AGE <= 80 ~ 2,
+        AGE > 80 ~ 3
+      )
+    )
+  adsl
+}
+```

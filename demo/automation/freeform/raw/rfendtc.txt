@@ -1,0 +1,10 @@
+```r
+derive <- function(adsl, sources) {
+  # Derive RFENDTC: taken directly from DM.RFENDTC (no transformation required).
+  # DM is already the basis of adsl, so RFENDTC may already be present; we
+  # ensure it is carried over from the source DM dataset explicitly.
+  adsl <- adsl |>
+    mutate(RFENDTC = sources$dm$RFENDTC[match(USUBJID, sources$dm$USUBJID)])
+  adsl
+}
+```

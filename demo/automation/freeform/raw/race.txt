@@ -1,0 +1,10 @@
+```r
+derive <- function(adsl, sources) {
+  # derive RACE: directly copied from DM.RACE; adsl already starts as a copy of DM,
+  # so RACE is already present. This block makes the mapping explicit and idempotent.
+  adsl <- adsl |>
+    mutate(RACE = sources$dm$RACE[match(USUBJID, sources$dm$USUBJID)])
+
+  adsl
+}
+```

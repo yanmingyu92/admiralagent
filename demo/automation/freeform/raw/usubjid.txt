@@ -1,0 +1,16 @@
+```r
+derive <- function(adsl, sources) {
+  # derive USUBJID: copied directly from DM.USUBJID. ADSL starts as a copy of DM,
+  # so USUBJID is already present; re-assert it explicitly from the DM source to
+  # guarantee the value regardless of any upstream modifications.
+  adsl <- adsl |>
+    left_join(
+      sources$dm |> select(USUBJID),
+      by = "USUBJID",
+      relationship = "one-to-one"
+    ) |>
+    mutate(USUBJID = USUBJID)
+
+  adsl
+}
+```

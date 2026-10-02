@@ -1,0 +1,103 @@
+"variable","status","had_warning","warning_msg","error_msg","secs"
+"STUDYID","EXECUTED",FALSE,"","",0
+"USUBJID","EXECUTED",FALSE,"","",0.02
+"SUBJID","EXECUTED",FALSE,"","",0
+"SITEID","EXECUTED",FALSE,"","",0.06
+"SITEGR1","EXECUTED",FALSE,"","",0
+"ARM","EXECUTED",FALSE,"","",0
+"TRT01P","EXECUTED",FALSE,"","",0
+"TRT01PN","EXECUTED",FALSE,"","",0
+"TRT01A","EXECUTED",FALSE,"","",0
+"TRT01AN","EXECUTED",FALSE,"","",0
+"TRTSDT","ERROR",FALSE,"","Each element of the list in argument `by_vars` must be class/type
+<symbol>.
+ℹ But, element 1 is a <quosure> object",0.04
+"TRTEDT","ERROR",FALSE,"","Each element of the list in argument `by_vars` must be class/type
+<symbol>.
+ℹ But, element 1 is a <quosure> object",0.08
+"TRTDURD","ERROR",FALSE,"","ℹ In argument: `TRTDURD = if_else(...)`.
+Caused by error:
+! object 'TRTSDT' not found",0.01
+"AVGDD","ERROR",FALSE,"","ℹ In argument: `AVGDD = if_else(...)`.
+Caused by error:
+! object 'CUMDOSE' not found",0.01
+"CUMDOSE","ERROR",FALSE,"","ℹ In argument: `CUMDOSE_ARMN01 = TRT01PN * TRTDUR`.
+Caused by error:
+! object 'TRTDUR' not found",0.05
+"AGE","EXECUTED",FALSE,"","",0
+"AGEGR1","ERROR",FALSE,"","ℹ In argument: `AGEGR1 = case_when(...)`.
+Caused by error in `case_when()`:
+! Failed to evaluate the left-hand side of formula 1.
+Caused by error:
+! object 'AGEGR1N' not found",0.02
+"AGEGR1N","EXECUTED",FALSE,"","",0
+"AGEU","EXECUTED",FALSE,"","",0
+"RACE","EXECUTED",FALSE,"","",0
+"RACEN","EXECUTED",FALSE,"","",0
+"SEX","EXECUTED",FALSE,"","",0
+"ETHNIC","ERROR",FALSE,"","Each element of the list in argument `by_vars` must be class/type
+<symbol>.
+ℹ But, element 1 is a <quosure> object",0.03
+"SAFFL","ERROR",FALSE,"","ℹ In argument: `SAFFL = if_else(!is.na(ITTFL) & ITTFL == ""Y"" &
+  !is.na(TRTSDT), ""Y"", ""N"")`.
+Caused by error:
+! object 'ITTFL' not found",0.02
+"ITTFL","EXECUTED",FALSE,"","",0
+"EFFFL","ERROR",FALSE,"","ℹ In argument: `EFFFL = case_when(...)`.
+Caused by error in `case_when()`:
+! Failed to evaluate the left-hand side of formula 1.
+Caused by error:
+! object 'SAFFL' not found",0.16
+"COMP8FL","ERROR",FALSE,"","ℹ In argument: `COMP8FL = case_when(...)`.
+Caused by error in `case_when()`:
+! Failed to evaluate the left-hand side of formula 1.
+Caused by error:
+! object 'ENDDT' not found",0.07
+"COMP16FL","ERROR",FALSE,"","Each element of the list in argument `by_vars` must be class/type
+<symbol>.
+ℹ But, element 1 is a <quosure> object",0.06
+"COMP24FL","EXECUTED",FALSE,"","",0.09
+"DISCONFL","ERROR",FALSE,"","ℹ In argument: `DISCONFL = if_else(!is.na(DCREASCD) & DCREASCD !=
+  ""Completed"", ""Y"", NA_character_)`.
+Caused by error:
+! object 'DCREASCD' not found",0.01
+"DSRAEFL","ERROR",FALSE,"","ℹ In argument: `DSRAEFL = if_else(...)`.
+Caused by error:
+! object 'DCREASCD' not found",0.01
+"DTHFL","ERROR",FALSE,"","The variable `DTHFL` is contained in both datasets.
+ℹ Please add them to `by_vars` or remove or rename them in one of the datasets.",0.06
+"BMIBL","ERROR",FALSE,"","ℹ In argument: `BMIBL = WEIGHTBL/((HEIGHTBL/100)^2)`.
+Caused by error:
+! object 'WEIGHTBL' not found",0.02
+"BMIBLGR1","ERROR",FALSE,"","ℹ In argument: `BMIBLGR1 = case_when(...)`.
+Caused by error in `case_when()`:
+! Failed to evaluate the left-hand side of formula 1.
+Caused by error:
+! object 'BMIBL' not found",0.03
+"HEIGHTBL","EXECUTED",FALSE,"","",0.01
+"WEIGHTBL","ERROR",FALSE,"","Each element of the list in argument `by_vars` must be class/type
+<symbol>.
+ℹ But, element 1 is a <quosure> object",0.03
+"EDUCLVL","ERROR",FALSE,"","Each element of the list in argument `by_vars` must be class/type
+<symbol>.
+ℹ But, element 1 is a <quosure> object",0.04
+"DISONSDT","EXECUTED",FALSE,"","",0.14
+"DURDIS","ERROR",FALSE,"","ℹ In argument: `DURDIS = if_else(...)`.
+Caused by error:
+! object 'VISIT1DT' not found",0.02
+"DURDSGR1","ERROR",FALSE,"","ℹ In argument: `DURDSGR1 = case_when(...)`.
+Caused by error in `case_when()`:
+! Failed to evaluate the left-hand side of formula 1.
+Caused by error:
+! object 'DURDIS' not found",0.02
+"VISIT1DT","ERROR",FALSE,"","Each element of the list in argument `by_vars` must be class/type
+<symbol>.
+ℹ But, element 1 is a <quosure> object",0.03
+"RFSTDTC","EXECUTED",FALSE,"","",0
+"RFENDTC","EXECUTED",FALSE,"","",0
+"VISNUMEN","EXECUTED",FALSE,"","",0.01
+"RFENDT","EXECUTED",FALSE,"","derive() returned without adding the target column",0.03
+"DCDECOD","EXECUTED",FALSE,"","",0.12
+"EOSSTT","EXECUTED",FALSE,"","",0
+"DCSREAS","EXECUTED",FALSE,"","",0.05
+"MMSETOT","EXECUTED",FALSE,"","",0.01

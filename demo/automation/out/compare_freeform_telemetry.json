@@ -1,0 +1,19 @@
+{
+  "stage": "06_freeform_generate",
+  "generated_at": "2026-10-02 03:37:55 UTC",
+  "arm": "B (free-form code generation, CONTROL ARM - not package output)",
+  "model": "deepseek-chat",
+  "rate_assumption": {
+    "input_per_m": 0.27,
+    "output_per_m": 1.1,
+    "as_of": "2025 price sheet"
+  },
+  "budget_cap_usd": 0.5,
+  "variables_attempted": 41,
+  "tokens": {
+    "input": 13140,
+    "output": 9371
+  },
+  "cost_usd": 0.0139,
+  "latency_secs": 128.1
+}

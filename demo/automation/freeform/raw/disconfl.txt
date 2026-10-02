@@ -1,0 +1,17 @@
+```r
+derive <- function(adsl, sources) {
+  # derive DISCONFL: Y if the subject discontinued the study, i.e. the study
+  # completion/discontinuation reason (DCREASCD) is anything other than
+  # 'Completed'. Null otherwise. DCREASCD is derived earlier from DS, so it is
+  # already available on adsl.
+  adsl <- adsl |>
+    mutate(
+      DISCONFL = if_else(
+        !is.na(DCREASCD) & DCREASCD != "Completed",
+        "Y",
+        NA_character_
+      )
+    )
+  adsl
+}
+```

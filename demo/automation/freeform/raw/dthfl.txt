@@ -1,0 +1,17 @@
+```r
+derive <- function(adsl, sources) {
+  # derive DTHFL: "DM.DTHFL" - copy the death flag from SDTM DM onto ADSL.
+  # DM is the source of ADSL's base columns already, but DM.DTHFL may not have
+  # been carried over, so merge it explicitly by USUBJID.
+  dm <- sources$dm
+
+  adsl <- adsl |>
+    derive_vars_merged(
+      dataset_add = dm,
+      by_vars = exprs(USUBJID),
+      new_vars = exprs(DTHFL = DTHFL)
+    )
+
+  adsl
+}
+```

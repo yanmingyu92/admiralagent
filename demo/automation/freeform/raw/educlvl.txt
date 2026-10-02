@@ -1,0 +1,24 @@
+```r
+derive <- function(adsl, sources) {
+  # derive EDUCLVL: Years of Education, taken from SC.SCSTRESN where SC.SCTESTCD = "EDLEVEL".
+  # One record per subject is expected; if multiple exist, take the first by SCSEQ.
+  sc <- sources$sc
+
+  edlevel <- sc |>
+    filter(.data$SCTESTCD == "EDLEVEL") |>
+    select(USUBJID, EDUCLVL = SCSTRESN, SCSEQ)
+
+  adsl <- adsl |>
+    derive_vars_merged(
+      dataset_add = edlevel,
+      by_vars = vars(USUBJID),
+      order = vars(SCSEQ),
+      mode = "first",
+      new_vars = vars(EDUCLVL)
+    ) |>
+    # ensure integer type per specification
+    mutate(EDUCLVL = as.integer(EDUCLVL))
+
+  adsl
+}
+```

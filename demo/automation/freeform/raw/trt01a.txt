@@ -1,0 +1,12 @@
+```r
+derive <- function(adsl, sources) {
+  # derive TRT01A: Actual Treatment for Period 01.
+  # Per the spec, TRT01A equals TRT01P: there is no difference between actual
+  # and randomized treatment in this study. TRT01P is derived earlier in ADSL
+  # (from DM.ARM), so we simply copy it across.
+  adsl <- adsl |>
+    mutate(TRT01A = TRT01P)
+
+  adsl
+}
+```

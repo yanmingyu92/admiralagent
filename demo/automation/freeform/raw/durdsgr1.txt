@@ -1,0 +1,17 @@
+```r
+derive <- function(adsl, sources) {
+  # derive DURDSGR1: Pooled Disease Duration Group 1.
+  # DURDIS (disease duration, in months) is derived earlier in the pipeline; subgroup
+  # into "<12" (duration less than 12 months) and ">=12" (12 months or more).
+  # DURDIS values that are missing remain NA (no assignment).
+  adsl <- adsl |>
+    mutate(
+      DURDSGR1 = case_when(
+        !is.na(DURDIS) & DURDIS <  12 ~ "<12",
+        !is.na(DURDIS) & DURDIS >= 12 ~ ">=12",
+        TRUE                          ~ NA_character_
+      )
+    )
+  adsl
+}
+```

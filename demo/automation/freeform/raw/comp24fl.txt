@@ -1,0 +1,40 @@
+```r
+derive <- function(adsl, sources) {
+  # COMP24FL: "Y if subject has a SV.VISITNUM=12 and ENDDT >= date of visit 12, N otherwise"
+  # Note: there is no ENDDT variable in the ADSL specification provided here. The
+  # closest available end-of-participation date is DM.RFENDTC. We derive ENDDT from
+  # RFENDTC (used here as the subject's end date) for the comparison, since the
+  # specification refers to a variable (ENDDT) that is not otherwise defined in ADSL.
+
+  # Subject end date, taken from the subject reference end date (RFENDTC)
+  enddt <- derive_vars_dt(
+    adsl |>
+      select(USUBJID, RFENDTC),
+    new_vars_prefix = "END",
+    dtc = RFENDTC
+  ) |>
+    select(USUBJID, ENDDT)
+
+  # Visit 12 date per subject from SV (start date of the week 24 visit)
+  v12 <- sources$sv |>
+    filter(VISITNUM == 12) |>
+    # take the (first) visit 12 record per subject
+    arrange(USUBJID, SVSTDTC) |>
+    distinct(USUBJID, .keep_all = TRUE) |>
+    transmute(
+      USUBJID,
+      V12DT = convert_dtc_to_dt(SVSTDTC)
+    )
+
+  adsl |>
+    left_join(enddt, by = "USUBJID") |>
+    left_join(v12, by = "USUBJID") |>
+    mutate(
+      COMP24FL = case_when(
+        !is.na(V12DT) & !is.na(ENDDT) & ENDDT >= V12DT ~ "Y",
+        TRUE ~ "N"
+      )
+    ) |>
+    select(-ENDDT, -V12DT)
+}
+```

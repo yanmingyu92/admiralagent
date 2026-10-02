@@ -1,0 +1,9 @@
+```r
+derive <- function(adsl, sources) {
+  # STUDYID: copied directly from DM.STUDYID; adsl already starts as a copy of DM,
+  # so ensure the column is present (and re-copy from the source for safety).
+  adsl <- adsl |>
+    mutate(STUDYID = sources$dm$STUDYID[match(USUBJID, sources$dm$USUBJID)])
+  adsl
+}
+```

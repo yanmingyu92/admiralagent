@@ -1,0 +1,16 @@
+```r
+derive <- function(adsl, sources) {
+  # derive SAFFL: Safety Population Flag
+  # "Y" if ITTFL == "Y" and TRTSDT is not missing, otherwise "N".
+  # ITTFL and TRTSDT are assumed to have been derived earlier in ADSL.
+  adsl <- adsl |>
+    mutate(
+      SAFFL = if_else(
+        !is.na(ITTFL) & ITTFL == "Y" & !is.na(TRTSDT),
+        "Y",
+        "N"
+      )
+    )
+  adsl
+}
+```

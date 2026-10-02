@@ -1,0 +1,42 @@
+```r
+derive <- function(adsl, sources) {
+  # EFFFL: "Y" if SAFFL = "Y" AND subject has >= 1 post-baseline (VISITNUM > 3)
+  #        ADAS-Cog record in QS AND >= 1 post-baseline CIBIC+ record in QS.
+  #        Otherwise "N".
+
+  # SAFFL is expected to have been derived earlier in ADSL.
+  # Identify subjects with qualifying QS records for each instrument.
+  # ADAS-Cog test codes and CIBIC+ test codes differ in the QS domain; match
+  # on the test name/short-name by pattern so the exact codes need not be
+  # hard-coded.
+  qs <- sources$qs
+
+  # Subjects with at least one post-baseline ADAS-Cog record (VISITNUM > 3).
+  adas_cog_subj <- qs |>
+    filter(
+      VISITNUM > 3,
+      grepl("ADAS", QSTESTCD, ignore.case = TRUE) |
+        grepl("ADAS", QSTEST, ignore.case = TRUE)
+    ) |>
+    distinct(USUBJID)
+
+  # Subjects with at least one post-baseline CIBIC+ record (VISITNUM > 3).
+  cibic_subj <- qs |>
+    filter(
+      VISITNUM > 3,
+      grepl("CIBIC", QSTESTCD, ignore.case = TRUE) |
+        grepl("CIBIC", QSTEST, ignore.case = TRUE)
+    ) |>
+    distinct(USUBJID)
+
+  adsl |>
+    mutate(
+      EFFFL = case_when(
+        SAFFL == "Y" &
+          USUBJID %in% adas_cog_subj$USUBJID &
+          USUBJID %in% cibic_subj$USUBJID ~ "Y",
+        TRUE ~ "N"
+      )
+    )
+}
+```
