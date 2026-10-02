@@ -18,3 +18,4 @@ Shorthand for `length(validate_ir(ir)) == 0L`.
 \details{
 Check whether an IR is valid
 }
+\keyword{internal}

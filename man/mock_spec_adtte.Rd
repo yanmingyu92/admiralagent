@@ -16,3 +16,4 @@ A 2-variable mock time-to-event spec (TTE, CNSR) exercising
 \details{
 Mock ADTTE specification
 }
+\keyword{internal}

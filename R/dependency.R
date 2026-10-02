@@ -29,7 +29,7 @@
 #'   the source data; consuming them never creates an ordering constraint.
 #' @return The same list of variable IRs with only the order changed (length and
 #'   elements are preserved).
-#' @export
+#' @keywords internal
 order_variables <- function(ir, known_columns = character()) {
   assert_ir_shape(ir, allow_empty = TRUE)
   assert_known_columns(known_columns)

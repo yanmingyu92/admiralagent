@@ -29,3 +29,4 @@ Appends one JSON line (schema, sequence number, timestamp,
 \details{
 Append an entry to the audit log
 }
+\keyword{internal}

@@ -20,7 +20,7 @@
 #'   variable has no CodeListRef). The data frame carries a `dataset_labels`
 #'   attribute: a named character vector of dataset labels from the
 #'   ItemGroupDef descriptions.
-#' @export
+#' @keywords internal
 #' @examples
 #' \dontrun{
 #' spec <- parse_define("define.xml")

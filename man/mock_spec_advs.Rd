@@ -18,3 +18,4 @@ An 11-variable mock BDS spec (USUBJID, PARAMCD, PARAM, AVAL,
 \details{
 Mock ADVS specification
 }
+\keyword{internal}
