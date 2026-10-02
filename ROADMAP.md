@@ -51,7 +51,7 @@
 - [ ] V2 真实 P21 vendor spec 适配 — **部分达成**：showcase 已跑通 pilot5 真实递交 define 工作簿（P21 风格 xlsx）的 ADSL/ADAE/ADLBC 三数据集（spec 构建 `build_spec_from_define_xlsx()`，codelist 摄取 `mock_metacore()`）。距"真实 P21 vendor spec 适配"仍缺：① define.xml 直接摄取（当前仅 xlsx 工作簿一种 layout，`R/define.R`）；② 多家 vendor spec 的 layout 差异覆盖；③ value-level metadata 机器化表达（ValueLevel 表，showcase 记录为边界 F-09/REPORT 限制 9）；④ 第二项研究复现（当前仅 pilot5 单一研究）
 - [ ] V3 TLF 域对接评估：与 cards/gtsummary 的 ARD 衔接（ARD 是天然 sink，见 .agents/ARS-SPIKE.md 结论）
 - [ ] V4 起草「agent-ready R 包成熟度模型 L0–L4」白皮书——生态话语权的支点
-- [ ] V5 条件层（conditional）词汇 — **评估完成，未实施**（词汇扩张 = 攻击面扩张，实施前需用户确认）：showcase 实测 9 个 `Y if <condition>` 类弃权（SAFFL/ITTFL/DISCONFL/DSRAEFL/EOSSTT/COMP*FL），候选层 `assign_conditional`（复用 filter 子语言、纯增量、golden `6aea851a` 无需迁移）确定可转 4/9，另 5 个需存在性/missingness 原语（建议阶段 2 独立评估）；完整设计/安全分析/实测清单见 `.agents/conditional-layer-assessment.md`（本地笔记）
+- [x] V5 条件层（conditional）词汇 — **阶段 1 已实施**（`assign_conditional`，`70e17e8`；用户批准，词汇扩张经确认）：showcase 实测 9 个 `Y if <condition>` 类弃权（SAFFL/ITTFL/DISCONFL/DSRAEFL/EOSSTT/COMP*FL），评估预测确定可转 4/9，**实测只有 ITTFL 端到端落地（oracle 100%）**——EOSSTT 链断于上游 DCDECOD 弃权、DISCONFL/DSRAEFL 未转化，已如实登记 F-11（"部分兑现"）；纯增量、golden `6aea851a` 未迁移；剩余 5 个需存在性/missingness 原语（阶段 2 另开评估，未实施）。设计/安全分析见 `.agents/conditional-layer-assessment.md`（本地笔记）
 
 ## P4 — 推广（P0+P1 完成后启动，soft-launch → hard-launch）
 
