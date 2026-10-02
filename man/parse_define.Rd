@@ -40,3 +40,4 @@ spec <- parse_define("define.xml")
 nrow(spec[spec$dataset == "ADSL" & !is.na(spec$derivation), ])
 }
 }
+\keyword{internal}

@@ -201,7 +201,7 @@ mock_spec_adsl <- function() {
 #'   categorisation.
 #' @title Mock ADVS spec
 #' @return A spec data frame as produced by [read_spec_df()].
-#' @export
+#' @keywords internal
 mock_spec_advs <- function() {
   read_spec_df(data.frame(
     dataset = rep("ADVS", 11),
@@ -251,7 +251,7 @@ mock_spec_advs <- function() {
 #'   cross-dataset imputation (AESTDTC on `ae`), merge, and duration layers.
 #' @title Mock ADTTE spec
 #' @return A spec data frame as produced by [read_spec_df()].
-#' @export
+#' @keywords internal
 mock_spec_adtte <- function() {
   read_spec_df(data.frame(
     dataset = rep("ADTTE", 2),

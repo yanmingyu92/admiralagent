@@ -62,7 +62,7 @@ aa_checks <- function() {
 #' @title Validation comments
 #' @param v An `aa_variable_ir` object.
 #' @return Character vector of `# CHECK:` lines (empty when no checks apply).
-#' @export
+#' @keywords internal
 validation_comments <- function(v) {
   assert_ir_shape(list(v))
   if (v$needs_human || length(v$steps) == 0) {

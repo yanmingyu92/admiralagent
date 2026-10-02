@@ -117,7 +117,7 @@ write_log_head <- function(file, seq, digest) {
 #' @param file Log file path; defaults to the active audit log (see
 #'   `admiralagent.log_file`).
 #' @return Invisibly `TRUE`.
-#' @export
+#' @keywords internal
 log_run <- function(event, details = list(), file = aa_log_file()) {
   if (!is.character(event) || length(event) != 1L || is.na(event) || !nzchar(event)) {
     stop("event must be a single non-empty string", call. = FALSE)

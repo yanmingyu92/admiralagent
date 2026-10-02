@@ -19,3 +19,4 @@ Collects the deduplicated `# CHECK` comment lines for every
 \details{
 Validation comments for a variable IR
 }
+\keyword{internal}

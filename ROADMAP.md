@@ -39,7 +39,7 @@
 目标：降低维护面，把私有实现换成生态标准组件。
 
 - [x] A1 MCP 层评估迁移到 mcptools + 可复用加固 wrapper（入站限制、错误目录、`mcp_redact_ir()` 抽为独立组件）；若保留私有 server，须写明理由 — **评估完成，结论 hybrid：保留私有 server**（加固即产品：预解析字节上限/参数树限额/固定错误目录/IR 脱敏都活在 JSON-RPC 层，mcptools 无对应钩子；且其 Imports 含 ellmer/nanonext，违反零强依赖红线；517 行进程内安全契约测试会退化为进程级集成测试）。完整理由清单与复评触发条件见 `.agents/mcptools-assessment.md`（本地笔记）
-- [ ] A2 API 面收敛：导出审查，内部函数收回；IR 对象评估 S7 化（工具签名自描述）— **审查完成，收回未实施**：NAMESPACE 实测 45 个 export + 1 个 S3method（"43" 是 P3 V1 前的旧数）；四档分类（A 核心 16 / B 合理 13 / C 收回候选 8 / D 需讨论 8）、C 档每候选的文档同步清单见 `.agents/p2-a2-export-review.md`（本地笔记）；S7 化评估结论**不建议列入 A2**（与 fail-closed 一次报全语义冲突、破 Imports 最小化红线、golden hash 稳定性风险；重开触发条件已记录）。收回实施属公开 API 变更，待用户确认后按清单执行
+- [x] A2 API 面收敛：导出审查，内部函数收回；IR 对象评估 S7 化（工具签名自描述）— **审查 + C 档收回均已实施**（用户批准）：NAMESPACE 实测 45 个 export + 1 个 S3method（"43" 是 P3 V1 前的旧数）；四档分类与同步清单见 `.agents/p2-a2-export-review.md`（本地笔记）；C 档 8 个（`validation_comments`/`is_valid_ir`/`render_step`/`order_variables`/`parse_define`/`mock_spec_adtte`/`mock_spec_advs`/`log_run`）已收回为 `@keywords internal`（man 页保留，45→37 export，门禁零风险已实证，4959 测试全绿）；D 档 8 个不动；S7 化评估结论**不建议**（与 fail-closed 一次报全语义冲突、破 Imports 最小化红线、golden hash 稳定性风险；重开触发条件已记录）。遗留排查项：10 个内部 S3 方法（`ir_refs.*` 等）未在 NAMESPACE 注册（pre-existing，roxygenise 警告）
 - [x] A3 `R/artifacts.R`（1230 行）拆分为 sidecar / audit-log / gate / manifest 四个模块 — 已完成机械拆分（`R/artifact_write.R` / `R/audit_log.R` / `R/gate.R` / `R/manifest.R`），61 个符号逐一核对各定义一次，零行为变更，全量测试 4801 绿
 - [x] A4 `.agents/`（HANDOFF + 快照）从 git 全历史移除（filter-branch，开源前置条件）；本地保留、`.gitignore` 防再入库。注：因私有仓库 Actions 计费阻塞，仓库于 P1 后提前公开（ROADMAP 节奏调整，经用户确认）
 

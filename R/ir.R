@@ -70,7 +70,7 @@ new_variable_ir <- function(dataset,
 #' @title IR validity predicate
 #' @param ir List of `aa_variable_ir` objects.
 #' @return `TRUE` when the IR passes the full validation gate.
-#' @export
+#' @keywords internal
 is_valid_ir <- function(ir) {
   length(validate_ir(ir)) == 0L
 }

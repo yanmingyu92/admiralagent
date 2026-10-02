@@ -17,7 +17,7 @@ step_rank <- function(v) {
 #' @param v The parent `aa_variable_ir` object.
 #' @param i Step index (1-based) within `v$steps`.
 #' @return A character string of commented R code.
-#' @export
+#' @keywords internal
 render_step <- function(step, v, i) {
   assert_valid_ir(list(v))
   if (!real_numeric(i) || length(i) != 1L || !is.finite(i) || i < 1 ||
