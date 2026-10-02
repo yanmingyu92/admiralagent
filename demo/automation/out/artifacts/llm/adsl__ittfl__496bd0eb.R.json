@@ -1,0 +1,35 @@
+{
+  "artifact": "adsl__ittfl__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "ITTFL",
+      "steps": [
+        {
+          "layer": "assign_conditional",
+          "args": {
+            "condition": "ARMCD != ' '",
+            "else_value": "N",
+            "target": "ITTFL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "Y if ARMCD ne ' '. N otherwise",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "Y where ARMCD is non-blank, N otherwise; ARMCD is present in ADSL from dm base. Condition uses comparison against a blank string literal."
+    }
+  ],
+  "ir_hash": "fd9bb37a",
+  "code_digest": "11941647bde6654315af0e04e929d73a088aae3fd641751cb5063e4d9439ab4f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,41 @@
+{
+  "artifact": "adsl__educlvl__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "EDUCLVL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "sc",
+            "filter": "SCTESTCD == 'EDLEVEL'",
+            "mode": "first",
+            "order": "SCSTRESN",
+            "source": "SCSTRESN",
+            "target": "EDUCLVL"
+          }
+        }
+      ],
+      "spec_origin": "SC.SCSTRESN where SC.SCTESTCD=EDLEVEL",
+      "confidence": 0.75,
+      "needs_human": false,
+      "rationale": "Pull SCSTRESN from sc where SCTESTCD='EDLEVEL'; merged into ADSL by STUDYID/USUBJID."
+    }
+  ],
+  "ir_hash": "d61df4fa",
+  "code_digest": "eb620dfaa0d8b7ecd210c98a31df5ee94aef638c5bee0aed79fe2348e6b1d373",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

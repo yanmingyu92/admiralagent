@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__efffl__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "EFFFL",
+      "steps": [],
+      "spec_origin": "Y if SAFFL='Y AND subject has at least one record in QS for ADAS-Cog with VISITNUM>3 AND at least one record in QS for CIBIC+ with VISITNUM>3, N otherwise",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Requires existence checks against QS records for ADAS-Cog and CIBIC+ with VISITNUM>3 (parameter/visit dependent record-existence logic across another dataset). Cannot be expressed with the available layers without external record-count lookups; human review required."
+    }
+  ],
+  "ir_hash": "aee75e7a",
+  "code_digest": "572c24b5ad71a5dee79100e2566e96e07d72cafc851f76b2fc2ff56bf6cec599",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

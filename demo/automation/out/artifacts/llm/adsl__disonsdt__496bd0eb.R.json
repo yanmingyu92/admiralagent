@@ -1,0 +1,51 @@
+{
+  "artifact": "adsl__disonsdt__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DISONSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID"
+            ],
+            "dataset_add": "mh",
+            "filter": "MHCAT == 'PRIMARY DIAGNOSIS'",
+            "mode": "first",
+            "order": "MHSTDTC",
+            "source": "MHSTDTC",
+            "target": "DISONSDT"
+          }
+        },
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "MHSTDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "DISONSDT"
+          }
+        }
+      ],
+      "spec_origin": "MH.MHSTDTC where MHCAT='PRIMARY DIAGNOSIS' converted to SAS date",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "Pull MHSTDTC from mh where MHCAT='PRIMARY DIAGNOSIS' as a character DTC requiring imputation; imputation policy (highest_imputation, date_imputation) is not stated in the spec, requiring human review."
+    }
+  ],
+  "ir_hash": "a3feb2e1",
+  "code_digest": "bed3d7d330e9faca78c296cc73ea6786bf9113ea046eec0931170e4428d44d3d",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

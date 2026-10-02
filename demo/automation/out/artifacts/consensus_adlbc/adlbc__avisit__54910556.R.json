@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__avisit__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "AVISIT",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 0,
+      "needs_human": true,
+      "rationale": "Derivation text is contradictory/ambiguous: labels a visit but describes a 'Y' flag logic with discontinuation handling. Not expressible with the layer vocabulary."
+    }
+  ],
+  "ir_hash": "908c551c",
+  "code_digest": "e1f45ed920c955db4f2e41a9d013cecb2ba182498a1762e2cc937c5d324b9c8e",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:39-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

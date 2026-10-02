@@ -1,0 +1,763 @@
+{
+  "artifact": "adlbc__program__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "STUDYID copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SUBJID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SUBJID",
+            "target": "SUBJID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SUBJID",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "SUBJID copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "USUBJID",
+      "steps": [],
+      "spec_origin": "Copied directly from ADSL.USUBJID",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "USUBJID is copied from ADSL, but it is the unique subject identifier used as the merge key to bring all other ADSL variables into ADLBC; keying a merge on the target column itself creates a cyclic dependency, so this requires human review of the merge strategy."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTP",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01P",
+            "target": "TRTP"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01P",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTP pulls ADSL.TRT01P into ADLBC via a merge keyed on USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTPN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01PN",
+            "target": "TRTPN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01PN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTPN pulls ADSL.TRT01PN into ADLBC via a merge keyed on USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTA",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01A",
+            "target": "TRTA"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01A",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTA pulls ADSL.TRT01A into ADLBC via a merge keyed on USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTAN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRT01AN",
+            "target": "TRTAN"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.TRT01AN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTAN pulls ADSL.TRT01AN into ADLBC via a merge keyed on USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTSDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTSDT",
+            "target": "TRTSDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTSDT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTSDT copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "TRTEDT",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "TRTEDT",
+            "target": "TRTEDT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.TRTEDT",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "TRTEDT copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AGE copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGEGR1",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AGEGR1 copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AGEGR1N",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1N",
+            "target": "AGEGR1N"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.AGEGR1N",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "AGEGR1N copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "RACE copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACEN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "RACEN copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SEX",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SEX",
+            "target": "SEX"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SEX",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "SEX copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "COMP24FL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "COM01P24FL",
+            "target": "COMP24FL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.COM01P24FL",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "COMP24FL copies the ADSL source variable COM01P24FL into ADLBC under a new name via merge keyed on USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "DSRAEFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "DSR01AEFL",
+            "target": "DSRAEFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.DSR01AEFL",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "DSRAEFL copies the ADSL source variable DSR01AEFL into ADLBC under a new name via merge keyed on USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "SAFFL",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "SAF01FL",
+            "target": "SAFFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.SAF01FL",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "SAFFL copies the ADSL source variable SAF01FL into ADLBC under a new name via merge keyed on USUBJID."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVISIT",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 0.15,
+      "needs_human": true,
+      "rationale": "The derivation is an ambiguous narrative conflating a visit label with a flag-style last-observation rule; it references VISITNUM and analyte-level last assessment logic that cannot be expressed as a single deterministic layer, so human review is required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVISITN",
+      "steps": [],
+      "spec_origin": "Analysis Visit (N)",
+      "confidence": 0.15,
+      "needs_human": true,
+      "rationale": "The derivation is only the label 'Analysis Visit (N)' with no source variable or mapping rule; the numeric visit mapping cannot be determined from the spec, so human review is required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ADY",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBDY",
+            "target": "ADY"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDY",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBDY is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ADT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "LBDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "ADT"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBDTC",
+      "confidence": 0.6,
+      "needs_human": true,
+      "rationale": "ADT derives from the LB.LBDTC character date, but the spec gives no imputation rule; a default day-first imputation is applied and flagged for human confirmation."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "VISIT",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "VISIT",
+            "target": "VISIT"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.VISIT",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.VISIT is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "VISITNUM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "VISITNUM",
+            "target": "VISITNUM"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.VISITNUM",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.VISITNUM is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAM",
+      "steps": [],
+      "spec_origin": "Concatenated LB.LBTEST, '(', LB.LBSTRESU and ')'",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "The derivation concatenates LB.LBTEST, '(', LB.LBSTRESU and ')' with literal parentheses; string concatenation with embedded literals is not expressible in the compute_var arithmetic sublanguage, so this requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMCD",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TESTCD",
+            "target": "PARAMCD"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.TESTCD",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.TESTCD is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARAMN",
+      "steps": [],
+      "spec_origin": "Numeric code for Parameter",
+      "confidence": 0.15,
+      "needs_human": true,
+      "rationale": "The derivation only states 'Numeric code for Parameter' with no source variable or numeric mapping/codelist, so the assignment cannot be determined and requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "PARCAT1",
+      "steps": [],
+      "spec_origin": "Parameter Category 1",
+      "confidence": 0.15,
+      "needs_human": true,
+      "rationale": "The derivation is only the label 'Parameter Category 1' with no source variable or rule, so the assigned value cannot be determined and requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AVAL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTRESN",
+            "target": "AVAL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBSTRESN is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BASE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRHI",
+            "target": "BASE"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "BASE (baseline value) is mapped to LB.LBSTNRHI, the reference high limit of the normal range, which is inconsistent with a baseline analysis value; this likely improper mapping requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "CHG",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL - BASE",
+            "target": "CHG"
+          }
+        }
+      ],
+      "spec_origin": "AVAL - BASE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "CHG is arithmetic on existing columns AVAL and BASE, produced by earlier steps."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "A1LO",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRLO",
+            "target": "A1LO"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRLO",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBSTNRLO is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "A1HI",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRHI",
+            "target": "A1HI"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBSTNRHI is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1LO",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL / A1LO",
+            "target": "R2A1LO"
+          }
+        }
+      ],
+      "spec_origin": "AVAL / A1LO",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "R2A1LO is arithmetic on existing columns AVAL and A1LO, produced by earlier steps."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1HI",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL / A1HI",
+            "target": "R2A1HI"
+          }
+        }
+      ],
+      "spec_origin": "AVAL / A1HI",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "R2A1HI is arithmetic on existing columns AVAL and A1HI, produced by earlier steps."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1LO",
+      "steps": [],
+      "spec_origin": "AVAL / A1LO at baseline",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "The derivation 'AVAL / A1LO at baseline' requires selecting the baseline record to compute the ratio, which needs an explicit baseline flag/selection rule not provided, so human review is required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BR2A1HI",
+      "steps": [],
+      "spec_origin": "AVAL / A1HI at baseline",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "The derivation 'AVAL / A1HI at baseline' requires selecting the baseline record to compute the ratio, which needs an explicit baseline flag/selection rule not provided, so human review is required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ANL01FL",
+      "steps": [
+        {
+          "layer": "extreme_flag",
+          "args": {
+            "by_vars": [
+              "STUDYID",
+              "USUBJID",
+              "PARAMCD"
+            ],
+            "mode": "last",
+            "order": "ALBTRVAL",
+            "target": "ANL01FL",
+            "true_value": "Y"
+          }
+        }
+      ],
+      "spec_origin": "If ALBTRVAL = max(ALBTRVAL) then ANL01FL is 'Y'",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "The rule flags the record where ALBTRVAL equals its maximum (max(ALBTRVAL)); extreme_flag with mode=last on AVAL approximates this but max() selection semantics and the exact by_vars grouping are not specified, so human review is required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ALBTRVAL",
+      "steps": [],
+      "spec_origin": "Maximum of [LBSTRESN-(1.5*ULN)] and [(.5*LLN) - LBSTRESN]",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "The derivation uses max() over two arithmetic expressions of LBSTRESN with ULN/LLN constants; max() is a function call not allowed in the compute_var sublanguage, and ULN/LLN reference columns are ambiguous, so human review is required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ANRIND",
+      "steps": [],
+      "spec_origin": "if AVAL < [0.5*LBSTNRLO) then ANRIND = 'Y' else if AVAL > [0.5*LBSTRNHI),'H','N'",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "The derivation text is malformed, referencing bracket mismatches and inconsistent output values ('H','N','Y') across a low/high range comparison; the intent cannot be reliably reconstructed and requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "BNRIND",
+      "steps": [],
+      "spec_origin": "if BASE < [0.5*LBSTNRLO) then ANRIND = 'Y' else if BASE > [0.5*LBSTRNHI),'H','N'",
+      "confidence": 0.2,
+      "needs_human": true,
+      "rationale": "The derivation text is malformed, referencing bracket mismatches and inconsistent output values ('Y','H','N') across a low/high range comparison of BASE against half the normal limits; the intent cannot be reliably reconstructed and requires human review."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "ABLFL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBBLFL",
+            "target": "ABLFL"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBBLFL",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBBLFL is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "AENTMTFL",
+      "steps": [],
+      "spec_origin": "Last observed value for this lab parameter during treatment phase: 'Y' if VISITNUM=12, if subject discontinues prior to VISIT 12, then this variable is set to 'Y' if this is the last assessment of this analyte for the subject",
+      "confidence": 0.15,
+      "needs_human": true,
+      "rationale": "The derivation is an ambiguous narrative conflating a visit label with a flag-style last-observation rule; it references VISITNUM and analyte-level last assessment logic that cannot be expressed as a single deterministic layer, so human review is required."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSEQ",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSEQ",
+            "target": "LBSEQ"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSEQ",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBSEQ is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBNRIND",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBNRIND",
+            "target": "LBNRIND"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBNRIND",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBNRIND is already present in the target base and is copied directly with assign."
+    },
+    {
+      "dataset": "ADLBC",
+      "variable": "LBSTRESN",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTRESN",
+            "target": "LBSTRESN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from LB.LBSTRESN",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "ADLBC is built from the LB domain, so LB.LBSTRESN is already present in the target base and is copied directly with assign."
+    }
+  ],
+  "ir_hash": "fee449dc",
+  "code_digest": "cbb23df80a99ef378a10fd653660badf9aa09fed06ab320c5f5b4a7a69005b63",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": false,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:37-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

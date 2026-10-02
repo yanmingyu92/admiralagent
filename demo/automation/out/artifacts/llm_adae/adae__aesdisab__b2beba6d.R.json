@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aesdisab__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AESDISAB",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AESDISAB",
+            "target": "AESDISAB"
+          }
+        }
+      ],
+      "spec_origin": "AE.AESDISAB",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AESDISAB originates in the AE domain that seeds ADAE, so it is a direct copy from the target base rather than a cross-dataset merge."
+    }
+  ],
+  "ir_hash": "b7a13d40",
+  "code_digest": "04d092a6a4e59099dcc5a14d74d940d457c9c797ac99874f18c97e3bf8894b3f",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:28-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

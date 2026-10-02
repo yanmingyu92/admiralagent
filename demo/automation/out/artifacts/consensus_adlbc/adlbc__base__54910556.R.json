@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__base__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "BASE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRHI",
+            "target": "BASE"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRHI",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "ADLBC is built from LB, so LBSTNRHI is present in the target base; direct copy. Note spec maps the normal high range value to BASE, which is unusual but taken verbatim."
+    }
+  ],
+  "ir_hash": "fd49ef40",
+  "code_digest": "2b5c5b16c0aa0b6fe27fd713d1280150d6bccee903f98d0c66a511564396f80b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:40-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

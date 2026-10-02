@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__durdis__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "DURDIS",
+      "steps": [],
+      "spec_origin": "number of months between VISIT1DT and DISONSET",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "DURDIS is months between VISIT1DT and DISONSET; VISIT1DT is not a spec column and DISONSET differs from the derived DISONSDT, so the endpoints are ambiguous. Human review required."
+    }
+  ],
+  "ir_hash": "12d5085b",
+  "code_digest": "f4d9b0adafc7eac1a9000102868fd688fa11479986e216092128fba3999b9c17",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

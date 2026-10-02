@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__ethnic__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "ETHNIC",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ETHNIC",
+            "target": "ETHNIC"
+          }
+        }
+      ],
+      "spec_origin": "DM.ETHNIC",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from dm, so ETHNIC is already present in the target base; copy directly."
+    }
+  ],
+  "ir_hash": "4906b3b7",
+  "code_digest": "3a277b451994dad9ce954fc272746534285649b7a698b789ca8f0851e926c9ab",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

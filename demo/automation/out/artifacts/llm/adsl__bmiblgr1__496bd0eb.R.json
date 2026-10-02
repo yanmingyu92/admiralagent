@@ -1,0 +1,45 @@
+{
+  "artifact": "adsl__bmiblgr1__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "BMIBLGR1",
+      "steps": [
+        {
+          "layer": "categorize",
+          "args": {
+            "breaks": [
+              0,
+              25,
+              30,
+              "Inf"
+            ],
+            "from": "BMIBL",
+            "labels": [
+              "<25",
+              "25-<30",
+              ">=30"
+            ],
+            "right": false,
+            "target": "BMIBLGR1"
+          }
+        }
+      ],
+      "spec_origin": "BMIBLGR1=\"<25\" if . < BMIBL <25. BMIBLGR1=\"25-<30\" if 25 <=BMIBL <30. BMIBLGR1=\">=30\"if BMIBL >=30.",
+      "confidence": 0.7,
+      "needs_human": false,
+      "rationale": "BMIBLGR1 groups: <25, 25-<30, >=30; intervals left-closed (right=FALSE) to match 25<=BMIBL<30 and BMIBL>=30 semantics."
+    }
+  ],
+  "ir_hash": "aa93e741",
+  "code_digest": "08dd11098235c0d821ed28b5a9a110c60a25b134527e53e69c3235a7a657412d",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

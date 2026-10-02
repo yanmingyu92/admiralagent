@@ -1,0 +1,36 @@
+{
+  "artifact": "adlbc__racen__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "RACEN",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACEN",
+            "target": "RACEN"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.RACEN",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "RACEN copied from ADSL, a separate source dataset, so it is merged in by USUBJID."
+    }
+  ],
+  "ir_hash": "8d358eb6",
+  "code_digest": "82c85aff67648e4312a807bffdac92f701a8b7464b1da5f0996cecd57d7a769d",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

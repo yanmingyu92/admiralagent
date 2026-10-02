@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__a1lo__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "A1LO",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "LBSTNRLO",
+            "target": "A1LO"
+          }
+        }
+      ],
+      "spec_origin": "LB.LBSTNRLO",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "ADLBC is built from LB, so LBSTNRLO is present in the target base; direct copy."
+    }
+  ],
+  "ir_hash": "9290f411",
+  "code_digest": "744a82bfbbc1772b25552a49dfd809991c3f48257dfdaf35de88ef77b0f7668a",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:40-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

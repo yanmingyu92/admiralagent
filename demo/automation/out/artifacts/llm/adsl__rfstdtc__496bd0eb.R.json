@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__rfstdtc__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "RFSTDTC",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "RFSTDTC",
+            "target": "RFSTDTC"
+          }
+        }
+      ],
+      "spec_origin": "DM.RFSTDTC",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from dm, so RFSTDTC is already present in the target base; copy directly as a character predecessor value."
+    }
+  ],
+  "ir_hash": "34fadda5",
+  "code_digest": "0ef2a20789452daf922fd2e961b7a3facbb1c325cdd6e5990f04160204d32b08",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

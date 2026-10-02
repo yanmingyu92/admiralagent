@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__saffl__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "SAFFL",
+      "steps": [],
+      "spec_origin": "Y if ITTFL='Y' and TRTSDT ne missing. N otherwise",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Condition requires a missingness check (TRTSDT ne missing) and setting 'N' otherwise; the filter sublanguage cannot express is.na()-style missingness checks, so this must be routed to human review."
+    }
+  ],
+  "ir_hash": "d491828d",
+  "code_digest": "0bea0dff32797231fb6a1427cde205b20ba3805e7a98ad9e879f020e9f17ed43",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

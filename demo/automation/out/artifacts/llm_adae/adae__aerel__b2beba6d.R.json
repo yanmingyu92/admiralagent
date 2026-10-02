@@ -1,0 +1,33 @@
+{
+  "artifact": "adae__aerel__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AEREL",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AEREL",
+            "target": "AEREL"
+          }
+        }
+      ],
+      "spec_origin": "AE.AEREL",
+      "confidence": 0.85,
+      "needs_human": false,
+      "rationale": "AEREL originates in the AE domain that seeds ADAE, so it is a direct copy from the target base rather than a cross-dataset merge."
+    }
+  ],
+  "ir_hash": "01f7f36b",
+  "code_digest": "52ed94e9372162efa6db5665a23caca9e05c4548be7559d779d4ad3096db47c2",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:28-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

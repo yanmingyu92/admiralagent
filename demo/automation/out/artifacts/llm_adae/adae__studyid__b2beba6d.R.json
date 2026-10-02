@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__studyid__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "STUDYID",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "STUDYID",
+            "target": "STUDYID"
+          }
+        }
+      ],
+      "spec_origin": "Copied directly from ADSL.STUDYID",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "STUDYID comes from the separate ADSL dataset, not the AE domain that seeds ADAE, so a merge_var is required. Note that in practice ADAE is built from the ae domain which already contains STUDYID; but the spec explicitly names adsl as the source."
+    }
+  ],
+  "ir_hash": "24964292",
+  "code_digest": "971f0fb2e7e1130b560ff1521997f5f5adef72fe72655de9079a6284c717a1fd",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:26-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

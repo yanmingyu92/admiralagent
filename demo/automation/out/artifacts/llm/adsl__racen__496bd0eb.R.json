@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__racen__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "RACEN",
+      "steps": [],
+      "spec_origin": "Numeric code for RACE",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Numeric code for RACE requires an external decode/codelist mapping RACE values to numeric codes, which is not provided in the spec."
+    }
+  ],
+  "ir_hash": "d80a20be",
+  "code_digest": "1ffafe607bbbdf7a45a1317dc9b3f10715b8cbd064502ce5e15c84a40f0256a5",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

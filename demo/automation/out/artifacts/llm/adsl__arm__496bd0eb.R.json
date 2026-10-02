@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__arm__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "ARM",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "ARM",
+            "target": "ARM"
+          }
+        }
+      ],
+      "spec_origin": "DM.ARM",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from dm, so ARM is already present in the target base; copy directly."
+    }
+  ],
+  "ir_hash": "d6ca3a92",
+  "code_digest": "aef442b0ae408b3ed1b9366ce175e30740637272e763bb0c79d4bf282a61007c",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,7 +1,7 @@
 "variable","rules","llm","agree"
 "STUDYID","assign","merge_var",FALSE
 "SITEID","assign","merge_var",FALSE
-"USUBJID","assign","needs_human",FALSE
+"USUBJID","assign","assign",TRUE
 "TRTA","assign","merge_var",FALSE
 "TRTAN","assign","merge_var",FALSE
 "AGE","assign","merge_var",FALSE
@@ -45,7 +45,7 @@
 "AEACN","assign","assign",TRUE
 "AEOUT","assign","assign",TRUE
 "AESEQ","assign","assign",TRUE
-"TRTEMFL","needs_human","needs_human",TRUE
+"TRTEMFL","needs_human","assign_conditional",FALSE
 "AOCCFL","needs_human","extreme_flag",FALSE
 "AOCCSFL","needs_human","extreme_flag",FALSE
 "AOCCPFL","needs_human","extreme_flag",FALSE

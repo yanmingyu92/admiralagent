@@ -1,7 +1,7 @@
 "variable","rules","llm","agree"
 "STUDYID","assign","merge_var",FALSE
 "SUBJID","assign","merge_var",FALSE
-"USUBJID","assign","assign",TRUE
+"USUBJID","assign","needs_human",FALSE
 "TRTP","assign","merge_var",FALSE
 "TRTPN","assign","merge_var",FALSE
 "TRTA","assign","merge_var",FALSE
@@ -28,7 +28,7 @@
 "PARAMN","needs_human","needs_human",TRUE
 "PARCAT1","needs_human","needs_human",TRUE
 "AVAL","assign","assign",TRUE
-"BASE","assign","assign",TRUE
+"BASE","assign","needs_human",FALSE
 "CHG","compute_var","compute_var",TRUE
 "A1LO","assign","assign",TRUE
 "A1HI","assign","assign",TRUE

@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__trt01a__1141e7d3.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "TRT01A",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "TRT01P",
+            "target": "TRT01A"
+          }
+        }
+      ],
+      "spec_origin": "TRT01A=TRT01P, i.e., no difference between actual and randomized treatment in this study.",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "Explicit statement that actual equals planned treatment (no difference); direct copy of TRT01P."
+    }
+  ],
+  "ir_hash": "f71a4e0a",
+  "code_digest": "a9f39175056a8a24ac7a4c0249a82c497fbd9cdb3f6e29c4d68f359b473878ce",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:17-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

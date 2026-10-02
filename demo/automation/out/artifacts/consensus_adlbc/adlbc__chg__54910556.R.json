@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__chg__54910556.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek-consensus3",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "CHG",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL - BASE",
+            "target": "CHG"
+          }
+        }
+      ],
+      "spec_origin": "AVAL - BASE",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "Column-wise arithmetic using existing AVAL and BASE columns in the BDS dataset."
+    }
+  ],
+  "ir_hash": "ff3f7cd9",
+  "code_digest": "429bfca3fb978ef858201ff86a7eaab2d74b921685872a00b17508de441774ad",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:40-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

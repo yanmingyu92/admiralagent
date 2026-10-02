@@ -1,0 +1,25 @@
+{
+  "artifact": "adlbc__parcat1__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "PARCAT1",
+      "steps": [],
+      "spec_origin": "Parameter Category 1",
+      "confidence": 0.15,
+      "needs_human": true,
+      "rationale": "The derivation is only the label 'Parameter Category 1' with no source variable or rule, so the assigned value cannot be determined and requires human review."
+    }
+  ],
+  "ir_hash": "719c6de8",
+  "code_digest": "800776d3a621d72d50d8700e49b0c1b83e7bfdb99528d69d3ad1c88425565f4b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

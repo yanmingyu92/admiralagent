@@ -1,0 +1,25 @@
+{
+  "artifact": "adsl__comp24fl__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "COMP24FL",
+      "steps": [],
+      "spec_origin": "Y if subject has a SV.VISITNUM=12 and ENDDT>= date of visit 12 , N otherwise",
+      "confidence": 0.3,
+      "needs_human": true,
+      "rationale": "Requires existence of a SV record at VISITNUM=12 plus comparison of an ENDDT (not in spec) against the visit 12 date pulled from SV. The ENDDT source and visit-date merge are ambiguous; human review required."
+    }
+  ],
+  "ir_hash": "19c90b23",
+  "code_digest": "ca2dcce2ddc4bdaa7c665f4043e2b31346fe016fd578d4d88188acfebc5685df",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__race__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "RACE",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "RACE",
+            "target": "RACE"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.RACE",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "RACE is sourced from the separate subject-level ADSL dataset, so a merge_var keyed on USUBJID is used."
+    }
+  ],
+  "ir_hash": "73f65ea4",
+  "code_digest": "3a0dabd0c4d5cde40029f26a6fba170b1df4ccfde2a2109ad70eb4e572046a56",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

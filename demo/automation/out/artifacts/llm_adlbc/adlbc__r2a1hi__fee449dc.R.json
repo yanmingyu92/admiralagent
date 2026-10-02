@@ -1,0 +1,33 @@
+{
+  "artifact": "adlbc__r2a1hi__fee449dc.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADLBC",
+      "variable": "R2A1HI",
+      "steps": [
+        {
+          "layer": "compute_var",
+          "args": {
+            "formula": "AVAL / A1HI",
+            "target": "R2A1HI"
+          }
+        }
+      ],
+      "spec_origin": "AVAL / A1HI",
+      "confidence": 0.9,
+      "needs_human": false,
+      "rationale": "R2A1HI is arithmetic on existing columns AVAL and A1HI, produced by earlier steps."
+    }
+  ],
+  "ir_hash": "20cca4dd",
+  "code_digest": "7873b076ab99d3d2d06ce685e6f86b6ee0ed732ab92bad3b910c2e1aae566ca1",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:38-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

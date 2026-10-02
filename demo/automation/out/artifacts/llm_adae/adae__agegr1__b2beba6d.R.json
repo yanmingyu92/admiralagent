@@ -1,0 +1,36 @@
+{
+  "artifact": "adae__agegr1__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "AGEGR1",
+      "steps": [
+        {
+          "layer": "merge_var",
+          "args": {
+            "by_vars": "USUBJID",
+            "dataset_add": "adsl",
+            "mode": "first",
+            "source": "AGEGR1",
+            "target": "AGEGR1"
+          }
+        }
+      ],
+      "spec_origin": "ADSL.AGEGR1",
+      "confidence": 0.8,
+      "needs_human": false,
+      "rationale": "Pooled age group is pulled from ADSL.AGEGR1 via a subject-level merge keyed on USUBJID."
+    }
+  ],
+  "ir_hash": "e130db14",
+  "code_digest": "ff406249299c37766a12d0dac01cfc0142fbedfa0b0ff50a7a14a0bb4a744fb8",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

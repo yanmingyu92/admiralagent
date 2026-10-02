@@ -1,0 +1,33 @@
+{
+  "artifact": "adsl__age__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "AGE",
+      "steps": [
+        {
+          "layer": "assign",
+          "args": {
+            "from": "AGE",
+            "target": "AGE"
+          }
+        }
+      ],
+      "spec_origin": "DM.AGE",
+      "confidence": 0.95,
+      "needs_human": false,
+      "rationale": "ADSL is seeded from dm, so AGE is already present in the target base; copy directly."
+    }
+  ],
+  "ir_hash": "c2e4d39a",
+  "code_digest": "9b184fab0cb5f834ca351f7d842c3b053bc385fe7f1ec6bbc1ef805c937a0f12",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:15-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

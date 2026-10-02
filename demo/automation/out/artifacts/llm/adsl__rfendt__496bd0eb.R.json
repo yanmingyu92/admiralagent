@@ -1,0 +1,36 @@
+{
+  "artifact": "adsl__rfendt__496bd0eb.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADSL",
+      "variable": "RFENDT",
+      "steps": [
+        {
+          "layer": "impute_dtc",
+          "args": {
+            "date_imputation": "first",
+            "dtc": "RFENDTC",
+            "highest_imputation": "D",
+            "output_class": "dt",
+            "target": "RFENDT"
+          }
+        }
+      ],
+      "spec_origin": "RFENDTC converted to SAS date",
+      "confidence": 0.55,
+      "needs_human": true,
+      "rationale": "RFENDT is RFENDTC converted to a SAS date; as a partial-date character, imputation policy (highest_imputation, date_imputation) is not stated in the spec, requiring human review."
+    }
+  ],
+  "ir_hash": "257cc146",
+  "code_digest": "67c023ee77a322d2e5f6e745c0fd623be9dba10d1c6d5a48fb6687b4816e1962",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:16-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}

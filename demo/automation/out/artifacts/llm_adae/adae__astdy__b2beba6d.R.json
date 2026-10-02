@@ -1,0 +1,25 @@
+{
+  "artifact": "adae__astdy__b2beba6d.R",
+  "package_version": "0.1.0",
+  "backend": "llm-deepseek",
+  "model": "deepseek-chat",
+  "ir": [
+    {
+      "dataset": "ADAE",
+      "variable": "ASTDY",
+      "steps": [],
+      "spec_origin": "IF ASTDT>=TRTSDT>MISSING then ASTDY=ASTDT-TRTSDT+1 Else if TRTSDT>ASTDT>MISSING then ASTDY=ASTDT-TRTSDT",
+      "confidence": 0.4,
+      "needs_human": true,
+      "rationale": "ASTDY uses a conditional day-relative formula with two branches (ASTDT>=TRTSDT gives +1 inclusive, TRTSDT>ASTDT gives exclusive). This mixed inclusive/exclusive conditional arithmetic cannot be expressed by compute_var (which requires a single expression with no conditionals) nor by assign_conditional. Needs human review."
+    }
+  ],
+  "ir_hash": "d29e823a",
+  "code_digest": "bbebe189c6c5b5025321b1fbdbee09dc6eab8e090ae8c9a924446acbf6e2716b",
+  "gate": null,
+  "release_grade": "ungated-draft",
+  "gate_enforced": null,
+  "validation": null,
+  "created_at": "2026-10-01T20:05:27-0400",
+  "disclaimer": "DRAFT generated code; human review required before regulated use"
+}
