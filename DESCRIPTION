@@ -1,15 +1,16 @@
 Package: admiralagent
-Type: Package
 Title: Spec-Driven ADaM Code Generation with LLM-Translated Layers
 Version: 0.1.0
-Authors@R: person("Jaime", "Yan", role = c("aut", "cre"), email = "yanmingyu92@users.noreply.github.com")
+Authors@R: person("Jaime", "Yan", role = c("aut", "cre"), email = "yanmingyunmt@gmail.com")
 Description: Translates P21-style ADaM specifications into executable
-    admiral code with validation comments. An LLM (optional, via ellmer) maps
-    each spec variable's free-text derivation onto a closed vocabulary of
-    derivation layers (structured JSON IR); a deterministic compiler renders
-    the IR into admiral/metatools code with 'CHECK' validation comments and
-    writes provenance sidecars. Ships with a zero-dependency rule-based
-    classifier as baseline and fallback.
+    'admiral' code with validation comments. An LLM (optional, via
+    'ellmer') maps each spec variable's free-text derivation onto a
+    closed vocabulary of derivation layers (structured JSON IR); a
+    deterministic compiler renders the IR into 'admiral'/'metatools'
+    code with 'CHECK' validation comments and writes provenance
+    sidecars. Ships with a zero-dependency rule-based classifier as
+    baseline and fallback; the LLM never writes R code directly and all
+    model output is validated against the closed vocabulary before use.
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/yanmingyu92/admiralagent

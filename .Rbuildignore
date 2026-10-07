@@ -24,3 +24,6 @@
 ^\.lintr$
 
 ^audit$
+
+^docs-drafts$
+^\.tmplib$
