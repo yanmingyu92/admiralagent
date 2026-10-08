@@ -29,3 +29,4 @@ admiralagent.Rcheck/
 # never committed (removed from git history before open-sourcing; ROADMAP A4)
 .agents/
 .tmplib/
+CRAN-SUBMISSION
