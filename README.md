@@ -2,6 +2,8 @@
 
 [![R-CMD-check](https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml)
 [![testthat](https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml/badge.svg)](https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml)
+[![r-universe status](https://yanmingyu92.r-universe.dev/badges/admiralagent/checks)](https://yanmingyu92.r-universe.dev/admiralagent)
+[![r-universe version](https://yanmingyu92.r-universe.dev/badges/admiralagent/version)](https://yanmingyu92.r-universe.dev/admiralagent)
 
 Spec-driven ADaM code generation with LLM-translated layers.
 
@@ -11,7 +13,10 @@ deterministic compiler then emits executable `{admiral}` code with `# CHECK:`
 validation comments, plus a provenance sidecar.
 
 ```r
-# install.packages("pak"); pak::pak("yanmingyu92/admiralagent")   # GitHub
+# Install from r-universe (prebuilt binaries for Windows/macOS/Linux):
+# install.packages("admiralagent", repos = c(
+#   "https://yanmingyu92.r-universe.dev", "https://cloud.r-project.org"))
+# Dev version from GitHub: pak::pak("yanmingyu92/admiralagent")
 spec <- mock_spec_adsl()
 
 ir <- classify_variables(spec, "ADSL", backend = "rules")   # zero-dependency baseline
