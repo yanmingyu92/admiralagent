@@ -5,10 +5,6 @@ description: >
   DeepSeek: what automated cleanly, what needed humans, what failed, and the
   honest limits.
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{CDISC Pilot 5 Automation Showcase}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}

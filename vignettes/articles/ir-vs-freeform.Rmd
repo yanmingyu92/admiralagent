@@ -5,10 +5,6 @@ description: >
   same spec two ways — into the closed-vocabulary Layer IR, or directly into
   executable R. What each arm wins, and what each arm silently gets wrong.
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Constrained IR vs Free-Form Code Generation}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}

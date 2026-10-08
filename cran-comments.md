@@ -8,13 +8,18 @@
 
 ## R CMD check results (local, 0.1.0)
 
-0 errors | 0 warnings | (notes recorded below)
+0 errors | 0 warnings | 1 NOTE
 
-Notes:
-- `* checking for future file timestamps ... Unable to verify current time`
-  (offline time check; environment-only, disappears on machines with
-  internet access)
-- New submission — first CRAN release of this package.
+- New submission (first CRAN release).
+- win-builder first round flagged 2 vignette WARNINGs caused by
+  prebuilt-vignette omission in the uploaded tarball; fixed by building
+  with pandoc available and by converting the three pkgdown-style
+  articles in `vignettes/articles/` to plain Rmd (vignette headers
+  removed — they are rendered as pkgdown articles, not R vignettes).
+  Local re-check after the fix: 0 errors, 0 warnings, 1 NOTE.
+- "Possibly misspelled words in DESCRIPTION: ADaM" (if flagged on
+  win-builder) is the CDISC Analysis Data Model acronym, used
+  deliberately throughout clinical reporting.
 
 ## Reverse dependencies
 

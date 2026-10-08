@@ -5,10 +5,6 @@ description: >
   end: spec text, Layer IR, gate result, rendered code, execution, oracle
   number — plus what the artifacts and audit log record about them.
 output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Anatomy of a Derivation}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
