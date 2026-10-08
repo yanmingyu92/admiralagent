@@ -58,11 +58,14 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="admiralagent">admiralagent<a class="anchor" aria-label="anchor" href="#admiralagent"></a>
 </h1></div>
-<p><a href="https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml" class="external-link"><img src="https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml/badge.svg" alt="testthat"></a></p>
+<p><a href="https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml" class="external-link"><img src="https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml/badge.svg" alt="testthat"></a> <a href="https://yanmingyu92.r-universe.dev/admiralagent" class="external-link"><img src="https://yanmingyu92.r-universe.dev/badges/admiralagent/checks" alt="r-universe status"></a> <a href="https://yanmingyu92.r-universe.dev/admiralagent" class="external-link"><img src="https://yanmingyu92.r-universe.dev/badges/admiralagent/version" alt="r-universe version"></a></p>
 <p>Spec-driven ADaM code generation with LLM-translated layers.</p>
 <p><strong>Idea</strong>: the LLM never writes R code. It only translates each spec variable’s free-text derivation into a <em>layer IR</em> drawn from a closed vocabulary; a deterministic compiler then emits executable <a href="https://pharmaverse.github.io/admiral/" class="external-link">admiral</a> code with <code># CHECK:</code> validation comments, plus a provenance sidecar.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("pak"); pak::pak("yanmingyu92/admiralagent")   # GitHub</span></span>
+<code class="sourceCode R"><span><span class="co"># Install from r-universe (prebuilt binaries for Windows/macOS/Linux):</span></span>
+<span><span class="co"># install.packages("admiralagent", repos = c(</span></span>
+<span><span class="co">#   "https://yanmingyu92.r-universe.dev", "https://cloud.r-project.org"))</span></span>
+<span><span class="co"># Dev version from GitHub: pak::pak("yanmingyu92/admiralagent")</span></span>
 <span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/mock_spec_adsl.html">mock_spec_adsl</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ir</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/classify_variables.html">classify_variables</a></span><span class="op">(</span><span class="va">spec</span>, <span class="st">"ADSL"</span>, backend <span class="op">=</span> <span class="st">"rules"</span><span class="op">)</span>   <span class="co"># zero-dependency baseline</span></span>
