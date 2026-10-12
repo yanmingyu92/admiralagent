@@ -181,7 +181,7 @@ dependency_graph <- function(ir, known_columns = character()) {
     pick <- ready[order(ranks[ready], ready)][1]
     placed <- c(placed, pick)
   }
-  list(order = placed, blocked = blocked, duplicate = duplicate)
+  list(order = placed, blocked = blocked, duplicate = duplicate, parents = parents)
 }
 
 #' Report undefined step inputs in an IR
@@ -346,3 +346,56 @@ graph_cycles <- function(nodes, edges) {
 }
 
 filter_parameters <- function(text) predicate_paramcd_values(parse_predicate(text))
+
+#' Plan the derivation routing for an IR
+#'
+#' @description Derives the execution routing directly from spec lineage
+#'   instead of a hand-registered process DAG: topological waves (a variable
+#'   enters wave k only when every variable it references landed in an earlier
+#'   wave), per-variable dependencies, and the two fail-closed lanes —
+#'   variables blocked by dependency cycles and variables routed to human
+#'   review. The ordering is computed, not declared; [validate_ir()] refuses
+#'   cyclic specs outright, so a plan built from a validated IR always
+#'   exists.
+#' @title Dependency routing plan
+#' @param ir List of `aa_variable_ir` objects.
+#' @param known_columns Character vector of column names assumed to pre-exist
+#'   in the source data (e.g. SDTM base columns).
+#' @return A data.frame with columns `variable`, `wave` (0-based topological
+#'   level; `NA` for cycle-blocked or human-routed variables), `depends_on`
+#'   (comma-joined variable names produced earlier in the same IR),
+#'   `layers` (layer chain or `"needs_human"`), and `needs_human`. Attributes:
+#'   `blocked` (cycle-blocked variables) and `duplicate` (columns produced by
+#'   more than one variable).
+#' @export
+routing_plan <- function(ir, known_columns = character()) {
+  assert_ir_shape(ir, allow_empty = TRUE)
+  assert_known_columns(known_columns)
+  graph <- dependency_graph(ir, known_columns)
+  n <- length(ir)
+  vars <- vapply(ir, function(v) v$variable, character(1))
+  nh <- vapply(ir, function(v) isTRUE(v$needs_human), logical(1))
+  waves <- rep(NA_integer_, n)
+  # Parents resolve first because the graph order is topological. A blocked
+  # (cyclic) variable keeps wave NA: its parents never all resolve.
+  for (i in graph$order) {
+    ps <- graph$parents[[i]]
+    if (!length(ps)) {
+      waves[i] <- 0L
+    } else if (!any(is.na(waves[ps]))) {
+      waves[i] <- 1L + max(waves[ps])
+    }
+  }
+  waves[nh] <- NA_integer_
+  plan <- data.frame(
+    variable = vars,
+    wave = waves,
+    depends_on = vapply(seq_len(n), function(i) paste(vars[graph$parents[[i]]], collapse = ","), character(1)),
+    layers = vapply(ir, ir_signature, character(1)),
+    needs_human = nh,
+    stringsAsFactors = FALSE
+  )
+  attr(plan, "blocked") <- vars[graph$blocked]
+  attr(plan, "duplicate") <- graph$duplicate
+  plan
+}

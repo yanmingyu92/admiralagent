@@ -33,8 +33,11 @@ List of `aa_variable_ir` objects, one per spec variable, with two
   (`agree`, `disagree`, `rules_abstain`, `llm_abstain`), `rules_fp`,
   `llm_fp` (full fingerprints), `rules_layers`, `llm_layers` (layer
   chains), and `llm_suggestion` (whether the LLM side produced a candidate
-  the reviewer can inspect); and `agreement_rate`, the fraction of
-  variables where both backends produced the same canonical semantics.
+  the reviewer can inspect); `agreement_rate`, the fraction of variables
+  where both backends produced the same canonical semantics; and
+  `llm_candidates`, a named list holding the LLM-side IR for every
+  escalated variable that has one (the reviewer's starting point; never
+  rendered or executed without a human decision).
 }
 \description{
 Runs the deterministic rules classifier and the LLM pipeline

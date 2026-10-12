@@ -1,5 +1,10 @@
 # admiralagent 0.1.0.9000 (development)
 
+- New `routing_plan()`: derives the execution routing directly from spec
+  lineage — topological waves, per-variable dependencies, and the two
+  fail-closed lanes (cycle-blocked and human-routed variables stay waveless).
+  The ordering is computed, not declared, replacing a hand-registered
+  process DAG.
 - New `classify_variables_dual()`: runs the rules classifier and the LLM
   pipeline independently on the same spec, compares the two translations
   per variable at full canonical semantics (`ir_fingerprint(level = "full")`),

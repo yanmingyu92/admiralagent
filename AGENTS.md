@@ -55,5 +55,7 @@ Rscript -e "testthat::test_dir('tests/testthat', reporter='summary')"
 - `classify_variables_dual(spec, dataset, chat)`：rules 与 LLM 独立翻译同一 spec，
   `ir_fingerprint(level="full")` 比对，一致采用 rules IR，任何分歧升级 needs_human
   （`dual_disagreements()` 取人工队列；审计事件 `dual_consensus`，digest-only）
+- `routing_plan(ir)`：从 spec 血缘推导执行路由（拓扑 wave + 每变量依赖），
+  环阻塞与 needs_human 变量不进任何 wave——路由是算出来的，不是手工注册的 DAG
 - `render_program(ir)` / `render_variable(ir)`
 - `run_validation(data, ir)`、`write_artifact(ir, dir = "gen")`
