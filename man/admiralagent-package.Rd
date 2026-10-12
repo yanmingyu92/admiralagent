@@ -6,7 +6,7 @@
 \alias{admiralagent-package}
 \title{admiralagent: Spec-Driven ADaM Code Generation with LLM-Translated Layers}
 \description{
-Translates P21-style ADaM specifications into executable admiral code with validation comments. An LLM (optional, via ellmer) maps each spec variable's free-text derivation onto a closed vocabulary of derivation layers (structured JSON IR); a deterministic compiler renders the IR into admiral/metatools code with 'CHECK' validation comments and writes provenance sidecars. Ships with a zero-dependency rule-based classifier as baseline and fallback.
+Translates P21-style ADaM specifications into executable 'admiral' code with validation comments. An LLM (optional, via 'ellmer') maps each spec variable's free-text derivation onto a closed vocabulary of derivation layers (structured JSON IR); a deterministic compiler renders the IR into 'admiral'/'metatools' code with 'CHECK' validation comments and writes provenance sidecars. Ships with a zero-dependency rule-based classifier as baseline and fallback; the LLM never writes R code directly and all model output is validated against the closed vocabulary before use.
 }
 \seealso{
 Useful links:
@@ -17,11 +17,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jaime Yan \email{yanmingyu92@users.noreply.github.com}
+\strong{Maintainer}: Jaime Yan \email{yanmingyunmt@gmail.com}
 
 Authors:
 \itemize{
-  \item Jaime Yan \email{yanmingyu92@users.noreply.github.com}
+  \item Jaime Yan \email{yanmingyunmt@gmail.com}
 }
 
 }

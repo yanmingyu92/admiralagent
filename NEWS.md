@@ -1,3 +1,14 @@
+# admiralagent 0.1.0.9000 (development)
+
+- New `classify_variables_dual()`: runs the rules classifier and the LLM
+  pipeline independently on the same spec, compares the two translations
+  per variable at full canonical semantics (`ir_fingerprint(level = "full")`),
+  adopts the rules IR on agreement, and escalates any divergence
+  (`disagree` / `rules_abstain` / `llm_abstain`) to `needs_human` — no
+  side is ever silently preferred. The decision is recorded as a
+  digest-only `dual_consensus` audit event; `dual_disagreements()`
+  extracts the human review queue.
+
 # admiralagent 0.1.0
 
 Initial release.

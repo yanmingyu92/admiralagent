@@ -1,6 +1,6 @@
 Package: admiralagent
 Title: Spec-Driven ADaM Code Generation with LLM-Translated Layers
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: person("Jaime", "Yan", role = c("aut", "cre"), email = "yanmingyunmt@gmail.com")
 Description: Translates P21-style ADaM specifications into executable
     'admiral' code with validation comments. An LLM (optional, via

@@ -52,5 +52,8 @@ Rscript -e "testthat::test_dir('tests/testthat', reporter='summary')"
 
 - `mock_spec_adsl()` 示例 spec
 - `classify_variables(spec, dataset, backend = "rules"|"llm")`
+- `classify_variables_dual(spec, dataset, chat)`：rules 与 LLM 独立翻译同一 spec，
+  `ir_fingerprint(level="full")` 比对，一致采用 rules IR，任何分歧升级 needs_human
+  （`dual_disagreements()` 取人工队列；审计事件 `dual_consensus`，digest-only）
 - `render_program(ir)` / `render_variable(ir)`
 - `run_validation(data, ir)`、`write_artifact(ir, dir = "gen")`
