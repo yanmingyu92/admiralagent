@@ -352,7 +352,7 @@ filter_parameters <- function(text) predicate_paramcd_values(parse_predicate(tex
 #' @description Derives the execution routing directly from spec lineage
 #'   instead of a hand-registered process DAG: topological waves (a variable
 #'   enters wave k only when every variable it references landed in an earlier
-#'   wave), per-variable dependencies, and the two fail-closed lanes —
+#'   wave), per-variable dependencies, and the two fail-closed lanes -
 #'   variables blocked by dependency cycles and variables routed to human
 #'   review. The ordering is computed, not declared; [validate_ir()] refuses
 #'   cyclic specs outright, so a plan built from a validated IR always

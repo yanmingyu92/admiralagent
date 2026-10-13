@@ -3,7 +3,7 @@
 # Runs classify_variables_dual() on the mock ADSL spec: the deterministic
 # rules classifier and the LLM translate independently, and any divergence is
 # escalated to human review. The result is recorded as a snapshot for the
-# website demo (jaimeyan.com/admiralagent.html, case 04) — LLM output is not
+# website demo (jaimeyan.com/admiralagent.html, case 04) - LLM output is not
 # reproducible across runs, so the evidence is captured once with the model
 # name and date. Run from the workspace root, like demo_llm.R.
 
@@ -46,7 +46,7 @@ print(dual[, c("variable", "class", "rules_layers", "llm_layers")], row.names = 
 cat(sprintf("\nAgreement rate: %.0f%%\n", 100 * attr(ir, "agreement_rate")))
 
 # Plain (class-free) IR for JSON display: provenance kept, code never rendered
-# from these — they are evidence of what each side concluded.
+# from these - they are evidence of what each side concluded.
 plain_ir <- function(v) {
   if (is.null(v)) return(NULL)
   list(

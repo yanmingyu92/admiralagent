@@ -3,7 +3,7 @@
 # Runs accept_model() on the candidate model with prespecified thresholds and
 # records the verdict as a snapshot for the website demo
 # (jaimeyan.com/admiralagent.html, case 06). The verdict is whatever the gate
-# decides — a REJECTED outcome is a working gate, not a failed demo.
+# decides - a REJECTED outcome is a working gate, not a failed demo.
 # Run from the workspace root, like demo_llm.R.
 
 read_env_file <- function(path) {

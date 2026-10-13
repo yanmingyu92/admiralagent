@@ -5,13 +5,13 @@
 #'   allowed to translate specs: the candidate runs the spec-to-IR regression
 #'   corpus ([run_evals()] machinery) and is cross-compared against the deterministic
 #'   rules baseline at full canonical semantics ([run_agreement()]). Both
-#'   thresholds are required arguments with no defaults — acceptance criteria
+#'   thresholds are required arguments with no defaults - acceptance criteria
 #'   must be prespecified by the deploying organization, not inherited from
 #'   the tool.
 #'
 #'   The decision is fail-closed: any pipeline error rejects the candidate.
 #'   Acceptance certifies translation consistency against a self-scoring
-#'   corpus — not correctness, not fitness for a particular study. Accepted
+#'   corpus - not correctness, not fitness for a particular study. Accepted
 #'   output still passes through `validate_ir()`, the dual-backend consensus,
 #'   and human review like any other IR.
 #' @title Model acceptance gate
@@ -150,7 +150,7 @@ print.aa_model_acceptance <- function(x, ...) {
   cat("  eval accuracy:        ", fmt(x$metrics$eval_accuracy, x$thresholds$min_eval_accuracy), "\n", sep = "")
   cat("  full agreement/rules: ", fmt(x$metrics$full_agreement, x$thresholds$min_full_agreement), "\n", sep = "")
   cat("  layer_chain (info):   ", sprintf("%.3f", x$metrics$layer_chain_agreement),
-      " · overstatement ", sprintf("%.3f", x$metrics$overstatement), "\n", sep = "")
+      "; overstatement ", sprintf("%.3f", x$metrics$overstatement), "\n", sep = "")
   for (r in x$reasons) cat("  - ", r, "\n", sep = "")
   cat("  note: acceptance measures translation consistency against a regression\n")
   cat("        corpus - not correctness, not fitness for any particular study.\n")
