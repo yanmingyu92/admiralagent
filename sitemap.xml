@@ -13,6 +13,7 @@
 <url><loc>https://yanmingyu92.github.io/admiralagent/index.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/news/index.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/aa_layers.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/reference/accept_model.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/admiralagent-package.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/agreement_overstatement.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/artifact_hash.html</loc></url>
@@ -20,9 +21,11 @@
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/build_system_prompt.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/check_admiral_compat.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/classify_variables.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/reference/classify_variables_dual.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/classify_variables_llm.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/codelist_from_data.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/dataset_json_meta.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/reference/dual_disagreements.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/evals_accuracy.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/execute_ir.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/index.html</loc></url>
@@ -44,6 +47,7 @@
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/order_variables.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/parse_define.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/print.aa_agreement.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/reference/print.aa_model_acceptance.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/read_artifact.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/read_dataset_json.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/read_define.html</loc></url>
@@ -52,6 +56,7 @@
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/render_program.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/render_step.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/render_variable.html</loc></url>
+<url><loc>https://yanmingyu92.github.io/admiralagent/reference/routing_plan.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/run_agreement.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/run_evals.html</loc></url>
 <url><loc>https://yanmingyu92.github.io/admiralagent/reference/run_validation.html</loc></url>

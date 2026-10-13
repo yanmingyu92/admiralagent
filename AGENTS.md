@@ -75,5 +75,19 @@ IR（JSON），代码由确定性模板生成。LLM 永远不直接写 R 代码�
 - [`mock_spec_adsl()`](https://yanmingyu92.github.io/admiralagent/reference/mock_spec_adsl.md)
   示例 spec
 - `classify_variables(spec, dataset, backend = "rules"|"llm")`
+- `classify_variables_dual(spec, dataset, chat)`：rules 与 LLM
+  独立翻译同一 spec， `ir_fingerprint(level="full")` 比对，一致采用
+  rules IR，任何分歧升级 needs_human
+  （[`dual_disagreements()`](https://yanmingyu92.github.io/admiralagent/reference/dual_disagreements.md)
+  取人工队列；审计事件 `dual_consensus`，digest-only）
+- `routing_plan(ir)`：从 spec 血缘推导执行路由（拓扑 wave +
+  每变量依赖）， 环阻塞与 needs_human 变量不进任何
+  wave——路由是算出来的，不是手工注册的 DAG
+- `accept_model(chat, min_eval_accuracy=, min_full_agreement=)`：模型准入门。
+  候选模型先跑 eval 语料并与 rules 基线做 full
+  语义指纹比对；阈值无默认值
+  （验收标准必须由部署方预先声明），任何管线错误即拒绝；审计事件
+  `model_acceptance`，digest-only。harness
+  不跨模型迁移，换模型必须重新过门
 - `render_program(ir)` / `render_variable(ir)`
 - `run_validation(data, ir)`、`write_artifact(ir, dir = "gen")`

@@ -1,0 +1,80 @@
+# Model acceptance gate
+
+Model+harness acceptance gate. A harness does not transfer across
+models, so every candidate model must be accepted before it is allowed
+to translate specs: the candidate runs the spec-to-IR regression corpus
+(\[run_evals()\] machinery) and is cross-compared against the
+deterministic rules baseline at full canonical semantics
+(\[run_agreement()\]). Both thresholds are required arguments with no
+defaults — acceptance criteria must be prespecified by the deploying
+organization, not inherited from the tool.
+
+The decision is fail-closed: any pipeline error rejects the candidate.
+Acceptance certifies translation consistency against a self-scoring
+corpus — not correctness, not fitness for a particular study. Accepted
+output still passes through \`validate_ir()\`, the dual-backend
+consensus, and human review like any other IR.
+
+## Usage
+
+``` r
+accept_model(
+  chat,
+  dataset = "ADSL",
+  min_eval_accuracy,
+  min_full_agreement,
+  prompt_variant = c("full", "neutral", "minimal"),
+  model_label = NULL
+)
+```
+
+## Arguments
+
+- chat:
+
+  ellmer chat object (or any object with a \`chat(prompt)\` method) for
+  the candidate model.
+
+- dataset:
+
+  Dataset tag of the corpus cases to run (default \`"ADSL"\`).
+
+- min_eval_accuracy:
+
+  Required minimum fraction of corpus cases whose produced IR matches
+  the expected fingerprint (args-aware).
+
+- min_full_agreement:
+
+  Required minimum agreement rate between the candidate and the rules
+  baseline at \`ir_fingerprint(level = "full")\`.
+
+- prompt_variant:
+
+  System prompt variant used for the candidate run.
+
+- model_label:
+
+  Optional label for reports and the audit record; when \`NULL\`, the
+  chat object's \`get_model()\` is tried, else \`"unknown"\`.
+
+## Value
+
+An \`aa_model_acceptance\` list: \`accepted\` (logical), \`reasons\`
+(failed criteria, empty when accepted), \`metrics\` (\`eval_accuracy\`,
+\`full_agreement\`, \`layer_chain_agreement\`, \`overstatement\`),
+\`thresholds\`, plus the underlying \`evals\` data.frame and
+\`agreement\` object. Printed via \`print.aa_model_acceptance()\`.
+
+## Details
+
+Accept or reject an LLM backend for spec translation
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+chat <- ellmer::chat_deepseek(model = "deepseek-chat")
+accept_model(chat, min_eval_accuracy = 0.8, min_full_agreement = 0.5)
+} # }
+```

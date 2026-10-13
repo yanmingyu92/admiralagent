@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,12 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.0.9000" id="admiralagent-0109000-development">admiralagent 0.1.0.9000 (development)<a class="anchor" aria-label="anchor" href="#admiralagent-0109000-development"></a></h2>
+<ul><li>New <code><a href="../reference/accept_model.html">accept_model()</a></code>: model+harness acceptance gate. A candidate LLM runs the spec-to-IR regression corpus and is cross-compared against the rules baseline at full canonical semantics; both thresholds are required arguments (acceptance criteria must be prespecified), any pipeline error rejects the candidate, and the decision is logged as a digest-only <code>model_acceptance</code> audit event.</li>
+<li>New <code><a href="../reference/routing_plan.html">routing_plan()</a></code>: derives the execution routing directly from spec lineage — topological waves, per-variable dependencies, and the two fail-closed lanes (cycle-blocked and human-routed variables stay waveless). The ordering is computed, not declared, replacing a hand-registered process DAG.</li>
+<li>New <code><a href="../reference/classify_variables_dual.html">classify_variables_dual()</a></code>: runs the rules classifier and the LLM pipeline independently on the same spec, compares the two translations per variable at full canonical semantics (<code>ir_fingerprint(level = "full")</code>), adopts the rules IR on agreement, and escalates any divergence (<code>disagree</code> / <code>rules_abstain</code> / <code>llm_abstain</code>) to <code>needs_human</code> — no side is ever silently preferred. The decision is recorded as a digest-only <code>dual_consensus</code> audit event; <code><a href="../reference/dual_disagreements.html">dual_disagreements()</a></code> extracts the human review queue.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="admiralagent-010">admiralagent 0.1.0<a class="anchor" aria-label="anchor" href="#admiralagent-010"></a></h2>
 <p>Initial release.</p>
 <ul><li>Translate P21-style ADaM specifications into layer IR over a closed vocabulary, then deterministically compile the IR into admiral/metatools programs with <code># CHECK:</code> validation comments and provenance sidecars (<code><a href="../reference/classify_variables.html">classify_variables()</a></code>, <code><a href="../reference/render_program.html">render_program()</a></code>, <code><a href="../reference/write_artifact.html">write_artifact()</a></code>).</li>
@@ -47,7 +53,8 @@
 <li>Sandbox gate for executing generated programs, hash-chained audit log, dataset-JSON reader, define.xml (2.0) metadata reader, and dependency/impact reporting across ADaM datasets.</li>
 <li>Study-level drivers: <code>execute_one()</code>, <code>execute_study()</code> with derivation ordering, gates, and manifest generation.</li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

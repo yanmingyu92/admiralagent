@@ -4,6 +4,8 @@
 
 - [`aa_layers()`](https://yanmingyu92.github.io/admiralagent/reference/aa_layers.md)
   : Layer registry
+- [`accept_model()`](https://yanmingyu92.github.io/admiralagent/reference/accept_model.md)
+  : Model acceptance gate
 - [`agreement_overstatement()`](https://yanmingyu92.github.io/admiralagent/reference/agreement_overstatement.md)
   : How much an args-blind label overstates agreement
 - [`artifact_hash()`](https://yanmingyu92.github.io/admiralagent/reference/artifact_hash.md)
@@ -16,12 +18,16 @@
   : admiral compatibility check
 - [`classify_variables()`](https://yanmingyu92.github.io/admiralagent/reference/classify_variables.md)
   : Classify spec variables
+- [`classify_variables_dual()`](https://yanmingyu92.github.io/admiralagent/reference/classify_variables_dual.md)
+  : Dual-backend consensus classification
 - [`classify_variables_llm()`](https://yanmingyu92.github.io/admiralagent/reference/classify_variables_llm.md)
   : Classify spec variables via an LLM chat backend
 - [`codelist_from_data()`](https://yanmingyu92.github.io/admiralagent/reference/codelist_from_data.md)
   : Build a codelist data.frame from observed data values
 - [`dataset_json_meta()`](https://yanmingyu92.github.io/admiralagent/reference/dataset_json_meta.md)
   : Dataset-JSON header metadata
+- [`dual_disagreements()`](https://yanmingyu92.github.io/admiralagent/reference/dual_disagreements.md)
+  : Dual-backend disagreements
 - [`evals_accuracy()`](https://yanmingyu92.github.io/admiralagent/reference/evals_accuracy.md)
   : Accuracy of an eval run
 - [`execute_ir()`](https://yanmingyu92.github.io/admiralagent/reference/execute_ir.md)
@@ -50,6 +56,8 @@
   : New variable IR
 - [`print(`*`<aa_agreement>`*`)`](https://yanmingyu92.github.io/admiralagent/reference/print.aa_agreement.md)
   : Print an agreement report
+- [`print(`*`<aa_model_acceptance>`*`)`](https://yanmingyu92.github.io/admiralagent/reference/print.aa_model_acceptance.md)
+  : Print a model acceptance report
 - [`read_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/read_artifact.md)
   : Read artifact
 - [`read_dataset_json()`](https://yanmingyu92.github.io/admiralagent/reference/read_dataset_json.md)
@@ -64,6 +72,8 @@
   : Render program
 - [`render_variable()`](https://yanmingyu92.github.io/admiralagent/reference/render_variable.md)
   : Render a variable
+- [`routing_plan()`](https://yanmingyu92.github.io/admiralagent/reference/routing_plan.md)
+  : Dependency routing plan
 - [`run_agreement()`](https://yanmingyu92.github.io/admiralagent/reference/run_agreement.md)
   : Cross-tabulate classification backends at every fingerprint level
 - [`run_evals()`](https://yanmingyu92.github.io/admiralagent/reference/run_evals.md)

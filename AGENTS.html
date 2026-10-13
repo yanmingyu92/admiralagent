@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,6 +87,12 @@
 <ul><li>
 <code><a href="reference/mock_spec_adsl.html">mock_spec_adsl()</a></code> 示例 spec</li>
 <li><code>classify_variables(spec, dataset, backend = "rules"|"llm")</code></li>
+<li>
+<code>classify_variables_dual(spec, dataset, chat)</code>：rules 与 LLM 独立翻译同一 spec， <code>ir_fingerprint(level="full")</code> 比对，一致采用 rules IR，任何分歧升级 needs_human （<code><a href="reference/dual_disagreements.html">dual_disagreements()</a></code> 取人工队列；审计事件 <code>dual_consensus</code>，digest-only）</li>
+<li>
+<code>routing_plan(ir)</code>：从 spec 血缘推导执行路由（拓扑 wave + 每变量依赖）， 环阻塞与 needs_human 变量不进任何 wave——路由是算出来的，不是手工注册的 DAG</li>
+<li>
+<code>accept_model(chat, min_eval_accuracy=, min_full_agreement=)</code>：模型准入门。 候选模型先跑 eval 语料并与 rules 基线做 full 语义指纹比对；阈值无默认值 （验收标准必须由部署方预先声明），任何管线错误即拒绝；审计事件 <code>model_acceptance</code>，digest-only。harness 不跨模型迁移，换模型必须重新过门</li>
 <li>
 <code>render_program(ir)</code> / <code>render_variable(ir)</code>
 </li>

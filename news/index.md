@@ -1,5 +1,33 @@
 # Changelog
 
+## admiralagent 0.1.0.9000 (development)
+
+- New
+  [`accept_model()`](https://yanmingyu92.github.io/admiralagent/reference/accept_model.md):
+  model+harness acceptance gate. A candidate LLM runs the spec-to-IR
+  regression corpus and is cross-compared against the rules baseline at
+  full canonical semantics; both thresholds are required arguments
+  (acceptance criteria must be prespecified), any pipeline error rejects
+  the candidate, and the decision is logged as a digest-only
+  `model_acceptance` audit event.
+- New
+  [`routing_plan()`](https://yanmingyu92.github.io/admiralagent/reference/routing_plan.md):
+  derives the execution routing directly from spec lineage — topological
+  waves, per-variable dependencies, and the two fail-closed lanes
+  (cycle-blocked and human-routed variables stay waveless). The ordering
+  is computed, not declared, replacing a hand-registered process DAG.
+- New
+  [`classify_variables_dual()`](https://yanmingyu92.github.io/admiralagent/reference/classify_variables_dual.md):
+  runs the rules classifier and the LLM pipeline independently on the
+  same spec, compares the two translations per variable at full
+  canonical semantics (`ir_fingerprint(level = "full")`), adopts the
+  rules IR on agreement, and escalates any divergence (`disagree` /
+  `rules_abstain` / `llm_abstain`) to `needs_human` — no side is ever
+  silently preferred. The decision is recorded as a digest-only
+  `dual_consensus` audit event;
+  [`dual_disagreements()`](https://yanmingyu92.github.io/admiralagent/reference/dual_disagreements.md)
+  extracts the human review queue.
+
 ## admiralagent 0.1.0
 
 Initial release.
