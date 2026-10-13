@@ -55,9 +55,9 @@ payload <- list(
   reasons = as.list(res$reasons),
   metrics = res$metrics,
   thresholds = res$thresholds,
-  evals = lapply(seq_len(nrow(res$evals)), function(i) list(
-    id = res$evals$id[[i]], variable = res$evals$variable[[i]], ok = res$evals$ok[[i]]
-  ))
+  evals = lapply(seq_len(nrow(res$evals)), function(i) {
+    list(id = res$evals$id[[i]], variable = res$evals$variable[[i]], ok = res$evals$ok[[i]])
+  })
 )
 outdir <- file.path("demo", "gen") # cwd is the package root (setwd above)
 dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
