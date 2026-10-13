@@ -1,5 +1,11 @@
 # admiralagent 0.1.0.9000 (development)
 
+- New `accept_model()`: model+harness acceptance gate. A candidate LLM runs
+  the spec-to-IR regression corpus and is cross-compared against the rules
+  baseline at full canonical semantics; both thresholds are required
+  arguments (acceptance criteria must be prespecified), any pipeline error
+  rejects the candidate, and the decision is logged as a digest-only
+  `model_acceptance` audit event.
 - New `routing_plan()`: derives the execution routing directly from spec
   lineage — topological waves, per-variable dependencies, and the two
   fail-closed lanes (cycle-blocked and human-routed variables stay waveless).

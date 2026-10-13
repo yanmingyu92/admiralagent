@@ -57,5 +57,9 @@ Rscript -e "testthat::test_dir('tests/testthat', reporter='summary')"
   （`dual_disagreements()` 取人工队列；审计事件 `dual_consensus`，digest-only）
 - `routing_plan(ir)`：从 spec 血缘推导执行路由（拓扑 wave + 每变量依赖），
   环阻塞与 needs_human 变量不进任何 wave——路由是算出来的，不是手工注册的 DAG
+- `accept_model(chat, min_eval_accuracy=, min_full_agreement=)`：模型准入门。
+  候选模型先跑 eval 语料并与 rules 基线做 full 语义指纹比对；阈值无默认值
+  （验收标准必须由部署方预先声明），任何管线错误即拒绝；审计事件
+  `model_acceptance`，digest-only。harness 不跨模型迁移，换模型必须重新过门
 - `render_program(ir)` / `render_variable(ir)`
 - `run_validation(data, ir)`、`write_artifact(ir, dir = "gen")`
