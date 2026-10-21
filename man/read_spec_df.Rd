@@ -23,3 +23,12 @@ Validates that a flat (already parsed) spec data frame carries
 \details{
 Normalize a flat spec data frame
 }
+\examples{
+df <- data.frame(
+  dataset = "ADSL", variable = "STUDYID", label = "Study Identifier",
+  type = "text", origin = "CRF",
+  derivation = "Copied directly from DM.STUDYID",
+  stringsAsFactors = FALSE
+)
+read_spec_df(df)
+}

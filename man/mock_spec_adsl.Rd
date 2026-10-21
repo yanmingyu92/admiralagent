@@ -17,3 +17,7 @@ A 10-variable mock ADSL spec (STUDYID, USUBJID, SUBJID,
 \details{
 Mock ADSL specification
 }
+\examples{
+spec <- mock_spec_adsl()
+spec$variable
+}

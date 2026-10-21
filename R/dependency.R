@@ -42,10 +42,12 @@ order_variables <- function(ir, known_columns = character()) {
 step_refs <- function(v, s) {
   a <- s$args
   ds <- a$on %||% v$dataset
-  rows <- list()
+  # Accumulator lives in an explicit local environment (no `<<-`).
+  acc <- new.env(parent = emptyenv())
+  acc$rows <- list()
   add <- function(dataset, inputs, kind = "column") {
     for (input in inputs) if (!is.null(input) && is.character(input) && length(input) == 1L && !is.na(input) && nzchar(input)) {
-      rows[[length(rows) + 1L]] <<- data.frame(dataset = dataset, input = input, kind = kind)
+      acc$rows[[length(acc$rows) + 1L]] <- data.frame(dataset = dataset, input = input, kind = kind)
     }
   }
   for (nm in aa_layers()[[s$layer]]$inputs) {
@@ -74,6 +76,7 @@ step_refs <- function(v, s) {
   }
   if (s$layer == "compute_param") add(ds, c("PARAMCD", "AVAL"))
   if (s$layer == "summary_record") add(ds, c("PARAMCD", a$analysis_var %||% "AVAL"))
+  rows <- acc$rows
   if (!length(rows)) return(data.frame(dataset = character(), input = character(), kind = character()))
   unique(do.call(rbind, rows))
 }
@@ -196,6 +199,11 @@ dependency_graph <- function(ir, known_columns = character()) {
 #'   in the source data.
 #' @return A data.frame with columns `variable`, `input`, `dataset`, `issue`
 #'   (zero rows when every input resolves).
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' ir_dependency_report(ir, known_columns = c("STUDYID", "USUBJID", "SUBJID",
+#'   "TRT01P", "AGE", "RACEN", "RFSTDTC", "RFENDTC", "EXSTDTC"))
 #' @export
 ir_dependency_report <- function(ir, known_columns = character()) {
   assert_ir_shape(ir, allow_empty = TRUE)
@@ -367,6 +375,11 @@ filter_parameters <- function(text) predicate_paramcd_values(parse_predicate(tex
 #'   `layers` (layer chain or `"needs_human"`), and `needs_human`. Attributes:
 #'   `blocked` (cycle-blocked variables) and `duplicate` (columns produced by
 #'   more than one variable).
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' plan <- routing_plan(ir)
+#' plan[, c("variable", "wave", "layers")]
 #' @export
 routing_plan <- function(ir, known_columns = character()) {
   assert_ir_shape(ir, allow_empty = TRUE)

@@ -22,3 +22,8 @@ Hashes the canonical JSON of the IR (preserving variable
 \details{
 Deterministic hash of a variable IR
 }
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+artifact_hash(ir)
+}

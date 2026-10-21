@@ -24,3 +24,8 @@ Compares the minimum admiral version required by the layers
 \details{
 Check admiral version compatibility of an IR
 }
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+check_admiral_compat(ir)
+}

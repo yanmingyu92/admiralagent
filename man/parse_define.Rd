@@ -34,10 +34,4 @@ Parses an ODM/define v2.0 define.xml with [xml2::read_xml()]
 \details{
 Parse an ODM define.xml directly into a spec data frame
 }
-\examples{
-\dontrun{
-spec <- parse_define("define.xml")
-nrow(spec[spec$dataset == "ADSL" & !is.na(spec$derivation), ])
-}
-}
 \keyword{internal}

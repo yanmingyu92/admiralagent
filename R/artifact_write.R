@@ -38,6 +38,10 @@ canonical_ir <- function(ir) {
 #' @title Artifact hash
 #' @param ir List of `aa_variable_ir` objects.
 #' @return An 8-character hash string.
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' artifact_hash(ir)
 #' @export
 artifact_hash <- function(ir) {
   assert_ir_shape(ir)
@@ -93,13 +97,21 @@ write_sidecar <- function(path, fields) {
 #'   Same IR overwrites the same files; copies never accumulate.
 #' @title Write variable artifacts
 #' @param ir List of `aa_variable_ir` objects.
-#' @param dir Output directory (created when missing).
+#' @param dir Output directory (created when missing). No default is set:
+#'   pass an explicit path such as `tempdir()` so nothing is ever written to
+#'   the user's current working directory by accident.
 #' @param backend_label Backend label recorded in sidecars.
 #' @param model Model identifier recorded in sidecars (LLM backend).
 #' @param validation Optional validation result recorded in sidecars.
 #' @return Invisibly, the character vector of files written.
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' out <- file.path(tempdir(), "aa-examples")
+#' write_artifact(ir, dir = out)
+#' list.files(out)
 #' @export
-write_artifact <- function(ir, dir = "gen", backend_label = "rules", model = NULL, validation = NULL) {
+write_artifact <- function(ir, dir, backend_label = "rules", model = NULL, validation = NULL) {
   assert_valid_ir(ir)
   assert_path(dir)
   if (!dir.exists(dir)) dir.create(dir, recursive = TRUE)
@@ -145,8 +157,14 @@ write_artifact <- function(ir, dir = "gen", backend_label = "rules", model = NUL
 #'   `gate_enforced = FALSE`, and the first ungated write of a session prints a
 #'   notice. An ungated artifact is never release-grade.
 #' @return Invisibly, the character vector of files written.
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' out <- file.path(tempdir(), "aa-examples-program")
+#' write_program_artifact(ir, dir = out, require_gate = FALSE)
+#' list.files(out)
 #' @export
-write_program_artifact <- function(ir, dir = "gen", backend_label = "rules", model = NULL,
+write_program_artifact <- function(ir, dir, backend_label = "rules", model = NULL,
                                    gate = NULL, require_gate = NULL) {
   assert_valid_ir(ir)
   assert_path(dir)
@@ -303,6 +321,13 @@ verify_artifact_integrity <- function(path, sc, ir) {
 #'   (`"gated"` or `"ungated-draft"`), `release_ready` and `gate_enforced`
 #'   (the policy in force when the artifact was written, `NA` for artifacts
 #'   written before that was recorded).
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' out <- file.path(tempdir(), "aa-examples-read")
+#' write_artifact(ir, dir = out)
+#' art <- read_artifact(file.path(out, list.files(out, pattern = "[.]json$")[1]))
+#' art$backend
 #' @export
 read_artifact <- function(path) {
   assert_path(path)

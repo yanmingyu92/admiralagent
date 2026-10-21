@@ -29,6 +29,10 @@ evals_corpus_path <- function() {
 #' @return A named list of parsed eval cases (names are case ids). Each case
 #'   has fields `id`, `dataset`, `spec_row`, `expected_layers`,
 #'   `expected_needs_human`, and `note`.
+#' @examples
+#' cases <- load_evals()
+#' length(cases)
+#' cases[[1]]$id
 #' @export
 load_evals <- function(path = NULL) {
   if (is.null(path)) path <- evals_corpus_path()
@@ -219,6 +223,9 @@ evals_classify <- function(cases, backend, chat = NULL, ...) {
 #' @param dataset Dataset tag of the corpus cases to run (default `"ADSL"`).
 #' @return A data.frame (invisibly) with columns `id`, `variable`,
 #'   `expected`, `got`, `ok`.
+#' @examples
+#' res <- run_evals(backend = "rules", dataset = "ADSL")
+#' evals_accuracy(res)
 #' @export
 run_evals <- function(backend = c("rules", "llm"), chat = NULL, dataset = "ADSL") {
   backend <- match.arg(backend)
@@ -354,6 +361,10 @@ agreement_classify_voter <- function(cases, voter) {
 #'   `rates` (agreement rate per level) and `crosstab` (per level, a
 #'   contingency table of the first two voters' human-readable labels).
 #'   Printed via [print.aa_agreement()].
+#' @examples
+#' # Two rules voters agree trivially (same deterministic translator):
+#' res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+#' print(res)
 #' @export
 run_agreement <- function(voters, dataset = "ADSL") {
   if (!is.list(voters) || length(voters) < 2L || is.null(names(voters)) || any(!nzchar(names(voters)))) {
@@ -414,6 +425,9 @@ run_agreement <- function(voters, dataset = "ADSL") {
 #' @param x An `aa_agreement` object from [run_agreement()].
 #' @param ... Ignored.
 #' @return `x`, invisibly.
+#' @examples
+#' res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+#' print(res)
 #' @export
 print.aa_agreement <- function(x, ...) {
   cat("admiralagent agreement report\n")
@@ -452,6 +466,9 @@ agreement_label <- function(ir, level) {
 #' @param res An `aa_agreement` object from `run_agreement()`.
 #' @return A list with `layer_chain`, `full`, `overstatement` (the difference)
 #'   and `cases` (the ids counted as agreeing only at `layer_chain`).
+#' @examples
+#' res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+#' agreement_overstatement(res)
 #' @export
 agreement_overstatement <- function(res) {
   lc <- res$per_case[res$per_case$level == "layer_chain", ]
@@ -507,6 +524,9 @@ evals_label_resolution <- function(dataset = NULL) {
 #'   [run_evals()].
 #' @return A single numeric in `[0, 1]`: the share of cases classified as
 #'   expected.
+#' @examples
+#' res <- run_evals(backend = "rules", dataset = "ADSL")
+#' evals_accuracy(res)
 #' @export
 evals_accuracy <- function(res) {
   if (!is.data.frame(res) || !"ok" %in% names(res) || !is.logical(res$ok) || anyNA(res$ok) || !nrow(res)) stop("res must be a non-empty data.frame with a logical ok column without NA", call. = FALSE)

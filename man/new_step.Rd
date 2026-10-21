@@ -22,3 +22,6 @@ Builds one step of a variable's derivation pipeline: a layer
 \details{
 Construct a layer step
 }
+\examples{
+new_step("assign", list(target = "TRT01P", from = "TRT01P"))
+}

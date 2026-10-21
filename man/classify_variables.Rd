@@ -46,3 +46,8 @@ Translates each spec variable's free-text derivation into a
 \details{
 Classify spec variables into layer IR
 }
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+ir[[1]]$variable
+}

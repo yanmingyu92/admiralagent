@@ -46,3 +46,11 @@ Runs the batch translate-validate-retry pipeline. With
   `samples > 1` the pipeline is repeated and per-variable signatures
   (step-layer chains) are voted on to counter LLM output variance.
 }
+\examples{
+\dontrun{
+# Requires the 'ellmer' package and a provider API key:
+chat <- ellmer::chat_anthropic()
+vars <- spec_variables(mock_spec_adsl(), "ADSL")
+ir <- classify_variables_llm(vars, chat)
+}
+}

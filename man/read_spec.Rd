@@ -31,3 +31,10 @@ Parses a specifications.xlsx-style workbook via
 \details{
 Read a P21-style specification workbook
 }
+\examples{
+\dontrun{
+# Requires a specifications.xlsx-style workbook plus the 'metacore' and
+# 'readxl' packages:
+spec <- read_spec("specifications.xlsx", dataset = "ADSL")
+}
+}

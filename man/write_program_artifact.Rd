@@ -6,7 +6,7 @@
 \usage{
 write_program_artifact(
   ir,
-  dir = "gen",
+  dir,
   backend_label = "rules",
   model = NULL,
   gate = NULL,
@@ -48,4 +48,11 @@ Renders the full program via [render_program()], writes it as
 }
 \details{
 Write the assembled program artifact
+}
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+out <- file.path(tempdir(), "aa-examples-program")
+write_program_artifact(ir, dir = out, require_gate = FALSE)
+list.files(out)
 }

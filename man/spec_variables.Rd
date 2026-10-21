@@ -20,3 +20,7 @@ Subsets a spec data frame to the rows of one dataset.
 \details{
 Extract one dataset's spec rows
 }
+\examples{
+rows <- spec_variables(mock_spec_adsl(), "ADSL")
+nrow(rows)
+}

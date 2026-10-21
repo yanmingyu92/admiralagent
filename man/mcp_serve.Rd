@@ -17,3 +17,11 @@ Blocking newline-delimited JSON-RPC 2.0 loop over stdin/stdout
   call cannot hang the console. Meant to be launched via
   `Rscript tools/mcp_server.R`.
 }
+\examples{
+\dontrun{
+# Blocking stdio loop; cannot run inside R CMD check or an
+# interactive session. Test single requests in-process with
+# mcp_handle_request() instead:
+mcp_serve()
+}
+}

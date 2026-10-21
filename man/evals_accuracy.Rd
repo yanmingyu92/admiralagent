@@ -18,3 +18,7 @@ A single numeric in `[0, 1]`: the share of cases classified as
 Extracts the accuracy from a result data.frame returned by
   [run_evals()].
 }
+\examples{
+res <- run_evals(backend = "rules", dataset = "ADSL")
+evals_accuracy(res)
+}

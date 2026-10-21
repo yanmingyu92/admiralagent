@@ -24,3 +24,9 @@ Dispatches a parsed JSON-RPC 2.0 request list against the
   The function is pure: it never touches stdin/stdout, so the whole server
   can be unit-tested in-process.
 }
+\examples{
+resp <- mcp_handle_request(list(
+  jsonrpc = "2.0", id = 1, method = "tools/list"
+))
+vapply(resp$result$tools, function(t) t$name, character(1))
+}

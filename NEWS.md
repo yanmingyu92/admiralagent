@@ -1,5 +1,21 @@
-# admiralagent 0.1.0.9000 (development)
+# admiralagent 0.1.1
 
+CRAN resubmission: addresses the first-review comments and folds in the
+post-0.1.0 development features.
+
+- Description now expands all acronyms (ADaM, LLM, IR, P21, CDISC) and
+  references the CDISC Analysis Data Model standard.
+- Removed the example from the unexported `parse_define()`; every exported
+  function now carries a small executable example (LLM- and MCP-server-only
+  functions keep `\dontrun{}` with the reason stated: provider API key or
+  blocking stdio server).
+- `write_artifact()` / `write_program_artifact()` no longer default `dir`:
+  an explicit output directory is required, so no function writes into the
+  user's working directory by default; examples and tests write to
+  `tempdir()`.
+- Removed the remaining `<<-` assignments (closure accumulators rewritten
+  over explicit local environments; no behaviour change, full test suite
+  green).
 - New `accept_model()`: model+harness acceptance gate. A candidate LLM runs
   the spec-to-IR regression corpus and is cross-compared against the rules
   baseline at full canonical semantics; both thresholds are required

@@ -23,3 +23,7 @@ values and `code` is `seq_along(decode)`. The result is suitable as an
 entry of the `codelists` argument of [mock_metacore()], e.g.
 `codelists = list(RACE = codelist_from_data("RACE", dm))`.
 }
+\examples{
+dm <- data.frame(RACE = c("WHITE", "ASIAN", "BLACK", "ASIAN"))
+codelist_from_data("RACE", dm)
+}

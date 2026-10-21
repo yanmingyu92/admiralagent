@@ -40,3 +40,11 @@ subsetted with [metacore::select_dataset()] so it can be passed directly
 as `metacore = mc` to metatools; with multiple datasets the full object is
 returned and the caller subsets it.
 }
+\examples{
+\dontrun{
+# Requires the 'metacore' package:
+mc <- mock_metacore(mock_spec_adsl(),
+  codelists = list(RACE = data.frame(code = 1:3, decode = c("ASIAN", "BLACK", "WHITE")))
+)
+}
+}

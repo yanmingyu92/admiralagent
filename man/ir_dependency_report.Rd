@@ -25,3 +25,9 @@ Audits every step's consumed references (duration endpoints,
 \details{
 Report undefined step inputs in an IR
 }
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+ir_dependency_report(ir, known_columns = c("STUDYID", "USUBJID", "SUBJID",
+  "TRT01P", "AGE", "RACEN", "RFSTDTC", "RFENDTC", "EXSTDTC"))
+}

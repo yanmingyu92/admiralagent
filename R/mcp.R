@@ -62,10 +62,12 @@ mcp_log_detail <- function(tool, cond) {
 # Bounds the parsed `arguments` tree before any tool parses it into a spec or
 # an IR: total node count, nesting depth, and the length of every array.
 mcp_ingress_ok <- function(x) {
-  remaining <- MCP_MAX_ARGUMENT_NODES
+  # Counter lives in an explicit local environment (no `<<-`).
+  state <- new.env(parent = emptyenv())
+  state$remaining <- MCP_MAX_ARGUMENT_NODES
   ok <- function(v, depth) {
-    remaining <<- remaining - 1L
-    if (remaining < 0L || depth > MCP_MAX_ARGUMENT_DEPTH) return(FALSE)
+    state$remaining <- state$remaining - 1L
+    if (state$remaining < 0L || depth > MCP_MAX_ARGUMENT_DEPTH) return(FALSE)
     if (length(v) > MCP_MAX_ARRAY_ITEMS) return(FALSE)
     if (!is.list(v)) return(TRUE)
     for (el in v) if (!ok(el, depth + 1L)) return(FALSE)
@@ -166,6 +168,9 @@ mcp_ir_schema <- function() {
 #'   validation problems out.
 #' @return A named list of tool definitions, each with `name`, `description`,
 #'   and `inputSchema` (a JSON-Schema-style list).
+#' @examples
+#' tools <- mcp_tool_specs()
+#' names(tools)
 #' @export
 mcp_tool_specs <- function() {
   list(
@@ -397,6 +402,11 @@ mcp_tools_call <- function(req) {
 #'   `jsonlite::fromJSON(line, simplifyVector = FALSE)`).
 #' @return A JSON-RPC response list, or `NULL` for notifications (no response
 #'   may be sent).
+#' @examples
+#' resp <- mcp_handle_request(list(
+#'   jsonrpc = "2.0", id = 1, method = "tools/list"
+#' ))
+#' vapply(resp$result$tools, function(t) t$name, character(1))
 #' @export
 mcp_handle_request <- function(req) {
   if (!is.list(req) || is.null(req$method) || !is.character(req$method) ||
@@ -455,6 +465,13 @@ mcp_process_line <- function(line) {
 #'   call cannot hang the console. Meant to be launched via
 #'   `Rscript tools/mcp_server.R`.
 #' @return Invisible `NULL` when stdin reaches EOF.
+#' @examples
+#' \dontrun{
+#' # Blocking stdio loop; cannot run inside R CMD check or an
+#' # interactive session. Test single requests in-process with
+#' # mcp_handle_request() instead:
+#' mcp_serve()
+#' }
 #' @export
 mcp_serve <- function() {
   if (interactive()) {

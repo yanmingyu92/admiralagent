@@ -9,6 +9,9 @@
 #' @title Build LLM context
 #' @param vars Spec data frame subset from [spec_variables()].
 #' @return A named list (by variable name) of schema-only field lists.
+#' @examples
+#' ctx <- build_context(spec_variables(mock_spec_adsl(), "ADSL"))
+#' ctx$STUDYID$derivation
 #' @export
 build_context <- function(vars) {
   vars <- read_spec_df(vars)
@@ -37,6 +40,9 @@ build_context <- function(vars) {
 #'   needs_human abstention).
 #' @title Build system prompt
 #' @return A single character string.
+#' @examples
+#' prompt <- build_system_prompt()
+#' nchar(prompt)
 #' @export
 build_system_prompt <- function() {
   paste0(
@@ -174,6 +180,13 @@ batch_prompt <- function(batch) {
 #'   a `consensus` attribute: a data.frame with columns `variable`,
 #'   `signature_votes` (e.g. `"impute_dtc->merge_var:2"`), `chosen`,
 #'   `unanimous`.
+#' @examples
+#' \dontrun{
+#' # Requires the 'ellmer' package and a provider API key:
+#' chat <- ellmer::chat_anthropic()
+#' vars <- spec_variables(mock_spec_adsl(), "ADSL")
+#' ir <- classify_variables_llm(vars, chat)
+#' }
 #' @export
 classify_variables_llm <- function(vars, chat, max_attempts = 2, batch_size = 4,
                                    samples = 1, consensus = c("majority", "first"),

@@ -11,6 +11,14 @@ spec_required_cols <- c("dataset", "variable", "label", "type", "origin", "deriv
 #' @param df data.frame with columns dataset, variable, label, type, origin,
 #'   derivation.
 #' @return The normalized data frame (error when required columns are missing).
+#' @examples
+#' df <- data.frame(
+#'   dataset = "ADSL", variable = "STUDYID", label = "Study Identifier",
+#'   type = "text", origin = "CRF",
+#'   derivation = "Copied directly from DM.STUDYID",
+#'   stringsAsFactors = FALSE
+#' )
+#' read_spec_df(df)
 #' @export
 read_spec_df <- function(df) {
   if (!is.data.frame(df)) stop("spec must be a data.frame with required columns", call. = FALSE)
@@ -37,6 +45,9 @@ read_spec_df <- function(df) {
 #' @param spec Spec data.frame compatible with [read_spec_df()].
 #' @param dataset Dataset name to subset to (e.g. `"ADSL"`).
 #' @return The subset spec data frame; errors when no rows match.
+#' @examples
+#' rows <- spec_variables(mock_spec_adsl(), "ADSL")
+#' nrow(rows)
 #' @export
 spec_variables <- function(spec, dataset) {
   spec <- read_spec_df(spec)
@@ -59,6 +70,12 @@ spec_variables <- function(spec, dataset) {
 #' @param where_sep_sheet Whether the where clauses are on a separate sheet.
 #' @param verbose metacore verbosity, one of `"silent"`, `"verbose"`.
 #' @return A spec data frame as produced by [read_spec_df()].
+#' @examples
+#' \dontrun{
+#' # Requires a specifications.xlsx-style workbook plus the 'metacore' and
+#' # 'readxl' packages:
+#' spec <- read_spec("specifications.xlsx", dataset = "ADSL")
+#' }
 #' @export
 read_spec <- function(path, dataset = NULL, where_sep_sheet = "Datasets", verbose = "silent") {
   assert_path(path)
@@ -91,6 +108,32 @@ read_spec <- function(path, dataset = NULL, where_sep_sheet = "Datasets", verbos
 #' @param path Path to the define.xml file.
 #' @return A spec data frame as produced by [read_spec_df()]; the primary path
 #'   additionally returns `codelist_oid` and `order` columns.
+#' @examples
+#' # Write a minimal one-variable define.xml to a temp directory and read it:
+#' define_txt <- paste(
+#'   '<?xml version="1.0" encoding="UTF-8"?>',
+#'   '<ODM ODMVersion="1.3.2" xmlns="http://www.cdisc.org/ns/odm/v1.3">',
+#'   '  <Study OID="STD1"><MetaDataVersion OID="MDV1">',
+#'   '    <ItemGroupDef OID="IG.ADSL" Name="ADDSL" SASDatasetName="ADSL">',
+#'   '      <Description><TranslatedText>Subject-Level</TranslatedText></Description>',
+#'   '      <ItemRef ItemOID="IT.STUDYID" OrderNumber="1" MethodOID="MT.STUDYID"/>',
+#'   '    </ItemGroupDef>',
+#'   '    <ItemDef OID="IT.STUDYID" Name="STUDYID" DataType="text" Length="12">',
+#'   '      <Description><TranslatedText>Study Identifier</TranslatedText></Description>',
+#'   '    </ItemDef>',
+#'   '    <MethodDef OID="MT.STUDYID" Name="STUDYID" Type="Computation">',
+#'   '      <Description><TranslatedText>',
+#'   '        Copied directly from DM.STUDYID',
+#'   '      </TranslatedText></Description>',
+#'   '    </MethodDef>',
+#'   '  </MetaDataVersion></Study>',
+#'   '</ODM>',
+#'   sep = "\n"
+#' )
+#' f <- file.path(tempdir(), "define.xml")
+#' writeLines(define_txt, f)
+#' spec <- read_define(f)
+#' spec[, c("dataset", "variable", "derivation")]
 #' @export
 read_define <- function(path) {
   assert_path(path)
@@ -157,6 +200,9 @@ spec_as_df <- function(mc, dataset = NULL) {
 #'   free-text derivations, used in demos, tests, and the vignette.
 #' @title Mock ADSL spec
 #' @return A spec data frame as produced by [read_spec_df()].
+#' @examples
+#' spec <- mock_spec_adsl()
+#' spec$variable
 #' @export
 mock_spec_adsl <- function() {
   read_spec_df(data.frame(

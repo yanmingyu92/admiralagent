@@ -22,3 +22,11 @@ Returns the rows of the `dual` attribute where the two
 \details{
 Extract the dual-backend review queue
 }
+\examples{
+\dontrun{
+# Needs an ellmer chat object (LLM provider API key); see
+# classify_variables_dual():
+ir <- classify_variables_dual(mock_spec_adsl(), "ADSL", chat)
+dual_disagreements(ir)
+}
+}

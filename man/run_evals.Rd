@@ -28,3 +28,7 @@ Executes every corpus case for one dataset: builds a one-row
   production-consistency regression gate: the `rules` backend must score
   accuracy 1.0 against the corpus.
 }
+\examples{
+res <- run_evals(backend = "rules", dataset = "ADSL")
+evals_accuracy(res)
+}

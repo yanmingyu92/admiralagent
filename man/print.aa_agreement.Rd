@@ -21,3 +21,7 @@ Prints the dataset, voters, and per-level agreement rates of a
   translation consistency, not correctness and not independent double
   programming.
 }
+\examples{
+res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+print(res)
+}

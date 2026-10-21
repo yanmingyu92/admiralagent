@@ -26,3 +26,10 @@ Executes every check attached to each variable's layers
 \details{
 Run deterministic validation checks on executed data
 }
+\examples{
+ir <- list(new_variable_ir("ADSL", "STUDYID",
+  steps = list(new_step("assign", list(target = "STUDYID", literal = "STUDY1")))
+))
+res <- run_validation(data.frame(STUDYID = "STUDY1"), ir)
+res
+}

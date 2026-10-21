@@ -62,12 +62,13 @@
 #'   objects such as imputation temps on `ex`).
 #'
 #' @examples
-#' \dontrun{
-#' spec <- mock_spec_adsl()
-#' ir <- classify_variables(spec, "ADSL", backend = "rules")
-#' res <- execute_ir(ir, sources = list(base = dm, ex = ex, vs = vs_bds))
+#' ir <- list(new_variable_ir("ADSL", "ITTFL",
+#'   steps = list(new_step("assign_conditional", list(
+#'     target = "ITTFL", condition = "AGE >= 18", true_value = "Y"
+#'   )))
+#' ))
+#' res <- execute_ir(ir, sources = list(base = data.frame(AGE = c(15, 30))))
 #' res$status
-#' }
 #' @export
 execute_ir <- function(ir, sources = list(), variables = NULL, quiet = TRUE,
                        log_file = aa_log_file()) {

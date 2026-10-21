@@ -41,13 +41,17 @@
 #'   when the file is missing, unparsable, or lacks required Dataset-JSON
 #'   schema keys (`datasetJSONVersion`, `columns`, `rows` when `records > 0`).
 #' @examples
-#' \dontrun{
-#' dm_json <- file.path("cdisc_data", "pilot5data", "pilot5-submission",
-#'   "pilot5-input", "sdtmdata", "datasetjson", "dm.json")
-#' dm <- read_dataset_json(dm_json)
-#' dim(dm)
-#' attr(dm, "labels")$STUDYID
-#' }
+#' # Write a minimal one-column Dataset-JSON file to a temp directory:
+#' doc <- list(
+#'   datasetJSONVersion = "1.1",
+#'   datasetJSONCreationDateTime = "2026-01-01T00:00:00",
+#'   columns = list(list(name = "STUDYID", dataType = "string", length = 6)),
+#'   rows = list(list("STUDY01"))
+#' )
+#' f <- file.path(tempdir(), "dm.json")
+#' writeLines(jsonlite::toJSON(doc, auto_unbox = TRUE, null = "null"), f)
+#' dm <- read_dataset_json(f)
+#' dm$STUDYID
 #' @export
 read_dataset_json <- function(path) {
   path <- dsj_path(path)
@@ -133,12 +137,17 @@ read_dataset_json <- function(path) {
 #'   `sourceSystem`, `studyOID`, and `columns` (data.frame). Stops with an
 #'   informative error when required keys are absent.
 #' @examples
-#' \dontrun{
-#' meta <- dataset_json_meta("sdtm/dm.json")
+#' doc <- list(
+#'   datasetJSONVersion = "1.1",
+#'   datasetJSONCreationDateTime = "2026-01-01T00:00:00",
+#'   columns = list(list(name = "STUDYID", dataType = "string", length = 6)),
+#'   rows = list(list("STUDY01"))
+#' )
+#' f <- file.path(tempdir(), "dm.json")
+#' writeLines(jsonlite::toJSON(doc, auto_unbox = TRUE, null = "null"), f)
+#' meta <- dataset_json_meta(f)
 #' meta$datasetJSONVersion
-#' meta$records
 #' meta$columns
-#' }
 #' @export
 dataset_json_meta <- function(path) {
   path <- dsj_path(path)

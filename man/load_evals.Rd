@@ -21,3 +21,8 @@ Reads `inst/evals/spec-to-ir.jsonl`, one JSON eval case per
   [system.file()]) and from the package source tree (walking up from the
   working directory to find `inst/evals/`), so tests run uninstalled.
 }
+\examples{
+cases <- load_evals()
+length(cases)
+cases[[1]]$id
+}
