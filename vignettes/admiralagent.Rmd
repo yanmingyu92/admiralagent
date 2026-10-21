@@ -83,7 +83,8 @@ To *execute* the program in-process, `execute_ir(ir, sources = list(base = dm,
 ex = ex, vs = vs_bds))` evaluates each rendered block in a fresh environment
 and reports `EXECUTED` / `ERROR` / `REVIEW` per variable — see
 `?execute_ir`. Artifacts are written with `write_program_artifact(ir, dir =
-"gen")`, producing `<dataset>__program__<hash8>.R` plus a JSON sidecar and an
+"gen/")` to an output directory you choose explicitly (the package never
+writes into the working directory by default), producing `<dataset>__program__<hash8>.R` plus a JSON sidecar and an
 append-only, hash-chained audit log. Execution is self-auditing: whenever
 logging is on, `execute_ir()` writes one `execute_variable` record per
 variable plus exactly one `run_manifest` record per run automatically

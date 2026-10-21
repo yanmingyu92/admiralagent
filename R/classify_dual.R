@@ -36,6 +36,7 @@
 #'   rendered or executed without a human decision).
 #' @examples
 #' \dontrun{
+#' # Not executable without an LLM provider API key (ellmer chat object):
 #' chat <- ellmer::chat_deepseek(model = "deepseek-chat")
 #' ir <- classify_variables_dual(mock_spec_adsl(), "ADSL", chat)
 #' dual_disagreements(ir) # review queue: every variable the backends split on
@@ -149,6 +150,13 @@ classify_variables_dual <- function(spec, dataset, chat, samples = 1,
 #' @param ir IR list returned by [classify_variables_dual()].
 #' @return A data.frame with columns `variable`, `class`, `rules_layers`,
 #'   `llm_layers`, `llm_suggestion`; zero rows when every variable agreed.
+#' @examples
+#' \dontrun{
+#' # Needs an ellmer chat object (LLM provider API key); see
+#' # classify_variables_dual():
+#' ir <- classify_variables_dual(mock_spec_adsl(), "ADSL", chat)
+#' dual_disagreements(ir)
+#' }
 #' @export
 dual_disagreements <- function(ir) {
   dual <- attr(ir, "dual")

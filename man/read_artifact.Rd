@@ -34,3 +34,11 @@ Parses a sidecar JSON, renormalizes its IR through
 \details{
 Read an artifact sidecar back into an IR
 }
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+out <- file.path(tempdir(), "aa-examples-read")
+write_artifact(ir, dir = out)
+art <- read_artifact(file.path(out, list.files(out, pattern = "[.]json$")[1]))
+art$backend
+}

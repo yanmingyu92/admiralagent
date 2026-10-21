@@ -16,3 +16,6 @@ Convenience accessor over [aa_layers()] returning the allowed
 \details{
 Names of all registered derivation layers
 }
+\examples{
+layer_names()
+}

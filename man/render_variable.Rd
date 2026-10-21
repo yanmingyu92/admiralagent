@@ -19,3 +19,9 @@ or a `NEEDS HUMAN REVIEW` header block when the variable abstained.
 \details{
 Render one variable IR as code
 }
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+code <- render_variable(ir[[1]])
+cat(code)
+}

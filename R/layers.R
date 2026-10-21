@@ -59,6 +59,10 @@ collapse_lines <- function(parts, indent = "    ") {
 #'   of literals or functions of the supplied args. Defaults are applied to
 #'   `render` input and by canonicalization, so an omitted arg and the same arg
 #'   stated explicitly are one derivation.
+#' @examples
+#' reg <- aa_layers()
+#' length(reg)
+#' reg$assign$fn
 #' @export
 aa_layers <- function() {
   registry <- list(
@@ -712,11 +716,13 @@ deparse_predicate_call <- function(node, language) {
 # Column references of a predicate or formula, in order of appearance. Matches
 # all.vars() over the accepted sublanguage; `$`/`@` descend only on the left.
 predicate_names <- function(node) {
-  out <- character()
+  # Accumulator lives in an explicit local environment (no `<<-`).
+  acc <- new.env(parent = emptyenv())
+  acc$out <- character()
   walk <- function(n) {
     if (is.null(n) || !is.list(n) || is.null(n$type)) return(invisible(NULL))
     if (identical(n$type, "name")) {
-      out <<- c(out, n$name)
+      acc$out <- c(acc$out, n$name)
     } else if (identical(n$type, "call")) {
       if (!is.null(n$head)) walk(n$head)
       if (!is.na(n$op) && n$op %in% c("$", "@")) {
@@ -728,7 +734,7 @@ predicate_names <- function(node) {
     invisible(NULL)
   }
   walk(node)
-  unique(out)
+  unique(acc$out)
 }
 
 # PARAMCD literals compared for equality anywhere in the predicate.
@@ -756,6 +762,8 @@ tocharacter_lgl <- function(x) toupper(as.character(x))
 #'   `layer` vocabulary.
 #' @title Layer names
 #' @return Character vector of layer names.
+#' @examples
+#' layer_names()
 #' @export
 layer_names <- function() names(aa_layers())
 
@@ -766,6 +774,9 @@ layer_names <- function() names(aa_layers())
 #'   LLM system prompt built by [build_system_prompt()].
 #' @title Layer documentation cards
 #' @return Named character vector, one documentation block per layer.
+#' @examples
+#' cards <- layer_docs()
+#' cat(cards[["assign"]])
 #' @export
 layer_docs <- function() {
   layers <- aa_layers()
@@ -810,6 +821,10 @@ admiral_required_layers <- function(ir) {
 #'   installed `utils::packageVersion("admiral")` (NA-safe when missing).
 #' @return A character vector of problem messages (empty when compatible); the
 #'   vector carries a `note` attribute when admiral is not installed.
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' check_admiral_compat(ir)
 #' @export
 check_admiral_compat <- function(ir, installed = NA) {
   assert_ir_shape(ir, allow_empty = TRUE)

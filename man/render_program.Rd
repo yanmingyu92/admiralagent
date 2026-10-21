@@ -43,3 +43,9 @@ Assembles the complete dataset program: DISCLAIMER header,
 \details{
 Render a full analysis program from an IR
 }
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+program <- render_program(ir)
+cat(substr(program, 1, 200))
+}

@@ -41,3 +41,10 @@ Builds the intermediate representation for one spec variable:
 \details{
 Construct a variable IR
 }
+\examples{
+v <- new_variable_ir(
+  dataset = "ADSL",
+  variable = "TRTSDTM",
+  steps = list(new_step("assign", list(target = "TRTSDTM", literal = "2026-01-01")))
+)
+}

@@ -81,6 +81,11 @@ render_step_validated <- function(step, v, i, language = "r") {
 #' @title Render a variable
 #' @param v An `aa_variable_ir` object.
 #' @return A character string of commented R code.
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' code <- render_variable(ir[[1]])
+#' cat(code)
 #' @export
 render_variable <- function(v) {
   assert_valid_ir(list(v))
@@ -175,6 +180,11 @@ assert_render_language <- function(language) {
 #'   an approval is not evidence of correctness; omitting the gate leaves the
 #'   rendered program byte-identical to an ungated render.
 #' @return A single character string of R code.
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' program <- render_program(ir)
+#' cat(substr(program, 1, 200))
 #' @export
 render_program <- function(ir, backend_label = "rules", finalize = TRUE, language = "r",
                            gate = NULL) {

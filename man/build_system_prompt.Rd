@@ -19,3 +19,7 @@ Assembles the translation prompt: role definition, the full
 \details{
 Build the LLM system prompt
 }
+\examples{
+prompt <- build_system_prompt()
+nchar(prompt)
+}

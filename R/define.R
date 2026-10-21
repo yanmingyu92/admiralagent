@@ -21,11 +21,6 @@
 #'   attribute: a named character vector of dataset labels from the
 #'   ItemGroupDef descriptions.
 #' @keywords internal
-#' @examples
-#' \dontrun{
-#' spec <- parse_define("define.xml")
-#' nrow(spec[spec$dataset == "ADSL" & !is.na(spec$derivation), ])
-#' }
 parse_define <- function(path) {
   assert_path(path)
   if (!requireNamespace("xml2", quietly = TRUE)) {

@@ -17,3 +17,7 @@ Renders each registry entry (function, label, args, required
 \details{
 Human-readable documentation of every layer
 }
+\examples{
+cards <- layer_docs()
+cat(cards[["assign"]])
+}

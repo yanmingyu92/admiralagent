@@ -33,3 +33,8 @@ Runs the schema and semantic gate every IR must pass before
 \details{
 Validate a variable IR
 }
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+validate_ir(ir)
+}

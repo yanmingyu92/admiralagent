@@ -13,7 +13,9 @@
 #'
 #' @return A data.frame with columns `code` (integer) and `decode`
 #'   (character), one row per unique non-missing value, sorted by decode.
-#'
+#' @examples
+#' dm <- data.frame(RACE = c("WHITE", "ASIAN", "BLACK", "ASIAN"))
+#' codelist_from_data("RACE", dm)
 #' @export
 codelist_from_data <- function(var, data) {
   if (!is.character(var) || length(var) != 1L || !nzchar(var)) {
@@ -59,7 +61,13 @@ codelist_from_data <- function(var, data) {
 #' @return A `Metacore` object (single-dataset specs: subsetted via
 #'   `select_dataset()`; multi-dataset specs: full object). NULL with a
 #'   warning if `metacore` is not installed.
-#'
+#' @examples
+#' \dontrun{
+#' # Requires the 'metacore' package:
+#' mc <- mock_metacore(mock_spec_adsl(),
+#'   codelists = list(RACE = data.frame(code = 1:3, decode = c("ASIAN", "BLACK", "WHITE")))
+#' )
+#' }
 #' @export
 mock_metacore <- function(spec_df, codelists = list()) {
   if (!requireNamespace("metacore", quietly = TRUE)) {

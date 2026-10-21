@@ -43,3 +43,8 @@ Classifies the eval corpus once per voter and cross-tabulates
   for, when an LLM voter cannot actually be run - an unmeasured result
   must never be readable as a measured one.
 }
+\examples{
+# Two rules voters agree trivially (same deterministic translator):
+res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+print(res)
+}

@@ -24,3 +24,8 @@ Returns the single source of truth mapping each derivation
 \details{
 Layer registry for admiralagent
 }
+\examples{
+reg <- aa_layers()
+length(reg)
+reg$assign$fn
+}

@@ -18,6 +18,10 @@
 #' @param prompt_variant System prompt variant; used when `backend = "llm"`,
 #'   ignored otherwise. See [classify_variables_llm()].
 #' @return List of `aa_variable_ir` objects, one per spec variable.
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' ir[[1]]$variable
 #' @export
 classify_variables <- function(spec, dataset, backend = c("rules", "llm"), chat = NULL,
                                samples = 1, consensus = c("majority", "first"),

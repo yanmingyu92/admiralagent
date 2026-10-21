@@ -7,6 +7,8 @@
 #' @param layer Layer name; must be one of [layer_names()].
 #' @param args Named list of layer arguments.
 #' @return A list of class `aa_step` with elements `layer` and `args`.
+#' @examples
+#' new_step("assign", list(target = "TRT01P", from = "TRT01P"))
 #' @export
 new_step <- function(layer, args = list()) {
   args <- lapply(args, function(a) {
@@ -42,6 +44,12 @@ vector_args <- list(
 #'   instead of code generation.
 #' @param rationale Free-text explanation of the chosen layer chain.
 #' @return A list of class `aa_variable_ir`.
+#' @examples
+#' v <- new_variable_ir(
+#'   dataset = "ADSL",
+#'   variable = "TRTSDTM",
+#'   steps = list(new_step("assign", list(target = "TRTSDTM", literal = "2026-01-01")))
+#' )
 #' @export
 new_variable_ir <- function(dataset,
                             variable,
@@ -96,6 +104,10 @@ is_valid_ir <- function(ir) {
 #' @title IR validation gate
 #' @param ir List of `aa_variable_ir` objects built by [new_variable_ir()].
 #' @return Character vector of human-readable problems; empty when valid.
+#' @examples
+#' spec <- mock_spec_adsl()
+#' ir <- classify_variables(spec, "ADSL", backend = "rules")
+#' validate_ir(ir)
 #' @export
 validate_ir <- function(ir) {
   shape <- validate_ir_shape(ir)

@@ -23,3 +23,7 @@ Converts spec rows into a per-variable list of schema fields
 \details{
 Build schema-only LLM context
 }
+\examples{
+ctx <- build_context(spec_variables(mock_spec_adsl(), "ADSL"))
+ctx$STUDYID$derivation
+}

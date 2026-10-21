@@ -32,6 +32,7 @@
 #'   object. Printed via `print.aa_model_acceptance()`.
 #' @examples
 #' \dontrun{
+#' # Not executable without an LLM provider API key (ellmer chat object):
 #' chat <- ellmer::chat_deepseek(model = "deepseek-chat")
 #' accept_model(chat, min_eval_accuracy = 0.8, min_full_agreement = 0.5)
 #' }

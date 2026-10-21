@@ -89,6 +89,12 @@ validation_comments <- function(v) {
 #' @param quiet If `TRUE` (default) the status table is not printed.
 #' @return Invisibly, a data.frame with columns `variable`, `check`,
 #'   `status`, `details`.
+#' @examples
+#' ir <- list(new_variable_ir("ADSL", "STUDYID",
+#'   steps = list(new_step("assign", list(target = "STUDYID", literal = "STUDY1")))
+#' ))
+#' res <- run_validation(data.frame(STUDYID = "STUDY1"), ir)
+#' res
 #' @export
 run_validation <- function(data, ir, quiet = FALSE) {
   if (!is.data.frame(data)) stop("data must be an analysis data.frame", call. = FALSE)

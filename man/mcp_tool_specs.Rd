@@ -17,3 +17,7 @@ Defines the five deterministic tools exposed over MCP stdio:
   logic (no network, no LLM): spec rows in, layer IR / admiral code /
   validation problems out.
 }
+\examples{
+tools <- mcp_tool_specs()
+names(tools)
+}

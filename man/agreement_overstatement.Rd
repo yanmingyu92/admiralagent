@@ -26,3 +26,7 @@ The defect this harness exists to quantify: comparing only the
   regression corpus, so it quantifies overstated translation consistency,
   not correctness and not independent double programming.
 }
+\examples{
+res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+agreement_overstatement(res)
+}

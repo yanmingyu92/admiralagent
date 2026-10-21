@@ -6,7 +6,7 @@
 \usage{
 write_artifact(
   ir,
-  dir = "gen",
+  dir,
   backend_label = "rules",
   model = NULL,
   validation = NULL
@@ -15,7 +15,9 @@ write_artifact(
 \arguments{
 \item{ir}{List of `aa_variable_ir` objects.}
 
-\item{dir}{Output directory (created when missing).}
+\item{dir}{Output directory (created when missing). No default is set:
+pass an explicit path such as `tempdir()` so nothing is ever written to
+the user's current working directory by accident.}
 
 \item{backend_label}{Backend label recorded in sidecars.}
 
@@ -34,4 +36,11 @@ Writes one `<dataset>__<variable>__<hash8>.R` artifact per
 }
 \details{
 Write per-variable artifacts and sidecars
+}
+\examples{
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+out <- file.path(tempdir(), "aa-examples")
+write_artifact(ir, dir = out)
+list.files(out)
 }
