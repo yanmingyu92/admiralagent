@@ -60,3 +60,14 @@ List of \`aa_variable_ir\` objects. For \`samples \> 1\` the list
 carries a \`consensus\` attribute: a data.frame with columns
 \`variable\`, \`signature_votes\` (e.g. \`"impute_dtc-\>merge_var:2"\`),
 \`chosen\`, \`unanimous\`.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Requires the 'ellmer' package and a provider API key:
+chat <- ellmer::chat_anthropic()
+vars <- spec_variables(mock_spec_adsl(), "ADSL")
+ir <- classify_variables_llm(vars, chat)
+} # }
+```

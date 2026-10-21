@@ -47,3 +47,19 @@ row per case per level with each voter's fingerprint and an \`agree\`
 flag), \`rates\` (agreement rate per level) and \`crosstab\` (per level,
 a contingency table of the first two voters' human-readable labels).
 Printed via \[print.aa_agreement()\].
+
+## Examples
+
+``` r
+# Two rules voters agree trivially (same deterministic translator):
+res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+print(res)
+#> admiralagent agreement report
+#>   dataset: ADSL
+#>   voters:  a, b
+#>   agreement @ abstention:   1.000
+#>   agreement @ layer_chain:  1.000
+#>   agreement @ full:         1.000
+#>   note: pre-execution agreement over a self-scoring regression corpus -
+#>         translation consistency, not correctness or double programming.
+```

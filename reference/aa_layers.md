@@ -24,3 +24,13 @@ so an omitted arg and the same arg stated explicitly are one derivation.
 ## Details
 
 Layer registry for admiralagent
+
+## Examples
+
+``` r
+reg <- aa_layers()
+length(reg)
+#> [1] 15
+reg$assign$fn
+#> [1] "dplyr::mutate"
+```

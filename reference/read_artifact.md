@@ -38,3 +38,15 @@ recorded).
 ## Details
 
 Read an artifact sidecar back into an IR
+
+## Examples
+
+``` r
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+out <- file.path(tempdir(), "aa-examples-read")
+write_artifact(ir, dir = out)
+art <- read_artifact(file.path(out, list.files(out, pattern = "[.]json$")[1]))
+art$backend
+#> [1] "rules"
+```

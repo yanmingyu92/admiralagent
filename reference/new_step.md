@@ -27,3 +27,22 @@ A list of class \`aa_step\` with elements \`layer\` and \`args\`.
 ## Details
 
 Construct a layer step
+
+## Examples
+
+``` r
+new_step("assign", list(target = "TRT01P", from = "TRT01P"))
+#> $layer
+#> [1] "assign"
+#> 
+#> $args
+#> $args$target
+#> [1] "TRT01P"
+#> 
+#> $args$from
+#> [1] "TRT01P"
+#> 
+#> 
+#> attr(,"class")
+#> [1] "aa_step" "list"   
+```

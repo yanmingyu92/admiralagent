@@ -9,7 +9,7 @@ appends a \`write_program\` entry to the run log.
 ``` r
 write_program_artifact(
   ir,
-  dir = "gen",
+  dir,
   backend_label = "rules",
   model = NULL,
   gate = NULL,
@@ -63,3 +63,16 @@ Invisibly, the character vector of files written.
 ## Details
 
 Write the assembled program artifact
+
+## Examples
+
+``` r
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+out <- file.path(tempdir(), "aa-examples-program")
+write_program_artifact(ir, dir = out, require_gate = FALSE)
+#> admiralagent: approval gating is NOT enforced (policy source: argument). This program is being written with NO approval gate, is recorded as 'ungated-draft' and is not release-grade. Enforce gating with options(admiralagent.require_gate = TRUE) and approve with sign_gate(signer = , reason = , scope = gate_scope(ir)).
+list.files(out)
+#> [1] "admiralagent_log.jsonl"         "admiralagent_log.jsonl.head"   
+#> [3] "adsl__program__6aea851a.R"      "adsl__program__6aea851a.R.json"
+```

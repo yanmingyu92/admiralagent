@@ -29,3 +29,12 @@ vector carries a \`note\` attribute when admiral is not installed.
 ## Details
 
 Check admiral version compatibility of an IR
+
+## Examples
+
+``` r
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+check_admiral_compat(ir)
+#> character(0)
+```

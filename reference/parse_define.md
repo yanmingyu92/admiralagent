@@ -38,12 +38,3 @@ dataset labels from the ItemGroupDef descriptions.
 ## Details
 
 Parse an ODM define.xml directly into a spec data frame
-
-## Examples
-
-``` r
-if (FALSE) { # \dontrun{
-spec <- parse_define("define.xml")
-nrow(spec[spec$dataset == "ADSL" & !is.na(spec$derivation), ])
-} # }
-```

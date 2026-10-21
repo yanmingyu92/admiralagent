@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,6 +81,34 @@ in the source data.</p></dd>
     <p>Report undefined step inputs in an IR</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="mock_spec_adsl.html">mock_spec_adsl</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ir</span> <span class="op">&lt;-</span> <span class="fu"><a href="classify_variables.html">classify_variables</a></span><span class="op">(</span><span class="va">spec</span>, <span class="st">"ADSL"</span>, backend <span class="op">=</span> <span class="st">"rules"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ir_dependency_report</span><span class="op">(</span><span class="va">ir</span>, known_columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"SUBJID"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"TRT01P"</span>, <span class="st">"AGE"</span>, <span class="st">"RACEN"</span>, <span class="st">"RFSTDTC"</span>, <span class="st">"RFENDTC"</span>, <span class="st">"EXSTDTC"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    variable   input dataset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     BMIBL  WEIGHT      vs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     BMIBL  HEIGHT      vs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     BMIBL   VISIT      vs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     BMIBL PARAMCD      vs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     BMIBL    AVAL      vs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       AGE  BRTHDT    ADSL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       AGE  TRTSDT    ADSL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    RACEN    RACE    ADSL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   TRT01P     ARM    ADSL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                          issue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 not defined by earlier executable steps or known_columns; supply the source input or an upstream derivation</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

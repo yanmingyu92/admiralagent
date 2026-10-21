@@ -1,7 +1,27 @@
 # Changelog
 
-## admiralagent 0.1.0.9000 (development)
+## admiralagent 0.1.1
 
+CRAN resubmission: addresses the first-review comments and folds in the
+post-0.1.0 development features.
+
+- Description now expands all acronyms (ADaM, LLM, IR, P21, CDISC) and
+  references the CDISC Analysis Data Model standard.
+- Removed the example from the unexported
+  [`parse_define()`](https://yanmingyu92.github.io/admiralagent/reference/parse_define.md);
+  every exported function now carries a small executable example (LLM-
+  and MCP-server-only functions keep `\dontrun{}` with the reason
+  stated: provider API key or blocking stdio server).
+- [`write_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/write_artifact.md)
+  /
+  [`write_program_artifact()`](https://yanmingyu92.github.io/admiralagent/reference/write_program_artifact.md)
+  no longer default `dir`: an explicit output directory is required, so
+  no function writes into the user’s working directory by default;
+  examples and tests write to
+  [`tempdir()`](https://rdrr.io/r/base/tempfile.html).
+- Removed the remaining `<<-` assignments (closure accumulators
+  rewritten over explicit local environments; no behaviour change, full
+  test suite green).
 - New
   [`accept_model()`](https://yanmingyu92.github.io/admiralagent/reference/accept_model.md):
   model+harness acceptance gate. A candidate LLM runs the spec-to-IR

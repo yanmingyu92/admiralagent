@@ -3,7 +3,7 @@
 Derives the execution routing directly from spec lineage instead of a
 hand-registered process DAG: topological waves (a variable enters wave k
 only when every variable it references landed in an earlier wave),
-per-variable dependencies, and the two fail-closed lanes — variables
+per-variable dependencies, and the two fail-closed lanes - variables
 blocked by dependency cycles and variables routed to human review. The
 ordering is computed, not declared; \[validate_ir()\] refuses cyclic
 specs outright, so a plan built from a validated IR always exists.
@@ -37,3 +37,23 @@ Attributes: \`blocked\` (cycle-blocked variables) and \`duplicate\`
 ## Details
 
 Plan the derivation routing for an IR
+
+## Examples
+
+``` r
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+plan <- routing_plan(ir)
+plan[, c("variable", "wave", "layers")]
+#>    variable wave                   layers
+#> 1   STUDYID    0                   assign
+#> 2   USUBJID    0                   assign
+#> 3    SUBJID    0                   assign
+#> 4    TRT01P    0                   assign
+#> 5   TRTSDTM    0               impute_dtc
+#> 6   TRTEDTM    0               impute_dtc
+#> 7       AGE    0                 duration
+#> 8    AGEGR1   NA              needs_human
+#> 9     RACEN    0             codelist_var
+#> 10    BMIBL    1 compute_param->merge_var
+```

@@ -31,7 +31,7 @@ Agreement adopts the rules IR (deterministic precedence; the semantics
 
     <a class="navbar-brand me-2" href="../index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -140,6 +140,7 @@ majority vote before the cross-backend comparison.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="co"># Not executable without an LLM provider API key (ellmer chat object):</span></span></span>
 <span class="r-in"><span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu">ellmer</span><span class="fu">::</span><span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_deepseek.html" class="external-link">chat_deepseek</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"deepseek-chat"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ir</span> <span class="op">&lt;-</span> <span class="fu">classify_variables_dual</span><span class="op">(</span><span class="fu"><a href="mock_spec_adsl.html">mock_spec_adsl</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"ADSL"</span>, <span class="va">chat</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="dual_disagreements.html">dual_disagreements</a></span><span class="op">(</span><span class="va">ir</span><span class="op">)</span> <span class="co"># review queue: every variable the backends split on</span></span></span>

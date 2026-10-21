@@ -6,12 +6,12 @@ to translate specs: the candidate runs the spec-to-IR regression corpus
 (\[run_evals()\] machinery) and is cross-compared against the
 deterministic rules baseline at full canonical semantics
 (\[run_agreement()\]). Both thresholds are required arguments with no
-defaults — acceptance criteria must be prespecified by the deploying
+defaults - acceptance criteria must be prespecified by the deploying
 organization, not inherited from the tool.
 
 The decision is fail-closed: any pipeline error rejects the candidate.
 Acceptance certifies translation consistency against a self-scoring
-corpus — not correctness, not fitness for a particular study. Accepted
+corpus - not correctness, not fitness for a particular study. Accepted
 output still passes through \`validate_ir()\`, the dual-backend
 consensus, and human review like any other IR.
 
@@ -74,6 +74,7 @@ Accept or reject an LLM backend for spec translation
 
 ``` r
 if (FALSE) { # \dontrun{
+# Not executable without an LLM provider API key (ellmer chat object):
 chat <- ellmer::chat_deepseek(model = "deepseek-chat")
 accept_model(chat, min_eval_accuracy = 0.8, min_full_agreement = 0.5)
 } # }

@@ -29,3 +29,22 @@ agreement_overstatement(res)
 A list with \`layer_chain\`, \`full\`, \`overstatement\` (the
 difference) and \`cases\` (the ids counted as agreeing only at
 \`layer_chain\`).
+
+## Examples
+
+``` r
+res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+agreement_overstatement(res)
+#> $layer_chain
+#> [1] 1
+#> 
+#> $full
+#> [1] 1
+#> 
+#> $overstatement
+#> [1] 0
+#> 
+#> $cases
+#> character(0)
+#> 
+```

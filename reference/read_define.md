@@ -30,3 +30,35 @@ additionally returns \`codelist_oid\` and \`order\` columns.
 ## Details
 
 Read a define.xml metadata file
+
+## Examples
+
+``` r
+# Write a minimal one-variable define.xml to a temp directory and read it:
+define_txt <- paste(
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<ODM ODMVersion="1.3.2" xmlns="http://www.cdisc.org/ns/odm/v1.3">',
+  '  <Study OID="STD1"><MetaDataVersion OID="MDV1">',
+  '    <ItemGroupDef OID="IG.ADSL" Name="ADDSL" SASDatasetName="ADSL">',
+  '      <Description><TranslatedText>Subject-Level</TranslatedText></Description>',
+  '      <ItemRef ItemOID="IT.STUDYID" OrderNumber="1" MethodOID="MT.STUDYID"/>',
+  '    </ItemGroupDef>',
+  '    <ItemDef OID="IT.STUDYID" Name="STUDYID" DataType="text" Length="12">',
+  '      <Description><TranslatedText>Study Identifier</TranslatedText></Description>',
+  '    </ItemDef>',
+  '    <MethodDef OID="MT.STUDYID" Name="STUDYID" Type="Computation">',
+  '      <Description><TranslatedText>',
+  '        Copied directly from DM.STUDYID',
+  '      </TranslatedText></Description>',
+  '    </MethodDef>',
+  '  </MetaDataVersion></Study>',
+  '</ODM>',
+  sep = "\n"
+)
+f <- file.path(tempdir(), "define.xml")
+writeLines(define_txt, f)
+spec <- read_define(f)
+spec[, c("dataset", "variable", "derivation")]
+#>   dataset variable                      derivation
+#> 1   ADDSL  STUDYID Copied directly from DM.STUDYID
+```

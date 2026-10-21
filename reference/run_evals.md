@@ -34,3 +34,12 @@ run_evals(backend = c("rules", "llm"), chat = NULL, dataset = "ADSL")
 
 A data.frame (invisibly) with columns \`id\`, \`variable\`,
 \`expected\`, \`got\`, \`ok\`.
+
+## Examples
+
+``` r
+res <- run_evals(backend = "rules", dataset = "ADSL")
+#> evals: 20/20 correct (accuracy 1.000) [backend = rules, dataset = ADSL]
+evals_accuracy(res)
+#> [1] 1
+```

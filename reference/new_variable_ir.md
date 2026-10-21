@@ -56,3 +56,13 @@ A list of class \`aa_variable_ir\`.
 ## Details
 
 Construct a variable IR
+
+## Examples
+
+``` r
+v <- new_variable_ir(
+  dataset = "ADSL",
+  variable = "TRTSDTM",
+  steps = list(new_step("assign", list(target = "TRTSDTM", literal = "2026-01-01")))
+)
+```

@@ -15,7 +15,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,6 +114,14 @@ ignored otherwise. See [classify_variables_llm()].</p></dd>
     <p>Classify spec variables into layer IR</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu"><a href="mock_spec_adsl.html">mock_spec_adsl</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ir</span> <span class="op">&lt;-</span> <span class="fu">classify_variables</span><span class="op">(</span><span class="va">spec</span>, <span class="st">"ADSL"</span>, backend <span class="op">=</span> <span class="st">"rules"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ir</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">variable</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "STUDYID"</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

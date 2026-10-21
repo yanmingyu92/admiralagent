@@ -20,3 +20,12 @@ evals_accuracy(res)
 
 A single numeric in \`\[0, 1\]\`: the share of cases classified as
 expected.
+
+## Examples
+
+``` r
+res <- run_evals(backend = "rules", dataset = "ADSL")
+#> evals: 20/20 correct (accuracy 1.000) [backend = rules, dataset = ADSL]
+evals_accuracy(res)
+#> [1] 1
+```

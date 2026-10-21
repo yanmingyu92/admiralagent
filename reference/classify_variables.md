@@ -61,3 +61,12 @@ List of \`aa_variable_ir\` objects, one per spec variable.
 ## Details
 
 Classify spec variables into layer IR
+
+## Examples
+
+``` r
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+ir[[1]]$variable
+#> [1] "STUDYID"
+```

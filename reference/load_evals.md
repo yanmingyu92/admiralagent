@@ -23,3 +23,13 @@ load_evals(path = NULL)
 A named list of parsed eval cases (names are case ids). Each case has
 fields \`id\`, \`dataset\`, \`spec_row\`, \`expected_layers\`,
 \`expected_needs_human\`, and \`note\`.
+
+## Examples
+
+``` r
+cases <- load_evals()
+length(cases)
+#> [1] 26
+cases[[1]]$id
+#> [1] "eval_001"
+```

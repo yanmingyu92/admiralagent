@@ -41,3 +41,13 @@ A spec data frame as produced by \[read_spec_df()\].
 ## Details
 
 Read a P21-style specification workbook
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Requires a specifications.xlsx-style workbook plus the 'metacore' and
+# 'readxl' packages:
+spec <- read_spec("specifications.xlsx", dataset = "ADSL")
+} # }
+```

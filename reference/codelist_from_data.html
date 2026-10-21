@@ -15,7 +15,7 @@ entry of the `codelists` argument of [mock_metacore()], e.g.
 
     <a class="navbar-brand me-2" href="../index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,6 +80,16 @@ values (e.g. `"RACE"`).</p></dd>
   (character), one row per unique non-missing value, sorted by decode.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>RACE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WHITE"</span>, <span class="st">"ASIAN"</span>, <span class="st">"BLACK"</span>, <span class="st">"ASIAN"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">codelist_from_data</span><span class="op">(</span><span class="st">"RACE"</span>, <span class="va">dm</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code decode</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1  ASIAN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2  BLACK</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    3  WHITE</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

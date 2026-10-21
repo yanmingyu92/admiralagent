@@ -19,3 +19,11 @@ A single character string.
 ## Details
 
 Build the LLM system prompt
+
+## Examples
+
+``` r
+prompt <- build_system_prompt()
+nchar(prompt)
+#> [1] 15352
+```

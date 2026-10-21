@@ -33,3 +33,17 @@ Invisibly, a data.frame with columns \`variable\`, \`check\`,
 ## Details
 
 Run deterministic validation checks on executed data
+
+## Examples
+
+``` r
+ir <- list(new_variable_ir("ADSL", "STUDYID",
+  steps = list(new_step("assign", list(target = "STUDYID", literal = "STUDY1")))
+))
+res <- run_validation(data.frame(STUDYID = "STUDY1"), ir)
+#>  variable      check status details
+#>   STUDYID not_all_na   PASS        
+res
+#>   variable      check status details
+#> 1  STUDYID not_all_na   PASS        
+```

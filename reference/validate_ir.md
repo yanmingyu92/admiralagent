@@ -36,3 +36,12 @@ Character vector of human-readable problems; empty when valid.
 ## Details
 
 Validate a variable IR
+
+## Examples
+
+``` r
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+validate_ir(ir)
+#> character(0)
+```

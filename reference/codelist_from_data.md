@@ -28,3 +28,14 @@ codelist_from_data(var, data)
 
 A data.frame with columns \`code\` (integer) and \`decode\` (character),
 one row per unique non-missing value, sorted by decode.
+
+## Examples
+
+``` r
+dm <- data.frame(RACE = c("WHITE", "ASIAN", "BLACK", "ASIAN"))
+codelist_from_data("RACE", dm)
+#>   code decode
+#> 1    1  ASIAN
+#> 2    2  BLACK
+#> 3    3  WHITE
+```

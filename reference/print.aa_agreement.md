@@ -26,3 +26,18 @@ print(x, ...)
 ## Value
 
 \`x\`, invisibly.
+
+## Examples
+
+``` r
+res <- run_agreement(list(a = "rules", b = "rules"), dataset = "ADSL")
+print(res)
+#> admiralagent agreement report
+#>   dataset: ADSL
+#>   voters:  a, b
+#>   agreement @ abstention:   1.000
+#>   agreement @ layer_chain:  1.000
+#>   agreement @ full:         1.000
+#>   note: pre-execution agreement over a self-scoring regression corpus -
+#>         translation consistency, not correctness or double programming.
+```

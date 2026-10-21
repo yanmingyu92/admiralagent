@@ -75,6 +75,7 @@ Classify spec variables with two independent backends
 
 ``` r
 if (FALSE) { # \dontrun{
+# Not executable without an LLM provider API key (ellmer chat object):
 chat <- ellmer::chat_deepseek(model = "deepseek-chat")
 ir <- classify_variables_dual(mock_spec_adsl(), "ADSL", chat)
 dual_disagreements(ir) # review queue: every variable the backends split on

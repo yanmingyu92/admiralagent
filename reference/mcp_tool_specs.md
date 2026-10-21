@@ -16,3 +16,12 @@ mcp_tool_specs()
 
 A named list of tool definitions, each with \`name\`, \`description\`,
 and \`inputSchema\` (a JSON-Schema-style list).
+
+## Examples
+
+``` r
+tools <- mcp_tool_specs()
+names(tools)
+#> [1] "aa_classify"          "aa_validate_ir"       "aa_render_program"   
+#> [4] "aa_dependency_report" "aa_evals"            
+```

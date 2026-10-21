@@ -17,3 +17,19 @@ Named character vector, one documentation block per layer.
 ## Details
 
 Human-readable documentation of every layer
+
+## Examples
+
+``` r
+cards <- layer_docs()
+cat(cards[["assign"]])
+#> layer: assign
+#>   fn: dplyr::mutate
+#>   label: Direct assignment: copy a source variable or set a literal constant
+#>   args:
+#>     - target: character, new variable name
+#>     - from: character, source variable name in current dataset (mutually exclusive with literal)
+#>     - literal: character, literal constant value (quoted)
+#>     - on: character, dataset object name for this step (optional)
+#>   required: target
+```

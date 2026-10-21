@@ -33,10 +33,18 @@ Dataset-JSON header metadata
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-meta <- dataset_json_meta("sdtm/dm.json")
+doc <- list(
+  datasetJSONVersion = "1.1",
+  datasetJSONCreationDateTime = "2026-01-01T00:00:00",
+  columns = list(list(name = "STUDYID", dataType = "string", length = 6)),
+  rows = list(list("STUDY01"))
+)
+f <- file.path(tempdir(), "dm.json")
+writeLines(jsonlite::toJSON(doc, auto_unbox = TRUE, null = "null"), f)
+meta <- dataset_json_meta(f)
 meta$datasetJSONVersion
-meta$records
+#> [1] "1.1"
 meta$columns
-} # }
+#>   itemOID    name label dataType targetDataType length
+#> 1    <NA> STUDYID  <NA>   string           <NA>      6
 ```

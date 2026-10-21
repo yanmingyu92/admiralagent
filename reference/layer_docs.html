@@ -11,7 +11,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,6 +64,21 @@
     <p>Human-readable documentation of every layer</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">cards</span> <span class="op">&lt;-</span> <span class="fu">layer_docs</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">cards</span><span class="op">[[</span><span class="st">"assign"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> layer: assign</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   fn: dplyr::mutate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   label: Direct assignment: copy a source variable or set a literal constant</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   args:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     - target: character, new variable name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     - from: character, source variable name in current dataset (mutually exclusive with literal)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     - literal: character, literal constant value (quoted)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     - on: character, dataset object name for this step (optional)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   required: target</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

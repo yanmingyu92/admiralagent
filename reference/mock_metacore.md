@@ -44,3 +44,14 @@ mock_metacore(spec_df, codelists = list())
 A \`Metacore\` object (single-dataset specs: subsetted via
 \`select_dataset()\`; multi-dataset specs: full object). NULL with a
 warning if \`metacore\` is not installed.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Requires the 'metacore' package:
+mc <- mock_metacore(mock_spec_adsl(),
+  codelists = list(RACE = data.frame(code = 1:3, decode = c("ASIAN", "BLACK", "WHITE")))
+)
+} # }
+```

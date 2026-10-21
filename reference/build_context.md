@@ -26,3 +26,11 @@ A named list (by variable name) of schema-only field lists.
 ## Details
 
 Build schema-only LLM context
+
+## Examples
+
+``` r
+ctx <- build_context(spec_variables(mock_spec_adsl(), "ADSL"))
+ctx$STUDYID$derivation
+#> [1] "Copied directly from DM.STUDYID"
+```

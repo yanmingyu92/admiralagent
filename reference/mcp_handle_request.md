@@ -26,3 +26,14 @@ mcp_handle_request(req)
 
 A JSON-RPC response list, or \`NULL\` for notifications (no response may
 be sent).
+
+## Examples
+
+``` r
+resp <- mcp_handle_request(list(
+  jsonrpc = "2.0", id = 1, method = "tools/list"
+))
+vapply(resp$result$tools, function(t) t$name, character(1))
+#> [1] "aa_classify"          "aa_validate_ir"       "aa_render_program"   
+#> [4] "aa_dependency_report" "aa_evals"            
+```

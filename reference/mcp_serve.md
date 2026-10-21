@@ -16,3 +16,14 @@ mcp_serve()
 ## Value
 
 Invisible \`NULL\` when stdin reaches EOF.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Blocking stdio loop; cannot run inside R CMD check or an
+# interactive session. Test single requests in-process with
+# mcp_handle_request() instead:
+mcp_serve()
+} # }
+```

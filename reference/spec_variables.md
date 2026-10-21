@@ -25,3 +25,11 @@ The subset spec data frame; errors when no rows match.
 ## Details
 
 Extract one dataset's spec rows
+
+## Examples
+
+``` r
+rows <- spec_variables(mock_spec_adsl(), "ADSL")
+nrow(rows)
+#> [1] 10
+```

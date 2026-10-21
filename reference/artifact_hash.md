@@ -25,3 +25,12 @@ An 8-character hash string.
 ## Details
 
 Deterministic hash of a variable IR
+
+## Examples
+
+``` r
+spec <- mock_spec_adsl()
+ir <- classify_variables(spec, "ADSL", backend = "rules")
+artifact_hash(ir)
+#> [1] "6aea851a"
+```

@@ -26,3 +26,14 @@ agreed.
 ## Details
 
 Extract the dual-backend review queue
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Needs an ellmer chat object (LLM provider API key); see
+# classify_variables_dual():
+ir <- classify_variables_dual(mock_spec_adsl(), "ADSL", chat)
+dual_disagreements(ir)
+} # }
+```

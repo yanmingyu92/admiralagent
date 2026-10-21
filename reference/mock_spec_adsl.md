@@ -17,3 +17,12 @@ A spec data frame as produced by \[read_spec_df()\].
 ## Details
 
 Mock ADSL specification
+
+## Examples
+
+``` r
+spec <- mock_spec_adsl()
+spec$variable
+#>  [1] "STUDYID" "USUBJID" "SUBJID"  "TRT01P"  "TRTSDTM" "TRTEDTM" "AGE"    
+#>  [8] "AGEGR1"  "RACEN"   "BMIBL"  
+```

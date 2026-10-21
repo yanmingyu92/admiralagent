@@ -61,7 +61,7 @@ labels in column order), and `attr(df, "dataset_json_version")`.'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -152,13 +152,18 @@ labels in column order), and `attr(df, "dataset_json_version")`.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">dm_json</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"cdisc_data"</span>, <span class="st">"pilot5data"</span>, <span class="st">"pilot5-submission"</span>,</span></span>
-<span class="r-in"><span>  <span class="st">"pilot5-input"</span>, <span class="st">"sdtmdata"</span>, <span class="st">"datasetjson"</span>, <span class="st">"dm.json"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">dm</span> <span class="op">&lt;-</span> <span class="fu">read_dataset_json</span><span class="op">(</span><span class="va">dm_json</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">dm</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">dm</span>, <span class="st">"labels"</span><span class="op">)</span><span class="op">$</span><span class="va">STUDYID</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Write a minimal one-column Dataset-JSON file to a temp directory:</span></span></span>
+<span class="r-in"><span><span class="va">doc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  datasetJSONVersion <span class="op">=</span> <span class="st">"1.1"</span>,</span></span>
+<span class="r-in"><span>  datasetJSONCreationDateTime <span class="op">=</span> <span class="st">"2026-01-01T00:00:00"</span>,</span></span>
+<span class="r-in"><span>  columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"STUDYID"</span>, dataType <span class="op">=</span> <span class="st">"string"</span>, length <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"STUDY01"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"dm.json"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">toJSON</a></span><span class="op">(</span><span class="va">doc</span>, auto_unbox <span class="op">=</span> <span class="cn">TRUE</span>, null <span class="op">=</span> <span class="st">"null"</span><span class="op">)</span>, <span class="va">f</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dm</span> <span class="op">&lt;-</span> <span class="fu">read_dataset_json</span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dm</span><span class="op">$</span><span class="va">STUDYID</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "STUDY01"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

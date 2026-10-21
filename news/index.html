@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">admiralagent</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,8 +40,14 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0.9000" id="admiralagent-0109000-development">admiralagent 0.1.0.9000 (development)<a class="anchor" aria-label="anchor" href="#admiralagent-0109000-development"></a></h2>
-<ul><li>New <code><a href="../reference/accept_model.html">accept_model()</a></code>: model+harness acceptance gate. A candidate LLM runs the spec-to-IR regression corpus and is cross-compared against the rules baseline at full canonical semantics; both thresholds are required arguments (acceptance criteria must be prespecified), any pipeline error rejects the candidate, and the decision is logged as a digest-only <code>model_acceptance</code> audit event.</li>
+<h2 class="pkg-version" data-toc-text="0.1.1" id="admiralagent-011">admiralagent 0.1.1<a class="anchor" aria-label="anchor" href="#admiralagent-011"></a></h2>
+<p>CRAN resubmission: addresses the first-review comments and folds in the post-0.1.0 development features.</p>
+<ul><li>Description now expands all acronyms (ADaM, LLM, IR, P21, CDISC) and references the CDISC Analysis Data Model standard.</li>
+<li>Removed the example from the unexported <code><a href="../reference/parse_define.html">parse_define()</a></code>; every exported function now carries a small executable example (LLM- and MCP-server-only functions keep <code>\dontrun{}</code> with the reason stated: provider API key or blocking stdio server).</li>
+<li>
+<code><a href="../reference/write_artifact.html">write_artifact()</a></code> / <code><a href="../reference/write_program_artifact.html">write_program_artifact()</a></code> no longer default <code>dir</code>: an explicit output directory is required, so no function writes into the user’s working directory by default; examples and tests write to <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>.</li>
+<li>Removed the remaining <code>&lt;&lt;-</code> assignments (closure accumulators rewritten over explicit local environments; no behaviour change, full test suite green).</li>
+<li>New <code><a href="../reference/accept_model.html">accept_model()</a></code>: model+harness acceptance gate. A candidate LLM runs the spec-to-IR regression corpus and is cross-compared against the rules baseline at full canonical semantics; both thresholds are required arguments (acceptance criteria must be prespecified), any pipeline error rejects the candidate, and the decision is logged as a digest-only <code>model_acceptance</code> audit event.</li>
 <li>New <code><a href="../reference/routing_plan.html">routing_plan()</a></code>: derives the execution routing directly from spec lineage — topological waves, per-variable dependencies, and the two fail-closed lanes (cycle-blocked and human-routed variables stay waveless). The ordering is computed, not declared, replacing a hand-registered process DAG.</li>
 <li>New <code><a href="../reference/classify_variables_dual.html">classify_variables_dual()</a></code>: runs the rules classifier and the LLM pipeline independently on the same spec, compares the two translations per variable at full canonical semantics (<code>ir_fingerprint(level = "full")</code>), adopts the rules IR on agreement, and escalates any divergence (<code>disagree</code> / <code>rules_abstain</code> / <code>llm_abstain</code>) to <code>needs_human</code> — no side is ever silently preferred. The decision is recorded as a digest-only <code>dual_consensus</code> audit event; <code><a href="../reference/dual_disagreements.html">dual_disagreements()</a></code> extracts the human review queue.</li>
 </ul></div>
