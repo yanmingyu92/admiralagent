@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="519.6" height="600" viewBox="0 0 519.6 600">
+  <!-- admiralagent hex sticker: a ship's helm (steering) whose hub is an
+       isometric stack of three layers (spec -> layer IR -> admiral code).
+       Source of man/figures/logo.png and pkgdown/favicon/*; regenerate with
+       python pkgdown/render_logo.py -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="70%">
+      <stop offset="0" stop-color="#1d3f6e"/>
+      <stop offset="0.55" stop-color="#132c4f"/>
+      <stop offset="1" stop-color="#0a1a31"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe29a"/>
+      <stop offset="0.5" stop-color="#f5c966"/>
+      <stop offset="1" stop-color="#d9a441"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2dbdb0" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#2dbdb0" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="hexclip">
+      <polygon points="259.8,9 511.8,154.5 511.8,445.5 259.8,591 7.8,445.5 7.8,154.5"/>
+    </clipPath>
+    <g id="spoke">
+      <rect x="-5" y="-150" width="10" height="92" rx="3" fill="url(#gold)"/>
+      <rect x="-9" y="-166" width="18" height="34" rx="9" fill="url(#gold)"/>
+    </g>
+  </defs>
+
+  <!-- background -->
+  <polygon points="259.8,9 511.8,154.5 511.8,445.5 259.8,591 7.8,445.5 7.8,154.5" fill="url(#bg)"/>
+
+  <g clip-path="url(#hexclip)">
+    <!-- soft glow behind the helm -->
+    <circle cx="259.8" cy="232" r="190" fill="url(#glow)"/>
+    <!-- sea -->
+    <path d="M0,520 C60,500 110,540 170,520 S280,500 340,520 S450,540 520,515 L520,600 L0,600 Z"
+          fill="#2dbdb0" opacity="0.18"/>
+    <path d="M0,548 C70,528 120,566 190,546 S300,528 360,548 S460,566 520,542 L520,600 L0,600 Z"
+          fill="#2dbdb0" opacity="0.28"/>
+  </g>
+
+  <!-- helm -->
+  <g transform="translate(259.8 232)">
+    <use href="#spoke" transform="rotate(0)"/>
+    <use href="#spoke" transform="rotate(45)"/>
+    <use href="#spoke" transform="rotate(90)"/>
+    <use href="#spoke" transform="rotate(135)"/>
+    <use href="#spoke" transform="rotate(180)"/>
+    <use href="#spoke" transform="rotate(225)"/>
+    <use href="#spoke" transform="rotate(270)"/>
+    <use href="#spoke" transform="rotate(315)"/>
+    <circle r="114" fill="none" stroke="url(#gold)" stroke-width="15"/>
+    <circle r="114" fill="none" stroke="#7a5a1c" stroke-width="1.5" stroke-dasharray="2 10" opacity="0.6"/>
+    <circle r="64" fill="#0d213d" stroke="url(#gold)" stroke-width="9"/>
+
+    <!-- layer stack: admiral code (bottom), layer IR, spec (top) -->
+    <g stroke="#0d213d" stroke-width="3" stroke-linejoin="round">
+      <polygon points="0,-2 38,18 0,38 -38,18" fill="#f5c966"/>
+      <polygon points="0,-18 38,2 0,22 -38,2" fill="#2dbdb0"/>
+      <polygon points="0,-34 38,-14 0,6 -38,-14" fill="#9be7e1"/>
+    </g>
+  </g>
+
+  <!-- name -->
+  <text x="259.8" y="452" text-anchor="middle"
+        font-family="'Segoe UI Semibold','Segoe UI','Helvetica Neue',Arial,sans-serif"
+        font-weight="600" font-size="58" letter-spacing="0.5" fill="#ffffff">admiralagent</text>
+  <text x="259.8" y="490" text-anchor="middle"
+        font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif"
+        font-size="19" letter-spacing="3" fill="#9be7e1">SPEC · IR · ADMIRAL</text>
+
+  <!-- border -->
+  <polygon points="259.8,9 511.8,154.5 511.8,445.5 259.8,591 7.8,445.5 7.8,154.5"
+           fill="none" stroke="#2dbdb0" stroke-width="16" stroke-linejoin="round"/>
+  <polygon points="259.8,24 498.8,162 498.8,438 259.8,576 20.8,438 20.8,162"
+           fill="none" stroke="#f5c966" stroke-width="1.5" opacity="0.55"/>
+</svg>
