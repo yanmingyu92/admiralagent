@@ -1,4 +1,4 @@
-# admiralagent
+# admiralagent <img src="man/figures/logo.png" align="right" width="140" style="margin-left:20px;"/>
 
 [![R-CMD-check](https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yanmingyu92/admiralagent/actions/workflows/R-CMD-check.yaml)
 [![testthat](https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml/badge.svg)](https://github.com/yanmingyu92/admiralagent/actions/workflows/testthat.yaml)

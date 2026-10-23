@@ -21,6 +21,7 @@
 ^admiralagent\.Rcheck$
 ^.*\.tar\.gz$
 ^_pkgdown\.yml$
+^pkgdown$
 ^\.lintr$
 
 ^audit$
